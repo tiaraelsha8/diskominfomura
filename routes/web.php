@@ -8,6 +8,7 @@ use App\Http\Controllers\auth\ResetPasswordController;
 
 use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\backend\DashboardController;
+use App\Http\Controllers\backend\TentangController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -37,4 +38,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
     Route::put('/user/update/{id}', [UserController::class, 'update'])->name('user.update');
+
+    Route::resource('/tentang', TentangController::class);
+
 });
