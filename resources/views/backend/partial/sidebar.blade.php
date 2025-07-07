@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #0071b4">
     <!-- Brand Logo -->
     <a href="#" class="brand-link">
       <img src="{{asset('templateadmin/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -25,7 +25,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{{ route ('logo.index') }}" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Logo
@@ -34,7 +34,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{{ route ('carousel.index') }}" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Carousel
@@ -73,7 +73,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{{ route ('berita.index') }}" class="nav-link">
               <i class="nav-icon far fa-image"></i>
               <p>
                 Berita
@@ -100,7 +100,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{{ route ('kontak.index') }}" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Kontak

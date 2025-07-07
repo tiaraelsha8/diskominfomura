@@ -5,9 +5,12 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\auth\ForgotPasswordController;
 use App\Http\Controllers\auth\ResetPasswordController;
-
+use App\Http\Controllers\backend\BeritabackController;
+use App\Http\Controllers\backend\CarouselController;
 use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\backend\DashboardController;
+use App\Http\Controllers\backend\KontakController;
+use App\Http\Controllers\backend\LogoController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -34,6 +37,14 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('backend.dashboard');
+
+    Route::resource('logo', LogoController::class);
+
+    Route::resource('carousel', CarouselController::class);
+
+    Route::resource('berita', BeritabackController::class);
+
+    Route::resource('kontak', KontakController::class);
 
     Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
     Route::put('/user/update/{id}', [UserController::class, 'update'])->name('user.update');
