@@ -1,10 +1,10 @@
-1.git clone
-2.cd projek
-3.composer install
-4.copy paste .env
-5.php artisan key:generate
-6.php artisan migrate
-7.php artisan migrate --seed
+1. git clone
+2. cd projek
+3. composer install
+4. copy paste .env
+5. php artisan key:generate
+6. php artisan migrate
+7. php artisan migrate --seed
 
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
