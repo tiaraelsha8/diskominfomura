@@ -12,4 +12,9 @@ class Bidang extends Model
     protected $table = 'bidangs';
 
     protected $fillable = ['nama_bidang'];
+
+    public function pegawais()
+    {
+        return $this->hasMany(Pegawai::class, 'bidang_id');
+    }
 }
