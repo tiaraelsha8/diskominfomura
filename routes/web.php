@@ -9,6 +9,7 @@ use App\Http\Controllers\backend\BeritabackController;
 use App\Http\Controllers\backend\CarouselController;
 use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\backend\DashboardController;
+use App\Http\Controllers\backend\GaleriController;
 use App\Http\Controllers\backend\KontakController;
 use App\Http\Controllers\backend\LogoController;
 
@@ -43,6 +44,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('carousel', CarouselController::class);
 
     Route::resource('berita', BeritabackController::class);
+
+    Route::resource('galeri', GaleriController::class);
 
     Route::resource('kontak', KontakController::class);
 
