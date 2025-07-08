@@ -13,6 +13,8 @@ use App\Http\Controllers\backend\BidangController;
 use App\Http\Controllers\backend\JabatanController;
 use App\Http\Controllers\backend\PegawaiController;
 use App\Http\Controllers\backend\DokumenController;
+use App\Http\Controllers\backend\LokasiInternetController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -54,4 +56,5 @@ Route::middleware('auth')->group(function () {
     Route::resource('/dokumen', DokumenController::class);
     Route::get('/dokumen/download/{id}', [DokumenController::class, 'download'])->name('dokumen.download');
 
+    Route::resource('/lokasi', LokasiInternetController::class);
 });
