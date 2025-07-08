@@ -64,7 +64,11 @@ class CarouselController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        //get product by ID
+        $carousel = Carousel::findOrFail($id);
+
+        //render view with product
+        return view('backend.carousel.edit', compact('carousel'));
     }
 
     /**
@@ -72,7 +76,38 @@ class CarouselController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        //validate form
+        $request->validate([
+            'judul' => 'required',
+            'foto' => 'image|mimes:jpeg,jpg,png|max:2048',
+        ]);
+
+        //get product by ID
+        $carousel = Carousel::findOrFail($id);
+
+        //check if image is uploaded
+        if ($request->hasFile('foto')) {
+            //delete old image
+            Storage::delete('carousel/' . $carousel->foto);
+
+            //upload new image
+            $image = $request->file('foto');
+            $image->storeAs('carousel', $image->hashName());
+
+            //update product with new image
+            $carousel->update([
+                'judul' => $request->judul,
+                'foto' => $image->hashName(),
+            ]);
+        } else {
+            //update product without image
+            $carousel->update([
+                'judul' => $request->judul,
+            ]);
+        }
+
+        //redirect to index
+        return redirect()->route('carousel.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
     /**

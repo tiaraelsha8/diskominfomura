@@ -12,6 +12,7 @@ use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\backend\GaleriController;
 use App\Http\Controllers\backend\KontakController;
 use App\Http\Controllers\backend\LogoController;
+use App\Http\Controllers\backend\PengumumanbackController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -44,6 +45,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('carousel', CarouselController::class);
 
     Route::resource('berita', BeritabackController::class);
+
+    Route::resource('pengumuman', PengumumanbackController::class);
 
     Route::resource('galeri', GaleriController::class);
 

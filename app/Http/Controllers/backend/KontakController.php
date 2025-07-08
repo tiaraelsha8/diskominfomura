@@ -35,7 +35,7 @@ class KontakController extends Controller
                 ->route('kontak.index')
                 ->with(['error' => 'Data sudah ada. Tidak boleh lebih dari satu.']);
         }
-        
+
         //validate form
         $request->validate([
             'lokasi' => 'required',
@@ -65,7 +65,11 @@ class KontakController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        //get product by ID
+        $kontak = Kontak::findOrFail($id);
+
+        //render view with product
+        return view('backend.kontak.edit', compact('kontak'));
     }
 
     /**
@@ -73,7 +77,26 @@ class KontakController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        //validate form
+        $request->validate([
+            'lokasi' => 'required',
+            'telepon' => 'required',
+            'email' => 'required',
+        ]);
+
+        //get product by ID
+        $kontak = kontak::findOrFail($id);
+
+        $kontak->update([
+            'lokasi' => $request->lokasi,
+            'telepon' => $request->telepon,
+            'email' => $request->email,
+        ]);
+
+        //redirect to index
+        return redirect()
+            ->route('kontak.index')
+            ->with(['success' => 'Data Berhasil Diubah!']);
     }
 
     /**

@@ -70,7 +70,11 @@ class LogoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        //get product by ID
+        $logo = Logo::findOrFail($id);
+
+        //render view with product
+        return view('backend.logo.edit', compact('logo'));
     }
 
     /**
@@ -78,7 +82,38 @@ class LogoController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        //validate form
+        $request->validate([
+            'judul' => 'required',
+            'foto' => 'image|mimes:jpeg,jpg,png|max:2048',
+        ]);
+
+        //get product by ID
+        $logo = logo::findOrFail($id);
+
+        //check if image is uploaded
+        if ($request->hasFile('foto')) {
+            //delete old image
+            Storage::delete('logo/' . $logo->foto);
+
+            //upload new image
+            $image = $request->file('foto');
+            $image->storeAs('logo', $image->hashName());
+
+            //update product with new image
+            $logo->update([
+                'judul' => $request->judul,
+                'foto' => $image->hashName(),
+            ]);
+        } else {
+            //update product without image
+            $logo->update([
+                'judul' => $request->judul,
+            ]);
+        }
+
+        //redirect to index
+        return redirect()->route('logo.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
 
     /**
