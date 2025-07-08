@@ -21,21 +21,20 @@
                     @enderror
 
                     <div class="form-group">
-                        <label>NIP</label>
-                        <input type="text" class="form-control" name="nip" value="{{ $pegawais->nip }}">
+                        <label>Jabatan</label>
+                        <select name="jabatan_id" class="form-control" id="">
+                            <option value="">-- Pilih Jabatan --</option>
+                            @forelse ($jabatans as $item)
+                                @if ($item->id === $pegawais->jabatan_id)
+                                    <option value="{{ $item->id }}" selected> {{ $item->nama_jabatan }} </option>
+                                @else
+                                    <option value="{{ $item->id }}"> {{ $item->nama_jabatan }} </option>
+                                @endif
+                            @empty
+                                <option value="">Tidak Ada Data Jabatan</option>
+                            @endforelse
+                        </select>
                     </div>
-                    @error('nip')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-
-                    <div class="form-group">
-                        <label>janatan</label>
-                        <input type="text" class="form-control" name="jabatan" value="{{ $pegawais->jabatan }}">
-                    </div>
-                    @error('jabatan')
-                        <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-
 
                     <div class="form-group">
                         <label>Bidang</label>

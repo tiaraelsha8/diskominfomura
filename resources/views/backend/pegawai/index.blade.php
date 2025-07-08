@@ -38,7 +38,6 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
-                                    <th>NIP</th>
                                     <th>Jabatan</th>
                                     <th>Bidang</th>
                                     <th>Foto</th>
@@ -50,8 +49,7 @@
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $value->nama }}</td>
-                                        <td>{{ $value->nip }}</td>
-                                        <td>{{ $value->jabatan }}</td>
+                                        <td>{{ $value->jabatan->nama_jabatan }}</td>
                                         <td>{{ $value->bidang->nama_bidang }}</td>
 
                                         <td>
@@ -65,9 +63,9 @@
                                                 @method('DELETE')
                                                 <a href="{{ route('pegawai.edit', $value->id) }}"
                                                     class="btn btn-warning btn-sm">Edit</a>
-                                                <!-- Tombol Cetak -->
+                                                {{-- <!-- Tombol Cetak -->
                                                 <a href="{{ route('cetak.pegawai', $value->id) }}" target="_blank"
-                                                    class="btn btn-primary btn-sm mt-1">Cetak</a>
+                                                    class="btn btn-primary btn-sm mt-1">Cetak</a> --}}
                                                 <input type="submit" value="Hapus" class="btn btn-danger btn-sm">
                                             </form>
 

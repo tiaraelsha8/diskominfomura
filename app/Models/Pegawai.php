@@ -11,10 +11,17 @@ class Pegawai extends Model
 
     protected $table = 'pegawais';
 
-    protected $fillable = ['nama', 'nip', 'jabatan', 'bidang_id', 'foto'];
+    protected $fillable = ['nama', 'jabatan', 'bidang_id', 'jabatan_id', 'foto'];
 
+    // Relasi ke Bidang
     public function bidang()
     {
-        return $this->belongsTo(Bidang::class, 'bidang_id');
+        return $this->belongsTo(Bidang::class);
+    }
+
+    // Relasi ke Jabatan
+    public function jabatan()
+    {
+        return $this->belongsTo(Jabatan::class);
     }
 }
