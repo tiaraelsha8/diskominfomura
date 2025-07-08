@@ -12,6 +12,7 @@ use App\Http\Controllers\backend\TentangController;
 use App\Http\Controllers\backend\BidangController;
 use App\Http\Controllers\backend\JabatanController;
 use App\Http\Controllers\backend\PegawaiController;
+use App\Http\Controllers\backend\DokumenController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -49,5 +50,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/pegawai', PegawaiController::class);
 
     Route::resource('/jabatan', JabatanController::class);
+
+    Route::resource('/dokumen', DokumenController::class);
+    Route::get('/dokumen/download/{id}', [DokumenController::class, 'download'])->name('dokumen.download');
 
 });
