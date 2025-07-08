@@ -10,6 +10,8 @@ use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\backend\TentangController;
 use App\Http\Controllers\backend\BidangController;
+use App\Http\Controllers\backend\JabatanController;
+use App\Http\Controllers\backend\PegawaiController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -43,5 +45,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('/tentang', TentangController::class);
 
     Route::resource('/bidang', BidangController::class);
+
+    Route::resource('/pegawai', PegawaiController::class);
+
+    Route::resource('/jabatan', JabatanController::class);
 
 });

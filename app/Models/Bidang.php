@@ -13,8 +13,8 @@ class Bidang extends Model
 
     protected $fillable = ['nama_bidang'];
 
-    public function pegawais()
-    {
-        return $this->hasMany(Pegawai::class, 'bidang_id');
-    }
+    // public function pegawais()
+    // {
+    //     return $this->hasMany(Pegawai::class, 'bidang_id');
+    // }
 }

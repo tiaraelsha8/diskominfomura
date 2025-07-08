@@ -11,14 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('pegawais', function (Blueprint $table) {
+        Schema::create('jabatans', function (Blueprint $table) {
             $table->id();
-            $table->string('nama', 100);
-            $table->string('nip', 50)->unique();
-            $table->string('jabatan', 100);
-            $table->unsignedBigInteger('bidang_id');
-            $table->foreign('bidang_id')->references('id')->on('bidangs')->onDelete('cascade');
-            $table->string('foto');
+            $table->string('nama_jabatan');
             $table->timestamps();
         });
     }
@@ -28,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('pegawais');
+        Schema::dropIfExists('jabatans');
     }
 };
