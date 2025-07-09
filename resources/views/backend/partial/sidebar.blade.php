@@ -52,22 +52,39 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ route('tentang.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Tentang</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Bidang</p>
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-edit"></i>
+                  <p>
+                    Pegawai
+                    <i class="fas fa-angle-left right"></i>
+                  </p>
                 </a>
-              </li>
-              <li class="nav-item">
-                <a href="" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Pegawai</p>
-                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{ route('jabatan.index') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Jabatan</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ route('bidang.index') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Bidang</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ route('pegawai.index') }}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Data Pegawai</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
             </ul>
           </li>
@@ -100,7 +117,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{{ route('dokumen.index') }}" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Dokumen
@@ -118,7 +135,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="" class="nav-link">
+            <a href="{{ route('lokasi.index') }}" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Peta Jaringan

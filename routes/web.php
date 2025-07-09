@@ -9,6 +9,13 @@ use App\Http\Controllers\backend\BeritabackController;
 use App\Http\Controllers\backend\CarouselController;
 use App\Http\Controllers\backend\UserController;
 use App\Http\Controllers\backend\DashboardController;
+use App\Http\Controllers\backend\TentangController;
+use App\Http\Controllers\backend\BidangController;
+use App\Http\Controllers\backend\JabatanController;
+use App\Http\Controllers\backend\PegawaiController;
+use App\Http\Controllers\backend\DokumenController;
+use App\Http\Controllers\backend\LokasiInternetController;
+
 use App\Http\Controllers\backend\GaleriController;
 use App\Http\Controllers\backend\KontakController;
 use App\Http\Controllers\backend\LogoController;
@@ -54,4 +61,17 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
     Route::put('/user/update/{id}', [UserController::class, 'update'])->name('user.update');
+
+    Route::resource('/tentang', TentangController::class);
+
+    Route::resource('/bidang', BidangController::class);
+
+    Route::resource('/pegawai', PegawaiController::class);
+
+    Route::resource('/jabatan', JabatanController::class);
+
+    Route::resource('/dokumen', DokumenController::class);
+    Route::get('/dokumen/download/{id}', [DokumenController::class, 'download'])->name('dokumen.download');
+
+    Route::resource('/lokasi', LokasiInternetController::class);
 });
