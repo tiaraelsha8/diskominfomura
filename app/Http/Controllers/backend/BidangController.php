@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Bidang;
+use Illuminate\Database\QueryException;
 
 class BidangController extends Controller
 {
@@ -85,13 +86,18 @@ class BidangController extends Controller
      */
     public function destroy(string $id)
     {
-         //get by ID
-         $bidangs = Bidang::findOrFail($id);
-
-         //delete 
-         $bidangs->delete();
- 
-         //redirect to index
-         return redirect()->route('bidang.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        try {
+            // Cari data
+            $bidangs = Bidang::findOrFail($id);
+    
+            // Coba hapus
+            $bidangs->delete();
+    
+            // Jika berhasil
+            return redirect()->route('bidang.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        } catch (QueryException $e) {
+            // Jika gagal karena masih dipakai (foreign key restrict)
+            return redirect()->route('bidang.index')->with(['error' => 'Tidak bisa menghapus! Bidang masih digunakan oleh pegawai.']);
+        }
     }
 }
