@@ -35,7 +35,7 @@
                 @if ($kontak->count() < 1)
                     <a href="{{ route ('kontak.create') }}" class="btn btn-primary btn-sm mb-3 mt-3">Tambah</a>
                 @endif
-                <table id="example1" class="table table-bordered table-striped">
+                <table  class="table table-bordered table-striped">
                   <thead>
                   <tr>
                     <th>No</th>
