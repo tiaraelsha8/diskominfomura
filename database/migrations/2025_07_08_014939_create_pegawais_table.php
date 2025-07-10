@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('foto');
             // Foreign key ke tabel bidangs
             $table->unsignedBigInteger('bidang_id');
-            $table->foreign('bidang_id')->references('id')->on('bidangs')->onDelete('cascade');
+            $table->foreign('bidang_id')->references('id')->on('bidangs')->onDelete('restrict');
             // Foreign key ke tabel jabatans
             $table->unsignedBigInteger('jabatan_id');
-            $table->foreign('jabatan_id')->references('id')->on('jabatans')->onDelete('cascade');
+            $table->foreign('jabatan_id')->references('id')->on('jabatans')->onDelete('restrict');
             $table->timestamps();
         });
     }

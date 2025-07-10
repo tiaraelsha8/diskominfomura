@@ -40,7 +40,7 @@ class PegawaiController extends Controller
             'nama' => 'required|string|max:100',
             'jabatan_id' => 'required|exists:jabatans,id',
             'bidang_id' => 'required|exists:bidangs,id',
-            'foto' => 'image|mimes:jpg,jpeg|max:2048',
+            'foto' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         //upload image

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Jabatan;
+use Illuminate\Database\QueryException;
 
 class JabatanController extends Controller
 {
@@ -82,6 +83,8 @@ class JabatanController extends Controller
      */
     public function destroy(string $id)
     {
+        try {
+            
          //get by ID
          $jabatans = Jabatan::findOrFail($id);
 
@@ -90,5 +93,9 @@ class JabatanController extends Controller
  
          //redirect to index
          return redirect()->route('jabatan.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        } catch (QueryException $e) {
+            // Jika gagal karena masih dipakai (foreign key restrict)
+            return redirect()->route('jabatan.index')->with(['error' => 'Tidak bisa menghapus! Jabatan masih digunakan oleh pegawai.']);
+        }
     }
 }
