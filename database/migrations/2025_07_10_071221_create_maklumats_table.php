@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('maklumats', function (Blueprint $table) {
             $table->id();
-            $table->text('tentang');
+            $table->text('maklumat');
             $table->timestamps();
         });
     }
