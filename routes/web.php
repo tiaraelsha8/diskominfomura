@@ -20,6 +20,9 @@ use App\Http\Controllers\backend\GaleriController;
 use App\Http\Controllers\backend\KontakController;
 use App\Http\Controllers\backend\LogoController;
 use App\Http\Controllers\backend\PengumumanbackController;
+use App\Http\Controllers\frontend\BeritaController;
+use App\Http\Controllers\frontend\PengumumanController;
+use App\Http\Controllers\frontend\PetaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -41,6 +44,12 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+//frontend
+Route::get('/lihat-berita', [BeritaController::class, 'index'])->name('lihat-berita');
+Route::get('/lihat-pengumuman', [PengumumanController::class, 'index'])->name('lihat-pengumuman');
+Route::get('/peta', [PetaController::class, 'index'])->name('peta.index');
+
 
 //backend
 Route::middleware('auth')->group(function () {

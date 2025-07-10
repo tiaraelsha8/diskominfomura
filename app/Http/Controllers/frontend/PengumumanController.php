@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
-
+use App\Models\Pengumuman;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -29,6 +29,7 @@ class PengumumanController extends Controller
             ];
         });
         
-        return view('frontend/pengumuman.index', compact('pengumuman'));
+        $pengumumans = Pengumuman::latest()->get();
+        return view('frontend/pengumuman.index', compact('pengumuman','pengumumans'));
     }
 }
