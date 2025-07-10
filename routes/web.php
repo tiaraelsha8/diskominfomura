@@ -20,6 +20,7 @@ use App\Http\Controllers\backend\GaleriController;
 use App\Http\Controllers\backend\KontakController;
 use App\Http\Controllers\backend\LogoController;
 use App\Http\Controllers\backend\PengumumanbackController;
+use App\Http\Controllers\backend\VideoController;
 use App\Http\Controllers\frontend\BeritaController;
 use App\Http\Controllers\frontend\PengumumanController;
 use App\Http\Controllers\frontend\PetaController;
@@ -65,6 +66,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('pengumuman', PengumumanbackController::class);
 
     Route::resource('galeri', GaleriController::class);
+
+    Route::resource('video', VideoController::class);
 
     Route::resource('kontak', KontakController::class);
 

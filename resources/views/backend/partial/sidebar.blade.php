@@ -126,6 +126,15 @@
           </li>
 
           <li class="nav-item">
+            <a href="{{ route ('video.index') }}" class="nav-link">
+              <i class="nav-icon far fa-image"></i>
+              <p>
+                Video
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a href="{{ route ('galeri.index') }}" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
