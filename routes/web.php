@@ -15,6 +15,7 @@ use App\Http\Controllers\backend\JabatanController;
 use App\Http\Controllers\backend\PegawaiController;
 use App\Http\Controllers\backend\DokumenController;
 use App\Http\Controllers\backend\LokasiInternetController;
+use App\Http\Controllers\backend\MaklumatController;
 
 use App\Http\Controllers\backend\GaleriController;
 use App\Http\Controllers\backend\KontakController;
@@ -75,6 +76,8 @@ Route::middleware('auth')->group(function () {
     Route::put('/user/update/{id}', [UserController::class, 'update'])->name('user.update');
 
     Route::resource('/tentang', TentangController::class);
+
+    Route::resource('/maklumat', MaklumatController::class);
 
     Route::resource('/bidang', BidangController::class);
 
