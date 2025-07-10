@@ -21,6 +21,7 @@ return new class extends Migration
             // Foreign key ke tabel jabatans
             $table->unsignedBigInteger('jabatan_id');
             $table->foreign('jabatan_id')->references('id')->on('jabatans')->onDelete('restrict');
+            $table->text('tupoksi');
             $table->timestamps();
         });
     }
