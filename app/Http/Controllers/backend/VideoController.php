@@ -14,8 +14,8 @@ class VideoController extends Controller
      */
     public function index()
     {
-        $video = Video::latest()->get();
-        return view('backend.video.index', compact('video'));
+        $videos = Video::latest()->get();
+        return view('backend.video.index', compact('videos'));
     }
 
     /**
@@ -39,14 +39,14 @@ class VideoController extends Controller
         ]);
 
         //upload video
-        $video = $request->file('video');
-        $video->storeAs('video', $video->hashName());
+        $videos = $request->file('video');
+        $videos->storeAs('videos', $videos->hashName());
 
         //create product
         Video::create([
             'judul' => $request->judul,
             'deskripsi' => $request->deskripsi,
-            'video' => $video->hashName(),
+            'video' => $videos->hashName(),
         ]);
 
         //redirect to index
@@ -67,45 +67,45 @@ class VideoController extends Controller
     public function edit(string $id)
     {
         //get product by ID
-        $video = video::findOrFail($id);
+        $videos = video::findOrFail($id);
 
         //render view with product
-        return view('backend.video.edit', compact('video'));
+        return view('backend.video.edit', compact('videos'));
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
+   {
         //validate form
         $request->validate([
             'judul' => 'required',
             'deskripsi' => 'required',
-            'video' => 'required|mimetypes:video/mp4,video/avi,video/quicktime|max:20000',
+            'video' => 'mimetypes:video/mp4,video/avi,video/quicktime|max:20000',
         ]);
 
         //get product by ID
-        $video = video::findOrFail($id);
+        $videos = Video::findOrFail($id);
 
         //check if video is uploaded
         if ($request->hasFile('video')) {
             //delete old video
-            Storage::delete('video/' . $video->video);
+            Storage::delete('videos/' . $videos->video);
 
             //upload new video
-            $video = $request->file('video');
-            $video->storeAs('video', $video->hashName());
+            $file = $request->file('video');
+            $file->storeAs('videos', $file->hashName());
 
-            //update product with new video
-            $video->update([
+            //update product with new image
+            $videos->update([
                 'judul' => $request->judul,
                 'deskripsi' => $request->deskripsi,
-                'video' => $video->hashName(),
+                'video' => $file->hashName(),
             ]);
         } else {
-            //update product without video
-            $video->update([
+            //update product without image
+            $videos->update([
                 'judul' => $request->judul,
                 'deskripsi' => $request->deskripsi,
             ]);
@@ -121,13 +121,13 @@ class VideoController extends Controller
     public function destroy(string $id)
     {
         //get by ID
-        $video = video::findOrFail($id);
+        $videos = video::findOrFail($id);
 
         //delete video
-        Storage::delete('video/' . $video->video);
+        Storage::delete('video/' . $videos->video);
 
         //delete video
-        $video->delete();
+        $videos->delete();
 
         //redirect to index
         return redirect()->route('video.index')->with(['success' => 'Data Berhasil Dihapus!']);

@@ -5,6 +5,20 @@
 @endsection
 
 @section('content')
+
+    <form method="POST" action="{{ route('lokasi.import') }}" enctype="multipart/form-data">
+        @csrf
+        <div class="mt-2">
+            <label>Pilih File</label>
+            <input type="file" name="file" class="form-control">
+        </div>
+
+        <div class="mt-2">
+            <button class="btn btn-primary">Submit</button>
+        </div>
+
+    </form>
+
     <form action="{{ route('lokasi.store') }}" method="POST">
         @csrf
         <div class="box-body">

@@ -43,14 +43,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($video as $key => $value)
+                                @forelse ($videos as $key => $value)
                                     <tr>
                                         <td>{{ $key + 1 }}</td>
                                         <td>{{ $value->judul }}</td>
                                         <td>{{ $value->deskripsi }}</td>
                                         <td>
                                             <video width="300" height="200" controls style="object-fit: contain;">
-                                                <source src="{{ asset('storage/video/' . $value->video) }}"
+                                                <source src="{{ asset('storage/videos/' . $value->video) }}"
                                                     type="video/mp4">
                                                 Browser Anda tidak mendukung tag video.
                                             </video>

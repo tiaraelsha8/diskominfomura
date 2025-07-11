@@ -10,7 +10,7 @@
         <div class="box-body">
 
             <div class="form-group">
-                <label>Judul Galeri</label>
+                <label>Judul Video</label>
                 <input type="text" class="form-control" name="judul" placeholder="Isikan Judul Video">
             </div>
             @error('judul')
@@ -27,7 +27,7 @@
 
             <div class="form-group">
                 <label for="image">Video</label>
-                <input type="file" class="form-control-file" name="video" accept="video/*">
+                <input type="file" class="form-control-file" name="video" accept="videos/*">
             </div>
             @error('foto')
                 <div class="alert alert-danger">{{ $message }}</div>

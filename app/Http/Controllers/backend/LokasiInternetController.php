@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Imports\LokasiImport;
 use Illuminate\Http\Request;
 
 use App\Models\lokasi;
-
+use Maatwebsite\Excel\Facades\Excel;
 
 class LokasiInternetController extends Controller
 {
@@ -95,5 +96,19 @@ class LokasiInternetController extends Controller
 
         //redirect to index
         return redirect()->route('lokasi.index')->with(['success' => 'Data Berhasil Dihapus!']);
+    }
+
+    public function import(Request $request)
+    {
+
+        //validate form
+        $request->validate([
+            'file' => 'required|max:2048'
+        ]);
+
+        Excel::import(new LokasiImport, $request->file('file'));
+        
+        //redirect to index
+        return redirect()->route('lokasi.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 }
