@@ -124,7 +124,7 @@ class VideoController extends Controller
         $videos = video::findOrFail($id);
 
         //delete video
-        Storage::delete('video/' . $videos->video);
+        Storage::delete('videos/' . $videos->video);
 
         //delete video
         $videos->delete();

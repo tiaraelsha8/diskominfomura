@@ -11,10 +11,11 @@ class BeritaController extends Controller
 {
     public function index()
     {
+        $beritas = Berita::latest()->get();
         $response = Http::get('https://berita.murungrayakab.go.id/wp-json/wp/v2/posts?_embed&per_page=4');
 
         if (!$response->successful()) {
-            return view('frontend/berita.index', ['berita' => []]);
+            return view('frontend/berita.index', ['berita' => [],'beritas' => $beritas]);
         }
 
         $posts = $response->json();
@@ -28,7 +29,8 @@ class BeritaController extends Controller
                 'image' => $post['_embedded']['wp:featuredmedia'][0]['source_url'] ?? 'https://via.placeholder.com/600x300?text=No+Image',
             ];
         });
-        $beritas = Berita::latest()->get();
+        
+        
         return view('frontend/berita.index', compact('berita','beritas'));
     }
 
