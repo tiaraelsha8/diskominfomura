@@ -135,7 +135,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{ route ('galeri.index') }}" class="nav-link">
+            <a href="{{ route ('layanan.index') }}" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Layanan

@@ -5,6 +5,8 @@
 @endsection
 
 @section('content')
+<div class="card">
+    <div class="card-header">
     <form action="{{ route('tentang.store') }}" method="POST">
         @csrf
         <div class="box-body">
@@ -23,6 +25,8 @@
             </div>
         </div>
     </form>
+    </div>
+</div>
 @endsection
 
 @push('scripts')

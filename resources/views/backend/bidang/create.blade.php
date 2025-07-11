@@ -5,6 +5,8 @@
 @endsection
 
 @section('content')
+<div class="card">
+    <div class="card-header">
     <form action="{{ route('bidang.store') }}" method="POST">
         @csrf
         <div class="box-body">
@@ -23,4 +25,6 @@
             </div>
         </div>
     </form>
+    </div>
+</div>
 @endsection

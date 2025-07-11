@@ -5,6 +5,8 @@
 @endsection
 
 @section('content')
+<div class="card">
+    <div class="card-header">
     <form action="{{ route('maklumat.update', $tentangs->id) }}" method="POST">
         @csrf
         @method('PUT')
@@ -24,6 +26,8 @@
             </div>
         </div>
     </form>
+    </div>
+</div>
 @endsection
 
 @push('scripts')

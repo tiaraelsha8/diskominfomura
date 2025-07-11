@@ -5,6 +5,8 @@
 @endsection
 
 @section('content')
+<div class="card">
+    <div class="card-header">
     <form action="{{ route('bidang.update', $bidangs->id) }}" method="POST">
         @csrf
         @method('PUT')
@@ -24,4 +26,6 @@
             </div>
         </div>
     </form>
+    </div>
+</div>
 @endsection
