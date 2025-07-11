@@ -7,7 +7,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-           
+
             <form action="{{ route('pegawai.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="box-body">
@@ -22,7 +22,7 @@
 
                     <div class="form-group">
                         <label>Jabatan</label>
-                        <select name="jabatan_id" class="form-control" id="">
+                        <select name="jabatan_id" class="form-control" id="jabatan_id">
                             <option value="">-- Pilih Jabatan --</option>
                             @forelse ($jabatans as $item)
                                 <option value="{{ $item->id }}"> {{ $item->nama_jabatan }} </option>
@@ -36,8 +36,8 @@
                     @enderror
 
                     <div class="form-group">
-                        <label>Bidang</label>
-                        <select name="bidang_id" class="form-control" id="">
+                        <label for="bidang_id">Bidang</label>
+                        <select name="bidang_id" class="form-control" id="bidang_id">
                             <option value="">-- Pilih Bidang --</option>
                             @forelse ($bidangs as $item)
                                 <option value="{{ $item->id }}"> {{ $item->nama_bidang }} </option>
@@ -49,6 +49,14 @@
                     @error('bidang_id')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
+
+                    <div class="form-group">
+                        <label for="tupoksi">Tupoksi</label>
+                        <textarea name="tupoksi" class="form-control" rows="4"></textarea>
+                        @error('tupoksi')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
 
                     <div class="form-group">
                         <label for="image">Foto</label>

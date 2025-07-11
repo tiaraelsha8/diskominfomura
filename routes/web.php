@@ -61,7 +61,7 @@ Route::get('/peta', [PetaController::class, 'index'])->name('peta.index');
 //backend
 Route::middleware('auth')->group(function () {
 
-    Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('backend.dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('backend.dashboard');
 
     Route::resource('/admin/logo', LogoController::class);
 
@@ -87,13 +87,14 @@ Route::middleware('auth')->group(function () {
     Route::resource('/admin/bidang', BidangController::class);
 
     Route::resource('/admin/pegawai', PegawaiController::class);
-
+  
     Route::resource('/admin/jabatan', JabatanController::class);
-
+    
     Route::resource('/admin/dokumen', DokumenController::class);
     Route::get('/admin//dokumen/download/{id}', [DokumenController::class, 'download'])->name('dokumen.download');
 
     Route::resource('/admin/lokasi', LokasiInternetController::class);
 
     Route::resource('/admin/layanan', LayananController::class);
+
 });

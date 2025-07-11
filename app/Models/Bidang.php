@@ -17,4 +17,5 @@ class Bidang extends Model
     {
         return $this->hasMany(Pegawai::class, 'bidang_id');
     }
+
 }
