@@ -59,42 +59,42 @@ Route::get('/peta', [PetaController::class, 'index'])->name('peta.index');
 
 
 //backend
-Route::middleware('auth')->group(function () {
+Route::prefix('admin')->middleware('auth')->group(function () {
 
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('backend.dashboard');
 
-    Route::resource('/admin/logo', LogoController::class);
+    Route::resource('/logo', LogoController::class);
 
-    Route::resource('/admin/carousel', CarouselController::class);
+    Route::resource('/carousel', CarouselController::class);
 
-    Route::resource('/admin/berita', BeritabackController::class);
+    Route::resource('/berita', BeritabackController::class);
 
-    Route::resource('/admin/pengumuman', PengumumanbackController::class);
+    Route::resource('/pengumuman', PengumumanbackController::class);
 
-    Route::resource('/admin/galeri', GaleriController::class);
+    Route::resource('/galeri', GaleriController::class);
 
-    Route::resource('/admin/video', VideoController::class);
+    Route::resource('/video', VideoController::class);
 
-    Route::resource('/admin/kontak', KontakController::class);
+    Route::resource('/kontak', KontakController::class);
 
     Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
     Route::put('/user/update/{id}', [UserController::class, 'update'])->name('user.update');
 
-    Route::resource('/admin/tentang', TentangController::class);
+    Route::resource('/tentang', TentangController::class);
 
-    Route::resource('/admin/maklumat', MaklumatController::class);
+    Route::resource('/maklumat', MaklumatController::class);
 
-    Route::resource('/admin/bidang', BidangController::class);
+    Route::resource('/bidang', BidangController::class);
 
-    Route::resource('/admin/pegawai', PegawaiController::class);
+    Route::resource('/pegawai', PegawaiController::class);
   
     Route::resource('/admin/jabatan', JabatanController::class);
     
-    Route::resource('/admin/dokumen', DokumenController::class);
-    Route::get('/admin//dokumen/download/{id}', [DokumenController::class, 'download'])->name('dokumen.download');
+    Route::resource('/dokumen', DokumenController::class);
+    Route::get('/dokumen/download/{id}', [DokumenController::class, 'download'])->name('dokumen.download');
 
-    Route::resource('/admin/lokasi', LokasiInternetController::class);
+    Route::resource('/lokasi', LokasiInternetController::class);
 
-    Route::resource('/admin/layanan', LayananController::class);
+    Route::resource('/layanan', LayananController::class);
 
 });

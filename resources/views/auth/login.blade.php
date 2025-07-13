@@ -80,7 +80,7 @@
                     <div class="col-6 d-flex gap-3">
                         <button type="submit" class="btn btn-primary btn-block w-60 text-nowrap">Masuk</button> <br>
                         <a href="{{ route('password.request') }}"
-                            class="btn btn-outline-secondary w-60 text-nowrap">Lupa Password?</a>
+                            class="btn btn-secondary w-60 text-nowrap">Lupa Password?</a>
                     </div>
                 </form>
             </div>
