@@ -45,6 +45,8 @@
                                 </option>
                             @endforeach
                         </select>
+                        {{-- Input hidden untuk mengirim ke server --}}
+                        <input type="hidden" name="bidang_id" id="bidangHidden">
                     </div>
                     @error('bidang_id')
                         <div class="alert alert-danger">{{ $message }}</div>
@@ -77,24 +79,34 @@
 
     {{-- Script untuk sinkronisasi pilihan --}}
     <script>
-        document.getElementById('jabatan_id').addEventListener('change', function() {
-            const selectedJabatan = this.options[this.selectedIndex].text.trim();
-            const bidangSelect = document.getElementById('bidang_id');
+        const jabatanSelect = document.getElementById('jabatan_id');
+        const bidangSelect = document.getElementById('bidang_id');
+        const bidangHidden = document.getElementById('bidangHidden');
 
-            // Jika jabatan = "Kepala Dinas", maka pilih bidang "Kepala Dinas"
+        jabatanSelect.addEventListener('change', function() {
+            const selectedJabatan = this.options[this.selectedIndex].text.trim();
+
             if (selectedJabatan === 'Kepala Dinas') {
-                const options = bidangSelect.options;
-                for (let i = 0; i < options.length; i++) {
-                    if (options[i].text.trim() === 'Kepala Dinas') {
+                // Cari dan pilih bidang "Kepala Dinas"
+                for (let i = 0; i < bidangSelect.options.length; i++) {
+                    if (bidangSelect.options[i].text.trim() === 'Kepala Dinas') {
                         bidangSelect.selectedIndex = i;
-                        bidangSelect.disabled = true; // Buat readonly
+                        bidangHidden.value = bidangSelect.options[i].value;
                         break;
                     }
                 }
+                bidangSelect.setAttribute('disabled', 'disabled'); // tidak bisa diubah
             } else {
-                // Reset bidang kalau bukan "Kepala Dinas"
-                bidangSelect.selectedIndex = 0;
-                 bidangSelect.disabled = false; // Aktifkan kembali jika bukan Kepala Dinas
+                bidangSelect.removeAttribute('disabled'); // bisa diubah lagi
+                bidangSelect.selectedIndex = 0; // reset
+                bidangHidden.value = ""; // reset hidden value
+            }
+        });
+
+        // Sinkronisasi hidden field saat user mengubah bidang secara manual (kalau tidak disabled)
+        bidangSelect.addEventListener('change', function() {
+            if (!this.disabled) {
+                bidangHidden.value = this.value;
             }
         });
     </script>
