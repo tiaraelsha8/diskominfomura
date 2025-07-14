@@ -38,7 +38,32 @@ class PegawaiController extends Controller
     {
         $request->validate([
             'nama' => 'required|string|max:100',
-            'jabatan_id' => 'required|exists:jabatans,id',
+            'jabatan_id' => ['required', 'exists:jabatans,id', function ($attribute, $value, $fail) {
+            // Ambil nama jabatan dari ID
+            $jabatan = \App\Models\Jabatan::find($value);
+
+            if (!$jabatan) return;
+
+            if (strtolower($jabatan->nama_jabatan) === 'kepala dinas') {
+                $sudahAda = \App\Models\Pegawai::whereHas('jabatan', function ($q) {
+                    $q->whereRaw('LOWER(nama_jabatan) = ?', ['kepala dinas']);
+                })->exists();
+
+                if ($sudahAda) {
+                    $fail('Jabatan Kepala Dinas sudah terisi.');
+                }
+            }
+
+            if (strtolower($jabatan->nama_jabatan) === 'sekretaris') {
+                $sudahAda = \App\Models\Pegawai::whereHas('jabatan', function ($q) {
+                    $q->whereRaw('LOWER(nama_jabatan) = ?', ['sekretaris']);
+                })->exists();
+
+                if ($sudahAda) {
+                    $fail('Jabatan Sekretaris sudah terisi.');
+                }
+            }
+        }],
             'bidang_id' => 'required|exists:bidangs,id',
             'tupoksi' => 'required',
             'foto' => 'required|image|mimes:jpg,jpeg,png|max:2048',
@@ -88,7 +113,36 @@ class PegawaiController extends Controller
         //validate form
         $request->validate([
             'nama' => 'required|string|max:100',
-            'jabatan_id' => 'required|exists:bidangs,id',
+             'jabatan_id' => ['required', 'exists:jabatans,id', function ($attribute, $value, $fail) use ($id) {
+            $jabatan = \App\Models\Jabatan::find($value);
+            if (!$jabatan) return;
+
+            // Validasi Kepala Dinas
+            if (strtolower($jabatan->nama_jabatan) === 'kepala dinas') {
+                $sudahAda = \App\Models\Pegawai::whereHas('jabatan', function ($q) {
+                    $q->whereRaw('LOWER(nama_jabatan) = ?', ['kepala dinas']);
+                })
+                ->where('id', '!=', $id)
+                ->exists();
+
+                if ($sudahAda) {
+                    $fail('Jabatan Kepala Dinas sudah dipakai oleh pegawai lain.');
+                }
+            }
+
+            // Validasi Sekretaris
+            if (strtolower($jabatan->nama_jabatan) === 'sekretaris') {
+                $sudahAda = \App\Models\Pegawai::whereHas('jabatan', function ($q) {
+                    $q->whereRaw('LOWER(nama_jabatan) = ?', ['sekretaris']);
+                })
+                ->where('id', '!=', $id)
+                ->exists();
+
+                if ($sudahAda) {
+                    $fail('Jabatan Sekretaris sudah dipakai oleh pegawai lain.');
+                }
+            }
+        }],
             'bidang_id' => 'required|exists:bidangs,id',
             'foto' => 'image|mimes:jpg,jpeg|max:2048',
             'tupoksi' => 'required',

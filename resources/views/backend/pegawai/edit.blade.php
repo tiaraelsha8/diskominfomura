@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+
     <div class="card">
         <div class="card-header">
             <form action="{{ route('pegawai.update', $pegawais->id) }}" method="POST" enctype="multipart/form-data">
@@ -35,6 +36,9 @@
                             @endforelse
                         </select>
                     </div>
+                     @error('jabatan_id')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
 
                     <div class="form-group">
                         <label>Bidang</label>
@@ -51,6 +55,9 @@
                             @endforelse
                         </select>
                     </div>
+                     @error('bidang_id')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
 
                     <div class="form-group">
                         <label for="tupoksi">Tupoksi</label>
