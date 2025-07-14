@@ -87,12 +87,14 @@
                 for (let i = 0; i < options.length; i++) {
                     if (options[i].text.trim() === 'Kepala Dinas') {
                         bidangSelect.selectedIndex = i;
+                        bidangSelect.disabled = true; // Buat readonly
                         break;
                     }
                 }
             } else {
                 // Reset bidang kalau bukan "Kepala Dinas"
                 bidangSelect.selectedIndex = 0;
+                 bidangSelect.disabled = false; // Aktifkan kembali jika bukan Kepala Dinas
             }
         });
     </script>
