@@ -2,9 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
+//login
 use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\auth\ForgotPasswordController;
 use App\Http\Controllers\auth\ResetPasswordController;
+
+//backend
 use App\Http\Controllers\backend\BeritabackController;
 use App\Http\Controllers\backend\CarouselController;
 use App\Http\Controllers\backend\UserController;
@@ -15,12 +18,15 @@ use App\Http\Controllers\backend\JabatanController;
 use App\Http\Controllers\backend\PegawaiController;
 use App\Http\Controllers\backend\DokumenController;
 use App\Http\Controllers\backend\LokasiInternetController;
-
+use App\Http\Controllers\backend\MaklumatController;
 use App\Http\Controllers\backend\GaleriController;
 use App\Http\Controllers\backend\KontakController;
 use App\Http\Controllers\backend\LogoController;
 use App\Http\Controllers\backend\PengumumanbackController;
 use App\Http\Controllers\backend\VideoController;
+use App\Http\Controllers\backend\LayananController;
+
+//frontend
 use App\Http\Controllers\frontend\BeritaController;
 use App\Http\Controllers\frontend\PengumumanController;
 use App\Http\Controllers\frontend\PetaController;
@@ -55,36 +61,40 @@ Route::get('/peta', [PetaController::class, 'index'])->name('peta.index');
 //backend
 Route::middleware('auth')->group(function () {
 
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('backend.dashboard');
+    Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('backend.dashboard');
 
-    Route::resource('logo', LogoController::class);
+    Route::resource('/admin/logo', LogoController::class);
 
-    Route::resource('carousel', CarouselController::class);
+    Route::resource('/admin/carousel', CarouselController::class);
 
-    Route::resource('berita', BeritabackController::class);
+    Route::resource('/admin/berita', BeritabackController::class);
 
-    Route::resource('pengumuman', PengumumanbackController::class);
+    Route::resource('/admin/pengumuman', PengumumanbackController::class);
 
-    Route::resource('galeri', GaleriController::class);
+    Route::resource('/admin/galeri', GaleriController::class);
 
-    Route::resource('video', VideoController::class);
+    Route::resource('/admin/video', VideoController::class);
 
-    Route::resource('kontak', KontakController::class);
+    Route::resource('/admin/kontak', KontakController::class);
 
     Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
     Route::put('/user/update/{id}', [UserController::class, 'update'])->name('user.update');
 
-    Route::resource('/tentang', TentangController::class);
+    Route::resource('/admin/tentang', TentangController::class);
 
-    Route::resource('/bidang', BidangController::class);
+    Route::resource('/admin/maklumat', MaklumatController::class);
 
-    Route::resource('/pegawai', PegawaiController::class);
+    Route::resource('/admin/layanan', LayananController::class);
 
-    Route::resource('/jabatan', JabatanController::class);
+    Route::resource('/admin/bidang', BidangController::class);
 
-    Route::resource('/dokumen', DokumenController::class);
-    Route::get('/dokumen/download/{id}', [DokumenController::class, 'download'])->name('dokumen.download');
+    Route::resource('/admin/pegawai', PegawaiController::class);
 
-    Route::resource('/lokasi', LokasiInternetController::class);
+    Route::resource('/admin/jabatan', JabatanController::class);
+
+    Route::resource('/admin/dokumen', DokumenController::class);
+    Route::get('/admin//dokumen/download/{id}', [DokumenController::class, 'download'])->name('dokumen.download');
+
+    Route::resource('/admin/lokasi', LokasiInternetController::class);
     Route::post('lokasi-import', [LokasiInternetController::class,'import'])->name('lokasi.import');;
 });

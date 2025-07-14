@@ -5,6 +5,8 @@
 @endsection
 
 @section('content')
+<div class="card">
+    <div class="card-header">
     <form action="{{ route('lokasi.update', $lokasi->id) }}" method="POST">
         @csrf
         @method('PUT')
@@ -48,4 +50,6 @@
             </div>
         </div>
     </form>
+    </div>
+</div>
 @endsection

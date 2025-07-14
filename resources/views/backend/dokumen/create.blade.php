@@ -5,6 +5,8 @@
 @endsection
 
 @section('content')
+<div class="card">
+    <div class="card-header">
     <form action="{{ route('dokumen.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="box-body">
@@ -39,4 +41,6 @@
             </div>
         </div>
     </form>
+    </div>
+</div>
 @endsection

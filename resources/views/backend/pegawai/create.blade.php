@@ -7,7 +7,7 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-           
+
             <form action="{{ route('pegawai.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="box-body">
@@ -22,13 +22,13 @@
 
                     <div class="form-group">
                         <label>Jabatan</label>
-                        <select name="jabatan_id" class="form-control" id="">
+                        <select name="jabatan_id" id="jabatanSelect" class="form-control">
                             <option value="">-- Pilih Jabatan --</option>
-                            @forelse ($jabatans as $item)
-                                <option value="{{ $item->id }}"> {{ $item->nama_jabatan }} </option>
-                            @empty
-                                <option value="">Tidak Ada Data Jabatan</option>
-                            @endforelse
+                            @foreach ($jabatans as $item)
+                                <option value="{{ $item->id }}" data-nama="{{ $item->nama_jabatan }}">
+                                    {{ $item->nama_jabatan }}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
                     @error('jabatan_id')
@@ -37,13 +37,13 @@
 
                     <div class="form-group">
                         <label>Bidang</label>
-                        <select name="bidang_id" class="form-control" id="">
+                        <select name="bidang_id" id="bidangSelect" class="form-control">
                             <option value="">-- Pilih Bidang --</option>
-                            @forelse ($bidangs as $item)
-                                <option value="{{ $item->id }}"> {{ $item->nama_bidang }} </option>
-                            @empty
-                                <option value="">Tidak Ada Data Bidang</option>
-                            @endforelse
+                            @foreach ($bidangs as $item)
+                                <option value="{{ $item->id }}" data-nama="{{ $item->nama_bidang }}">
+                                    {{ $item->nama_bidang }}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
                     @error('bidang_id')
@@ -66,4 +66,26 @@
             </form>
         </div>
     </div>
+
+    {{-- Script untuk sinkronisasi pilihan --}}
+    <script>
+        document.getElementById('jabatanSelect').addEventListener('change', function() {
+            const selectedJabatan = this.options[this.selectedIndex].text.trim();
+            const bidangSelect = document.getElementById('bidangSelect');
+
+            // Jika jabatan = "Kepala Dinas", maka pilih bidang "Kepala Dinas"
+            if (selectedJabatan === 'Kepala Dinas') {
+                const options = bidangSelect.options;
+                for (let i = 0; i < options.length; i++) {
+                    if (options[i].text.trim() === 'Kepala Dinas') {
+                        bidangSelect.selectedIndex = i;
+                        break;
+                    }
+                }
+            } else {
+                // Reset bidang kalau bukan "Kepala Dinas"
+                bidangSelect.selectedIndex = 0;
+            }
+        });
+    </script>
 @endsection

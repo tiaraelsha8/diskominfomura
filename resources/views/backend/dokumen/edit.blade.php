@@ -5,6 +5,8 @@
 @endsection
 
 @section('content')
+<div class="card">
+    <div class="card-header">
     <form action="{{ route('dokumen.update', $dokumens->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -40,4 +42,6 @@
             </div>
         </div>
     </form>
+    </div>
+</div>
 @endsection

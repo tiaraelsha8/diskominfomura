@@ -1,22 +1,21 @@
 @extends('backend.layout.master')
 
 @section('judul')
-    Halaman Tambah Berita
+    Halaman Tambah Layanan
 @endsection
 
 @section('content')
 <div class="card">
     <div class="card-header">
-
-    <form action="{{ route('berita.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('layanan.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="box-body">
 
             <div class="form-group">
-                <label>Judul Berita</label>
-                <input type="text" class="form-control" name="judul" placeholder="Isikan Judul Berita">
+                <label>Nama Layanan</label>
+                <input type="text" class="form-control" name="nama_layanan" placeholder="Isikan Nama Layanan">
             </div>
-            @error('judul')
+            @error('nama_layanan')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
 
@@ -29,28 +28,35 @@
             </div>
 
             <div class="form-group">
-                <label>Penulis</label>
-                <input type="text" class="form-control" name="penulis" placeholder="Isikan Penulis">
+                <label>Link Layanan</label>
+                <input type="text" class="form-control" name="link" placeholder="Isikan Nama Layanan">
             </div>
-            @error('penulis')
+            @error('link')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
 
             <div class="form-group">
-                <label for="image">Foto</label>
-                <input type="file" class="form-control-file" name="foto" accept="image/*">
+                <label for="image">Logo</label>
+                <input type="file" class="form-control-file" name="logo" accept="image/*">
             </div>
-            @error('foto')
+            @error('logo')
+                <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
+
+            <div class="form-group">
+                <label for="image">Background</label>
+                <input type="file" class="form-control-file" name="background" accept="image/*">
+            </div>
+            @error('background')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
 
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Simpan</button>
-                <a href="{{ route ('berita.index') }}" class="btn btn-default">Kembali</a>
+                <a href="{{ route ('layanan.index') }}" class="btn btn-default">Kembali</a>
             </div>
         </div>
     </form>
-
     </div>
 </div>
 @endsection

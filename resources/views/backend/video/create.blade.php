@@ -5,6 +5,8 @@
 @endsection
 
 @section('content')
+<div class="card">
+    <div class="card-header">
     <form action="{{ route('video.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="box-body">
@@ -38,4 +40,6 @@
                 <a href="{{ route ('video.index') }}" class="btn btn-default">Kembali</a>
             </div>
     </form>
+    </div>
+</div>
 @endsection

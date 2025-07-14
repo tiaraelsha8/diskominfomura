@@ -1,28 +1,28 @@
 @extends('backend.layout.master')
 
 @section('judul')
-    Halaman Edit Tentang
+    Halaman Edit Maklumat
 @endsection
 
 @section('content')
 <div class="card">
     <div class="card-header">
-    <form action="{{ route('tentang.update', $tentangs->id) }}" method="POST">
+    <form action="{{ route('maklumat.update', $tentangs->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="box-body">
 
             <div class="form-group">
-                <label for="tentang">Tentang</label>
-                <textarea name="tentang" id="editor" class="form-control">{{$tentangs->tentang}}</textarea>
-                @error('tentang')
+                <label for="tentang">Maklumat</label>
+                <textarea name="maklumat" id="editor" class="form-control">{{$maklumats->maklumat}}</textarea>
+                @error('maklumat')
                     <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
             </div>
 
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Simpan</button>
-                <a href="{{ route('tentang.index') }}" class="btn btn-default">Kembali</a>
+                <a href="{{ route('maklumat.index') }}" class="btn btn-default">Kembali</a>
             </div>
         </div>
     </form>

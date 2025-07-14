@@ -5,6 +5,8 @@
 @endsection
 
 @section('content')
+<div class="card">
+    <div class="card-header">
     <form action="{{ route('video.update', $videos->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -39,4 +41,6 @@
                 <a href="{{ route ('video.index') }}" class="btn btn-default">Kembali</a>
             </div>
     </form>
+    </div>
+</div>
 @endsection

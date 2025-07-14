@@ -5,6 +5,8 @@
 @endsection
 
 @section('content')
+<div class="card">
+    <div class="card-header">
     <form action="{{ route('kontak.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="box-body">
@@ -39,5 +41,8 @@
                 <button type="submit" class="btn btn-primary">Simpan</button>
                 <a href="{{ route ('kontak.index') }}" class="btn btn-default">Kembali</a>
             </div>
+        </div>
     </form>
+    </div>
+</div>
 @endsection

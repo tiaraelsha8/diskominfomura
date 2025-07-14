@@ -5,6 +5,8 @@
 @endsection
 
 @section('content')
+<div class="card">
+    <div class="card-header">
     <form action="{{ route('kontak.update', $kontak->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -34,13 +36,12 @@
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
 
-
-
-
-
             <div class="box-footer">
                 <button type="submit" class="btn btn-primary">Simpan</button>
                 <a href="{{ route ('galeri.index') }}" class="btn btn-default">Kembali</a>
             </div>
+        </div>
     </form>
+    </div>
+</div>
 @endsection
