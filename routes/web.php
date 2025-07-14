@@ -94,9 +94,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/dokumen/download/{id}', [DokumenController::class, 'download'])->name('dokumen.download');
 
     Route::resource('/lokasi', LokasiInternetController::class);
-
-    Route::resource('/lokasi', LokasiInternetController::class);
-    Route::post('lokasi-import', [LokasiInternetController::class,'import'])->name('lokasi.import');;
+    Route::post('lokasi-import', [LokasiInternetController::class,'import'])->name('lokasi.import');
+    
     Route::resource('/layanan', LayananController::class);
 
 });

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Pegawai;
 use Illuminate\Http\Request;
 use App\Models\Jabatan;
 use App\Models\Bidang;
-use App\Models\Pegawai;
 use App\Models\Berita;
 use App\Models\pengumuman;
 use App\Models\Galeri;
