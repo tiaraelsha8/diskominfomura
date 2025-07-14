@@ -53,6 +53,14 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="tupoksi">Tupoksi</label>
+                        <textarea name="tupoksi" class="form-control" rows="4">{{ $pegawais->tupoksi }}</textarea>
+                        @error('tupoksi')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="form-group">
                         <label for="image">Foto</label>
                         <input type="file" class="form-control-file" name="foto" accept="image/*">
                     </div>

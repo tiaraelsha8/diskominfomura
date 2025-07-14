@@ -22,7 +22,7 @@
 
                     <div class="form-group">
                         <label>Jabatan</label>
-                        <select name="jabatan_id" id="jabatanSelect" class="form-control">
+                        <select name="jabatan_id" class="form-control" id="jabatan_id">
                             <option value="">-- Pilih Jabatan --</option>
                             @foreach ($jabatans as $item)
                                 <option value="{{ $item->id }}" data-nama="{{ $item->nama_jabatan }}">
@@ -36,8 +36,8 @@
                     @enderror
 
                     <div class="form-group">
-                        <label>Bidang</label>
-                        <select name="bidang_id" id="bidangSelect" class="form-control">
+                        <label for="bidang_id">Bidang</label>
+                        <select name="bidang_id" class="form-control" id="bidang_id">
                             <option value="">-- Pilih Bidang --</option>
                             @foreach ($bidangs as $item)
                                 <option value="{{ $item->id }}" data-nama="{{ $item->nama_bidang }}">
@@ -49,6 +49,14 @@
                     @error('bidang_id')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
+
+                    <div class="form-group">
+                        <label for="tupoksi">Tupoksi</label>
+                        <textarea name="tupoksi" class="form-control" rows="4"></textarea>
+                        @error('tupoksi')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
 
                     <div class="form-group">
                         <label for="image">Foto</label>
@@ -69,9 +77,9 @@
 
     {{-- Script untuk sinkronisasi pilihan --}}
     <script>
-        document.getElementById('jabatanSelect').addEventListener('change', function() {
+        document.getElementById('jabatan_id').addEventListener('change', function() {
             const selectedJabatan = this.options[this.selectedIndex].text.trim();
-            const bidangSelect = document.getElementById('bidangSelect');
+            const bidangSelect = document.getElementById('bidang_id');
 
             // Jika jabatan = "Kepala Dinas", maka pilih bidang "Kepala Dinas"
             if (selectedJabatan === 'Kepala Dinas') {

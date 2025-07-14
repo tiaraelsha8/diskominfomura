@@ -28,7 +28,7 @@ class PegawaiController extends Controller
     {
         $bidangs = Bidang::all();
         $jabatans = Jabatan::all();
-        return view('backend.pegawai.create', compact('bidangs','jabatans'));
+        return view('backend.pegawai.create', compact('bidangs', 'jabatans'));
     }
 
     /**
@@ -40,6 +40,7 @@ class PegawaiController extends Controller
             'nama' => 'required|string|max:100',
             'jabatan_id' => 'required|exists:jabatans,id',
             'bidang_id' => 'required|exists:bidangs,id',
+            'tupoksi' => 'required',
             'foto' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
@@ -47,11 +48,12 @@ class PegawaiController extends Controller
         $image = $request->file('foto');
         $image->storeAs('pegawai', $image->hashName());
 
-        //create 
+        //create
         Pegawai::create([
             'nama' => $request->nama,
             'jabatan_id' => $request->jabatan_id,
             'bidang_id' => $request->bidang_id,
+            'tupoksi' => $request->tupoksi,
             'foto' => $image->hashName(),
         ]);
 
@@ -89,6 +91,7 @@ class PegawaiController extends Controller
             'jabatan_id' => 'required|exists:bidangs,id',
             'bidang_id' => 'required|exists:bidangs,id',
             'foto' => 'image|mimes:jpg,jpeg|max:2048',
+            'tupoksi' => 'required',
         ]);
 
         //get product by ID
@@ -106,7 +109,7 @@ class PegawaiController extends Controller
             //update product with new image
             $pegawais->update([
                 'nama' => $request->nama,
-                'nip' => $request->nip,
+                'tupoksi' => $request->tupoksi,
                 'jabatan_id' => $request->jabatan_id,
                 'bidang_id' => $request->bidang_id,
                 'foto' => $image->hashName(),
@@ -115,14 +118,16 @@ class PegawaiController extends Controller
             //update without image
             $pegawais->update([
                 'nama' => $request->nama,
-                'nip' => $request->nip,
+                'tupoksi' => $request->tupoksi,
                 'jabatan_id' => $request->jabatan_id,
                 'bidang_id' => $request->bidang_id,
             ]);
         }
 
         //redirect to index
-        return redirect()->route('pegawai.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()
+            ->route('pegawai.index')
+            ->with(['success' => 'Data Berhasil Diubah!']);
     }
 
     /**
@@ -140,7 +145,9 @@ class PegawaiController extends Controller
         $pegawais->delete();
 
         //redirect to index
-        return redirect()->route('pegawai.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()
+            ->route('pegawai.index')
+            ->with(['success' => 'Data Berhasil Dihapus!']);
     }
 
 }
