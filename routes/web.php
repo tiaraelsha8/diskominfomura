@@ -27,13 +27,15 @@ use App\Http\Controllers\backend\VideoController;
 use App\Http\Controllers\backend\LayananController;
 
 //frontend
+use App\Http\Controllers\frontend\HomeController;
+
 use App\Http\Controllers\frontend\BeritaController;
 use App\Http\Controllers\frontend\PengumumanController;
 use App\Http\Controllers\frontend\PetaController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 //login
 Route::middleware('guest')->group(function () {
@@ -53,6 +55,8 @@ Route::middleware('guest')->group(function () {
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 //frontend
+Route::get('/', [HomeController::class, 'index'])->name('beranda');
+
 Route::get('/lihat-berita', [BeritaController::class, 'index'])->name('lihat-berita');
 Route::get('/lihat-pengumuman', [PengumumanController::class, 'index'])->name('lihat-pengumuman');
 Route::get('/peta', [PetaController::class, 'index'])->name('peta.index');
