@@ -22,7 +22,7 @@
 
     <!-- Dropdown Global: Profil -->
     <div class="dropdown-global" id="dropdownProfil">
-        <a href="">Tentang</a>
+        <a href="{{ route ('frontend.tentang') }}">Tentang</a>
         <a href="">Struktur Organisasi</a>
     </div>
 
@@ -31,5 +31,5 @@
         <a href="">Galeri Foto</a>
         <a href="">Galeri Video</a>
         <a href="{{ route('lihat-berita') }}">Galeri Berita</a>
-        <a href="">Galeri Pengumuman</a>
+        <a href="{{ route('lihat-pengumuman') }}">Galeri Pengumuman</a>
     </div>
