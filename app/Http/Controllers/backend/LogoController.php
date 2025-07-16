@@ -15,7 +15,9 @@ class LogoController extends Controller
     public function index()
     {
         $logo = Logo::latest()->get();
-        return view('backend.logo.index', compact('logo'));
+        $data = Logo::first();
+        $data1 = $data->foto;
+        return view('backend.logo.index', compact('logo','data1'));
     }
 
     /**

@@ -40,12 +40,12 @@ class PegawaiController extends Controller
             'nama' => 'required|string|max:100',
             'jabatan_id' => ['required', 'exists:jabatans,id', function ($attribute, $value, $fail) {
             // Ambil nama jabatan dari ID
-            $jabatan = \App\Models\Jabatan::find($value);
+            $jabatan = Jabatan::find($value);
 
             if (!$jabatan) return;
 
             if (strtolower($jabatan->nama_jabatan) === 'kepala dinas') {
-                $sudahAda = \App\Models\Pegawai::whereHas('jabatan', function ($q) {
+                $sudahAda = Pegawai::whereHas('jabatan', function ($q) {
                     $q->whereRaw('LOWER(nama_jabatan) = ?', ['kepala dinas']);
                 })->exists();
 
@@ -55,7 +55,7 @@ class PegawaiController extends Controller
             }
 
             if (strtolower($jabatan->nama_jabatan) === 'sekretaris') {
-                $sudahAda = \App\Models\Pegawai::whereHas('jabatan', function ($q) {
+                $sudahAda = Pegawai::whereHas('jabatan', function ($q) {
                     $q->whereRaw('LOWER(nama_jabatan) = ?', ['sekretaris']);
                 })->exists();
 
@@ -114,12 +114,12 @@ class PegawaiController extends Controller
         $request->validate([
             'nama' => 'required|string|max:100',
              'jabatan_id' => ['required', 'exists:jabatans,id', function ($attribute, $value, $fail) use ($id) {
-            $jabatan = \App\Models\Jabatan::find($value);
+            $jabatan = Jabatan::find($value);
             if (!$jabatan) return;
 
             // Validasi Kepala Dinas
             if (strtolower($jabatan->nama_jabatan) === 'kepala dinas') {
-                $sudahAda = \App\Models\Pegawai::whereHas('jabatan', function ($q) {
+                $sudahAda = Pegawai::whereHas('jabatan', function ($q) {
                     $q->whereRaw('LOWER(nama_jabatan) = ?', ['kepala dinas']);
                 })
                 ->where('id', '!=', $id)
@@ -132,7 +132,7 @@ class PegawaiController extends Controller
 
             // Validasi Sekretaris
             if (strtolower($jabatan->nama_jabatan) === 'sekretaris') {
-                $sudahAda = \App\Models\Pegawai::whereHas('jabatan', function ($q) {
+                $sudahAda = Pegawai::whereHas('jabatan', function ($q) {
                     $q->whereRaw('LOWER(nama_jabatan) = ?', ['sekretaris']);
                 })
                 ->where('id', '!=', $id)

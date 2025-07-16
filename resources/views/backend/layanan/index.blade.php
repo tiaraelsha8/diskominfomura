@@ -69,7 +69,7 @@
                         </tr>
                     @empty
                     <tr>
-                      <td colspan="7" class="text-center">Belum ada data galeri</td>
+                      <td colspan="7" class="text-center">Belum ada data Layanan</td>
                     </tr>
                     @endforelse
                 </tbody>
