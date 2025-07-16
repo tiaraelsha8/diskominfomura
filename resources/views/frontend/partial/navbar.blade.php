@@ -30,6 +30,6 @@
     <div class="dropdown-global" id="dropdownGaleri">
         <a href="">Galeri Foto</a>
         <a href="">Galeri Video</a>
-        <a href="">Galeri Berita</a>
+        <a href="{{ route('lihat-berita') }}">Galeri Berita</a>
         <a href="">Galeri Pengumuman</a>
     </div>

@@ -507,7 +507,7 @@
                 {{-- <a href="{{ route($item['route']) }}" class="layanan-box" data-aos="zoom-in" --}}
                     data-aos-delay="{{ 300 + 100 * $index }}">
                     <div class="layanan-bg-wrapper">
-                        <img src="{{ asset('images/mura2.webp') }}" alt="bg-layanan">
+                        <img src="{{ asset('image/mura2.webp') }}" alt="bg-layanan">
                     </div>
                     <div class="layanan-overlay">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">{!! $item['icon'] !!}</svg>
@@ -527,74 +527,69 @@
         });
     </script>
 
-    <section class="bidang-fullwidth">
-        <h2 data-aos="fade-up">Bidang</h2>
-        @php
-            $bidangList = [
-                [
-                    'title' => 'Bidang Aplikasi & Informatika',
-                    'desc' =>
-                        'Mengembangkan sistem informasi digital untuk pelayanan publik dan administrasi pemerintahan:',
-                    'points' => [
-                        'Pembangunan dan pengembangan aplikasi pemerintah',
-                        'Layanan sistem informasi internal dan eksternal',
-                        'Infrastruktur pendukung digitalisasi pemerintahan',
-                    ],
-                    'img' => 'images/bidang1.png',
-                ],
-                [
-                    'title' => 'Bidang Statistik Sektoral',
-                    'desc' =>
-                        'Mengelola dan menganalisis data sektoral yang akurat untuk mendukung kebijakan berbasis data:',
-                    'points' => [
-                        'Pengumpulan dan pengolahan data sektoral',
-                        'Integrasi data dari berbagai OPD',
-                        'Visualisasi dan diseminasi data statistik',
-                    ],
-                    'img' => 'images/bidang2.png',
-                ],
-                [
-                    'title' => 'Bidang Keamanan Siber & Persandian',
-                    'desc' => 'Melindungi infrastruktur dan komunikasi pemerintahan dari berbagai ancaman digital:',
-                    'points' => [
-                        'Manajemen keamanan jaringan dan sistem',
-                        'Pengelolaan sertifikat elektronik dan sandi',
-                        'Peningkatan literasi keamanan informasi',
-                    ],
-                    'img' => 'images/bidang3.png',
-                ],
-                [
-                    'title' => 'Bidang Informasi Publik',
-                    'desc' =>
-                        'Menyediakan akses terbuka terhadap informasi publik dan mengelola media komunikasi pemerintahan:',
-                    'points' => [
-                        'Pengelolaan website dan media sosial',
-                        'Layanan informasi publik dan PPID',
-                        'Publikasi kegiatan dan pelayanan pemerintah',
-                    ],
-                    'img' => 'images/bidang4.png',
-                ],
-            ];
-        @endphp
+ <section class="bidang-fullwidth">
+    <h2 data-aos="fade-up">Bidang</h2>
 
-        @foreach ($bidangList as $index => $bidang)
-            <div class="bidang-row {{ $index % 2 === 1 ? 'reverse' : '' }}">
-                <div class="bidang-content">
-                    <h3>{{ $bidang['title'] }}</h3>
-                    <p>{{ $bidang['desc'] }}</p>
-                    <ol>
-                        @foreach ($bidang['points'] as $point)
-                            <li>{{ $point }}</li>
-                        @endforeach
-                    </ol>
-                </div>
-                <div class="bidang-image">
-                    <img src="{{ asset($bidang['img']) }}" alt="{{ $bidang['title'] }}">
-                </div>
-            </div>
-        @endforeach
-    </section>
+    <div class="bidang-row">
+        <div class="bidang-content">
+            <h3>Bidang Aplikasi &amp; Informatika</h3>
+            <p>Mengembangkan sistem informasi digital untuk pelayanan publik dan administrasi pemerintahan:</p>
+            <ol>
+                <li>Pembangunan dan pengembangan aplikasi pemerintah</li>
+                <li>Layanan sistem informasi internal dan eksternal</li>
+                <li>Infrastruktur pendukung digitalisasi pemerintahan</li>
+            </ol>
+        </div>
+        <div class="bidang-image">
+            <img src="{{ asset('image/bidang1.png') }}" alt="Bidang Aplikasi & Informatika">
+        </div>
+    </div>
 
+    <div class="bidang-row reverse">
+        <div class="bidang-content">
+            <h3>Bidang Statistik Sektoral</h3>
+            <p>Mengelola dan menganalisis data sektoral yang akurat untuk mendukung kebijakan berbasis data:</p>
+            <ol>
+                <li>Pengumpulan dan pengolahan data sektoral</li>
+                <li>Integrasi data dari berbagai OPD</li>
+                <li>Visualisasi dan diseminasi data statistik</li>
+            </ol>
+        </div>
+        <div class="bidang-image">
+            <img src="{{ asset('image/bidang2.png') }}" alt="Bidang Statistik Sektoral">
+        </div>
+    </div>
+
+    <div class="bidang-row">
+        <div class="bidang-content">
+            <h3>Bidang Keamanan Siber &amp; Persandian</h3>
+            <p>Melindungi infrastruktur dan komunikasi pemerintahan dari berbagai ancaman digital:</p>
+            <ol>
+                <li>Manajemen keamanan jaringan dan sistem</li>
+                <li>Pengelolaan sertifikat elektronik dan sandi</li>
+                <li>Peningkatan literasi keamanan informasi</li>
+            </ol>
+        </div>
+        <div class="bidang-image">
+            <img src="{{ asset('image/bidang3.png') }}" alt="Bidang Keamanan Siber & Persandian">
+        </div>
+    </div>
+
+    <div class="bidang-row reverse">
+        <div class="bidang-content">
+            <h3>Bidang Informasi Publik</h3>
+            <p>Menyediakan akses terbuka terhadap informasi publik dan mengelola media komunikasi pemerintahan:</p>
+            <ol>
+                <li>Pengelolaan website dan media sosial</li>
+                <li>Layanan informasi publik dan PPID</li>
+                <li>Publikasi kegiatan dan pelayanan pemerintah</li>
+            </ol>
+        </div>
+        <div class="bidang-image">
+            <img src="{{ asset('image/bidang4.png') }}" alt="Bidang Informasi Publik">
+        </div>
+    </div>
+</section>
     <!-- <section class="official-portal-section-alt">
                                 <div class="row align-items-center justify-content-center" style="padding: 0 5vw;">
                                     <div class="col-lg-3 col-md-3 text-center">
@@ -616,52 +611,52 @@
                                     </div>
                                 </div>
                             </section> -->
-    <section class="galeri-home-section">
-        <h2 data-aos="fade-up">Galeri</h2>
-        <div class="galeri-home-grid">
-            @php
-                $galeriHome = [
-                    [
-                        'title' => 'Galeri Foto',
-                        'desc' => 'Dokumentasi kegiatan dan aktivitas.',
-                        'image' => 'images/galeri_foto.jpg',
-                        // 'route' => route('galeri.foto'),
-                    ],
-                    [
-                        'title' => 'Galeri Video',
-                        'desc' => 'Video kegiatan, pelatihan, dan informasi publik.',
-                        'image' => 'images/galeri_video.jpg',
-                        // 'route' => route('galeri.video'),
-                    ],
-                    [
-                        'title' => 'Berita',
-                        'desc' => 'Informasi terbaru seputar kegiatan dan perkembangan.',
-                        'image' => 'images/galeri_berita.jpg',
-                        // 'route' => route('galeri.berita'),
-                    ],
-                    [
-                        'title' => 'Pengumuman',
-                        'desc' => 'Pengumuman resmi dan pemberitahuan dari Diskominfo.',
-                        'image' => 'images/galeri_pengumuman.jpg',
-                        // 'route' => route('galeri.pengumuman'),
-                    ],
-                ];
-            @endphp
+  <section class="galeri-home-section">
+    <h2 data-aos="fade-up">Galeri</h2>
+    <div class="galeri-home-grid">
 
-            @foreach ($galeriHome as $index => $item)
-                {{-- <a href="{{ $item['route'] }}" class="galeri-card" data-aos="fade-up" --}}
-                    data-aos-delay="{{ 100 * $loop->index }}">
-                    <div class="galeri-card-img">
-                        <img src="{{ asset($item['image']) }}" alt="{{ $item['title'] }}">
-                    </div>
-                    <div class="galeri-card-body">
-                        <h3>{{ $item['title'] }}</h3>
-                        <p>{{ $item['desc'] }}</p>
-                    </div>
-                </a>
-            @endforeach
-        </div>
-    </section>
+        <a href="" class="galeri-card" data-aos="fade-up" data-aos-delay="0">
+            <div class="galeri-card-img">
+                <img src="{{ asset('image/galeri_foto.jpg') }}" alt="Galeri Foto">
+            </div>
+            <div class="galeri-card-body">
+                <h3>Galeri Foto</h3>
+                <p>Dokumentasi kegiatan dan aktivitas.</p>
+            </div>
+        </a>
+
+        <a href="{{ route('lihat-pengumuman') }}" class="galeri-card" data-aos="fade-up" data-aos-delay="100">
+            <div class="galeri-card-img">
+                <img src="{{ asset('image/galeri_video.jpg') }}" alt="Galeri Video">
+            </div>
+            <div class="galeri-card-body">
+                <h3>Galeri Video</h3>
+                <p>Video kegiatan, pelatihan, dan informasi publik.</p>
+            </div>
+        </a>
+
+        <a href="{{ route('lihat-berita') }}" class="galeri-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="galeri-card-img">
+                <img src="{{ asset('image/galeri_berita.jpg') }}" alt="Berita">
+            </div>
+            <div class="galeri-card-body">
+                <h3>Berita</h3>
+                <p>Informasi terbaru seputar kegiatan dan perkembangan.</p>
+            </div>
+        </a>
+
+        <a href="" class="galeri-card" data-aos="fade-up" data-aos-delay="300">
+            <div class="galeri-card-img">
+                <img src="{{ asset('image/galeri_pengumuman.jpg') }}" alt="Pengumuman">
+            </div>
+            <div class="galeri-card-body">
+                <h3>Pengumuman</h3>
+                <p>Pengumuman resmi dan pemberitahuan dari Diskominfo.</p>
+            </div>
+        </a>
+
+    </div>
+</section>
 
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
