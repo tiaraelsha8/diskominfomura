@@ -98,7 +98,7 @@
                 color: 'blue',
                 fillColor: '#aaddff',
                 fillOpacity: 0.3,
-                radius: item.jangkauan_radius || 50 // bisa disesuaikan per titik
+                radius: item.jangkauan_radius || 30 // bisa disesuaikan per titik
             }).addTo(map);
         });
     </script>

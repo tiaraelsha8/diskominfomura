@@ -142,7 +142,7 @@
             bottom: -50px;
             left: 50%;
             transform: translate(-50%, 0);
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(0, 50, 100, 0.6));
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(1, 43, 85, 0.575));
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: 16px;
@@ -185,7 +185,7 @@
         .layanan-overlay h5 {
             font-size: 1rem;
             font-weight: 700;
-            color: #003366;
+            color: #ffffff;
             margin-bottom: 0;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -282,46 +282,46 @@
         }
 
         /*.official-portal-section-alt {
-                                                    width: 100%;
-                                                    background: linear-gradient(100deg, #1064ca, #fdfcfb);
-                                                    padding: 20px 5vw;
-                                                    position: relative;
-                                                }
+                                                        width: 100%;
+                                                        background: linear-gradient(100deg, #1064ca, #fdfcfb);
+                                                        padding: 20px 5vw;
+                                                        position: relative;
+                                                    }
 
-                                                .logo-img {
-                                                    height: 160px;
-                                                    object-fit: contain;
-                                                    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
-                                                }
+                                                    .logo-img {
+                                                        height: 160px;
+                                                        object-fit: contain;
+                                                        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+                                                    }
 
-                                                .official-heading h2 {
-                                                    font-size: 2.6rem;
-                                                    color: #003366;
-                                                    font-weight: 700;
-                                                    margin: 0;
-                                                    line-height: 1.4;
-                                                    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-                                                }
+                                                    .official-heading h2 {
+                                                        font-size: 2.6rem;
+                                                        color: #003366;
+                                                        font-weight: 700;
+                                                        margin: 0;
+                                                        line-height: 1.4;
+                                                        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+                                                    }
 
-                                                .official-btn-alt {
-                                                    display: inline-flex;
-                                                    align-items: center;
-                                                    gap: 10px;
-                                                    padding: 12px 28px;
-                                                    font-size: 1rem;
-                                                    color: #fff;
-                                                    background: linear-gradient(135deg, #003366, #0056a3);
-                                                    border-radius: 10px;
-                                                    text-decoration: none;
-                                                    font-weight: 600;
-                                                    box-shadow: 0 6px 14px rgba(0, 51, 102, 0.3);
-                                                    transition: all 0.3s ease;
-                                                }
+                                                    .official-btn-alt {
+                                                        display: inline-flex;
+                                                        align-items: center;
+                                                        gap: 10px;
+                                                        padding: 12px 28px;
+                                                        font-size: 1rem;
+                                                        color: #fff;
+                                                        background: linear-gradient(135deg, #003366, #0056a3);
+                                                        border-radius: 10px;
+                                                        text-decoration: none;
+                                                        font-weight: 600;
+                                                        box-shadow: 0 6px 14px rgba(0, 51, 102, 0.3);
+                                                        transition: all 0.3s ease;
+                                                    }
 
-                                                .official-btn-alt:hover {
-                                                    background: linear-gradient(135deg, #002244, #004080);
-                                                    box-shadow: 0 8px 18px rgba(0, 51, 102, 0.4);
-                                                }*/
+                                                    .official-btn-alt:hover {
+                                                        background: linear-gradient(135deg, #002244, #004080);
+                                                        box-shadow: 0 8px 18px rgba(0, 51, 102, 0.4);
+                                                    }*/
 
         .galeri-home-section {
             background: linear-gradient(145deg, #e6eefb, #ffffff);
@@ -525,8 +525,8 @@
                         <img src="{{ asset('storage/layanan/background/' . $item->background) }}" alt="bg-layanan">
                     </div>
                     <div class="layanan-overlay">
-                        <svg xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 24 24">{{ asset('storage/layanan/logo/' . $item->logo) }}</svg>
+                        <img src="{{ asset('storage/layanan/logo/' . $item->logo) }}" alt="{{ $item->nama_layanan }}"
+                            class="img-fluid rounded-circle mb-2" style="width: 60px; height: 60px; object-fit: cover;">
                         <h5>{{ $item->nama_layanan }}</h5>
                     </div>
                 </a>
@@ -548,7 +548,7 @@
 
         <div class="bidang-row">
             <div class="bidang-content">
-                <h3>Bidang Aplikasi &amp; Informatika</h3>
+                <h3>Bidang Statistik</h3>
                 <p>Mengembangkan sistem informasi digital untuk pelayanan publik dan administrasi pemerintahan:</p>
                 <ol>
                     <li>Pembangunan dan pengembangan aplikasi pemerintah</li>
@@ -563,7 +563,7 @@
 
         <div class="bidang-row reverse">
             <div class="bidang-content">
-                <h3>Bidang Statistik Sektoral</h3>
+                <h3>Bidang TIK dan Persandiaan</h3>
                 <p>Mengelola dan menganalisis data sektoral yang akurat untuk mendukung kebijakan berbasis data:</p>
                 <ol>
                     <li>Pengumpulan dan pengolahan data sektoral</li>
@@ -578,7 +578,7 @@
 
         <div class="bidang-row">
             <div class="bidang-content">
-                <h3>Bidang Keamanan Siber &amp; Persandian</h3>
+                <h3>Bidang Pengelolaan Informasi dan Komunikasi Publik</h3>
                 <p>Melindungi infrastruktur dan komunikasi pemerintahan dari berbagai ancaman digital:</p>
                 <ol>
                     <li>Manajemen keamanan jaringan dan sistem</li>
@@ -593,7 +593,7 @@
 
         <div class="bidang-row reverse">
             <div class="bidang-content">
-                <h3>Bidang Informasi Publik</h3>
+                <h3>Bidang Penyelenggara E-Goverment</h3>
                 <p>Menyediakan akses terbuka terhadap informasi publik dan mengelola media komunikasi pemerintahan:</p>
                 <ol>
                     <li>Pengelolaan website dan media sosial</li>
@@ -607,26 +607,26 @@
         </div>
     </section>
     <!-- <section class="official-portal-section-alt">
-                                                <div class="row align-items-center justify-content-center" style="padding: 0 5vw;">
-                                                    <div class="col-lg-3 col-md-3 text-center">
-                                                        <img src="{{ asset('images/logo-murung-raya.png') }}" alt="Logo Murung Raya" class="logo-img">
-                                                    </div>
-                                                    <div class="col-lg-6 col-md-6 text-center">
-                                                        <div class="official-heading">
-                                                            <h2><strong>Pemerintah Kabupaten Murung Raya</strong></h2>
+                                                    <div class="row align-items-center justify-content-center" style="padding: 0 5vw;">
+                                                        <div class="col-lg-3 col-md-3 text-center">
+                                                            <img src="{{ asset('images/logo-murung-raya.png') }}" alt="Logo Murung Raya" class="logo-img">
+                                                        </div>
+                                                        <div class="col-lg-6 col-md-6 text-center">
+                                                            <div class="official-heading">
+                                                                <h2><strong>Pemerintah Kabupaten Murung Raya</strong></h2>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-3 col-md-3 text-center">
+                                                            <a href="https://murungrayakab.go.id" target="_blank" class="official-btn-alt">
+                                                                Kunjungi
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="34" height="16" viewBox="0 0 34.53 16">
+                                                                    <rect class="line" y="7.6" width="34" height="0.4" fill="currentColor" />
+                                                                    <path class="arrow" d="M25.83.7l.7-.7,8,8-.7.71Zm0,14.6,8-8,.71.71-8,8Z" fill="currentColor" />
+                                                                </svg>
+                                                            </a>
                                                         </div>
                                                     </div>
-                                                    <div class="col-lg-3 col-md-3 text-center">
-                                                        <a href="https://murungrayakab.go.id" target="_blank" class="official-btn-alt">
-                                                            Kunjungi
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="16" viewBox="0 0 34.53 16">
-                                                                <rect class="line" y="7.6" width="34" height="0.4" fill="currentColor" />
-                                                                <path class="arrow" d="M25.83.7l.7-.7,8,8-.7.71Zm0,14.6,8-8,.71.71-8,8Z" fill="currentColor" />
-                                                            </svg>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </section> -->
+                                                </section> -->
     <section class="galeri-home-section">
         <h2 data-aos="fade-up">Galeri</h2>
         <div class="galeri-home-grid">

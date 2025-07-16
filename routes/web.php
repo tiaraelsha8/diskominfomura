@@ -28,6 +28,7 @@ use App\Http\Controllers\backend\LayananController;
 
 //frontend
 use App\Http\Controllers\frontend\HomeController;
+use App\Http\Controllers\frontend\TentangfrontController;
 
 use App\Http\Controllers\frontend\BeritaController;
 use App\Http\Controllers\frontend\PengumumanController;
@@ -41,7 +42,7 @@ use App\Http\Controllers\frontend\PetaController;
 Route::middleware('guest')->group(function () {
     //Login
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-    Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+    Route::post('login', [AuthController::class, 'login'])->name('login.submit');
 
     // Forgot password
     Route::get('/password/forgot', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
@@ -56,9 +57,11 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 //frontend
 Route::get('/', [HomeController::class, 'index'])->name('beranda');
+Route::get('/tentang', [TentangfrontController::class, 'index'])->name('frontend.tentang');
 
-Route::get('/lihat-berita', [BeritaController::class, 'index'])->name('lihat-berita');
-Route::get('/lihat-pengumuman', [PengumumanController::class, 'index'])->name('lihat-pengumuman');
+
+Route::get('/berita', [BeritaController::class, 'index'])->name('lihat-berita');
+Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('lihat-pengumuman');
 Route::get('/peta', [PetaController::class, 'index'])->name('peta.index');
 
 
