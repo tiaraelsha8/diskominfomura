@@ -503,15 +503,16 @@
                 ];
             @endphp
 
-            @foreach ($layanan as $index => $item)
-                {{-- <a href="{{ route($item['route']) }}" class="layanan-box" data-aos="zoom-in" --}}
+            @foreach ($layanans as $index => $item)
+                <a href="{{ $item->link }}" class="layanan-box" data-aos="zoom-in"
                     data-aos-delay="{{ 300 + 100 * $index }}">
                     <div class="layanan-bg-wrapper">
-                        <img src="{{ asset('images/mura2.webp') }}" alt="bg-layanan">
+                        
+                        <img src="{{ asset('storage/layanan/background/'.$item->background) }}" alt="bg-layanan">
                     </div>
                     <div class="layanan-overlay">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">{!! $item['icon'] !!}</svg>
-                        <h5>{{ $item['title'] }}</h5>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">{{ asset('storage/layanan/logo/'.$item->logo) }}</svg>
+                        <h5>{{ $item->nama_layanan }}</h5>
                     </div>
                 </a>
             @endforeach
