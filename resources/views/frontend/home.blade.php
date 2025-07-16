@@ -282,46 +282,46 @@
         }
 
         /*.official-portal-section-alt {
-                                    width: 100%;
-                                    background: linear-gradient(100deg, #1064ca, #fdfcfb);
-                                    padding: 20px 5vw;
-                                    position: relative;
-                                }
+                                                    width: 100%;
+                                                    background: linear-gradient(100deg, #1064ca, #fdfcfb);
+                                                    padding: 20px 5vw;
+                                                    position: relative;
+                                                }
 
-                                .logo-img {
-                                    height: 160px;
-                                    object-fit: contain;
-                                    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
-                                }
+                                                .logo-img {
+                                                    height: 160px;
+                                                    object-fit: contain;
+                                                    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+                                                }
 
-                                .official-heading h2 {
-                                    font-size: 2.6rem;
-                                    color: #003366;
-                                    font-weight: 700;
-                                    margin: 0;
-                                    line-height: 1.4;
-                                    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-                                }
+                                                .official-heading h2 {
+                                                    font-size: 2.6rem;
+                                                    color: #003366;
+                                                    font-weight: 700;
+                                                    margin: 0;
+                                                    line-height: 1.4;
+                                                    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+                                                }
 
-                                .official-btn-alt {
-                                    display: inline-flex;
-                                    align-items: center;
-                                    gap: 10px;
-                                    padding: 12px 28px;
-                                    font-size: 1rem;
-                                    color: #fff;
-                                    background: linear-gradient(135deg, #003366, #0056a3);
-                                    border-radius: 10px;
-                                    text-decoration: none;
-                                    font-weight: 600;
-                                    box-shadow: 0 6px 14px rgba(0, 51, 102, 0.3);
-                                    transition: all 0.3s ease;
-                                }
+                                                .official-btn-alt {
+                                                    display: inline-flex;
+                                                    align-items: center;
+                                                    gap: 10px;
+                                                    padding: 12px 28px;
+                                                    font-size: 1rem;
+                                                    color: #fff;
+                                                    background: linear-gradient(135deg, #003366, #0056a3);
+                                                    border-radius: 10px;
+                                                    text-decoration: none;
+                                                    font-weight: 600;
+                                                    box-shadow: 0 6px 14px rgba(0, 51, 102, 0.3);
+                                                    transition: all 0.3s ease;
+                                                }
 
-                                .official-btn-alt:hover {
-                                    background: linear-gradient(135deg, #002244, #004080);
-                                    box-shadow: 0 8px 18px rgba(0, 51, 102, 0.4);
-                                }*/
+                                                .official-btn-alt:hover {
+                                                    background: linear-gradient(135deg, #002244, #004080);
+                                                    box-shadow: 0 8px 18px rgba(0, 51, 102, 0.4);
+                                                }*/
 
         .galeri-home-section {
             background: linear-gradient(145deg, #e6eefb, #ffffff);
@@ -451,12 +451,26 @@
                 0 0 12px rgba(0, 136, 255, 0.1);
             transition: transform 0.3s ease, text-shadow 0.4s ease;
         }
+
+        .fade-image {
+            transition: opacity 1s ease-in-out;
+            opacity: 1;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            /* jika jadi background */
+        }
     </style>
 
     <div class="full-bg">
-        <video autoplay muted loop playsinline preload="auto" class="bg-video">
-            <source src="{{ asset('mura.mp4') }}" type="video/mp4">
-        </video>
+
+        <img id="carouselImage" class="bg-video fade-image" src="{{ asset('storage/carousel/' . $carousel[0]->foto) }}"
+            alt="Carousel Image">
+
+
+
         <div class="hero-container" data-aos="fade-down">
             <h1>Selamat Datang Di Profil Diskominfo Kabupaten Murung Raya</h1>
             <p data-aos="fade-up" data-aos-delay="200">Murung Raya Hebat</p>
@@ -507,11 +521,12 @@
                 <a href="{{ $item->link }}" class="layanan-box" data-aos="zoom-in"
                     data-aos-delay="{{ 300 + 100 * $index }}">
                     <div class="layanan-bg-wrapper">
-                        
-                        <img src="{{ asset('storage/layanan/background/'.$item->background) }}" alt="bg-layanan">
+
+                        <img src="{{ asset('storage/layanan/background/' . $item->background) }}" alt="bg-layanan">
                     </div>
                     <div class="layanan-overlay">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">{{ asset('storage/layanan/logo/'.$item->logo) }}</svg>
+                        <svg xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24">{{ asset('storage/layanan/logo/' . $item->logo) }}</svg>
                         <h5>{{ $item->nama_layanan }}</h5>
                     </div>
                 </a>
@@ -528,142 +543,168 @@
         });
     </script>
 
- <section class="bidang-fullwidth">
-    <h2 data-aos="fade-up">Bidang</h2>
+    <section class="bidang-fullwidth">
+        <h2 data-aos="fade-up">Bidang</h2>
 
-    <div class="bidang-row">
-        <div class="bidang-content">
-            <h3>Bidang Aplikasi &amp; Informatika</h3>
-            <p>Mengembangkan sistem informasi digital untuk pelayanan publik dan administrasi pemerintahan:</p>
-            <ol>
-                <li>Pembangunan dan pengembangan aplikasi pemerintah</li>
-                <li>Layanan sistem informasi internal dan eksternal</li>
-                <li>Infrastruktur pendukung digitalisasi pemerintahan</li>
-            </ol>
+        <div class="bidang-row">
+            <div class="bidang-content">
+                <h3>Bidang Aplikasi &amp; Informatika</h3>
+                <p>Mengembangkan sistem informasi digital untuk pelayanan publik dan administrasi pemerintahan:</p>
+                <ol>
+                    <li>Pembangunan dan pengembangan aplikasi pemerintah</li>
+                    <li>Layanan sistem informasi internal dan eksternal</li>
+                    <li>Infrastruktur pendukung digitalisasi pemerintahan</li>
+                </ol>
+            </div>
+            <div class="bidang-image">
+                <img src="{{ asset('image/bidang1.png') }}" alt="Bidang Aplikasi & Informatika">
+            </div>
         </div>
-        <div class="bidang-image">
-            <img src="{{ asset('image/bidang1.png') }}" alt="Bidang Aplikasi & Informatika">
-        </div>
-    </div>
 
-    <div class="bidang-row reverse">
-        <div class="bidang-content">
-            <h3>Bidang Statistik Sektoral</h3>
-            <p>Mengelola dan menganalisis data sektoral yang akurat untuk mendukung kebijakan berbasis data:</p>
-            <ol>
-                <li>Pengumpulan dan pengolahan data sektoral</li>
-                <li>Integrasi data dari berbagai OPD</li>
-                <li>Visualisasi dan diseminasi data statistik</li>
-            </ol>
+        <div class="bidang-row reverse">
+            <div class="bidang-content">
+                <h3>Bidang Statistik Sektoral</h3>
+                <p>Mengelola dan menganalisis data sektoral yang akurat untuk mendukung kebijakan berbasis data:</p>
+                <ol>
+                    <li>Pengumpulan dan pengolahan data sektoral</li>
+                    <li>Integrasi data dari berbagai OPD</li>
+                    <li>Visualisasi dan diseminasi data statistik</li>
+                </ol>
+            </div>
+            <div class="bidang-image">
+                <img src="{{ asset('image/bidang2.png') }}" alt="Bidang Statistik Sektoral">
+            </div>
         </div>
-        <div class="bidang-image">
-            <img src="{{ asset('image/bidang2.png') }}" alt="Bidang Statistik Sektoral">
-        </div>
-    </div>
 
-    <div class="bidang-row">
-        <div class="bidang-content">
-            <h3>Bidang Keamanan Siber &amp; Persandian</h3>
-            <p>Melindungi infrastruktur dan komunikasi pemerintahan dari berbagai ancaman digital:</p>
-            <ol>
-                <li>Manajemen keamanan jaringan dan sistem</li>
-                <li>Pengelolaan sertifikat elektronik dan sandi</li>
-                <li>Peningkatan literasi keamanan informasi</li>
-            </ol>
+        <div class="bidang-row">
+            <div class="bidang-content">
+                <h3>Bidang Keamanan Siber &amp; Persandian</h3>
+                <p>Melindungi infrastruktur dan komunikasi pemerintahan dari berbagai ancaman digital:</p>
+                <ol>
+                    <li>Manajemen keamanan jaringan dan sistem</li>
+                    <li>Pengelolaan sertifikat elektronik dan sandi</li>
+                    <li>Peningkatan literasi keamanan informasi</li>
+                </ol>
+            </div>
+            <div class="bidang-image">
+                <img src="{{ asset('image/bidang3.png') }}" alt="Bidang Keamanan Siber & Persandian">
+            </div>
         </div>
-        <div class="bidang-image">
-            <img src="{{ asset('image/bidang3.png') }}" alt="Bidang Keamanan Siber & Persandian">
-        </div>
-    </div>
 
-    <div class="bidang-row reverse">
-        <div class="bidang-content">
-            <h3>Bidang Informasi Publik</h3>
-            <p>Menyediakan akses terbuka terhadap informasi publik dan mengelola media komunikasi pemerintahan:</p>
-            <ol>
-                <li>Pengelolaan website dan media sosial</li>
-                <li>Layanan informasi publik dan PPID</li>
-                <li>Publikasi kegiatan dan pelayanan pemerintah</li>
-            </ol>
+        <div class="bidang-row reverse">
+            <div class="bidang-content">
+                <h3>Bidang Informasi Publik</h3>
+                <p>Menyediakan akses terbuka terhadap informasi publik dan mengelola media komunikasi pemerintahan:</p>
+                <ol>
+                    <li>Pengelolaan website dan media sosial</li>
+                    <li>Layanan informasi publik dan PPID</li>
+                    <li>Publikasi kegiatan dan pelayanan pemerintah</li>
+                </ol>
+            </div>
+            <div class="bidang-image">
+                <img src="{{ asset('image/bidang4.png') }}" alt="Bidang Informasi Publik">
+            </div>
         </div>
-        <div class="bidang-image">
-            <img src="{{ asset('image/bidang4.png') }}" alt="Bidang Informasi Publik">
-        </div>
-    </div>
-</section>
+    </section>
     <!-- <section class="official-portal-section-alt">
-                                <div class="row align-items-center justify-content-center" style="padding: 0 5vw;">
-                                    <div class="col-lg-3 col-md-3 text-center">
-                                        <img src="{{ asset('images/logo-murung-raya.png') }}" alt="Logo Murung Raya" class="logo-img">
-                                    </div>
-                                    <div class="col-lg-6 col-md-6 text-center">
-                                        <div class="official-heading">
-                                            <h2><strong>Pemerintah Kabupaten Murung Raya</strong></h2>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-3 text-center">
-                                        <a href="https://murungrayakab.go.id" target="_blank" class="official-btn-alt">
-                                            Kunjungi
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="16" viewBox="0 0 34.53 16">
-                                                <rect class="line" y="7.6" width="34" height="0.4" fill="currentColor" />
-                                                <path class="arrow" d="M25.83.7l.7-.7,8,8-.7.71Zm0,14.6,8-8,.71.71-8,8Z" fill="currentColor" />
-                                            </svg>
-                                        </a>
-                                    </div>
-                                </div>
-                            </section> -->
-  <section class="galeri-home-section">
-    <h2 data-aos="fade-up">Galeri</h2>
-    <div class="galeri-home-grid">
+                                                <div class="row align-items-center justify-content-center" style="padding: 0 5vw;">
+                                                    <div class="col-lg-3 col-md-3 text-center">
+                                                        <img src="{{ asset('images/logo-murung-raya.png') }}" alt="Logo Murung Raya" class="logo-img">
+                                                    </div>
+                                                    <div class="col-lg-6 col-md-6 text-center">
+                                                        <div class="official-heading">
+                                                            <h2><strong>Pemerintah Kabupaten Murung Raya</strong></h2>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-md-3 text-center">
+                                                        <a href="https://murungrayakab.go.id" target="_blank" class="official-btn-alt">
+                                                            Kunjungi
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="16" viewBox="0 0 34.53 16">
+                                                                <rect class="line" y="7.6" width="34" height="0.4" fill="currentColor" />
+                                                                <path class="arrow" d="M25.83.7l.7-.7,8,8-.7.71Zm0,14.6,8-8,.71.71-8,8Z" fill="currentColor" />
+                                                            </svg>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </section> -->
+    <section class="galeri-home-section">
+        <h2 data-aos="fade-up">Galeri</h2>
+        <div class="galeri-home-grid">
 
-        <a href="" class="galeri-card" data-aos="fade-up" data-aos-delay="0">
-            <div class="galeri-card-img">
-                <img src="{{ asset('image/galeri_foto.jpg') }}" alt="Galeri Foto">
-            </div>
-            <div class="galeri-card-body">
-                <h3>Galeri Foto</h3>
-                <p>Dokumentasi kegiatan dan aktivitas.</p>
-            </div>
-        </a>
+            <a href="" class="galeri-card" data-aos="fade-up" data-aos-delay="0">
+                <div class="galeri-card-img">
+                    <img src="{{ asset('image/galeri_foto.jpg') }}" alt="Galeri Foto">
+                </div>
+                <div class="galeri-card-body">
+                    <h3>Galeri Foto</h3>
+                    <p>Dokumentasi kegiatan dan aktivitas.</p>
+                </div>
+            </a>
 
-        <a href="" class="galeri-card" data-aos="fade-up" data-aos-delay="100">
-            <div class="galeri-card-img">
-                <img src="{{ asset('image/galeri_video.jpg') }}" alt="Galeri Video">
-            </div>
-            <div class="galeri-card-body">
-                <h3>Galeri Video</h3>
-                <p>Video kegiatan, pelatihan, dan informasi publik.</p>
-            </div>
-        </a>
+            <a href="" class="galeri-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="galeri-card-img">
+                    <img src="{{ asset('image/galeri_video.jpg') }}" alt="Galeri Video">
+                </div>
+                <div class="galeri-card-body">
+                    <h3>Galeri Video</h3>
+                    <p>Video kegiatan, pelatihan, dan informasi publik.</p>
+                </div>
+            </a>
 
-        <a href="{{ route('lihat-berita') }}" class="galeri-card" data-aos="fade-up" data-aos-delay="200">
-            <div class="galeri-card-img">
-                <img src="{{ asset('image/galeri_berita.jpg') }}" alt="Berita">
-            </div>
-            <div class="galeri-card-body">
-                <h3>Berita</h3>
-                <p>Informasi terbaru seputar kegiatan dan perkembangan.</p>
-            </div>
-        </a>
+            <a href="{{ route('lihat-berita') }}" class="galeri-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="galeri-card-img">
+                    <img src="{{ asset('image/galeri_berita.jpg') }}" alt="Berita">
+                </div>
+                <div class="galeri-card-body">
+                    <h3>Berita</h3>
+                    <p>Informasi terbaru seputar kegiatan dan perkembangan.</p>
+                </div>
+            </a>
 
-        <a href="{{ route('lihat-pengumuman') }}" class="galeri-card" data-aos="fade-up" data-aos-delay="300">
-            <div class="galeri-card-img">
-                <img src="{{ asset('image/galeri_pengumuman.jpg') }}" alt="Pengumuman">
-            </div>
-            <div class="galeri-card-body">
-                <h3>Pengumuman</h3>
-                <p>Pengumuman resmi dan pemberitahuan dari Diskominfo.</p>
-            </div>
-        </a>
+            <a href="{{ route('lihat-pengumuman') }}" class="galeri-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="galeri-card-img">
+                    <img src="{{ asset('image/galeri_pengumuman.jpg') }}" alt="Pengumuman">
+                </div>
+                <div class="galeri-card-body">
+                    <h3>Pengumuman</h3>
+                    <p>Pengumuman resmi dan pemberitahuan dari Diskominfo.</p>
+                </div>
+            </a>
 
-    </div>
-</section>
+        </div>
+    </section>
 
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init({
             duration: 1000,
             once: true
+        });
+    </script>
+
+    <!-- JS: Ganti gambar otomatis dengan efek -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = [
+                @foreach ($carousel as $item)
+                    "{{ asset('storage/carousel/' . $item->foto) }}",
+                @endforeach
+            ];
+
+            let index = 0;
+            const imgElement = document.getElementById('carouselImage');
+
+            setInterval(() => {
+                // Mulai fade-out
+                imgElement.style.opacity = 0;
+
+                setTimeout(() => {
+                    // Ganti gambar setelah fade-out
+                    index = (index + 1) % images.length;
+                    imgElement.src = images[index];
+                    imgElement.style.opacity = 1; // Fade-in
+                }, 500); // waktu fade-out
+            }, 4000); // Setiap 4 detik
         });
     </script>
 @endsection

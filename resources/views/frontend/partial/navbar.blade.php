@@ -13,7 +13,7 @@
                     <li class="nav-item"><a class="nav-link dropdown-toggle" href="#" id="galeriMenu">Galeri</a>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="">Dokumen</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">Peta Jaringan</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('peta.index') }}">Peta Jaringan</a></li>
                     <li class="nav-item"><a class="nav-link" href="">Kontak</a></li>
                 </ul>
             </div>
