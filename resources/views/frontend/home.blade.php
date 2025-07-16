@@ -625,7 +625,7 @@
             </div>
         </a>
 
-        <a href="{{ route('lihat-pengumuman') }}" class="galeri-card" data-aos="fade-up" data-aos-delay="100">
+        <a href="" class="galeri-card" data-aos="fade-up" data-aos-delay="100">
             <div class="galeri-card-img">
                 <img src="{{ asset('image/galeri_video.jpg') }}" alt="Galeri Video">
             </div>
@@ -645,7 +645,7 @@
             </div>
         </a>
 
-        <a href="" class="galeri-card" data-aos="fade-up" data-aos-delay="300">
+        <a href="{{ route('lihat-pengumuman') }}" class="galeri-card" data-aos="fade-up" data-aos-delay="300">
             <div class="galeri-card-img">
                 <img src="{{ asset('image/galeri_pengumuman.jpg') }}" alt="Pengumuman">
             </div>
