@@ -1,11 +1,27 @@
 @extends('frontend.layout.app')
 
 @section('content')
+<style>
+        .title-bg {
+            margin-top: -88px;
+            padding-top: 180px;
+            padding-bottom: 120px;
+            background: url('{{ asset('image/bg_galeri.jpg') }}') center/cover no-repeat;
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 3rem;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            letter-spacing: 1.5px;
+        }
+    </style>
 <!-- ======= Dokumen Start ======= -->
+<div class="title-bg">Dokumen</div>
+
 <section class="pt-5 pb-5">
     <div class="container">
         <div class="case-details__article">
-            <h2 class="mb-4 fw-bold">Dokumen Perencanaan</h2>
+            <h2 class="mb-4 fw-bold ">Dokumen Perencanaan</h2>
             <div class="table-responsive">
                 <table class="table table-striped table-bordered align-middle">
                     <thead class="table-light">
