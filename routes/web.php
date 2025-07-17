@@ -29,11 +29,12 @@ use App\Http\Controllers\backend\ProfilBidangController;
 
 //frontend
 use App\Http\Controllers\frontend\HomeController;
-use App\Http\Controllers\frontend\TentangfrontController;
-
 use App\Http\Controllers\frontend\BeritaController;
 use App\Http\Controllers\frontend\PengumumanController;
 use App\Http\Controllers\frontend\PetaController;
+use App\Http\Controllers\frontend\TentangfrontController;
+use App\Http\Controllers\frontend\DokumenfrontController;
+use App\Http\Controllers\frontend\MaklumatfrontController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -58,12 +59,18 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 //frontend
 Route::get('/', [HomeController::class, 'index'])->name('beranda');
-Route::get('/tentang', [TentangfrontController::class, 'index'])->name('frontend.tentang');
-
 
 Route::get('/berita', [BeritaController::class, 'index'])->name('lihat-berita');
+
 Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('lihat-pengumuman');
+
 Route::get('/peta', [PetaController::class, 'index'])->name('peta.index');
+
+Route::get('/tentang', [TentangfrontController::class, 'index'])->name('frontend.tentang');
+
+Route::get('/dokumen', [DokumenfrontController::class, 'index'])->name('frontend.dokumen');
+
+Route::get('/maklumatlayanan', [MaklumatfrontController::class, 'index'])->name('frontend.maklumat');
 
 
 //backend

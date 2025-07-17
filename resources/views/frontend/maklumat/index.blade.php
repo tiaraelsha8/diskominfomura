@@ -28,14 +28,14 @@
         }
     </style>
 
-    <div class="tentang-title-bg">Tentang Diskominfo SP</div>
+    <div class="tentang-title-bg">Maklumat Layanan Diskominfo SP</div>
 
     <section class="tentang-container container">
         <p class="text-muted">
-            @isset($tentang)
-                {!! $tentang->tentang !!}
+            @isset($maklumat)
+                {!! $maklumat->maklumat !!}
             @else
-                <em>Profil Tentang belum tersedia.</em>
+                <em>Maklumat layanan belum tersedia.</em>
             @endisset
         </p>
     </section>
