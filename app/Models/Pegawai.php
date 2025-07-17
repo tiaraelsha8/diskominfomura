@@ -11,7 +11,7 @@ class Pegawai extends Model
 
     protected $table = 'pegawais';
 
-    protected $fillable = ['nama', 'jabatan', 'bidang_id', 'jabatan_id', 'foto', 'tupoksi'];
+    protected $fillable = ['nama', 'jabatan', 'bidang_id', 'jabatan_id', 'foto', 'tupoksi','file'];
 
     // Relasi ke Bidang
     public function bidang()

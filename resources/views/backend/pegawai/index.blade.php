@@ -42,6 +42,7 @@
                                     <th>Bidang</th>
                                     <th>Tupoksi</th>
                                     <th>Foto</th>
+                                    <th>Dokumen LHKPN</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -56,6 +57,14 @@
                                         <td>
                                             <img src="{{ asset('storage/pegawai/' . $value->foto) }}"
                                                 style="width:300px; height:200px; object-fit:contain;">
+                                        </td>
+                                        <td>
+                                            @if ($value->file)
+                                                <a href="{{ route('pegawai.download', $value->id) }}"
+                                                    target="_blank">Download</a>
+                                            @else
+                                                <em>Belum ada file</em>
+                                            @endif
                                         </td>
                                         <td>
                                             <form action="{{ route('pegawai.destroy', $value->id) }}" method="POST"
@@ -74,7 +83,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="7" class="text-center">Belum ada data pegawai</td>
+                                        <td colspan="8" class="text-center">Belum ada data pegawai</td>
                                     </tr>
                                 @endforelse
                             </tbody>

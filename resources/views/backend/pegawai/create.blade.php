@@ -68,6 +68,14 @@
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
+                    <div class="form-group">
+                        <label for="file">Dokumen LHKPN</label>
+                        <input type="file" class="form-control-file" name="file" accept=".pdf">
+                    </div>
+                    @error('file')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary">Simpan</button>
                         <a href="{{ route('pegawai.index') }}" class="btn btn-default">Kembali</a>

@@ -93,6 +93,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('/berita', BeritabackController::class);
 
     Route::resource('/pengumuman', PengumumanbackController::class);
+    Route::get('/pengumuman/download/{id}', [PengumumanbackController::class, 'download'])->name('pengumuman.download');
 
     Route::resource('/galeri', GaleriController::class);
 
@@ -110,6 +111,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('/bidang', BidangController::class);
 
     Route::resource('/pegawai', PegawaiController::class);
+    Route::get('/pegawai/download/{id}', [PegawaiController::class, 'download'])->name('pegawai.download');
   
     Route::resource('/jabatan', JabatanController::class);
     
