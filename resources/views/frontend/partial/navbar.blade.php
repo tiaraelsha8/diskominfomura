@@ -15,7 +15,7 @@
                     </li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('frontend.dokumen') }}">Dokumen</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('peta.index') }}">Peta Jaringan</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">Kontak</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('frontend.kontak') }}">Kontak</a></li>
                 </ul>
             </div>
         </div>

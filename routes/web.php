@@ -35,6 +35,7 @@ use App\Http\Controllers\frontend\PetaController;
 use App\Http\Controllers\frontend\TentangfrontController;
 use App\Http\Controllers\frontend\DokumenfrontController;
 use App\Http\Controllers\frontend\MaklumatfrontController;
+use App\Http\Controllers\frontend\KontakfrontController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -72,6 +73,7 @@ Route::get('/dokumen', [DokumenfrontController::class, 'index'])->name('frontend
 
 Route::get('/maklumatlayanan', [MaklumatfrontController::class, 'index'])->name('frontend.maklumat');
 
+Route::get('/kontak', [KontakfrontController::class, 'index'])->name('frontend.kontak');
 
 //backend
 Route::prefix('admin')->middleware('auth')->group(function () {
