@@ -481,7 +481,7 @@
         <h2 data-aos="fade-down" data-aos-delay="100">Layanan</h2>
         <div class="layanan-grid" data-aos="fade-up" data-aos-delay="200">
             @foreach ($layanans as $index => $item)
-                <a href="{{ $item->link }}" class="layanan-box" data-aos="zoom-in"
+                <a href="{{ $item->link }}" class="layanan-box" data-aos="zoom-in" target="_blank"
                     data-aos-delay="{{ 300 + 100 * $index }}">
                     <div class="layanan-bg-wrapper">
 
