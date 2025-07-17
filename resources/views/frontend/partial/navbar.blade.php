@@ -16,7 +16,7 @@
                     </li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('frontend.dokumen') }}">Dokumen</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('peta.index') }}">Peta Jaringan</a></li>
-                    <li class="nav-item"><a class="nav-link" href="">Kontak</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ route('frontend.kontak') }}">Kontak</a></li>
                 </ul>
             </div>
         </div>
@@ -31,8 +31,8 @@
 
     <!-- Dropdown Global: Galeri -->
     <div class="dropdown-global" id="dropdownGaleri">
-        <a href="">Galeri Foto</a>
-        <a href="">Galeri Video</a>
+        <a href="{{ route('frontend.galerifoto') }}">Galeri Foto</a>
+        <a href="{{ route('frontend.galerivideo') }}">Galeri Video</a>
         <a href="{{ route('lihat-berita') }}">Galeri Berita</a>
         <a href="{{ route('lihat-pengumuman') }}">Galeri Pengumuman</a>
     </div>
