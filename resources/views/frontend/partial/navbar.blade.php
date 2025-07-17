@@ -30,8 +30,8 @@
 
     <!-- Dropdown Global: Galeri -->
     <div class="dropdown-global" id="dropdownGaleri">
-        <a href="">Galeri Foto</a>
-        <a href="">Galeri Video</a>
+        <a href="{{ route('frontend.galerifoto') }}">Galeri Foto</a>
+        <a href="{{ route('frontend.galerivideo') }}">Galeri Video</a>
         <a href="{{ route('lihat-berita') }}">Galeri Berita</a>
         <a href="{{ route('lihat-pengumuman') }}">Galeri Pengumuman</a>
     </div>

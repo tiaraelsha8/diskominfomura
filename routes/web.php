@@ -36,6 +36,8 @@ use App\Http\Controllers\frontend\TentangfrontController;
 use App\Http\Controllers\frontend\DokumenfrontController;
 use App\Http\Controllers\frontend\MaklumatfrontController;
 use App\Http\Controllers\frontend\KontakfrontController;
+use App\Http\Controllers\frontend\GalerifotoController;
+use App\Http\Controllers\frontend\GalerivideoController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -74,6 +76,10 @@ Route::get('/dokumen', [DokumenfrontController::class, 'index'])->name('frontend
 Route::get('/maklumatlayanan', [MaklumatfrontController::class, 'index'])->name('frontend.maklumat');
 
 Route::get('/kontak', [KontakfrontController::class, 'index'])->name('frontend.kontak');
+
+Route::get('/galerifoto', [GalerifotoController::class, 'index'])->name('frontend.galerifoto');
+
+Route::get('/galerivideo', [GalerivideoController::class, 'index'])->name('frontend.galerivideo');
 
 //backend
 Route::prefix('admin')->middleware('auth')->group(function () {
