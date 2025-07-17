@@ -480,43 +480,6 @@
     <section class="layanan-fullscreen" data-aos="fade-up">
         <h2 data-aos="fade-down" data-aos-delay="100">Layanan</h2>
         <div class="layanan-grid" data-aos="fade-up" data-aos-delay="200">
-            @php
-                use Illuminate\Support\Str;
-                $layanan = [
-                    [
-                        'title' => 'Informasi Publik',
-                        'icon' => '<path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 
-                    10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 
-                    0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 
-                    2v1.93zM11 13H6.08c-.05-.33-.08-.66-.08-1 
-                    0-2.97 2.16-5.43 5-5.91V13zm2 
-                    6.93V19c1.1 0 2-.9 2-2v-1l3.79-3.79c.13.58.21 
-                    1.17.21 1.79 0 4.08-3.05 7.44-7 7.93zM13 
-                    11V6.09c2.84.48 5 2.94 5 5.91 0 .34-.03.67-.08 
-                    1H13z"/>',
-                        // 'route' => 'galeri.foto',
-                    ],
-                    [
-                        'title' => 'Layanan Digital',
-                        'icon' => '<path d="M3 5h18v14H3V5zm2 2v10h14V7H5zm2 
-                    2h10v2H7V9zm0 4h10v2H7v-2z" />',
-                        // 'route' => 'galeri.video',
-                    ],
-                    [
-                        'title' => 'Pengaduan Masyarakat',
-                        'icon' => '<path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 
-                    1.79-4 4 1.79 4 4 4zm0 2c-2.67 
-                    0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>',
-                        // 'route' => 'galeri.berita',
-                    ],
-                    [
-                        'title' => 'Broadband Center',
-                        'icon' => '<path d="M4 4h16v2H4V4zm0 14h16v2H4v-2zM4 9h16v6H4V9z" />',
-                        // 'route' => 'galeri.pengumuman',
-                    ],
-                ];
-            @endphp
-
             @foreach ($layanans as $index => $item)
                 <a href="{{ $item->link }}" class="layanan-box" data-aos="zoom-in"
                     data-aos-delay="{{ 300 + 100 * $index }}">
@@ -543,68 +506,21 @@
         });
     </script>
 
-    <section class="bidang-fullwidth">
+   <section class="bidang-fullwidth">
         <h2 data-aos="fade-up">Bidang</h2>
-
-        <div class="bidang-row">
-            <div class="bidang-content">
-                <h3>Bidang Statistik</h3>
-                <p>Mengembangkan sistem informasi digital untuk pelayanan publik dan administrasi pemerintahan:</p>
-                <ol>
-                    <li>Pembangunan dan pengembangan aplikasi pemerintah</li>
-                    <li>Layanan sistem informasi internal dan eksternal</li>
-                    <li>Infrastruktur pendukung digitalisasi pemerintahan</li>
-                </ol>
+       
+        @foreach ($profilbidangs as $index => $bidang)
+            <div class="bidang-row {{ $index % 2 === 1 ? 'reverse' : '' }}">
+                <div class="bidang-content">
+                     <h3>{{ $bidang->nama_bidang }}</h3>
+                     <p>{!! $bidang->deskripsi !!}</p>
+                </div>
+                <div class="bidang-image">
+                    <img src="{{ asset('storage/profilbidang/' . $bidang->foto) }}" alt="{{ $bidang->nama_bidang }}"
+                       style="height:300px; width:auto; object-fit:contain; display:block; margin:0 auto;">
+                </div>
             </div>
-            <div class="bidang-image">
-                <img src="{{ asset('image/bidang1.png') }}" alt="Bidang Aplikasi & Informatika">
-            </div>
-        </div>
-
-        <div class="bidang-row reverse">
-            <div class="bidang-content">
-                <h3>Bidang TIK dan Persandiaan</h3>
-                <p>Mengelola dan menganalisis data sektoral yang akurat untuk mendukung kebijakan berbasis data:</p>
-                <ol>
-                    <li>Pengumpulan dan pengolahan data sektoral</li>
-                    <li>Integrasi data dari berbagai OPD</li>
-                    <li>Visualisasi dan diseminasi data statistik</li>
-                </ol>
-            </div>
-            <div class="bidang-image">
-                <img src="{{ asset('image/bidang2.png') }}" alt="Bidang Statistik Sektoral">
-            </div>
-        </div>
-
-        <div class="bidang-row">
-            <div class="bidang-content">
-                <h3>Bidang Pengelolaan Informasi dan Komunikasi Publik</h3>
-                <p>Melindungi infrastruktur dan komunikasi pemerintahan dari berbagai ancaman digital:</p>
-                <ol>
-                    <li>Manajemen keamanan jaringan dan sistem</li>
-                    <li>Pengelolaan sertifikat elektronik dan sandi</li>
-                    <li>Peningkatan literasi keamanan informasi</li>
-                </ol>
-            </div>
-            <div class="bidang-image">
-                <img src="{{ asset('image/bidang3.png') }}" alt="Bidang Keamanan Siber & Persandian">
-            </div>
-        </div>
-
-        <div class="bidang-row reverse">
-            <div class="bidang-content">
-                <h3>Bidang Penyelenggara E-Goverment</h3>
-                <p>Menyediakan akses terbuka terhadap informasi publik dan mengelola media komunikasi pemerintahan:</p>
-                <ol>
-                    <li>Pengelolaan website dan media sosial</li>
-                    <li>Layanan informasi publik dan PPID</li>
-                    <li>Publikasi kegiatan dan pelayanan pemerintah</li>
-                </ol>
-            </div>
-            <div class="bidang-image">
-                <img src="{{ asset('image/bidang4.png') }}" alt="Bidang Informasi Publik">
-            </div>
-        </div>
+        @endforeach
     </section>
     <!-- <section class="official-portal-section-alt">
                                                     <div class="row align-items-center justify-content-center" style="padding: 0 5vw;">

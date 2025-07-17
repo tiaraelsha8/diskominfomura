@@ -25,6 +25,7 @@ use App\Http\Controllers\backend\LogoController;
 use App\Http\Controllers\backend\PengumumanbackController;
 use App\Http\Controllers\backend\VideoController;
 use App\Http\Controllers\backend\LayananController;
+use App\Http\Controllers\backend\ProfilBidangController;
 
 //frontend
 use App\Http\Controllers\frontend\HomeController;
@@ -104,5 +105,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::post('lokasi-import', [LokasiInternetController::class,'import'])->name('lokasi.import');
     
     Route::resource('/layanan', LayananController::class);
+
+    Route::resource('/profilbidang', ProfilbidangController::class);
 
 });

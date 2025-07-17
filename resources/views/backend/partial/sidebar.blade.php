@@ -41,6 +41,15 @@
               </p>
             </a>
           </li>
+
+          <li class="nav-item">
+            <a href="{{ route ('profilbidang.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                Profil Bidang
+              </p>
+            </a>
+          </li>
        
           <li class="nav-item">
             <a href="#" class="nav-link">
