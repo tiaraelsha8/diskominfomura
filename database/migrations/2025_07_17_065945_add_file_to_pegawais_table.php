@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('pegawais', function (Blueprint $table) {
-            $table->text('file')->after('tupoksi');
+            $table->text('file')->after('tupoksi')->nullable();
         });
     }
 
