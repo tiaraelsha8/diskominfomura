@@ -39,12 +39,18 @@ class KontakController extends Controller
         //validate form
         $request->validate([
             'lokasi' => 'required',
+            'linkmaps' => 'required|url',
             'telepon' => 'required',
             'email' => 'required',
         ]);
 
         //create
-        Kontak::create($request->all());
+        Kontak::create([
+            'lokasi' => $request->lokasi,
+            'linkmaps' => $request->linkmaps,
+            'telepon' => $request->telepon,
+            'email' => $request->email,
+        ]);
 
         //redirect to index
         return redirect()
@@ -80,6 +86,7 @@ class KontakController extends Controller
         //validate form
         $request->validate([
             'lokasi' => 'required',
+            'linkmaps' => 'required|url',
             'telepon' => 'required',
             'email' => 'required',
         ]);
@@ -89,6 +96,7 @@ class KontakController extends Controller
 
         $kontak->update([
             'lokasi' => $request->lokasi,
+            'linkmaps' => $request->linkmaps,
             'telepon' => $request->telepon,
             'email' => $request->email,
         ]);

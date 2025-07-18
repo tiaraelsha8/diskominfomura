@@ -35,18 +35,15 @@ class VideoController extends Controller
         $request->validate([
             'judul' => 'required',
             'deskripsi' => 'required',
-            'video' => 'required|mimetypes:video/mp4,video/avi,video/quicktime|max:20000',
+            'video' => 'required',
         ]);
 
-        //upload video
-        $videos = $request->file('video');
-        $videos->storeAs('videos', $videos->hashName());
 
         //create product
         Video::create([
             'judul' => $request->judul,
             'deskripsi' => $request->deskripsi,
-            'video' => $videos->hashName(),
+            'video' => $request->video,
         ]);
 
         //redirect to index
@@ -77,39 +74,24 @@ class VideoController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-   {
+    {
         //validate form
         $request->validate([
             'judul' => 'required',
             'deskripsi' => 'required',
-            'video' => 'mimetypes:video/mp4,video/avi,video/quicktime|max:20000',
+            'video' => 'required',
         ]);
 
         //get product by ID
         $videos = Video::findOrFail($id);
 
-        //check if video is uploaded
-        if ($request->hasFile('video')) {
-            //delete old video
-            Storage::delete('videos/' . $videos->video);
 
-            //upload new video
-            $file = $request->file('video');
-            $file->storeAs('videos', $file->hashName());
-
-            //update product with new image
-            $videos->update([
-                'judul' => $request->judul,
-                'deskripsi' => $request->deskripsi,
-                'video' => $file->hashName(),
-            ]);
-        } else {
-            //update product without image
-            $videos->update([
-                'judul' => $request->judul,
-                'deskripsi' => $request->deskripsi,
-            ]);
-        }
+        //update product
+        $videos->update([
+            'judul' => $request->judul,
+            'deskripsi' => $request->deskripsi,
+            'video' => $request->video,
+        ]);
 
         //redirect to index
         return redirect()->route('video.index')->with(['success' => 'Data Berhasil Diubah!']);
@@ -122,9 +104,6 @@ class VideoController extends Controller
     {
         //get by ID
         $videos = video::findOrFail($id);
-
-        //delete video
-        Storage::delete('videos/' . $videos->video);
 
         //delete video
         $videos->delete();

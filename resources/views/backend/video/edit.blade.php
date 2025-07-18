@@ -29,8 +29,8 @@
             </div>
 
             <div class="form-group">
-                <label for="image">Video</label>
-                <input type="file" class="form-control-file" name="video" accept="videos/*">
+                <label>Link Video</label>
+                <input type="text" class="form-control" name="video" value="{{$videos->video}}">
             </div>
             @error('video')
                 <div class="alert alert-danger">{{ $message }}</div>
