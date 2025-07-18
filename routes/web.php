@@ -64,6 +64,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/', [HomeController::class, 'index'])->name('beranda');
 
 Route::get('/berita', [BeritaController::class, 'index'])->name('lihat-berita');
+Route::get('/berita/show/{id}', [BeritaController::class, 'read'])->name('berita.read');
 
 Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('lihat-pengumuman');
 

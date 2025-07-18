@@ -1,14 +1,38 @@
-<!DOCTYPE html>
-<html lang="id">
+@extends('frontend.layout.app')
 
-<head>
-    <meta charset="UTF-8">
-    <title>Galeri Berita Murung Raya</title>
+@section('content')
+    <style>
+        .tentang-title-bg {
+            margin-top: -88px;
+            padding-top: 180px;
+            padding-bottom: 120px;
+            background: url('{{ asset('image/bg_galeri.jpg') }}') center/cover no-repeat;
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 3rem;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            letter-spacing: 1.5px;
+        }
+
+        .tentang-container {
+            padding: 60px 0;
+            background: #f4f6f9;
+        }
+
+        .tentang-container p {
+            font-size: 1.05rem;
+            color: #333;
+            line-height: 1.7;
+            text-align: justify;
+        }
+    </style>
+
+    
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f7fa;
-            padding: 30px;
             margin: 0;
         }
 
@@ -79,10 +103,8 @@
             font-weight: bold;
         }
     </style>
-</head>
 
-<body>
-
+    <div class="tentang-title-bg">Berita Murung Raya</div>
     <h1>Berita Terbaru Murung Raya</h1>
 
     <!-- SECTION 1: 4 berita pertama -->
@@ -115,11 +137,11 @@
         <div class="grid-container">
             @forelse ($beritas as $item)
                 <div class="card">
-                    <a href="{{ $item->judul }}" target="_blank">
+                    <a href="{{ route('berita.read', $item->id) }}" target="_blank">
                         <img src="{{ asset('storage/berita/'.$item->foto) }}" alt="Gambar">
                     </a>
                     <div class="card-content">
-                        <a href="{{ $item->judul }}" target="_blank">
+                        <a href="" target="_blank">
                             <h3>{{ $item->judul }}</h3>
                         </a>
                         <p>{{ $item->deskripsi }}</p>
@@ -131,7 +153,5 @@
             @endforelse
         </div>
     </div>
+@endsection
 
-</body>
-
-</html>

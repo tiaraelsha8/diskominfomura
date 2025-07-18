@@ -330,8 +330,7 @@
 
     <!-- Main content -->
     <main style="padding-top: calc(1.5rem + 4rem);">
-        @yield('content')
-        
+        @yield('content')  
     </main>
 
    <!-- Footer -->
