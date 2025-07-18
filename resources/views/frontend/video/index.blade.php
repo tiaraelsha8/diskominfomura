@@ -31,16 +31,17 @@
 
     <section class="video-container container">
         <div class="row g-4">
-            <div class="col-md-6">
-                <div class="ratio ratio-16x9">
-                    <iframe src="https://www.youtube.com/embed/YOUTUBE_ID1" title="Video 1" allowfullscreen></iframe>
+
+            @forelse ($videos as $key => $value)
+                <div class="col-md-6" style="max-width: 32%">
+                    <div class="ratio ratio-16x9">
+                        <iframe src="{{ $value->video }}" title="Video 1"
+                            allowfullscreen></iframe>
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="ratio ratio-16x9">
-                    <iframe src="https://www.youtube.com/embed/YOUTUBE_ID2" title="Video 2" allowfullscreen></iframe>
-                </div>
-            </div>
+            @empty
+                <p>Data Video Kosong</p>
+            @endforelse
         </div>
     </section>
 @endsection

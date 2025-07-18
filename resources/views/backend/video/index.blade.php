@@ -49,11 +49,10 @@
                                         <td>{{ $value->judul }}</td>
                                         <td>{{ $value->deskripsi }}</td>
                                         <td>
-                                            <video width="300" height="200" controls style="object-fit: contain;">
-                                                <source src="{{ asset('storage/videos/' . $value->video) }}"
-                                                    type="video/mp4">
-                                                Browser Anda tidak mendukung tag video.
-                                            </video>
+                                            <div class="ratio ratio-16x9">
+                                                <iframe src="{{ $value->video }}"
+                                                    title="Video 2" allowfullscreen></iframe>
+                                            </div>
                                         </td>
                                         <td>
                                             <form action="{{ route('video.destroy', $value->id) }}" method="POST"

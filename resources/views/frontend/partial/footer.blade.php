@@ -1,16 +1,19 @@
+ @php
+    use App\Models\Kontak;
+    $kontak = Kontak::first();
+@endphp
 <footer class="custom-footer">
         <div class="container py-4">
             <div class="footer-main">
                 <!-- Kiri: Teks Kontak -->
                 <div class="footer-left">
-                    <p class="fw-bold mb-2">Dinas Komunikasi dan Informatika Kota Puruk Cahu</p>
-                    <p class="mb-1">Setda Kab. Murung Raya (Gedung B), Beriwit, Kec. Murung, Kabupaten Murung Raya,
-                        Kalimantan Tengah 73911</p>
+                    <p class="fw-bold mb-2">Alamat :</p>
+                    <p class="mb-1">{{ $kontak->lokasi }}</p>
                     <p class="mb-1">
                         Email:
-                        <a href="mailto:dinkominfo@murungraya.go.id" class="footer-link">dinkominfo@murungraya.go.id</a>
+                        <a href="mailto:{{ $kontak->email }}" class="footer-link">{{ $kontak->email }}</a>
                     </p>
-                    <p class="mb-0">Telepon: (031) 5312144 Psw. 384 / 241, (031) 99277339</p>
+                    <p class="mb-0">Telepon: {{ $kontak->telepon }}</p>
                 </div>
                 <!-- Kanan: Ikon Sosial Media -->
                 <div class="footer-right">
