@@ -282,46 +282,46 @@
         }
 
         /*.official-portal-section-alt {
-                                                        width: 100%;
-                                                        background: linear-gradient(100deg, #1064ca, #fdfcfb);
-                                                        padding: 20px 5vw;
-                                                        position: relative;
-                                                    }
+                                                                width: 100%;
+                                                                background: linear-gradient(100deg, #1064ca, #fdfcfb);
+                                                                padding: 20px 5vw;
+                                                                position: relative;
+                                                            }
 
-                                                    .logo-img {
-                                                        height: 160px;
-                                                        object-fit: contain;
-                                                        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
-                                                    }
+                                                            .logo-img {
+                                                                height: 160px;
+                                                                object-fit: contain;
+                                                                filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+                                                            }
 
-                                                    .official-heading h2 {
-                                                        font-size: 2.6rem;
-                                                        color: #003366;
-                                                        font-weight: 700;
-                                                        margin: 0;
-                                                        line-height: 1.4;
-                                                        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-                                                    }
+                                                            .official-heading h2 {
+                                                                font-size: 2.6rem;
+                                                                color: #003366;
+                                                                font-weight: 700;
+                                                                margin: 0;
+                                                                line-height: 1.4;
+                                                                text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+                                                            }
 
-                                                    .official-btn-alt {
-                                                        display: inline-flex;
-                                                        align-items: center;
-                                                        gap: 10px;
-                                                        padding: 12px 28px;
-                                                        font-size: 1rem;
-                                                        color: #fff;
-                                                        background: linear-gradient(135deg, #003366, #0056a3);
-                                                        border-radius: 10px;
-                                                        text-decoration: none;
-                                                        font-weight: 600;
-                                                        box-shadow: 0 6px 14px rgba(0, 51, 102, 0.3);
-                                                        transition: all 0.3s ease;
-                                                    }
+                                                            .official-btn-alt {
+                                                                display: inline-flex;
+                                                                align-items: center;
+                                                                gap: 10px;
+                                                                padding: 12px 28px;
+                                                                font-size: 1rem;
+                                                                color: #fff;
+                                                                background: linear-gradient(135deg, #003366, #0056a3);
+                                                                border-radius: 10px;
+                                                                text-decoration: none;
+                                                                font-weight: 600;
+                                                                box-shadow: 0 6px 14px rgba(0, 51, 102, 0.3);
+                                                                transition: all 0.3s ease;
+                                                            }
 
-                                                    .official-btn-alt:hover {
-                                                        background: linear-gradient(135deg, #002244, #004080);
-                                                        box-shadow: 0 8px 18px rgba(0, 51, 102, 0.4);
-                                                    }*/
+                                                            .official-btn-alt:hover {
+                                                                background: linear-gradient(135deg, #002244, #004080);
+                                                                box-shadow: 0 8px 18px rgba(0, 51, 102, 0.4);
+                                                            }*/
 
         .galeri-home-section {
             background: linear-gradient(145deg, #e6eefb, #ffffff);
@@ -465,11 +465,15 @@
     </style>
 
     <div class="full-bg">
-
+@if (isset($carousel[0]) && $carousel[0]->foto)
         <img id="carouselImage" class="bg-video fade-image" src="{{ asset('storage/carousel/' . $carousel[0]->foto) }}"
             alt="Carousel Image">
 
-
+ @else
+        {{-- Gambar fallback/default jika tidak ada data --}}
+        <img id="carouselImage" class="bg-video fade-image"
+            src="{{ asset('image/default-carousel.jpg') }}" alt="Default Carousel Image">
+    @endif
 
         <div class="hero-container" data-aos="fade-down">
             <h1>Selamat Datang Di Profil Diskominfo Kabupaten Murung Raya</h1>
@@ -479,22 +483,28 @@
 
     <section class="layanan-fullscreen" data-aos="fade-up">
         <h2 data-aos="fade-down" data-aos-delay="100">Layanan</h2>
-        <div class="layanan-grid" data-aos="fade-up" data-aos-delay="200">
-            @foreach ($layanans as $index => $item)
-                <a href="{{ $item->link }}" class="layanan-box" data-aos="zoom-in" target="_blank"
-                    data-aos-delay="{{ 300 + 100 * $index }}">
-                    <div class="layanan-bg-wrapper">
+        @if ($layanans->count())
+            <div class="layanan-grid" data-aos="fade-up" data-aos-delay="200">
+                @foreach ($layanans as $index => $item)
+                    <a href="{{ $item->link }}" class="layanan-box" data-aos="zoom-in" target="_blank"
+                        data-aos-delay="{{ 300 + 100 * $index }}">
+                        <div class="layanan-bg-wrapper">
 
-                        <img src="{{ asset('storage/layanan/background/' . $item->background) }}" alt="bg-layanan">
-                    </div>
-                    <div class="layanan-overlay">
-                        <img src="{{ asset('storage/layanan/logo/' . $item->logo) }}" alt="{{ $item->nama_layanan }}"
-                            class="img-fluid rounded-circle mb-2" style="width: 60px; height: 60px; object-fit: cover;">
-                        <h5>{{ $item->nama_layanan }}</h5>
-                    </div>
-                </a>
-            @endforeach
-        </div>
+                            <img src="{{ asset('storage/layanan/background/' . $item->background) }}" alt="bg-layanan">
+                        </div>
+                        <div class="layanan-overlay">
+                            <img src="{{ asset('storage/layanan/logo/' . $item->logo) }}" alt="{{ $item->nama_layanan }}"
+                                class="img-fluid rounded-circle mb-2" style="width: 60px; height: 60px; object-fit: cover;">
+                            <h5>{{ $item->nama_layanan }}</h5>
+                        </div>
+                    </a>
+                @endforeach
+            </div>
+        @else
+            <div class="text-center text-muted mt-4" data-aos="fade-up" data-aos-delay="200">
+                <p>Tidak ada data layanan yang tersedia saat ini.</p>
+            </div>
+        @endif
     </section>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
@@ -506,43 +516,48 @@
         });
     </script>
 
-   <section class="bidang-fullwidth">
+    <section class="bidang-fullwidth">
         <h2 data-aos="fade-up">Bidang</h2>
-       
-        @foreach ($profilbidangs as $index => $bidang)
-            <div class="bidang-row {{ $index % 2 === 1 ? 'reverse' : '' }}">
-                <div class="bidang-content">
-                     <h3>{{ $bidang->nama_bidang }}</h3>
-                     <p>{!! $bidang->deskripsi !!}</p>
+        @if ($profilbidangs->count())
+            @foreach ($profilbidangs as $index => $bidang)
+                <div class="bidang-row {{ $index % 2 === 1 ? 'reverse' : '' }}">
+                    <div class="bidang-content">
+                        <h3>{{ $bidang->nama_bidang }}</h3>
+                        <p>{!! $bidang->deskripsi !!}</p>
+                    </div>
+                    <div class="bidang-image">
+                        <img src="{{ asset('storage/profilbidang/' . $bidang->foto) }}" alt="{{ $bidang->nama_bidang }}"
+                            style="height:300px; width:auto; object-fit:contain; display:block; margin:0 auto;">
+                    </div>
                 </div>
-                <div class="bidang-image">
-                    <img src="{{ asset('storage/profilbidang/' . $bidang->foto) }}" alt="{{ $bidang->nama_bidang }}"
-                       style="height:300px; width:auto; object-fit:contain; display:block; margin:0 auto;">
-                </div>
+            @endforeach
+        @else
+            <div class="text-center text-muted mt-4" data-aos="fade-up">
+                <p>Belum ada data bidang yang tersedia.</p>
             </div>
-        @endforeach
+        @endif
     </section>
     <!-- <section class="official-portal-section-alt">
-                                                    <div class="row align-items-center justify-content-center" style="padding: 0 5vw;">
-                                                        <div class="col-lg-3 col-md-3 text-center">
-                                                            <img src="{{ asset('images/logo-murung-raya.png') }}" alt="Logo Murung Raya" class="logo-img">
-                                                        </div>
-                                                        <div class="col-lg-6 col-md-6 text-center">
-                                                            <div class="official-heading">
-                                                                <h2><strong>Pemerintah Kabupaten Murung Raya</strong></h2>
+                                                            <div class="row align-items-center justify-content-center" style="padding: 0 5vw;">
+                                                                <div class="col-lg-3 col-md-3 text-center">
+                                                                    <img src="{{ asset('images/logo-murung-raya.png') }}" alt="Logo Murung Raya" class="logo-img">
+                                                                </div>
+                                                                <div class="col-lg-6 col-md-6 text-center">
+                                                                    <div class="official-heading">
+                                                                        <h2><strong>Pemerintah Kabupaten Murung Raya</strong></h2>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-3 col-md-3 text-center">
+                                                                    <a href="https://murungrayakab.go.id" target="_blank" class="official-btn-alt">
+                                                                        Kunjungi
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="34" height="16" viewBox="0 0 34.53 16">
+                                                                            <rect class="line" y="7.6" width="34" height="0.4" fill="currentColor" />
+                                                                            <path class="arrow" d="M25.83.7l.7-.7,8,8-.7.71Zm0,14.6,8-8,.71.71-8,8Z" fill="currentColor" />
+                                                                        </svg>
+                                                                    </a>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="col-lg-3 col-md-3 text-center">
-                                                            <a href="https://murungrayakab.go.id" target="_blank" class="official-btn-alt">
-                                                                Kunjungi
-                                                                <svg xmlns="http://www.w3.org/2000/svg" width="34" height="16" viewBox="0 0 34.53 16">
-                                                                    <rect class="line" y="7.6" width="34" height="0.4" fill="currentColor" />
-                                                                    <path class="arrow" d="M25.83.7l.7-.7,8,8-.7.71Zm0,14.6,8-8,.71.71-8,8Z" fill="currentColor" />
-                                                                </svg>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                </section> -->
+                                                        </section> -->
     <section class="galeri-home-section">
         <h2 data-aos="fade-up">Galeri</h2>
         <div class="galeri-home-grid">
