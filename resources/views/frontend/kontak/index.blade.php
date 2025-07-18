@@ -9,6 +9,10 @@
             --gray-bg: #f0f2f5;
         }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
         .hero-section {
             margin-top: -88px;
             padding-top: 180px;
@@ -68,7 +72,6 @@
             position: relative;
             z-index: 5;
             margin-top: 60px;
-            /* geser gambar ke bawah lebih dalam */
         }
 
         .hero-img-wrapper img {
@@ -79,14 +82,12 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             margin: 0 auto;
             transform: translateY(100px);
-            /* semakin besar, semakin masuk ke bawah */
             position: relative;
             z-index: 5;
         }
 
         .hero-section {
             padding-bottom: 40px;
-            /* kurangi padding bawah agar tidak terlalu besar */
             position: relative;
             z-index: 1;
         }
@@ -94,7 +95,6 @@
         .contact-grid-section {
             position: relative;
             background-color: #fff;
-            /* ini putih agar kontras dengan gambar */
             z-index: 0;
         }
 
@@ -126,6 +126,7 @@
             gap: 32px;
             max-width: 1200px;
             margin: 0 auto;
+            align-items: stretch;
         }
 
         .contact-card {
@@ -134,6 +135,11 @@
             border-radius: 16px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             transition: transform 0.3s ease;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
         }
 
         .contact-card:hover {
@@ -146,20 +152,34 @@
             color: var(--blue-dark);
         }
 
+        .contact-card:hover .card-icon svg {
+            transform: scale(1.1);
+        }
+
+        .card-icon svg {
+            display: block;
+            margin: 0 auto;
+            transition: transform 0.3s ease;
+        }
+
         .contact-card h4 {
             font-size: 1.3rem;
             font-weight: 700;
             color: var(--blue-dark);
-            margin-bottom: 14px;
+            margin-top: 12px;
+            margin-bottom: 12px;
         }
 
         .contact-card p {
             font-size: 1rem;
             color: #444;
             line-height: 1.6;
+            margin-bottom: 10px;
+            flex-grow: 1;
         }
 
         .contact-card a {
+            margin-top: auto;
             margin-top: 12px;
             display: inline-block;
             color: var(--teal);
@@ -188,7 +208,7 @@
             <h1>Hubungi Kami</h1>
             <p>
                 Punya pertanyaan? Anda mungkin dapat menemukan jawabannya di <a href="#">Kontak Person Diskominfo</a>.
-                Jika tidak, berikut adalah berbagai cara untuk menghubungi tim kami.
+                Berikut adalah berbagai cara untuk menghubungi tim kami.
             </p>
         </div>
         <div class="hero-img">
@@ -204,23 +224,40 @@
         <div class="orange-half-shape"></div>
         <div class="contact-card-grid">
             <div class="contact-card">
-                <div class="card-icon">📞</div>
-                <h4>Untuk Pengguna Saat Ini</h4>
-                <p>Sudah menggunakan layanan kami? Tim dukungan pelanggan kami siap menjawab pertanyaan Anda.</p>
-                <a href="#">Hubungi Kami →</a>
+                <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="65" height="65"
+                        viewBox="0 0 24 24" fill="none" stroke="#002d5c" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-phone-icon lucide-phone">
+                        <path
+                            d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" />
+                    </svg></div>
+                <h4>Telepon</h4>
+                <p>Hubungi tim kami secara langsung melalui nomor telepon resmi.</p>
+                <!--<div><a href="tel:+6282151843686">+62 821-5184-3686</a></div>-->
             </div>
             <div class="contact-card">
-                <div class="card-icon">🆕</div>
-                <h4>Layanan Baru</h4>
-                <p>Ingin mendaftar layanan baru atau membutuhkan panduan awal? Tim onboarding kami akan membantu Anda.</p>
-                <a href="#">Hubungi Kami →</a>
+                <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="65" height="65"
+                        viewBox="0 0 24 24" fill="none" stroke="#002d5c" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-map-pin-icon lucide-map-pin">
+                        <path
+                            d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+                        <circle cx="12" cy="10" r="3" />
+                    </svg></div>
+                <h4>Lokasi Kantor</h4>
+                <p>Jl. Letjen Soeprapto, Beriwit, Kec. Murung, Kab. Murung Raya, Kalimantan Tengah 73911</p>
+                <div><a href="https://maps.app.goo.gl/UvWvGtYYSC6L3vhF8" target="_blank">Lihat di Google Maps</a>
+                </div>
             </div>
             <div class="contact-card">
-                <div class="card-icon">🏢</div>
-                <h4>Untuk Mitra / Instansi</h4>
-                <p>Anda perwakilan dari instansi atau mitra kerja? Kami siap menghubungkan Anda dengan tim hubungan
-                    kemitraan.</p>
-                <a href="#">Hubungi Kami →</a>
+                <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="65" height="65"
+                        viewBox="0 0 24 24" fill="none" stroke="#002d5c" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" class="lucide lucide-mail-icon lucide-mail">
+                        <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
+                        <rect x="2" y="4" width="20" height="16" rx="2" />
+                    </svg></div>
+                <h4>Email</h4>
+                <p>diskominfo.murungrayakab@gmail.com
+                    diskominfo@murungrayakab.go.id</p>
+                <div><a href="mailto:diskominfo@murungrayakab.go.id">Kirim Pesan di Gmail</a></div>
             </div>
         </div>
     </section>
