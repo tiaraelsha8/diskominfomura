@@ -29,7 +29,7 @@
             <!-- Divider & Copyright -->
             <hr class="footer-divider">
             <div class="footer-bottom text-center">
-                &copy; Dinas Komunikasi dan Informatika Kabupaten Murung Raya
+                &copy; Dinas Komunikasi, Informatika, Statistik dan Persandian Kabupaten Murung Raya
             </div>
         </div>
     </footer>
