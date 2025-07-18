@@ -1,9 +1,34 @@
-<!DOCTYPE html>
-<html lang="id">
+@extends('frontend.layout.app')
 
-<head>
-    <meta charset="UTF-8">
-    <title>Peta Lokasi Internet - Murung Raya</title>
+@section('content')
+    <style>
+        .tentang-title-bg {
+            margin-top: -88px;
+            padding-top: 180px;
+            padding-bottom: 120px;
+            background: url('{{ asset('image/bg_galeri.jpg') }}') center/cover no-repeat;
+            color: #ffffff;
+            font-weight: 800;
+            font-size: 3rem;
+            text-align: center;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            letter-spacing: 1.5px;
+        }
+
+        .tentang-container {
+            padding: 60px 0;
+            background: #f4f6f9;
+        }
+
+        .tentang-container p {
+            font-size: 1.05rem;
+            color: #333;
+            line-height: 1.7;
+            text-align: justify;
+        }
+    </style>
+
+    <div class="tentang-title-bg">Peta Lokasi Internet Publik - Kabupaten Murung Raya</div>
 
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
@@ -53,21 +78,14 @@
             }
         }
     </style>
-</head>
 
-<body>
 
-    <div class="header">
-        <h2>Peta Lokasi Internet Publik - Kabupaten Murung Raya</h2>
-    </div>
 
     <div class="container">
         <div id="map"></div>
     </div>
 
-    <div class="footer">
-        &copy; {{ date('Y') }} Diskominfo Murung Raya
-    </div>
+
 
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
@@ -102,7 +120,6 @@
             }).addTo(map);
         });
     </script>
+@endsection
 
-</body>
 
-</html>

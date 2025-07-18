@@ -72,6 +72,7 @@ Route::get('/peta', [PetaController::class, 'index'])->name('peta.index');
 Route::get('/tentang', [TentangfrontController::class, 'index'])->name('frontend.tentang');
 
 Route::get('/dokumen', [DokumenfrontController::class, 'index'])->name('frontend.dokumen');
+Route::get('/dokumen/download/{id}', [DokumenfrontController::class, 'download'])->name('download.dokumen');
 
 Route::get('/maklumatlayanan', [MaklumatfrontController::class, 'index'])->name('frontend.maklumat');
 
