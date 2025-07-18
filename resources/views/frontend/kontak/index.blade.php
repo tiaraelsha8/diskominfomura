@@ -23,19 +23,19 @@
             color: white;
             padding: 10px 20px 0px;
             position: relative;
-            z-index: 1;
+
         }
 
         .hero-text {
-            flex: 1;
-            padding: 20px;
+            flex: 0.7;
+            padding: 50px;
             min-width: 300px;
             margin-top: auto;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             height: 100%;
-            margin-left: 40px;
+            padding-left: 250px;
         }
 
         .hero-text h1 {
@@ -70,66 +70,57 @@
 
         .hero-img-wrapper {
             position: relative;
-            z-index: 5;
             margin-top: 60px;
+            transform: translateX(-60px);
         }
 
         .hero-img-wrapper img {
             display: block;
             width: 100%;
             max-width: 400px;
-            border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             margin: 0 auto;
-            transform: translateY(100px);
+            transform: translateY(80px);
             position: relative;
-            z-index: 5;
         }
 
         .hero-section {
             padding-bottom: 40px;
             position: relative;
-            z-index: 1;
-        }
-
-        .contact-grid-section {
-            position: relative;
-            background-color: #fff;
-            z-index: 0;
         }
 
         .contact-grid-section {
             background-color: var(--gray-bg);
-            padding: 100px 20px;
+            padding: 50px 20px;
             position: relative;
             overflow: hidden;
         }
 
         .orange-half-shape {
             position: absolute;
+            top: 0;
+            left: 35px;
             width: 300px;
             height: 300px;
             background-color: var(--orange);
             border-bottom-left-radius: 100%;
             border-bottom-right-radius: 100%;
-            top: 0;
-            left: 0;
-            z-index: 0;
-            transform: translateY(-50%);
+            transform: translateY(150%);
+            z-index: 1;
         }
 
         .contact-card-grid {
             position: relative;
-            z-index: 1;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 32px;
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
             align-items: stretch;
         }
 
         .contact-card {
+            position: relative;
             background-color: #fff;
             padding: 36px 28px;
             border-radius: 16px;
@@ -140,6 +131,7 @@
             flex-direction: column;
             align-items: center;
             height: 100%;
+            z-index: 2;
         }
 
         .contact-card:hover {
@@ -201,7 +193,7 @@
             }
         }
     </style>
-
+    <div class="orange-half-shape"></div>
     {{-- Hero Section --}}
     <div class="hero-section">
         <div class="hero-text">
@@ -221,7 +213,6 @@
 
     {{-- Kontak Card Section --}}
     <section class="contact-grid-section">
-        <div class="orange-half-shape"></div>
         <div class="contact-card-grid">
             <div class="contact-card">
                 <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="65" height="65"
@@ -243,8 +234,8 @@
                         <circle cx="12" cy="10" r="3" />
                     </svg></div>
                 <h4>Lokasi Kantor</h4>
-                <p>Jl. Letjen Soeprapto, Beriwit, Kec. Murung, Kab. Murung Raya, Kalimantan Tengah 73911</p>
-                <div><a href="https://maps.app.goo.gl/UvWvGtYYSC6L3vhF8" target="_blank">Lihat di Google Maps</a>
+                <p>Setda Kab. Murung Raya (Gedung B), Beriwit, Kec. Murung, Kabupaten Murung Raya, Kalimantan Tengah 73911</p>
+                <div><a href="https://maps.app.goo.gl/rJkeEkTtPH3MuR2p8" target="_blank">Lihat di Google Maps</a>
                 </div>
             </div>
             <div class="contact-card">
