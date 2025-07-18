@@ -34,6 +34,15 @@ class BeritaController extends Controller
         return view('frontend/berita.index', compact('berita','beritas'));
     }
 
+    public function read(string $id)
+    {
+        //get product by ID
+        $beritas = Berita::findOrFail($id);
+
+        //render view with product
+        return view('frontend.berita.show', compact('beritas'));
+    }
+
 
     
 }
