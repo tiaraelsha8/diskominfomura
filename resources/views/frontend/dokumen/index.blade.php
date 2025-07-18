@@ -67,34 +67,43 @@
 @endsection
 
 @push('scripts')
-    <script>
+<script>
+    // Ketika halaman selesai dimuat
     document.addEventListener('DOMContentLoaded', function () {
-        const searchInput = document.getElementById('searchInput');
-        const filterSelect = document.getElementById('keteranganFilter');
-        const table = document.getElementById('dokumenTable');
-        const rows = table.querySelectorAll('tbody tr');
+        // Ambil elemen input dan dropdown filter
+        const searchInput = document.getElementById('searchInput'); // input teks untuk cari
+        const filterSelect = document.getElementById('keteranganFilter'); // select dropdown
+        const table = document.getElementById('dokumenTable'); // tabel dokumen
+        const rows = table.querySelectorAll('tbody tr'); // semua baris <tr> di <tbody>
 
+        // Fungsi utama untuk melakukan pencarian + filter
         function filterTable() {
-            const searchTerm = searchInput.value.toLowerCase();
-            const selectedKeterangan = filterSelect.value.toLowerCase();
+            const searchTerm = searchInput.value.toLowerCase(); // ambil dan ubah keyword jadi lowercase
+            const selectedKeterangan = filterSelect.value.toLowerCase(); // ambil nilai filter (keterangan) lowercase
 
+            // Loop semua baris data
             rows.forEach(row => {
-                const nama = row.children[1]?.textContent.toLowerCase() || '';
-                const keterangan = row.children[2]?.textContent.toLowerCase() || '';
+                const nama = row.children[1]?.textContent.toLowerCase() || '';        // ambil kolom ke-2: nama dokumen
+                const keterangan = row.children[2]?.textContent.toLowerCase() || ''; // ambil kolom ke-3: keterangan
 
+                // Cek apakah nama/keterangan mengandung keyword pencarian
                 const matchesSearch = nama.includes(searchTerm) || keterangan.includes(searchTerm);
+
+                // Cek apakah keterangan sesuai filter (atau tidak dipilih filter)
                 const matchesFilter = !selectedKeterangan || keterangan === selectedKeterangan;
 
+                // Tampilkan baris jika cocok keduanya
                 if (matchesSearch && matchesFilter) {
                     row.style.display = '';
                 } else {
-                    row.style.display = 'none';
+                    row.style.display = 'none'; // sembunyikan kalau tidak cocok
                 }
             });
         }
 
-        searchInput.addEventListener('keyup', filterTable);
-        filterSelect.addEventListener('change', filterTable);
+        // Jalankan filterTable setiap kali user mengetik atau memilih filter
+        searchInput.addEventListener('keyup', filterTable);  // untuk pencarian
+        filterSelect.addEventListener('change', filterTable); // untuk dropdown filter
     });
 </script>
 @endpush
