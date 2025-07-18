@@ -1,8 +1,12 @@
+ @php
+    use App\Models\Logo;
+    $logo = Logo::first();
+@endphp
 
  <nav class="navbar navbar-expand-lg" id="mainNavbar">
         <div class="container">
-            <img src="image/logo-murung-raya.png" alt="" style="width: 45px; height: 45px; ">
-            <a class="navbar-brand" href="{{ route('beranda') }}">Diskominfo</a>
+            <img src="{{ asset('storage/logo/' . $logo->foto) }}" alt="" style="width: 45px; height: 45px; ">
+            <a class="navbar-brand" href="{{ route('beranda') }}">{{ $logo->judul }}</a>
             <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
