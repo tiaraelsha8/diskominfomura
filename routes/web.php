@@ -66,6 +66,8 @@ Route::get('/', [HomeController::class, 'index'])->name('beranda');
 Route::get('/berita', [BeritaController::class, 'index'])->name('lihat-berita');
 
 Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('lihat-pengumuman');
+Route::get('/pengumuman/download/{id}', [PengumumanController::class, 'download'])->name('pengumuman.unduh');
+Route::get('/pengumuman/{id}', [PengumumanController::class, 'show'])->name('pengumuman.detail');
 
 Route::get('/peta', [PetaController::class, 'index'])->name('peta.index');
 
