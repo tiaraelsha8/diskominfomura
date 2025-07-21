@@ -142,7 +142,8 @@
     <body>
 
         <div class="title-bg">Galeri Pengumuman</div>
-
+        <br>
+         <h1>Pengumuman Terbaru Murung Raya</h1>
         {{-- section pengumuman wordpress --}}
         <section class="galeri-container container">
             <div class="album-grid">
@@ -163,11 +164,12 @@
                         </div>
                     </div>
                 @empty
-                    <p style="text-align:center; color:red;">Tidak ada berita tersedia.</p>
+                    <p style="text-align:center; color:red;">Tidak ada pengumuman tersedia.</p>
                 @endforelse
             </div>
         </section>
 
+        <h1>Pengumuman Lainnya</h1>
         {{-- section pengumuman database --}}
         <section class="galeri-container container">
             <div class="album-grid">
