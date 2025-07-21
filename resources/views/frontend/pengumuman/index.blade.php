@@ -146,6 +146,7 @@
          <h1>Pengumuman Terbaru Murung Raya</h1>
         {{-- section pengumuman wordpress --}}
         <section class="galeri-container container">
+            
             <div class="album-grid">
                 @forelse ($pengumumanAPI as $item)
                     <div class="card">
@@ -172,6 +173,7 @@
         <h1>Pengumuman Lainnya</h1>
         {{-- section pengumuman database --}}
         <section class="galeri-container container">
+            {{ $pengumumanDB -> links() }}
             <div class="album-grid">
                 @forelse ($pengumumanDB as $item)
                     <div class="album-card">

@@ -184,6 +184,7 @@
 
     <!-- SECTION 2: sisanya -->
     <section class="galeri-container container">
+        {{ $beritas -> links() }}
             <div class="album-grid">
                 @forelse ($beritas as $item)
                     <div class="album-card">
@@ -205,8 +206,9 @@
                         </div>
                     </div>
                 @empty
-                    <p class="text-center text-danger">Tidak ada pengumuman tersedia.</p>
+                    <p class="text-center text-danger">Tidak ada berita tersedia.</p>
                 @endforelse
+                
             </div>
         </section>
 @endsection
