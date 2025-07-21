@@ -28,16 +28,32 @@
         }
     </style>
 
-    <div class="tentang-title-bg">Berita</div>
+    <div class="tentang-title-bg">Galeri Berita</div>
 
     <section class="tentang-container container">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <h1 class="mb-3">{{ $beritas->judul }}</h1>
 
-            @isset($beritas)
-                <h3>{{ $beritas->judul }}</h3>
-                <img src="{{ asset('storage/berita/'.$beritas->foto) }}" alt="Gambar" style="width: 600px">
-            @else
-                <em>belum tersedia.</em>
-            @endisset
+                <div class="text-muted mb-2">
+                    Oleh: {{ $beritas->penulis }} | {{ $beritas->created_at->format('d M Y') }}
+                </div>
 
+                @if ($beritas->foto)
+                    <div class="text-center">
+                        <img src="{{ asset('storage/berita/' . $beritas->foto) }}" alt="{{ $beritas->judul }}"
+                            class="img-fluid mb-4" style="max-height: 400px; object-fit: cover;">
+                    </div>
+                @endif
+
+                <div class="mb-4">
+                    {!! $beritas->deskripsi !!}
+                </div>
+
+                <div class="mt-5">
+                    <a href="{{ route('lihat-berita') }}" class="btn btn-secondary">← Kembali ke Berita</a>
+                </div>
+            </div>
+        </div>
     </section>
 @endsection
