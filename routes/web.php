@@ -38,6 +38,7 @@ use App\Http\Controllers\frontend\MaklumatfrontController;
 use App\Http\Controllers\frontend\KontakfrontController;
 use App\Http\Controllers\frontend\GalerifotoController;
 use App\Http\Controllers\frontend\GalerivideoController;
+use App\Http\Controllers\frontend\PegawaiController as PegawaiFront;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -62,6 +63,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 //frontend
 Route::get('/', [HomeController::class, 'index'])->name('beranda');
+
+Route::get('/Struktur-Pegawai', [PegawaiFront::class, 'index'])->name('lihat-pegawai');
 
 Route::get('/berita', [BeritaController::class, 'index'])->name('lihat-berita');
 Route::get('/berita/show/{id}', [BeritaController::class, 'read'])->name('berita.read');
