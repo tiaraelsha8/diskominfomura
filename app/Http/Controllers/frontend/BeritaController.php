@@ -11,7 +11,7 @@ class BeritaController extends Controller
 {
     public function index()
     {
-        $beritas = Berita::latest()->paginate(4);
+        $beritas = Berita::latest()->paginate(2);
         $response = Http::get('https://berita.murungrayakab.go.id/wp-json/wp/v2/posts?_embed&per_page=4');
 
         if (!$response->successful()) {

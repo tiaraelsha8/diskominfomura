@@ -28,23 +28,27 @@ class PegawaiController extends Controller
             $pid = null;
             $isAssistant = '';
 
-            if ($p->jabatan_id > 1) {
-                if ($p->jabatan_id == 2) {
-                    // Sekretaris Dinas -> anak dari Kepala Dinas, asisten
-                    $parent = $pegawai->first(fn($x) => $x->jabatan_id == 1);
-                    if ($parent) {
-                        $isAssistant = 'assistant';
-                    }
-                } elseif ($p->jabatan_id == 3) {
-                    // Kepala Bidang -> langsung ke Kepala Dinas
-                    $parent = $pegawai->first(fn($x) => $x->jabatan_id == 1);
-                } else {
-                    // Pegawai umum (staf) -> cari atasan satu tingkat, atau Sekretaris
-                    $parent = $pegawai->first(function ($x) use ($p) {
-                        return $x->jabatan_id == ($p->jabatan_id - 1) && $x->bidang_id == $p->bidang_id;
-                    }) ??
-                        $pegawai->first(fn($x) => $x->jabatan_id == 2) ?? // fallback: Sekretaris
-                        $pegawai->first(fn($x) => $x->jabatan_id == ($p->jabatan_id - 1));
+            if ($p->jabatan_id == 1) {
+                // Kepala dinas, tidak punya atasan
+                $pid = null;
+            } elseif ($p->jabatan_id == 2) {
+                // Sekretaris langsung ke Kepala Dinas
+                $parent = $pegawai->first(fn($x) => $x->jabatan_id == 1);
+                $pid = $parent ? $mapPegawaiIdToCustomId[$parent->id] : null;
+                $isAssistant = 'assistant';
+            } elseif ($p->jabatan_id == 3) {
+                // Kepala Bidang langsung ke Kepala Dinas
+                $parent = $pegawai->first(fn($x) => $x->jabatan_id == 1);
+                $pid = $parent ? $mapPegawaiIdToCustomId[$parent->id] : null;
+            } else {
+                // Staf: cari Kabid di bidang yang sama
+                $parent = $pegawai->first(function ($x) use ($p) {
+                    return $x->jabatan_id == 3 && $x->bidang_id == $p->bidang_id;
+                });
+
+                // Jika tidak ketemu, fallback ke Sekretaris
+                if (!$parent) {
+                    $parent = $pegawai->first(fn($x) => $x->jabatan_id == 2);
                 }
 
                 $pid = $parent ? $mapPegawaiIdToCustomId[$parent->id] : null;
