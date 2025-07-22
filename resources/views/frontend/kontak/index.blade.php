@@ -223,13 +223,7 @@
                     </svg></div>
                 <h4>Telepon</h4>
                 <p>Hubungi tim kami secara langsung melalui nomor telepon resmi.</p>
-                <div>
-                    @if ($kontak && $kontak->telepon)
-                        <a href="tel:{{ $kontak->telepon }}">{{ $kontak->telepon }}</a>
-                    @else
-                        <span class="text-muted">Belum tersedia</span>
-                    @endif
-                </div>
+                <!--<div><a href="tel:+6282151843686">+62 821-5184-3686</a></div>-->
             </div>
             <div class="contact-card">
                 <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="65" height="65"
@@ -240,20 +234,8 @@
                         <circle cx="12" cy="10" r="3" />
                     </svg></div>
                 <h4>Lokasi Kantor</h4>
-<<<<<<< HEAD
                 <p>Setda Kab. Murung Raya (Gedung B), Beriwit, Kec. Murung, Kabupaten Murung Raya, Kalimantan Tengah 73911</p>
                 <div><a href="https://maps.app.goo.gl/rJkeEkTtPH3MuR2p8" target="_blank">Lihat di Google Maps</a>
-=======
-                <p>
-                    {{ $kontak && $kontak->lokasi ? $kontak->lokasi : 'Alamat belum diatur' }}
-                </p>
-                <div>
-                    @if ($kontak && $kontak->linkmaps)
-                        <a href="{{ $kontak->linkmaps }}" target="_blank">Lihat di Google Maps</a>
-                    @else
-                        <span class="text-muted">Link Google Maps belum tersedia</span>
-                    @endif
->>>>>>> b6c46d18944cca4754a9f665f52df4445b1df3ae
                 </div>
             </div>
             <div class="contact-card">
@@ -264,16 +246,9 @@
                         <rect x="2" y="4" width="20" height="16" rx="2" />
                     </svg></div>
                 <h4>Email</h4>
-                <p>
-                    {{ $kontak && $kontak->email ? $kontak->email : 'Email belum tersedia' }}
-                </p>
-                <div>
-                    @if ($kontak && $kontak->email)
-                        <a href="mailto:{{ $kontak->email }}">Kirim Pesan di Gmail</a>
-                    @else
-                        <span class="text-muted">Belum ada email</span>
-                    @endif
-                </div>
+                <p>diskominfo.murungrayakab@gmail.com
+                    diskominfo@murungrayakab.go.id</p>
+                <div><a href="mailto:diskominfo@murungrayakab.go.id">Kirim Pesan di Gmail</a></div>
             </div>
         </div>
     </section>
