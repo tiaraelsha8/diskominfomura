@@ -27,6 +27,7 @@
                 </div>
 
                 <div class="table-responsive">
+                   {{ $dokumen -> links() }}
                     <table id="dokumenTable" class="table table-striped table-bordered align-middle">
                         <thead class="table-light">
                             <tr>
