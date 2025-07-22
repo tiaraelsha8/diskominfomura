@@ -32,11 +32,11 @@
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(10px);
             transition: all 0.4s ease-in-out;
-            z-index: 10;
+            z-index: 100;
         }
 
         .navbar.scrolled {
-            padding: 0.5rem 0;
+            padding: 0.73rem 0;
         }
 
         .navbar.scrolled .nav-link {
@@ -94,7 +94,12 @@
             cursor: pointer;
         }
 
+        .nav-item.dropdown {
+            position: relative;
+        }
+
         .dropdown-global {
+            top: 100%;
             position: absolute;
             background: rgba(255, 255, 255, 0.95);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
@@ -107,7 +112,6 @@
             transform-origin: top center;
             transform: scaleY(0.8) translateY(-10px);
             transition: opacity 0.3s ease, transform 0.3s ease;
-            z-index: 999;
         }
 
         @keyframes dropdownFadeIn {
@@ -142,7 +146,7 @@
             content: '';
             position: absolute;
             top: -10px;
-            left: 50px;
+            left: 33px;
             border-width: 0 8px 8px 8px;
             border-style: solid;
             border-color: transparent transparent rgba(255, 255, 255, 0.95) transparent;
@@ -162,6 +166,8 @@
         }
 
         .dropdown-global a {
+            font-size: 0.95rem;
+            line-height: 1.2;
             display: block;
             width: 100%;
             color: #003366;
@@ -318,22 +324,22 @@
 
         .custom-footer .social-icons a:nth-child(5):hover i {
             color: #ff0000;
-        }
+        }
     </style>
     @stack('styles')
 </head>
 
 <body>
 
-     <!-- Navbar -->
+    <!-- Navbar -->
     @include('frontend.partial.navbar')
 
     <!-- Main content -->
     <main style="padding-top: calc(1.5rem + 4rem);">
-        @yield('content')  
+        @yield('content')
     </main>
 
-   <!-- Footer -->
+    <!-- Footer -->
     @include('frontend.partial.footer')
 
     <!-- Scripts -->
@@ -379,13 +385,10 @@
                 function showDropdown() {
                     if (!trigger || !dropdown) return;
                     closeAllDropdowns();
-                    const navbar = document.querySelector('.navbar');
-                    const triggerRect = trigger.getBoundingClientRect();
-                    const navbarOffsetBottom = navbar.offsetTop + navbar.offsetHeight;
-                    dropdown.style.top = `${navbarOffsetBottom}px`;
-                    dropdown.style.left = `${triggerRect.left + window.scrollX}px`;
-                    dropdown.style.minWidth = `${triggerRect.width}px`;
-                    dropdown.style.position = 'fixed';
+                    dropdown.style.top = '160%';
+                    dropdown.style.left = `0`;
+                    dropdown.style.minWidth = `${trigger.offsetWidth}px`;
+                    dropdown.style.position = 'absolute';
                     dropdown.classList.add('show');
                     trigger.classList.add('active-dropdown');
                 }
@@ -413,20 +416,6 @@
                         const isOpen = dropdown.classList.contains('show');
                         closeAllDropdowns(); // Tutup semua
                         if (!isOpen) dropdown.classList.add('show');
-                    }
-                });
-                let animationFrame;
-                window.addEventListener('scroll', () => {
-                    if (window.innerWidth >= 992 && dropdown.classList.contains('show')) {
-                        cancelAnimationFrame(animationFrame);
-                        animationFrame = requestAnimationFrame(() => {
-                            showDropdown();
-                        });
-                    }
-                });
-                window.addEventListener('resize', () => {
-                    if (window.innerWidth >= 992 && dropdown.classList.contains('show')) {
-                        showDropdown();
                     }
                 });
             });

@@ -1,42 +1,40 @@
  @php
-    use App\Models\Logo;
-    $logo = Logo::first();
-@endphp
+     use App\Models\Logo;
+     $logo = Logo::first();
+ @endphp
 
  <nav class="navbar navbar-expand-lg" id="mainNavbar">
-        <div class="container">
-            <img src="{{ asset('storage/logo/' . $logo->foto) }}" alt="" style="width: 45px; height: 45px; ">
-            <a class="navbar-brand" href="{{ route('beranda') }}">{{ $logo->judul }}</a>
-            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+     <div class="container">
+         <img src="{{ asset('storage/logo/' . $logo->foto) }}" alt="" style="width: 45px; height: 45px; ">
+         <a class="navbar-brand" href="{{ route('beranda') }}">{{ $logo->judul }}</a>
+         <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+             <span class="navbar-toggler-icon"></span>
+         </button>
 
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="{{ route('beranda') }}">Beranda</a></li>
-                    <li class="nav-item"><a class="nav-link dropdown-toggle" href="#" id="profilMenu">Profil</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link dropdown-toggle" href="#" id="galeriMenu">Galeri</a>
-                    </li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('frontend.dokumen') }}">Dokumen</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('peta.index') }}">Peta Jaringan</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ route('frontend.kontak') }}">Kontak</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Dropdown Global: Profil -->
-    <div class="dropdown-global" id="dropdownProfil">
-        <a href="{{ route ('frontend.tentang') }}">Tentang</a>
-        <a href="{{ route('frontend.maklumat') }}">Maklumat Layanan</a>
-        <a href="">Struktur Organisasi</a>
-    </div>
-
-    <!-- Dropdown Global: Galeri -->
-    <div class="dropdown-global" id="dropdownGaleri">
-        <a href="{{ route('frontend.galerifoto') }}">Galeri Foto</a>
-        <a href="{{ route('frontend.galerivideo') }}">Galeri Video</a>
-        <a href="{{ route('lihat-berita') }}">Galeri Berita</a>
-        <a href="{{ route('lihat-pengumuman') }}">Galeri Pengumuman</a>
-    </div>
+         <div class="collapse navbar-collapse" id="navbarNav">
+             <ul class="navbar-nav ms-auto">
+                 <li class="nav-item"><a class="nav-link" href="{{ route('beranda') }}">Beranda</a></li>
+                 <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" href="#" id="profilMenu" role="button">Profil</a>
+                     <div class="dropdown-global" id="dropdownProfil">
+                         <a href="{{ route('frontend.tentang') }}">Tentang</a>
+                         <a href="{{ route('frontend.maklumat') }}">Maklumat Layanan</a>
+                         <a href="#">Struktur Organisasi</a>
+                     </div>
+                 </li>
+                 <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" href="#" id="galeriMenu" role="button">Galeri</a>
+                     <div class="dropdown-global" id="dropdownGaleri">
+                         <a href="{{ route('frontend.galerifoto') }}">Galeri Foto</a>
+                         <a href="{{ route('frontend.galerivideo') }}">Galeri Video</a>
+                         <a href="{{ route('lihat-berita') }}">Galeri Berita</a>
+                         <a href="{{ route('lihat-pengumuman') }}">Galeri Pengumuman</a>
+                     </div>
+                 </li>
+                 <li class="nav-item"><a class="nav-link" href="{{ route('frontend.dokumen') }}">Dokumen</a></li>
+                 <li class="nav-item"><a class="nav-link" href="{{ route('peta.index') }}">Peta Jaringan</a></li>
+                 <li class="nav-item"><a class="nav-link" href="{{ route('frontend.kontak') }}">Kontak</a></li>
+             </ul>
+         </div>
+     </div>
+ </nav>
