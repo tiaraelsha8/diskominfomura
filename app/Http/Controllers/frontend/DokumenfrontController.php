@@ -10,7 +10,7 @@ class DokumenfrontController extends Controller
 {
     public function index()
     {
-        $dokumen = Dokumen::all();
+        $dokumen = Dokumen::paginate(3);
         return view('frontend.dokumen.index',compact('dokumen'));
     }
 
