@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Galeri;
 use Illuminate\Http\Request;
 
 class GalerifotoController extends Controller
 {
     public function index()
     {
-        return view('frontend.galeri.index');
+        $galeri = Galeri::paginate(2);
+        $galeri_all = Galeri::all();
+        return view('frontend.galeri.index',compact('galeri','galeri_all'));
     }
 }
