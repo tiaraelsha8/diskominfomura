@@ -8,10 +8,26 @@ use Illuminate\Http\Request;
 
 class DokumenfrontController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $dokumen = Dokumen::paginate(3);
-        return view('frontend.dokumen.index',compact('dokumen'));
+        $query = Dokumen::query();
+
+        // filter by keterangan
+        if ($request->filled('keterangan')) {
+            $query->where('keterangan', $request->keterangan);
+        }
+
+        // search by nama_dok / keterangan
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('nama_dok', 'like', "%$search%")->orWhere('keterangan', 'like', "%$search%");
+            });
+        }
+
+        $dokumen = $query->paginate(3)->withQueryString(); // penting agar paging bawa query
+
+        return view('frontend.dokumen.index', compact('dokumen'));
     }
 
     public function download($id)
@@ -26,9 +42,7 @@ class DokumenfrontController extends Controller
         }
 
         return response()->file($path, [
-            'Content-Disposition' => 'inline; filename="' . $dokumen->file . '"'
+            'Content-Disposition' => 'inline; filename="' . $dokumen->file . '"',
         ]);
     }
-    
-
 }
