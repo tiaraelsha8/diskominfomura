@@ -35,7 +35,7 @@
                         icon: OrgChart.icon.pdf(24, 24, "#039BE5"),
                         onClick: function(args) {
 
-                            const fileUrl = data[args].file_link;
+                            const fileUrl = data[args-1].file_link;
                             console.log("Node diklik:", data[args].file_link); 
                             if (fileUrl) {
                                 window.open(fileUrl, '_blank');
