@@ -162,7 +162,7 @@ class PegawaiController extends Controller
                 },
             ],
             'bidang_id' => 'required|exists:bidangs,id',
-            'foto' => 'image|mimes:jpg,jpeg|max:2048',
+            'foto' => 'image|mimes:jpg,jpeg,png|max:2048',
             'tupoksi' => 'required',
             'file' => 'mimes:pdf|max:5120', //5 mb
         ]);
