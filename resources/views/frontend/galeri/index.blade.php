@@ -316,53 +316,6 @@
         }
     </style>
 
-    {{-- @php
-        $albums = [
-            [
-                'id' => 1,
-                'cover' => 'galeri_foto.jpg',
-                'title' => 'Sosialisasi Literasi Digital',
-                'desc' => 'Pengenalan literasi digital untuk pelajar dan guru.',
-                'date' => '15 November 2024',
-            ],
-            [
-                'id' => 2,
-                'cover' => 'galeri_foto.jpg',
-                'title' => 'Pelatihan e-Government',
-                'desc' => 'Workshop implementasi e-Gov di tingkat desa.',
-                'date' => '20 November 2024',
-            ],
-            [
-                'id' => 3,
-                'cover' => 'galeri_foto.jpg',
-                'title' => 'Kunjungan Mitra Digital',
-                'desc' => 'Kolaborasi antara Pemkot dan perusahaan startup.',
-                'date' => '25 November 2024',
-            ],
-            [
-                'id' => 4,
-                'cover' => 'galeri_foto.jpg',
-                'title' => 'Forum Komunikasi Publik',
-                'desc' => 'Diskusi antara warga dan Pemkot Surabaya.',
-                'date' => '1 Desember 2024',
-            ],
-            [
-                'id' => 5,
-                'cover' => 'galeri_foto.jpg',
-                'title' => 'Bimtek Keamanan Siber',
-                'desc' => 'Pelatihan dasar perlindungan data pribadi.',
-                'date' => '5 Desember 2024',
-            ],
-            [
-                'id' => 6,
-                'cover' => 'galeri_foto.jpg',
-                'title' => 'Seminar Inovasi Teknologi',
-                'desc' => 'Pemanfaatan teknologi AI dan IoT untuk kota pintar.',
-                'date' => '10 Desember 2024',
-            ],
-        ];
-    @endphp --}}
-
     <div class="title-bg">Galeri Foto</div>
     <section class="galeri-container container">
         <div class="album-grid">

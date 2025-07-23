@@ -62,6 +62,9 @@ class PegawaiController extends Controller
 
             } elseif (
                 str_contains($namaJabatan, 'sekretaris') ||
+                str_contains($namaJabatan, 'sekretaris dinas') ||
+                str_contains($namaJabatan, 'sekretaris daerah') ||
+                str_contains($namaJabatan, 'sekdis') ||
                 str_contains($namaJabatan, 'sekda')
             ) {
                 return 2; // Level 2
@@ -75,6 +78,7 @@ class PegawaiController extends Controller
             } elseif (
                 str_contains($namaJabatan, 'kepala sub bagian') ||
                 str_contains($namaJabatan, 'kasubag') ||
+                str_contains($namaJabatan, 'kasubbag') ||
                 str_contains($namaJabatan, 'kepala subbag')
             ) {
                 return 3; // Level 3 (di bawah sekretaris)
