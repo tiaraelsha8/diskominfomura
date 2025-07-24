@@ -19,7 +19,7 @@
                      <div class="dropdown-global" id="dropdownProfil">
                          <a href="{{ route('frontend.tentang') }}">Tentang</a>
                          <a href="{{ route('frontend.maklumat') }}">Maklumat Layanan</a>
-                         <a href="#">Struktur Organisasi</a>
+                         <a href="{{ route('lihat-pegawai') }}">Struktur Organisasi</a>
                      </div>
                  </li>
                  <li class="nav-item dropdown">

@@ -17,7 +17,7 @@
     <script src="https://balkan.app/js/OrgChart.js"></script>
 
     <script>
-        OrgChart.templates.myTemplate = Object.assign({}, OrgChart.templates.ula);
+        OrgChart.templates.myTemplate = Object.assign({}, OrgChart.templates.diva);
         $(document).ready(function() {
             const data = @json($nodes);
             let chart = new OrgChart(document.getElementById("chart-org"), {
@@ -35,8 +35,7 @@
                         icon: OrgChart.icon.pdf(24, 24, "#039BE5"),
                         onClick: function(args) {
 
-                            const fileUrl = data[args].file_link;
-                            console.log("Node diklik:", data[args].file_link); 
+                            const fileUrl = data[args-1].file_link;
                             if (fileUrl) {
                                 window.open(fileUrl, '_blank');
                             } else {

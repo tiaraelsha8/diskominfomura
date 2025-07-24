@@ -15,6 +15,9 @@
 
         .full-bg {
             position: relative;
+            margin-top: -88px;
+            padding-top: 180px;
+            padding-bottom: 120px;
             min-height: 100vh;
             overflow: hidden;
             display: flex;
