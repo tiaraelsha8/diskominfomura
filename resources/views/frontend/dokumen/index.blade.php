@@ -12,7 +12,7 @@
                     <div class="col-md-4 mb-2">
                         <select name="keterangan" id="keteranganFilter" class="form-select">
                             <option value="">-- Semua Keterangan --</option>
-                            @foreach ($dokumen->pluck('keterangan')->unique() as $keterangan)
+                            @foreach ($allKeterangan as $keterangan)
                                 <option value="{{ $keterangan }}"
                                     {{ request('keterangan') == $keterangan ? 'selected' : '' }}>
                                     {{ $keterangan }}
