@@ -393,7 +393,7 @@
         <span class="modal-nav modal-next" onclick="navigateImage(1)">&#10095;</span>
     </div>
     <script>
-        const albumData = @json($galeri_all);
+        const albumData = @json($galeri->items());
         let currentIndex = -1;
 
         function openModal(id) {
