@@ -12,6 +12,9 @@ class DokumenfrontController extends Controller
     {
         $query = Dokumen::query();
 
+        // Ambil semua keterangan unik untuk dropdown filter (dari seluruh data, bukan hanya yg ter-paginate)
+        $allKeterangan = Dokumen::select('keterangan')->distinct()->pluck('keterangan');
+
         // filter by keterangan
         if ($request->filled('keterangan')) {
             $query->where('keterangan', $request->keterangan);
@@ -27,7 +30,7 @@ class DokumenfrontController extends Controller
 
         $dokumen = $query->paginate(3)->withQueryString(); // penting agar paging bawa query
 
-        return view('frontend.dokumen.index', compact('dokumen'));
+        return view('frontend.dokumen.index', compact('dokumen', 'allKeterangan'));
     }
 
     public function download($id)
