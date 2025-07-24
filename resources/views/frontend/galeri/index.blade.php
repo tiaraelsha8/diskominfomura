@@ -319,7 +319,7 @@
     <div class="title-bg">Galeri Foto</div>
     <section class="galeri-container container">
         <div class="album-grid">
-            @foreach ($galeri as $album)
+            @forelse ($galeri as $album)
                 <div class="album-card" onclick="openModal({{ $album->id }})">
                     <img src="{{ asset('storage/galeri/' . $album->foto) }}" alt="{{ e($album->judul) }}">
                     <div class="album-body">
@@ -328,7 +328,11 @@
                         <div class="album-date">{{ $album->created_at->format('d M Y') }}</div>
                     </div>
                 </div>
-            @endforeach
+           @empty
+            <div class="text-center w-100 py-5">
+                <h5>Tidak ada data galeri foto untuk ditampilkan</h5>
+            </div>
+        @endforelse
         </div>
         <div class="mt-4">
             {{ $galeri->links() }}

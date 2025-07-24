@@ -35,7 +35,7 @@
             @isset($maklumat)
                 {!! $maklumat->maklumat !!}
             @else
-                <em>Maklumat layanan belum tersedia.</em>
+                <em>Maklumat layanan belum tersedia</em>
             @endisset
         </p>
     </section>

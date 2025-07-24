@@ -206,7 +206,7 @@
                         </div>
                     </div>
                 @empty
-                    <p class="text-center text-danger">Tidak ada berita tersedia.</p>
+                    <p class="text-center text-danger">Tidak ada berita tersedia</p>
                 @endforelse
                 
             </div>
