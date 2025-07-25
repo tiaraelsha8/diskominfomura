@@ -6,7 +6,7 @@
             <button id="resetChart" class="btn btn-secondary mb-3">Reset</button>
             <div class="card w-100">
                 <div class="card-body px-4 text-center">
-                    
+
                     <div id="chart-org" style="height: 650px;"></div>
                 </div>
             </div>
@@ -26,6 +26,11 @@
                 template: "myTemplate",
                 mode: 'light',
                 enableSearch: false,
+                nodeMouseClick:OrgChart.action.none,
+                toolbar: {
+                    zoom: true,
+                    fit: true,
+                },
                 collapse: {
                     level: 2,
                     allChildren: true,
@@ -34,11 +39,6 @@
                 align: OrgChart.ORIENTATION,
                 mouseScrool: OrgChart.action.none,
                 showXScroll: true,
-                tags: {
-                    filter: {
-                        template: 'dot'
-                    }
-                },
                 editForm: {
                     addMore: null,
                     generateElementsFromFields: false,
