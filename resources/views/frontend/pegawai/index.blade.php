@@ -2,9 +2,11 @@
 
 @section('content')
     <div class="row mt-5">
-        <div class="col-12 d-flex">
+        <div class="col-12 d-flex flex-column align-items-center">
+            <button id="resetChart" class="btn btn-secondary mb-3">Reset</button>
             <div class="card w-100">
                 <div class="card-body px-4 text-center">
+                    
                     <div id="chart-org" style="height: 650px;"></div>
                 </div>
             </div>
@@ -23,19 +25,51 @@
             let chart = new OrgChart(document.getElementById("chart-org"), {
                 template: "myTemplate",
                 mode: 'light',
-                enableAI: true,
+                enableSearch: false,
+                collapse: {
+                    level: 2,
+                    allChildren: true,
+                },
+
+                align: OrgChart.ORIENTATION,
+                mouseScrool: OrgChart.action.none,
+                showXScroll: true,
+                tags: {
+                    filter: {
+                        template: 'dot'
+                    }
+                },
+                editForm: {
+                    addMore: null,
+                    generateElementsFromFields: false,
+                    readOnly: true,
+                    elements: [{
+                        type: 'textbox',
+                        label: 'Nama Lengkap',
+                        binding: 'name'
+                    }, {
+                        type: 'textbox',
+                        label: 'Jabatan',
+                        binding: 'title'
+                    }, {
+                        type: 'textbox',
+                        label: 'Bidang',
+                        binding: 'bidang'
+                    }, {
+                        type: 'textbox',
+                        label: 'Tupoksi',
+                        binding: 'desc'
+                    }]
+                },
                 layout: OrgChart.mixed,
                 mouseScrool: OrgChart.action.ctrlZoom,
-                collapse: {
-                    level: 2
-                },
                 nodeMenu: {
                     download: {
                         text: "Download File LHKPN",
                         icon: OrgChart.icon.pdf(24, 24, "#039BE5"),
                         onClick: function(args) {
 
-                            const fileUrl = data[args-1].file_link;
+                            const fileUrl = data[args - 1].file_link;
                             if (fileUrl) {
                                 window.open(fileUrl, '_blank');
                             } else {
@@ -54,9 +88,28 @@
                     img_0: "img" // Foto
                 }
             });
+            chart.searchUI.on('searchclick', function(sender, args) {
+                sender.instance.center(args.nodeId, {
+                    parentState: OrgChart.COLLAPSE_PARENT_NEIGHBORS,
+                    childrenState: OrgChart.COLLAPSE_SUB_CHILDRENS
+                });
+                return false;
+            });
 
-
-
+            chart.on('expcollclick', function(sender, collapse, id, ids) {
+                if (!collapse) {
+                    sender.center(id, {
+                        parentState: OrgChart.COLLAPSE_PARENT_NEIGHBORS,
+                        childrenState: OrgChart.COLLAPSE_SUB_CHILDRENS,
+                        rippleId: id
+                    });
+                    return false;
+                }
+            });
+            // Tombol reset
+            $('#resetChart').on('click', function() {
+                chart.load(data);
+            });
             chart.load(data);
 
         });
