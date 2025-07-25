@@ -18,15 +18,14 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
-                                <div class="modal-body">
+                                <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
                                     <div class="d-flex gap-4">
                                         <div>
-                                            <img id="modalImg" src="" width="150" height="150"
-                                                class="rounded border" />
-                                                <br>
-                                            <a class="btn btn-primary mb-3" href="#" id="modalLhkpnLink" target="_blank">Download</a>
+                                            <img id="modalImg" src="" width="220" height="220" class="rounded border" />
+                                                <br> <br>
+                                            <a class="btn btn-primary mb-3" href="#" id="modalLhkpnLink" target="_blank">LHKPN</a>
                                         </div>
-                                        <div>
+                                        <div style="text-align: justify;">
                                             <p><strong>Nama:</strong> <span id="modalName"></span></p>
                                             <p><strong>Jabatan:</strong> <span id="modalTitle"></span></p>
                                             <p><strong>Bidang:</strong> <span id="modalBidang"></span></p>
