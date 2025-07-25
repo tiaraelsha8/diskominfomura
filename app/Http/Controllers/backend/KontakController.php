@@ -41,7 +41,12 @@ class KontakController extends Controller
             'lokasi' => 'required',
             'linkmaps' => 'required|url',
             'telepon' => 'required',
-            'email' => 'required',
+            'email' => 'required|email',
+            'link_ig' => 'nullable|url',
+            'link_twitter' => 'nullable|url',
+            'link_fb' => 'nullable|url',
+            'link_tiktok' => 'nullable|url',
+            'link_youtube' => 'nullable|url',
         ]);
 
         //create
@@ -50,6 +55,11 @@ class KontakController extends Controller
             'linkmaps' => $request->linkmaps,
             'telepon' => $request->telepon,
             'email' => $request->email,
+            'link_ig' => $request->link_ig,
+            'link_twitter' => $request->link_twitter,
+            'link_fb' => $request->link_fb,
+            'link_tiktok' => $request->link_tiktok,
+            'link_youtube' => $request->link_youtube,
         ]);
 
         //redirect to index
@@ -88,7 +98,12 @@ class KontakController extends Controller
             'lokasi' => 'required',
             'linkmaps' => 'required|url',
             'telepon' => 'required',
-            'email' => 'required',
+            'email' => 'required|email',
+            'link_ig' => 'nullable|url',
+            'link_twitter' => 'nullable|url',
+            'link_fb' => 'nullable|url',
+            'link_tiktok' => 'nullable|url',
+            'link_youtube' => 'nullable|url',
         ]);
 
         //get product by ID
@@ -99,6 +114,11 @@ class KontakController extends Controller
             'linkmaps' => $request->linkmaps,
             'telepon' => $request->telepon,
             'email' => $request->email,
+            'link_ig' => $request->link_ig,
+            'link_twitter' => $request->link_twitter,
+            'link_fb' => $request->link_fb,
+            'link_tiktok' => $request->link_tiktok,
+            'link_youtube' => $request->link_youtube,
         ]);
 
         //redirect to index

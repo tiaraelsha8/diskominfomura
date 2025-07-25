@@ -21,16 +21,45 @@
                  </p>
                  <p class="mb-0">
                      Telepon: {{ optional($kontak)->telepon ?? 'Telepon Belum tersedia' }}
-                </p>
+                 </p>
              </div>
              <!-- Kanan: Ikon Sosial Media -->
              <div class="footer-right">
                  <div class="social-icons">
-                     <a href="#" class="icon-circle"><i class="bi bi-instagram"></i></a>
-                     <a href="#" class="icon-circle facebook-icon">f</a>
-                     <a href="#" class="icon-circle"><i class="bi bi-twitter"></i></a>
-                     <a href="#" class="icon-circle"><i class="bi bi-tiktok"></i></a>
-                     <a href="#" class="icon-circle"><i class="bi bi-youtube"></i></a>
+                     {{-- Instagram --}}
+                     @if (!empty($kontak?->link_ig))
+                         <a href="{{ $kontak->link_ig }}" class="icon-circle" target="_blank">
+                             <i class="bi bi-instagram"></i>
+                         </a>
+                     @endif
+
+                     {{-- Facebook --}}
+                     @if (!empty($kontak?->link_fb))
+                         <a href="{{ $kontak->link_fb }}" class="icon-circle facebook-icon" target="_blank">
+                             <i class="bi bi-facebook"></i>
+                         </a>
+                     @endif
+
+                     {{-- Twitter --}}
+                     @if (!empty($kontak?->link_twitter))
+                         <a href="{{ $kontak->link_twitter }}" class="icon-circle" target="_blank">
+                             <i class="bi bi-twitter"></i>
+                         </a>
+                     @endif
+
+                     {{-- TikTok --}}
+                     @if (!empty($kontak?->link_tiktok))
+                         <a href="{{ $kontak->link_tiktok }}" class="icon-circle" target="_blank">
+                             <i class="bi bi-tiktok"></i>
+                         </a>
+                     @endif
+
+                     {{-- YouTube --}}
+                     @if (!empty($kontak?->link_youtube))
+                         <a href="{{ $kontak->link_youtube }}" class="icon-circle" target="_blank">
+                             <i class="bi bi-youtube"></i>
+                         </a>
+                     @endif
                  </div>
              </div>
          </div>

@@ -10,7 +10,7 @@ class GalerifotoController extends Controller
 {
     public function index()
     {
-        $galeri = Galeri::paginate(2);
+        $galeri = Galeri::paginate(3);
         $galeri_all = Galeri::all();
         return view('frontend.galeri.index',compact('galeri','galeri_all'));
     }

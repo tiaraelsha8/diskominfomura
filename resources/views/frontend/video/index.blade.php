@@ -41,8 +41,11 @@
                     <p>{{ $value->deskripsi }}</p>
                 </div>
             @empty
-                <p>Data Video Kosong</p>
+                <p>Tidak ada Data Video untuk ditampilkan</p>
             @endforelse
+        </div>
+        <div class="mt-4">
+            {{ $videos->links() }}
         </div>
     </section>
 @endsection

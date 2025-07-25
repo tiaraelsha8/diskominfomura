@@ -12,7 +12,7 @@
                     <div class="col-md-4 mb-2">
                         <select name="keterangan" id="keteranganFilter" class="form-select">
                             <option value="">-- Semua Keterangan --</option>
-                            @foreach ($dokumen->pluck('keterangan')->unique() as $keterangan)
+                            @foreach ($allKeterangan as $keterangan)
                                 <option value="{{ $keterangan }}"
                                     {{ request('keterangan') == $keterangan ? 'selected' : '' }}>
                                     {{ $keterangan }}
@@ -45,7 +45,7 @@
                                     <td>{{ $value->keterangan }}</td>
                                     <td>
                                         @if ($value->file)
-                                            <a href="{{ route('dokumen.download', $value->id) }}" target="_blank"
+                                            <a href="{{ route('download.dokumen', $value->id) }}" target="_blank"
                                                 class="btn btn-sm btn-outline-primary">Download</a>
                                         @else
                                             <em>Belum ada file</em>

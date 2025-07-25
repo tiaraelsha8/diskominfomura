@@ -316,57 +316,10 @@
         }
     </style>
 
-    {{-- @php
-        $albums = [
-            [
-                'id' => 1,
-                'cover' => 'galeri_foto.jpg',
-                'title' => 'Sosialisasi Literasi Digital',
-                'desc' => 'Pengenalan literasi digital untuk pelajar dan guru.',
-                'date' => '15 November 2024',
-            ],
-            [
-                'id' => 2,
-                'cover' => 'galeri_foto.jpg',
-                'title' => 'Pelatihan e-Government',
-                'desc' => 'Workshop implementasi e-Gov di tingkat desa.',
-                'date' => '20 November 2024',
-            ],
-            [
-                'id' => 3,
-                'cover' => 'galeri_foto.jpg',
-                'title' => 'Kunjungan Mitra Digital',
-                'desc' => 'Kolaborasi antara Pemkot dan perusahaan startup.',
-                'date' => '25 November 2024',
-            ],
-            [
-                'id' => 4,
-                'cover' => 'galeri_foto.jpg',
-                'title' => 'Forum Komunikasi Publik',
-                'desc' => 'Diskusi antara warga dan Pemkot Surabaya.',
-                'date' => '1 Desember 2024',
-            ],
-            [
-                'id' => 5,
-                'cover' => 'galeri_foto.jpg',
-                'title' => 'Bimtek Keamanan Siber',
-                'desc' => 'Pelatihan dasar perlindungan data pribadi.',
-                'date' => '5 Desember 2024',
-            ],
-            [
-                'id' => 6,
-                'cover' => 'galeri_foto.jpg',
-                'title' => 'Seminar Inovasi Teknologi',
-                'desc' => 'Pemanfaatan teknologi AI dan IoT untuk kota pintar.',
-                'date' => '10 Desember 2024',
-            ],
-        ];
-    @endphp --}}
-
     <div class="title-bg">Galeri Foto</div>
     <section class="galeri-container container">
         <div class="album-grid">
-            @foreach ($galeri as $album)
+            @forelse ($galeri as $album)
                 <div class="album-card" onclick="openModal({{ $album->id }})">
                     <img src="{{ asset('storage/galeri/' . $album->foto) }}" alt="{{ e($album->judul) }}">
                     <div class="album-body">
@@ -375,7 +328,11 @@
                         <div class="album-date">{{ $album->created_at->format('d M Y') }}</div>
                     </div>
                 </div>
-            @endforeach
+           @empty
+            <div class="text-center w-100 py-5">
+                <h5>Tidak ada data galeri foto untuk ditampilkan</h5>
+            </div>
+        @endforelse
         </div>
         <div class="mt-4">
             {{ $galeri->links() }}
@@ -436,7 +393,7 @@
         <span class="modal-nav modal-next" onclick="navigateImage(1)">&#10095;</span>
     </div>
     <script>
-        const albumData = @json($galeri_all);
+        const albumData = @json($galeri->items());
         let currentIndex = -1;
 
         function openModal(id) {

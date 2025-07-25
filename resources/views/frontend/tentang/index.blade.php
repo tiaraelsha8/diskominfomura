@@ -35,7 +35,7 @@
             @isset($tentang)
                 {!! $tentang->tentang !!}
             @else
-                <em>Profil Tentang belum tersedia.</em>
+                <em>Profil Tentang belum tersedia</em>
             @endisset
         </p>
     </section>

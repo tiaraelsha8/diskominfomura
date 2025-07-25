@@ -52,11 +52,32 @@ class PegawaiController extends Controller
 
             if (str_contains($namaJabatan, 'kepala dinas') || str_contains($namaJabatan, 'kadis')) {
                 return 1; // Level tertinggi
+<<<<<<< HEAD
             } elseif (str_contains($namaJabatan, 'sekretaris') || str_contains($namaJabatan, 'sekda')) {
+=======
+
+            } elseif (
+                str_contains($namaJabatan, 'sekretaris') ||
+                str_contains($namaJabatan, 'sekretaris dinas') ||
+                str_contains($namaJabatan, 'sekretaris daerah') ||
+                str_contains($namaJabatan, 'sekdis') ||
+                str_contains($namaJabatan, 'sekda')
+            ) {
+>>>>>>> c5825f68518c59f42c8a52ed22cf38dc3010e483
                 return 2; // Level 2
             } elseif (str_contains($namaJabatan, 'kepala bidang') || str_contains($namaJabatan, 'kabid')) {
                 return 2; // Level 2 (setara sekretaris)
+<<<<<<< HEAD
             } elseif (str_contains($namaJabatan, 'kepala sub bagian') || str_contains($namaJabatan, 'kasubag') || str_contains($namaJabatan, 'kepala subbag')) {
+=======
+
+            } elseif (
+                str_contains($namaJabatan, 'kepala sub bagian') ||
+                str_contains($namaJabatan, 'kasubag') ||
+                str_contains($namaJabatan, 'kasubbag') ||
+                str_contains($namaJabatan, 'kepala subbag')
+            ) {
+>>>>>>> c5825f68518c59f42c8a52ed22cf38dc3010e483
                 return 3; // Level 3 (di bawah sekretaris)
             } else {
                 return 4; // Staf atau level terendah
