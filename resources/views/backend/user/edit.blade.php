@@ -51,7 +51,7 @@
                             <div class="form-group">
                                 <label>Password Lama</label>
                                 <input type="password" name="current_password" class="form-control" required
-                                    placeholder="isikan password lama">
+                                    placeholder="isikan password lama saat mengubah email,username,nama">
                             </div>
                             @error('current_password')
                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -68,7 +68,7 @@
 
                             <div class="form-group">
                                 <label>Konfirmasi Password </label>
-                                <input type="password" class="form-control" name="password_confirmation">
+                                <input type="password" class="form-control" placeholder="isikan jika mengubah password" name="password_confirmation">
                             </div>
                             @error('password_confirmation')
                                 <div class="alert alert-danger">{{ $message }}</div>
