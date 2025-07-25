@@ -226,7 +226,7 @@ class PegawaiController extends Controller
                 })(),
                 'desc' => $p->tupoksi,
                 'bidang' => $getBidangName($p), // Gunakan function untuk bidang
-                'file_link' => $p->file ? asset('storage/pegawai/dokumen/' . $p->file) : null,
+                'file_link' => $p->file ? asset('storage/pegawai/dokumen/' . $p->file) : null, //storage
                 'img' => $p->foto ? asset('storage/pegawai/' . $p->foto) : asset('volt/assets/img/user.png'),
             ];
         }
