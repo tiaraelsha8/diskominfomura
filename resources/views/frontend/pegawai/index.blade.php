@@ -8,6 +8,36 @@
                 <div class="card-body px-4 text-center">
 
                     <div id="chart-org" style="height: 650px;"></div>
+
+                    <!-- Modal Detail Pegawai -->
+                    <div class="modal fade" id="modalTupoksi" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="modalLabel">Detail Pegawai</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="d-flex gap-4">
+                                        <div>
+                                            <img id="modalImg" src="" width="150" height="150"
+                                                class="rounded border" />
+                                                <br>
+                                            <a class="btn btn-primary mb-3" href="#" id="modalLhkpnLink" target="_blank">Download</a>
+                                        </div>
+                                        <div>
+                                            <p><strong>Nama:</strong> <span id="modalName"></span></p>
+                                            <p><strong>Jabatan:</strong> <span id="modalTitle"></span></p>
+                                            <p><strong>Bidang:</strong> <span id="modalBidang"></span></p>
+                                            <p><strong>Tupoksi:</strong> <span id="modalDesc"></span></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -17,6 +47,8 @@
 @push('scripts')
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://balkan.app/js/OrgChart.js"></script>
+    <!-- Bootstrap JS (v5) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <script>
         OrgChart.templates.myTemplate = Object.assign({}, OrgChart.templates.diva);
@@ -26,11 +58,7 @@
                 template: "myTemplate",
                 mode: 'light',
                 enableSearch: false,
-                nodeMouseClick:OrgChart.action.none,
-                toolbar: {
-                    zoom: true,
-                    fit: true,
-                },
+                nodeMouseClick: OrgChart.action.none,
                 collapse: {
                     level: 2,
                     allChildren: true,
@@ -111,6 +139,22 @@
                 chart.load(data);
             });
             chart.load(data);
+
+            // modal
+            chart.on('click', function(sender, args) {
+                const clickedNode = data.find(item => item.id === args.node.id);
+                if (!clickedNode) return;
+
+                $('#modalName').text(clickedNode.name || '-');
+                $('#modalTitle').text(clickedNode.title || '-');
+                $('#modalBidang').text(clickedNode.bidang || '-');
+                $('#modalDesc').text(clickedNode.desc || '-');
+                $('#modalImg').attr('src', clickedNode.img || '');
+                $('#modalLhkpnLink')
+                    .attr('href', clickedNode.file_link || '#')
+                    .prop('disabled', !clickedNode.file_link);
+                $('#modalTupoksi').modal('show');
+            });
 
         });
     </script>

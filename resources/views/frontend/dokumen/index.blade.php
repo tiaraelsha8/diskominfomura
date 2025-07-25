@@ -45,7 +45,7 @@
                                     <td>{{ $value->keterangan }}</td>
                                     <td>
                                         @if ($value->file)
-                                            <a href="{{ route('dokumen.download', $value->id) }}" target="_blank"
+                                            <a href="{{ route('download.dokumen', $value->id) }}" target="_blank"
                                                 class="btn btn-sm btn-outline-primary">Download</a>
                                         @else
                                             <em>Belum ada file</em>
