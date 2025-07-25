@@ -28,11 +28,7 @@ class PegawaiController extends Controller
             $bidangAsli = optional($pegawai->bidang)->nama_bidang ?? '';
 
             // Jika Kasubag, tampilkan bidang sebagai "Sekretariat" atau sesuai struktur
-            if (
-                str_contains($namaJabatan, 'kasubag') ||
-                str_contains($namaJabatan, 'kepala sub bagian')
-            ) {
-
+            if (str_contains($namaJabatan, 'kasubag') || str_contains($namaJabatan, 'kepala sub bagian')) {
                 // Opsi 1: Gunakan nama khusus untuk sekretariat
                 //return 'Sekretariat';
                 return $bidangAsli;
@@ -54,31 +50,14 @@ class PegawaiController extends Controller
         $getLevelJabatan = function ($namaJabatan) {
             $namaJabatan = strtolower($namaJabatan ?? '');
 
-            if (
-                str_contains($namaJabatan, 'kepala dinas') ||
-                str_contains($namaJabatan, 'kadis')
-            ) {
+            if (str_contains($namaJabatan, 'kepala dinas') || str_contains($namaJabatan, 'kadis')) {
                 return 1; // Level tertinggi
-
-            } elseif (
-                str_contains($namaJabatan, 'sekretaris') ||
-                str_contains($namaJabatan, 'sekda')
-            ) {
+            } elseif (str_contains($namaJabatan, 'sekretaris') || str_contains($namaJabatan, 'sekda')) {
                 return 2; // Level 2
-
-            } elseif (
-                str_contains($namaJabatan, 'kepala bidang') ||
-                str_contains($namaJabatan, 'kabid')
-            ) {
+            } elseif (str_contains($namaJabatan, 'kepala bidang') || str_contains($namaJabatan, 'kabid')) {
                 return 2; // Level 2 (setara sekretaris)
-
-            } elseif (
-                str_contains($namaJabatan, 'kepala sub bagian') ||
-                str_contains($namaJabatan, 'kasubag') ||
-                str_contains($namaJabatan, 'kepala subbag')
-            ) {
+            } elseif (str_contains($namaJabatan, 'kepala sub bagian') || str_contains($namaJabatan, 'kasubag') || str_contains($namaJabatan, 'kepala subbag')) {
                 return 3; // Level 3 (di bawah sekretaris)
-
             } else {
                 return 4; // Staf atau level terendah
             }
@@ -132,33 +111,25 @@ class PegawaiController extends Controller
                     $pid = $parent ? $mapPegawaiIdToCustomId[$parent->id] : null;
                     break;
 
-                default: // Staf (level 4+)
+                default:
+                    // Staf (level 4+)
                     $parent = null;
 
                     // Untuk staf, cek dulu apakah atasannya Kasubag
                     $namaJabatanLower = strtolower($namaJabatan);
 
                     // 1. Jika staf sekretariat, cari Kasubag yang sesuai
-                    if (
-                        str_contains($namaJabatanLower, 'staf umum') ||
-                        str_contains($namaJabatanLower, 'admin umum')
-                    ) {
+                    if (str_contains($namaJabatanLower, 'staf umum') || str_contains($namaJabatanLower, 'admin umum')) {
                         $parent = $pegawai->first(function ($x) {
                             $jabatan = strtolower(optional($x->jabatan)->nama_jabatan ?? '');
                             return str_contains($jabatan, 'kasubag') && str_contains($jabatan, 'umum');
                         });
-                    } elseif (
-                        str_contains($namaJabatanLower, 'staf kepegawaian') ||
-                        str_contains($namaJabatanLower, 'admin kepegawaian')
-                    ) {
+                    } elseif (str_contains($namaJabatanLower, 'staf kepegawaian') || str_contains($namaJabatanLower, 'admin kepegawaian')) {
                         $parent = $pegawai->first(function ($x) {
                             $jabatan = strtolower(optional($x->jabatan)->nama_jabatan ?? '');
                             return str_contains($jabatan, 'kasubag') && str_contains($jabatan, 'kepegawaian');
                         });
-                    } elseif (
-                        str_contains($namaJabatanLower, 'staf keuangan') ||
-                        str_contains($namaJabatanLower, 'admin keuangan')
-                    ) {
+                    } elseif (str_contains($namaJabatanLower, 'staf keuangan') || str_contains($namaJabatanLower, 'admin keuangan')) {
                         $parent = $pegawai->first(function ($x) {
                             $jabatan = strtolower(optional($x->jabatan)->nama_jabatan ?? '');
                             return str_contains($jabatan, 'kasubag') && str_contains($jabatan, 'keuangan');
@@ -168,8 +139,7 @@ class PegawaiController extends Controller
                     // 2. Jika tidak ada Kasubag spesifik, cari Kasubag manapun di bidang yang sama
                     if (!$parent && $p->bidang_id) {
                         $parent = $pegawai->first(function ($x) use ($p, $getLevelJabatan) {
-                            return $getLevelJabatan(optional($x->jabatan)->nama_jabatan) == 3
-                                && $x->bidang_id == $p->bidang_id;
+                            return $getLevelJabatan(optional($x->jabatan)->nama_jabatan) == 3 && $x->bidang_id == $p->bidang_id;
                         });
                     }
 
@@ -177,8 +147,7 @@ class PegawaiController extends Controller
                     if (!$parent && $p->bidang_id) {
                         $parent = $pegawai->first(function ($x) use ($p) {
                             $jabatan = strtolower(optional($x->jabatan)->nama_jabatan ?? '');
-                            return (str_contains($jabatan, 'kepala bidang') || str_contains($jabatan, 'kabid'))
-                                && $x->bidang_id == $p->bidang_id;
+                            return (str_contains($jabatan, 'kepala bidang') || str_contains($jabatan, 'kabid')) && $x->bidang_id == $p->bidang_id;
                         });
                     }
 
@@ -209,12 +178,7 @@ class PegawaiController extends Controller
                 'name' => $p->nama,
                 'title' => (function () use ($namaJabatan, $p, $getBidangName) {
                     $lower = strtolower($namaJabatan);
-                    if (
-                        str_contains($lower, 'kepala dinas') ||
-                        str_contains($lower, 'kadis') ||
-                        str_contains($lower, 'sekretaris') ||
-                        str_contains($lower, 'sekda')
-                    ) {
+                    if (str_contains($lower, 'kepala dinas') || str_contains($lower, 'kadis') || str_contains($lower, 'sekretaris') || str_contains($lower, 'sekda')) {
                         return $namaJabatan ?: '-';
                     }
 
@@ -222,7 +186,7 @@ class PegawaiController extends Controller
                 })(),
                 'desc' => $p->tupoksi,
                 'bidang' => $getBidangName($p), // Gunakan function untuk bidang
-                'file_link' => $p->file ? asset('storage/pegawai/dokumen/' . $p->file) : null,
+                'file_link' => $p->file ? route('pegawai.download', $p->id) : null,
                 'img' => $p->foto ? asset('storage/pegawai/' . $p->foto) : asset('volt/assets/img/user.png'),
             ];
         }
@@ -232,8 +196,7 @@ class PegawaiController extends Controller
 
     public function download($id)
     {
-        $dokumen = Pegawai::findOrFail($id); // pastikan modelnya sesuai
-
+        $dokumen = Pegawai::findOrFail($id);
         $filename = $dokumen->file;
         $path = storage_path('app/public/pegawai/dokumen/' . $filename);
 
@@ -241,8 +204,6 @@ class PegawaiController extends Controller
             abort(404);
         }
 
-        return response()->file($path, [
-            'Content-Disposition' => 'inline; filename="' . $dokumen->file . '"',
-        ]);
+        return response()->download($path, $filename);
     }
 }

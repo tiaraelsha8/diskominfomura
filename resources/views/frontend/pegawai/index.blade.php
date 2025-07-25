@@ -31,11 +31,22 @@
                 nodeMenu: {
                     download: {
                         text: "Download File LHKPN",
-                        icon: OrgChart.icon.pdf(24, 24, "#039BE5"), // Optional: tambah ikon
+                        icon: OrgChart.icon.pdf(24, 24, "#039BE5"),
                         onClick: function(args) {
-                            console.log("Node diklik:", args.node); // Lihat semua properti yang tersedia
+                            const fileUrl = args.node.file_link;
+
+                            if (fileUrl) {
+                                const link = document.createElement('a');
+                                link.href = fileUrl;
+                                link.download = '';
+                                document.body.appendChild(link);
+                                link.click();
+                                document.body.removeChild(link);
+                            } else {
+                                alert("File tidak tersedia untuk diunduh.");
+                            }
                         }
-                    },
+                    }
                 },
                 nodeBinding: {
                     field_0: "name", // Nama pegawai

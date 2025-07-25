@@ -189,6 +189,163 @@
             color: #0056b3;
         }
 
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            background-color: #ffffff33;
+            border-radius: 30px;
+            padding: 4px 10px;
+            transition: background 0.3s ease;
+            position: relative;
+            width: 90px;
+            height: 36px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .theme-toggle:hover {
+            background-color: #ffffff55;
+        }
+
+        .toggle-switch {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            position: relative;
+            transition: transform 0.4s ease;
+        }
+
+        .theme-toggle i {
+            font-size: 1.2rem;
+            transition: transform 0.4s ease;
+        }
+
+        .theme-toggle span {
+            margin-left: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            color: #fff;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+        }
+
+        .theme-toggle.active i {
+            transform: translateX(40px) rotate(360deg);
+        }
+
+        .theme-toggle.active span {
+            transform: translateX(-50px);
+            opacity: 0;
+        }
+
+        .theme-toggle.active::after {
+            content: "Light";
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            opacity: 1;
+            transition: opacity 0.4s ease;
+        }
+
+        #backToTopBtn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 999;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border: none;
+            border-radius: 50%;
+            box-shadow: none;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+            padding: 0;
+        }
+
+        #backToTopBtn.show {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+        }
+
+        #backToTopBtn:hover i {
+            transform: translate(-50%, -50%) scale(1.15);
+            color: #ff6600;
+        }
+
+        #backToTopBtn i {
+            font-size: 1.6rem;
+            color: #ff6600;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        #backToTopBtn svg.progress-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 60px;
+            height: 60px;
+            transform: translate(-50%, -50%) rotate(-90deg);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        body.dark-mode {
+            background-color: #121212;
+            color: #f1f1f1;
+        }
+
+        body.dark-mode .navbar {
+            background: rgba(18, 18, 18, 0.95);
+        }
+
+        body.dark-mode .nav-link {
+            color: #ffffff !important;
+        }
+
+        body.dark-mode .nav-link:hover {
+            color: #ffdd57 !important;
+        }
+
+        body.dark-mode .dropdown-global {
+            background-color: rgba(30, 30, 30, 0.95);
+        }
+
+        body.dark-mode .dropdown-global a {
+            color: #ffffff;
+        }
+
+        body.dark-mode .dropdown-global a:hover {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #ffdd57;
+        }
+
+        body.dark-mode .custom-footer {
+            background-color: #1a1a1a;
+        }
+
+        body.dark-mode .footer-link {
+            color: #bbbbbb;
+        }
+
+        body.dark-mode .footer-link:hover {
+            color: #ffdd57;
+        }
+
         .custom-footer {
             background-color: #08075a;
             color: white;
@@ -334,6 +491,15 @@
 </head>
 
 <body>
+    <!-- Tombol Kembali ke Atas -->
+    <button onclick="scrollToTop()" id="backToTopBtn" title="Kembali ke atas" aria-label="Kembali ke atas">
+        <svg class="progress-circle" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="30" stroke="#ffffff33" stroke-width="6" fill="none" />
+            <circle id="progressRing" cx="50" cy="50" r="30" stroke="#ff6600" stroke-width="3"
+                fill="none" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="283" />
+        </svg>
+        <i class="bi bi-arrow-up-short"></i>
+    </button>
 
     <!-- Navbar -->
     @include('frontend.partial.navbar')
@@ -354,6 +520,59 @@
             duration: 800,
             once: true
         });
+        // Tampilkan tombol saat scroll ke bawah
+        window.onscroll = function() {
+            const btn = document.getElementById("backToTopBtn");
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+
+            const progress = scrollTop / scrollHeight;
+            const circle = document.getElementById("progressRing");
+            const circumference = 2 * Math.PI * 30;
+            const offset = circumference * (1 - progress);
+
+            if (btn) {
+                btn.classList.toggle('show', scrollTop > 300);
+            }
+
+            if (circle) {
+                circle.style.strokeDashoffset = offset;
+            }
+        };
+
+        // Fungsi scroll ke atas
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Fungsi Dark Mode
+        document.addEventListener("DOMContentLoaded", function() {
+            const toggle = document.getElementById("darkModeToggle");
+            const icon = document.getElementById("darkIcon");
+
+            // Cek preferensi sebelumnya
+            if (localStorage.getItem("theme") === "dark") {
+                document.body.classList.add("dark-mode");
+                toggle.classList.add("active");
+                icon.classList.replace("bi-moon-stars-fill", "bi-sun-fill");
+            }
+
+            toggle.addEventListener("click", () => {
+                const isDark = document.body.classList.toggle("dark-mode");
+                toggle.classList.toggle("active", isDark);
+
+                // Ganti ikon
+                icon.classList.toggle("bi-moon-stars-fill", !isDark);
+                icon.classList.toggle("bi-sun-fill", isDark);
+
+                // Simpan preferensi
+                localStorage.setItem("theme", isDark ? "dark" : "light");
+            });
+        });
+
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('.navbar');
             navbar.classList.toggle('scrolled', window.scrollY > 60);

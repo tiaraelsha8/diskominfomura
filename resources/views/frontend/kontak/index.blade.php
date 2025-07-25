@@ -16,6 +16,7 @@
         .hero-section {
             margin-top: -88px;
             padding-top: 180px;
+            padding-bottom: 120px;
             display: flex;
             flex-wrap: wrap;
             align-items: flex-start;
@@ -23,7 +24,6 @@
             color: white;
             padding: 10px 20px 0px;
             position: relative;
-
         }
 
         .hero-text {
@@ -234,7 +234,8 @@
                         <circle cx="12" cy="10" r="3" />
                     </svg></div>
                 <h4>Lokasi Kantor</h4>
-                <p>Setda Kab. Murung Raya (Gedung B), Beriwit, Kec. Murung, Kabupaten Murung Raya, Kalimantan Tengah 73911</p>
+                <p>Setda Kab. Murung Raya (Gedung B), Beriwit, Kec. Murung, Kabupaten Murung Raya, Kalimantan Tengah 73911
+                </p>
                 <div><a href="https://maps.app.goo.gl/rJkeEkTtPH3MuR2p8" target="_blank">Lihat di Google Maps</a>
                 </div>
             </div>
