@@ -41,7 +41,12 @@
                                     <th>Lokasi</th>
                                     <th>Telepon</th>
                                     <th>Email</th>
-                                    <th>Link Maps</th>
+                                    <th>Maps</th>
+                                    <th>Instagram</th>
+                                    <th>Facebook</th>
+                                    <th>Twitter</th>
+                                    <th>TikTok</th>
+                                    <th>YouTube</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -58,6 +63,31 @@
                                             </a>
                                         </td>
                                         <td>
+                                            @if($value->link_ig)
+                                                <a href="{{ $value->link_ig }}" target="_blank">Instagram</a>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($value->link_fb)
+                                                <a href="{{ $value->link_fb }}" target="_blank">Facebook</a>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($value->link_twitter)
+                                                <a href="{{ $value->link_twitter }}" target="_blank">Twitter</a>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($value->link_tiktok)
+                                                <a href="{{ $value->link_tiktok }}" target="_blank">TikTok</a>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($value->link_youtube)
+                                                <a href="{{ $value->link_youtube }}" target="_blank">YouTube</a>
+                                            @endif
+                                        </td>
+                                        <td>
                                             <form action="{{ route('kontak.destroy', $value->id) }}" method="POST"
                                                 onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
                                                 @csrf
@@ -71,7 +101,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6" class="text-center">Belum ada data bidang</td>
+                                        <td colspan="11" class="text-center">Belum ada data bidang</td>
                                     </tr>
                                 @endforelse
                             </tbody>

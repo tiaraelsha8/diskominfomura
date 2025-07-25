@@ -43,7 +43,45 @@
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
+                    <div class="form-group">
+                        <label>Link Instagram</label>
+                        <input type="url" class="form-control" name="link_ig" placeholder="https://instagram.com/...">
+                    </div>
+                    @error('link_ig')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
 
+                    <div class="form-group">
+                        <label>Link Facebook</label>
+                        <input type="url" class="form-control" name="link_fb" placeholder="https://facebook.com/...">
+                    </div>
+                    @error('link_fb')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
+                    <div class="form-group">
+                        <label>Link Twitter</label>
+                        <input type="url" class="form-control" name="link_twitter" placeholder="https://twitter.com/...">
+                    </div>
+                    @error('link_twitter')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
+                    <div class="form-group">
+                        <label>Link TikTok</label>
+                        <input type="url" class="form-control" name="link_tiktok" placeholder="https://x.com/@...">
+                    </div>
+                    @error('link_tiktok')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
+                    <div class="form-group">
+                        <label>Link YouTube</label>
+                        <input type="url" class="form-control" name="link_youtube" placeholder="https://youtube.com/@...">
+                    </div>
+                    @error('link_youtube')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
 
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary">Simpan</button>

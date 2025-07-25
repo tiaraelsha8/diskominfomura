@@ -44,6 +44,46 @@
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
+                    <div class="form-group">
+                        <label>Link Instagram</label>
+                        <input type="url" class="form-control" name="link_ig" value="{{ $kontak->link_ig }}">
+                    </div>
+                    @error('link_ig')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
+                    <div class="form-group">
+                        <label>Link Facebook</label>
+                        <input type="url" class="form-control" name="link_fb" value="{{ $kontak->link_fb }}">
+                    </div>
+                    @error('link_fb')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
+                    <div class="form-group">
+                        <label>Link Twitter</label>
+                        <input type="url" class="form-control" name="link_twitter" value="{{ $kontak->link_twitter }}">
+                    </div>
+                    @error('link_twitter')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
+                    <div class="form-group">
+                        <label>Link TikTok</label>
+                        <input type="url" class="form-control" name="link_tiktok" value="{{ $kontak->link_tiktok }}">
+                    </div>
+                    @error('link_tiktok')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
+                    <div class="form-group">
+                        <label>Link YouTube</label>
+                        <input type="url" class="form-control" name="link_youtube" value="{{ $kontak->link_youtube }}">
+                    </div>
+                    @error('link_youtube')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary">Simpan</button>
                         <a href="{{ route('galeri.index') }}" class="btn btn-default">Kembali</a>
