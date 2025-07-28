@@ -17,7 +17,7 @@
 
         .galeri-container {
             padding: 60px 0;
-            background: #f4f6f9;
+            /* background: #f4f6f9; */
         }
 
         .album-grid {
