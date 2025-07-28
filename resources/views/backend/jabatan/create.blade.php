@@ -13,7 +13,7 @@
 
             <div class="form-group">
                 <label>Nama Jabatan</label>
-                <input type="text" class="form-control" name="nama_jabatan" placeholder="Isikan Nama JaBatan">
+                <input type="text" class="form-control" name="nama_jabatan" placeholder="Isikan Nama Jabatan">
             </div>
             @error('nama_jabatan')
                 <div class="alert alert-danger">{{ $message }}</div>

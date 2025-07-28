@@ -16,6 +16,7 @@
         .hero-section {
             margin-top: -88px;
             padding-top: 180px;
+            padding-bottom: 120px;
             display: flex;
             flex-wrap: wrap;
             align-items: flex-start;
@@ -23,7 +24,6 @@
             color: white;
             padding: 10px 20px 0px;
             position: relative;
-
         }
 
         .hero-text {
