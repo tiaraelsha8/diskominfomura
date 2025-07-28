@@ -30,7 +30,7 @@
                                             <p><strong>Nama:</strong> <span id="modalName"></span></p>
                                             <p><strong>Jabatan:</strong> <span id="modalTitle"></span></p>
                                             <p><strong>Bidang:</strong> <span id="modalBidang"></span></p>
-                                            <p><strong>Tupoksi:</strong> <span id="modalDesc"></span></p>
+                                            <p style="text-align: justify"><strong>Tupoksi:</strong> <span id="modalDesc"></span></p>
                                         </div>
                                     </div>
                                 </div>
