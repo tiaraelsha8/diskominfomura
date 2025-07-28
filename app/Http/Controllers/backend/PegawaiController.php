@@ -38,40 +38,51 @@ class PegawaiController extends Controller
     {
         $request->validate([
             'nama' => 'required|string|max:100',
-            'jabatan_id' => ['required', 'exists:jabatans,id', function ($attribute, $value, $fail) {
-            // Ambil nama jabatan dari ID
-            $jabatan = Jabatan::find($value);
+            'jabatan_id' => [
+                'required',
+                'exists:jabatans,id',
+                function ($attribute, $value, $fail) {
+                    // Ambil nama jabatan dari ID
+                    $jabatan = \App\Models\Jabatan::find($value);
 
-            if (!$jabatan) return;
+                    if (!$jabatan) {
+                        return;
+                    }
 
-            if (strtolower($jabatan->nama_jabatan) === 'kepala dinas') {
-                $sudahAda = Pegawai::whereHas('jabatan', function ($q) {
-                    $q->whereRaw('LOWER(nama_jabatan) = ?', ['kepala dinas']);
-                })->exists();
+                    if (strtolower($jabatan->nama_jabatan) === 'kepala dinas') {
+                        $sudahAda = \App\Models\Pegawai::whereHas('jabatan', function ($q) {
+                            $q->whereRaw('LOWER(nama_jabatan) = ?', ['kepala dinas']);
+                        })->exists();
 
-                if ($sudahAda) {
-                    $fail('Jabatan Kepala Dinas sudah terisi.');
-                }
-            }
+                        if ($sudahAda) {
+                            $fail('Jabatan Kepala Dinas sudah terisi.');
+                        }
+                    }
 
-            if (strtolower($jabatan->nama_jabatan) === 'sekretaris') {
-                $sudahAda = Pegawai::whereHas('jabatan', function ($q) {
-                    $q->whereRaw('LOWER(nama_jabatan) = ?', ['sekretaris']);
-                })->exists();
+                    if (strtolower($jabatan->nama_jabatan) === 'sekretaris') {
+                        $sudahAda = \App\Models\Pegawai::whereHas('jabatan', function ($q) {
+                            $q->whereRaw('LOWER(nama_jabatan) = ?', ['sekretaris']);
+                        })->exists();
 
-                if ($sudahAda) {
-                    $fail('Jabatan Sekretaris sudah terisi.');
-                }
-            }
-        }],
+                        if ($sudahAda) {
+                            $fail('Jabatan Sekretaris sudah terisi.');
+                        }
+                    }
+                },
+            ],
             'bidang_id' => 'required|exists:bidangs,id',
             'tupoksi' => 'required',
             'foto' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+            'file' => 'required|mimes:pdf|max:5120', //5 mb
         ]);
 
         //upload image
         $image = $request->file('foto');
         $image->storeAs('pegawai', $image->hashName());
+
+        //upload file
+        $file = $request->file('file');
+        $file->storeAs('pegawai/dokumen', $file->hashName());
 
         //create
         Pegawai::create([
@@ -80,6 +91,7 @@ class PegawaiController extends Controller
             'bidang_id' => $request->bidang_id,
             'tupoksi' => $request->tupoksi,
             'foto' => $image->hashName(),
+            'file' => $file->hashName(),
         ]);
 
         return redirect()->route('pegawai.index')->with('success', 'Pegawai berhasil ditambahkan.');
@@ -113,39 +125,46 @@ class PegawaiController extends Controller
         //validate form
         $request->validate([
             'nama' => 'required|string|max:100',
-             'jabatan_id' => ['required', 'exists:jabatans,id', function ($attribute, $value, $fail) use ($id) {
-            $jabatan = Jabatan::find($value);
-            if (!$jabatan) return;
+            'jabatan_id' => [
+                'required',
+                'exists:jabatans,id',
+                function ($attribute, $value, $fail) use ($id) {
+                    $jabatan = \App\Models\Jabatan::find($value);
+                    if (!$jabatan) {
+                        return;
+                    }
 
-            // Validasi Kepala Dinas
-            if (strtolower($jabatan->nama_jabatan) === 'kepala dinas') {
-                $sudahAda = Pegawai::whereHas('jabatan', function ($q) {
-                    $q->whereRaw('LOWER(nama_jabatan) = ?', ['kepala dinas']);
-                })
-                ->where('id', '!=', $id)
-                ->exists();
+                    // Validasi Kepala Dinas
+                    if (strtolower($jabatan->nama_jabatan) === 'kepala dinas') {
+                        $sudahAda = \App\Models\Pegawai::whereHas('jabatan', function ($q) {
+                            $q->whereRaw('LOWER(nama_jabatan) = ?', ['kepala dinas']);
+                        })
+                            ->where('id', '!=', $id)
+                            ->exists();
 
-                if ($sudahAda) {
-                    $fail('Jabatan Kepala Dinas sudah dipakai oleh pegawai lain.');
-                }
-            }
+                        if ($sudahAda) {
+                            $fail('Jabatan Kepala Dinas sudah dipakai oleh pegawai lain.');
+                        }
+                    }
 
-            // Validasi Sekretaris
-            if (strtolower($jabatan->nama_jabatan) === 'sekretaris') {
-                $sudahAda = Pegawai::whereHas('jabatan', function ($q) {
-                    $q->whereRaw('LOWER(nama_jabatan) = ?', ['sekretaris']);
-                })
-                ->where('id', '!=', $id)
-                ->exists();
+                    // Validasi Sekretaris
+                    if (strtolower($jabatan->nama_jabatan) === 'sekretaris') {
+                        $sudahAda = \App\Models\Pegawai::whereHas('jabatan', function ($q) {
+                            $q->whereRaw('LOWER(nama_jabatan) = ?', ['sekretaris']);
+                        })
+                            ->where('id', '!=', $id)
+                            ->exists();
 
-                if ($sudahAda) {
-                    $fail('Jabatan Sekretaris sudah dipakai oleh pegawai lain.');
-                }
-            }
-        }],
+                        if ($sudahAda) {
+                            $fail('Jabatan Sekretaris sudah dipakai oleh pegawai lain.');
+                        }
+                    }
+                },
+            ],
             'bidang_id' => 'required|exists:bidangs,id',
-            'foto' => 'image|mimes:jpg,jpeg|max:2048',
+            'foto' => 'image|mimes:jpg,jpeg,png|max:2048',
             'tupoksi' => 'required',
+            'file' => 'mimes:pdf|max:5120', //5 mb
         ]);
 
         //get product by ID
@@ -155,6 +174,7 @@ class PegawaiController extends Controller
         if ($request->hasFile('foto')) {
             //delete old image
             Storage::delete('pegawai/' . $pegawais->foto);
+
 
             //upload new image
             $image = $request->file('foto');
@@ -168,7 +188,26 @@ class PegawaiController extends Controller
                 'bidang_id' => $request->bidang_id,
                 'foto' => $image->hashName(),
             ]);
-        } else {
+        } 
+        elseif ($request->hasFile('file')) {
+            //delete old image
+            Storage::delete('pegawai/dokumen/' . $pegawais->file);
+
+
+            //upload file
+            $file = $request->file('file');
+            $file->storeAs('pegawai/dokumen', $file->hashName());
+
+            //update product with new image
+            $pegawais->update([
+                'nama' => $request->nama,
+                'tupoksi' => $request->tupoksi,
+                'jabatan_id' => $request->jabatan_id,
+                'bidang_id' => $request->bidang_id,
+                'file' => $file->hashName(),
+            ]);
+        }
+        else {
             //update without image
             $pegawais->update([
                 'nama' => $request->nama,
@@ -194,6 +233,7 @@ class PegawaiController extends Controller
 
         //delete image
         Storage::delete('pegawai/' . $pegawais->foto);
+        Storage::delete('pegawai/dokumen/' . $pegawais->file);
 
         //delete image
         $pegawais->delete();
@@ -204,4 +244,19 @@ class PegawaiController extends Controller
             ->with(['success' => 'Data Berhasil Dihapus!']);
     }
 
+    public function download($id)
+    {
+        $dokumen = Pegawai::findOrFail($id); // pastikan modelnya sesuai
+
+        $filename = $dokumen->file;
+        $path = storage_path('app/public/pegawai/dokumen/' . $filename);
+
+        if (!file_exists($path)) {
+            abort(404);
+        }
+
+        return response()->file($path, [
+            'Content-Disposition' => 'inline; filename="' . $dokumen->file . '"',
+        ]);
+    }
 }

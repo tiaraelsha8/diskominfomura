@@ -37,11 +37,16 @@ class PengumumanbackController extends Controller
             'deskripsi' => 'required',
             'penulis' => 'required',
             'foto' => 'required|image|mimes:jpeg,jpg,png|max:2048',
+            'file' => 'required|mimes:pdf|max:5120', //5 mb
         ]);
 
         //upload image
         $image = $request->file('foto');
         $image->storeAs('pengumuman', $image->hashName());
+
+        //upload file
+        $file = $request->file('file');
+        $file->storeAs('pengumuman/dokumen', $file->hashName());
 
         //create pengumuman
         pengumuman::create([
@@ -49,6 +54,7 @@ class PengumumanbackController extends Controller
             'deskripsi' => $request->deskripsi,
             'penulis' => $request->penulis,
             'foto' => $image->hashName(),
+            'file' => $file->hashName(),
         ]);
 
         //redirect to index
@@ -86,6 +92,7 @@ class PengumumanbackController extends Controller
             'deskripsi' => 'required',
             'penulis' => 'required',
             'foto' => 'image|mimes:jpeg,jpg,png|max:2048',
+            'file' => 'mimes:pdf|max:5120', //5 mb
         ]);
 
         //get product by ID
@@ -104,9 +111,27 @@ class PengumumanbackController extends Controller
             $pengumuman->update([
                 'judul' => $request->judul,
                 'deskripsi' => $request->deskripsi,
+                'penulis' => $request->penulis,
                 'foto' => $image->hashName(),
             ]);
-        } else {
+        }
+        elseif ($request->hasFile('file')) {
+            //delete old file
+            Storage::delete('pengumuman/dokumen/' . $pengumuman->file);
+
+            //upload file
+            $file = $request->file('file');
+            $file->storeAs('pengumuman/dokumen', $file->hashName());
+
+            //update product with new image
+            $pengumuman->update([
+                'judul' => $request->judul,
+                'deskripsi' => $request->deskripsi,
+                'penulis' => $request->penulis,
+                'file' => $file->hashName(),
+            ]);
+        }  
+        else {
             //update product without image
             $pengumuman->update([
                 'judul' => $request->judul,
@@ -129,11 +154,28 @@ class PengumumanbackController extends Controller
 
         //delete image
         Storage::delete('pengumuman/' . $pengumuman->foto);
+        Storage::delete('pengumuman/dokumen/' . $pengumuman->file);
 
         //delete image
         $pengumuman->delete();
 
         //redirect to index
         return redirect()->route('pengumuman.index')->with(['success' => 'Data Berhasil Dihapus!']);
+    }
+
+    public function download($id)
+    {
+        $dokumen = Pengumuman::findOrFail($id); // pastikan modelnya sesuai
+
+        $filename = $dokumen->file;
+        $path = storage_path('app/public/pengumuman/dokumen/' . $filename);
+
+        if (!file_exists($path)) {
+            abort(404);
+        }
+
+        return response()->file($path, [
+            'Content-Disposition' => 'inline; filename="' . $dokumen->file . '"',
+        ]);
     }
 }

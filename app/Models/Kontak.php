@@ -11,5 +11,5 @@ class Kontak extends Model
 
     protected $table = 'kontak';
 
-    protected $fillable = ['lokasi', 'telepon', 'email'];
+    protected $fillable = ['lokasi', 'linkmaps', 'telepon', 'email', 'link_ig', 'link_twitter', 'link_fb', 'link_tiktok', 'link_youtube'];
 }

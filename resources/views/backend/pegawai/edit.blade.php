@@ -5,7 +5,6 @@
 @endsection
 
 @section('content')
-
     <div class="card">
         <div class="card-header">
             <form action="{{ route('pegawai.update', $pegawais->id) }}" method="POST" enctype="multipart/form-data">
@@ -36,7 +35,7 @@
                             @endforelse
                         </select>
                     </div>
-                     @error('jabatan_id')
+                    @error('jabatan_id')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
@@ -55,7 +54,7 @@
                             @endforelse
                         </select>
                     </div>
-                     @error('bidang_id')
+                    @error('bidang_id')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
@@ -72,6 +71,14 @@
                         <input type="file" class="form-control-file" name="foto" accept="image/*">
                     </div>
                     @error('foto')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
+                    <div class="form-group">
+                        <label for="file">Dokumen LHKPN</label>
+                        <input type="file" class="form-control-file" name="file" accept=".pdf">
+                    </div>
+                    @error('file')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 

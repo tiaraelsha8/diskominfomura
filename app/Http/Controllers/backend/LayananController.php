@@ -37,7 +37,7 @@ class LayananController extends Controller
             'nama_layanan' => 'required',
             'deskripsi' => 'required',
             'link' => 'required',
-            'logo' => 'required|image|mimes:jpeg,jpg,png|max:2048',
+            'logo' => 'required|image|mimes:png|max:2048',
             'background' => 'required|image|mimes:jpeg,jpg,png|max:4096',
         ]);
 
@@ -92,7 +92,7 @@ class LayananController extends Controller
             'nama_layanan' => 'required',
             'deskripsi' => 'required',
             'link' => 'required',
-            'logo' => 'nullable|image|mimes:jpeg,jpg,png|max:2048',
+            'logo' => 'nullable|image|mimes:png|max:2048',
             'background' => 'nullable|image|mimes:jpeg,jpg,png|max:4096',
         ]);
 
