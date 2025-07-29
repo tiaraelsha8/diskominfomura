@@ -6,40 +6,62 @@
             <button id="resetChart" class="btn btn-secondary mb-3">Reset</button>
             <div class="card w-100">
                 <div class="card-body px-4 text-center">
-
                     <div id="chart-org" style="height: 650px;"></div>
 
                     <!-- Modal Detail Pegawai -->
                     <div class="modal fade" id="modalTupoksi" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-lg modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="modalLabel">Detail Pegawai</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body" style="max-height: 80vh; overflow-y: auto;">
-                                    <div class="d-flex gap-4">
-                                        <div>
-                                            <img id="modalImg" src="" width="220" height="220" class="rounded border" />
-                                                <br> <br>
-                                            <a class="btn btn-primary mb-3" href="#" id="modalLhkpnLink" target="_blank">LHKPN</a>
+                        <div class="modal-dialog modal-lg modal-dialog-centered" style="max-width: 1000px;">
+                            <div class="modal-content rounded-4 overflow-hidden position-relative">
+                                <div class="modal-body p-0">
+                                    <div class="position-relative" style="min-height: 500px;">
+                                        <!-- Background bagian atas garis -->
+                                        <div
+                                            style="position: absolute; top: 0; left: 0; width: 100%; height: 35%; background-color: #06385e; z-index: 0;">
                                         </div>
-                                        <div style="text-align: justify;">
-                                            <p><strong>Nama:</strong> <span id="modalName"></span></p>
-                                            <p><strong>Jabatan:</strong> <span id="modalTitle"></span></p>
-                                            <p><strong>Bidang:</strong> <span id="modalBidang"></span></p>
-                                            <p><strong>Tupoksi:</strong> <span id="modalDesc"></span></p>
+
+                                        <!-- Garis Pembagi Horizontal -->
+                                        <div
+                                            style="position: absolute; top: 35%; left: 0; width: 100%; height: 1px; background-color: #ccc; z-index: 0;">
                                         </div>
+
+                                        <!-- Foto (setengah atas - setengah bawah) -->
+                                        <div
+                                            style="position: absolute; top:47%; left: 47px; transform: translateY(-50%); z-index: 1; text-align: center;">
+                                            <img id="modalImg" src="" width="280" height="280"
+                                                class="border rounded" alt="Foto">
+
+                                            <!-- Tombol LHKPN di bawah foto -->
+                                            <div class="mt-4">
+                                                <a class="btn btn-primary" href="#" id="modalLhkpnLink"
+                                                    target="_blank">LHKPN</a>
+                                            </div>
+                                        </div>
+
+                                        <!-- Teks Nama, Jabatan, Bidang (kanan atas) -->
+                                        <div class="position-absolute text-start text-white"
+                                            style="top: 15%; left: 350px; z-index: 1;">
+                                            <p class="mb-1"><span id="modalName">-</span></p>
+                                            <p class="mb-1"><span id="modalTitle">-</span></p>
+                                            <p class="mb-1"><span id="modalBidang">-</span></p>
+                                        </div>
+
+                                        <!-- Tupoksi scrollable -->
+                                        <div class="position-absolute text-start"
+                                            style="top: 39%; left: 350px; z-index: 1; width: calc(100% - 370px); max-height: 270px; overflow-y: auto; padding-right: 10px;">
+                                            <p id="modalDesc" style="text-align: justify;">-</p>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
+    </div>
+    </div>
+    </div>
     </div>
 @endsection
 
@@ -62,7 +84,6 @@
                     level: 2,
                     allChildren: true,
                 },
-
                 align: OrgChart.ORIENTATION,
                 mouseScrool: OrgChart.action.none,
                 showXScroll: true,
@@ -95,7 +116,6 @@
                         text: "Download File LHKPN",
                         icon: OrgChart.icon.pdf(24, 24, "#039BE5"),
                         onClick: function(args) {
-
                             const fileUrl = data[args - 1].file_link;
                             if (fileUrl) {
                                 window.open(fileUrl, '_blank');
@@ -105,7 +125,6 @@
                         }
                     }
                 },
-
                 nodeBinding: {
                     field_0: "name", // Nama pegawai
                     field_1: "title", // Jabatan
@@ -122,7 +141,6 @@
                 });
                 return false;
             });
-
             chart.on('expcollclick', function(sender, collapse, id, ids) {
                 if (!collapse) {
                     sender.center(id, {
@@ -143,7 +161,6 @@
             chart.on('click', function(sender, args) {
                 const clickedNode = data.find(item => item.id === args.node.id);
                 if (!clickedNode) return;
-
                 $('#modalName').text(clickedNode.name || '-');
                 $('#modalTitle').text(clickedNode.title || '-');
                 $('#modalBidang').text(clickedNode.bidang || '-');
@@ -154,7 +171,6 @@
                     .prop('disabled', !clickedNode.file_link);
                 $('#modalTupoksi').modal('show');
             });
-
         });
     </script>
 @endpush
