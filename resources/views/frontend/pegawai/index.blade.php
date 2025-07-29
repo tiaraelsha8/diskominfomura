@@ -36,13 +36,12 @@
                                                     target="_blank">LHKPN</a>
                                             </div>
                                         </div>
-
                                         <!-- Teks Nama, Jabatan, Bidang (kanan atas) -->
-                                        <div class="position-absolute text-start text-white"
+                                        <div class="position-absolute d-flex flex-column align-items-start"
                                             style="top: 15%; left: 350px; z-index: 1;">
-                                            <p class="mb-1"><span id="modalName">-</span></p>
-                                            <p class="mb-1"><span id="modalTitle">-</span></p>
-                                            <p class="mb-1"><span id="modalBidang">-</span></p>
+                                            <h4 class="mb-2 fw-semibold text-white" id="modalName">-</h4>
+                                            <p class="mb-0 fw-medium text-white" id="modalTitle">-</p>
+                                            <p class="mb-0 fw-medium text-white" id="modalBidang">-</p>
                                         </div>
 
                                         <!-- Tupoksi scrollable -->
