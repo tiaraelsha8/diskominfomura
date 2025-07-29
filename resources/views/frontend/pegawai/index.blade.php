@@ -9,7 +9,8 @@
                     <div id="chart-org" style="height: 650px;"></div>
 
                     <!-- Modal Detail Pegawai -->
-                    <div class="modal fade" id="modalTupoksi" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+                    <div class="modal fade" id="modalTupoksi" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true"
+                        data-bs-backdrop="static" data-bs-keyboard="false">
                         <div class="modal-dialog modal-lg modal-dialog-centered" style="max-width: 1000px;">
                             <div class="modal-content rounded-4 overflow-hidden position-relative">
                                 <div class="modal-body p-0">
@@ -50,6 +51,11 @@
                                             <p id="modalDesc" style="text-align: justify;">-</p>
                                         </div>
 
+                                        <!-- Tombol Close -->
+                                        <button type="button" class="btn-close position-absolute top-0 end-0 m-3 z-3"
+                                            aria-label="Close" id="forceCloseBtn">
+                                        </button>
+
                                     </div>
                                 </div>
                             </div>
@@ -72,8 +78,11 @@
 
     <script>
         OrgChart.templates.myTemplate = Object.assign({}, OrgChart.templates.diva);
+
         $(document).ready(function() {
             const data = @json($nodes);
+
+            // Inisialisasi chart
             let chart = new OrgChart(document.getElementById("chart-org"), {
                 template: "myTemplate",
                 mode: 'light',
@@ -84,32 +93,35 @@
                     allChildren: true,
                 },
                 align: OrgChart.ORIENTATION,
-                mouseScrool: OrgChart.action.none,
+                mouseScrool: OrgChart.action.ctrlZoom,
                 showXScroll: true,
+                layout: OrgChart.mixed,
                 editForm: {
                     addMore: null,
                     generateElementsFromFields: false,
                     readOnly: true,
                     elements: [{
-                        type: 'textbox',
-                        label: 'Nama Lengkap',
-                        binding: 'name'
-                    }, {
-                        type: 'textbox',
-                        label: 'Jabatan',
-                        binding: 'title'
-                    }, {
-                        type: 'textbox',
-                        label: 'Bidang',
-                        binding: 'bidang'
-                    }, {
-                        type: 'textbox',
-                        label: 'Tupoksi',
-                        binding: 'desc'
-                    }]
+                            type: 'textbox',
+                            label: 'Nama Lengkap',
+                            binding: 'name'
+                        },
+                        {
+                            type: 'textbox',
+                            label: 'Jabatan',
+                            binding: 'title'
+                        },
+                        {
+                            type: 'textbox',
+                            label: 'Bidang',
+                            binding: 'bidang'
+                        },
+                        {
+                            type: 'textbox',
+                            label: 'Tupoksi',
+                            binding: 'desc'
+                        }
+                    ]
                 },
-                layout: OrgChart.mixed,
-                mouseScrool: OrgChart.action.ctrlZoom,
                 nodeMenu: {
                     download: {
                         text: "Download File LHKPN",
@@ -125,14 +137,31 @@
                     }
                 },
                 nodeBinding: {
-                    field_0: "name", // Nama pegawai
-                    field_1: "title", // Jabatan
-                    field_2: "desc", // Tupoksi
+                    field_0: "name",
+                    field_1: "title",
+                    field_2: "desc",
                     field_3: "bidang",
-                    field_4: "file_link", // Nama bidang
-                    img_0: "img" // Foto
+                    field_4: "file_link",
+                    img_0: "img"
                 }
             });
+
+            chart.on('click', function(sender, args) {
+                const clickedNode = data.find(item => item.id === args.node.id);
+                if (!clickedNode) return;
+
+                $('#modalName').text(clickedNode.name || '-');
+                $('#modalTitle').text(clickedNode.title || '-');
+                $('#modalBidang').text(clickedNode.bidang || '-');
+                $('#modalDesc').text(clickedNode.desc || '-');
+                $('#modalImg').attr('src', clickedNode.img || '');
+                $('#modalLhkpnLink')
+                    .attr('href', clickedNode.file_link || '#')
+                    .prop('disabled', !clickedNode.file_link);
+
+                $('#modalTupoksi').modal('show');
+            });
+
             chart.searchUI.on('searchclick', function(sender, args) {
                 sender.instance.center(args.nodeId, {
                     parentState: OrgChart.COLLAPSE_PARENT_NEIGHBORS,
@@ -140,7 +169,8 @@
                 });
                 return false;
             });
-            chart.on('expcollclick', function(sender, collapse, id, ids) {
+
+            chart.on('expcollclick', function(sender, collapse, id) {
                 if (!collapse) {
                     sender.center(id, {
                         parentState: OrgChart.COLLAPSE_PARENT_NEIGHBORS,
@@ -150,25 +180,17 @@
                     return false;
                 }
             });
-            // Tombol reset
+
             $('#resetChart').on('click', function() {
                 chart.load(data);
             });
+
             chart.load(data);
 
-            // modal
-            chart.on('click', function(sender, args) {
-                const clickedNode = data.find(item => item.id === args.node.id);
-                if (!clickedNode) return;
-                $('#modalName').text(clickedNode.name || '-');
-                $('#modalTitle').text(clickedNode.title || '-');
-                $('#modalBidang').text(clickedNode.bidang || '-');
-                $('#modalDesc').text(clickedNode.desc || '-');
-                $('#modalImg').attr('src', clickedNode.img || '');
-                $('#modalLhkpnLink')
-                    .attr('href', clickedNode.file_link || '#')
-                    .prop('disabled', !clickedNode.file_link);
-                $('#modalTupoksi').modal('show');
+            // Tombol close khusus modal
+            $('#forceCloseBtn').on('click', function() {
+                const modal = bootstrap.Modal.getInstance(document.getElementById('modalTupoksi'));
+                modal.hide();
             });
         });
     </script>
