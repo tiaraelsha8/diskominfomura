@@ -25,7 +25,7 @@ use App\Http\Controllers\backend\LogoController;
 use App\Http\Controllers\backend\PengumumanbackController;
 use App\Http\Controllers\backend\VideoController;
 use App\Http\Controllers\backend\LayananController;
-use App\Http\Controllers\backend\ProfilBidangController;
+use App\Http\Controllers\backend\ProfilbidangController;
 
 //frontend
 use App\Http\Controllers\frontend\HomeController;
