@@ -442,48 +442,28 @@
             transform: scale(1.05);
         }
 
-        .facebook-icon {
-            font-family: Arial, sans-serif;
-            font-weight: bold;
-            font-size: 1.6rem;
-            text-transform: lowercase;
-            letter-spacing: -0.5px;
-            color: white;
-            border: 1px solid white;
-            border-radius: 12px;
-            width: 48px;
-            height: 48px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background-color: transparent;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .facebook-icon:hover {
-            color: #3b5998;
-            border: none;
-            transform: scale(1.05);
-        }
-
         .icon-circle i {
             transition: color 0.3s ease;
         }
 
-        .custom-footer .social-icons a:nth-child(1):hover i {
+        /* Hover warna icon per platform */
+        .instagram-icon:hover i {
             color: #e1306c;
         }
 
-        .custom-footer .social-icons a:nth-child(3):hover i {
+        .facebook-icon:hover i {
+            color: #3b5998;
+        }
+
+        .twitter-icon:hover i {
             color: #1da1f2;
         }
 
-        .custom-footer .social-icons a:nth-child(4):hover i {
+        .tiktok-icon:hover i {
             color: #000000;
         }
 
-        .custom-footer .social-icons a:nth-child(5):hover i {
+        .youtube-icon:hover i {
             color: #ff0000;
         }
     </style>
