@@ -27,11 +27,11 @@
             top: 0;
             padding: 1.5rem 0;
             font-size: 1.1rem;
-            background: linear-gradient(rgba(8, 7, 90, 0.9));
+            background-color: rgba(8, 7, 90, 0.9);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(10px);
-            transition: all 0.4s ease-in-out;
+            transition: all 0.1s ease-in-out;
             z-index: 100;
         }
 
@@ -41,7 +41,7 @@
 
         .navbar.scrolled .nav-link {
             font-size: 0.95rem;
-            padding: 0.25rem 0.5rem;
+            padding: 0.43rem 0.5rem;
         }
 
         .navbar.scrolled .navbar-brand {
@@ -64,7 +64,7 @@
             font-size: 1.1rem;
             font-weight: 500;
             color: #ffffff !important;
-            padding: 0.5rem 0.75rem;
+            padding: 0.3rem 0.75rem;
             transition: color 0.3s ease;
         }
 
@@ -137,7 +137,6 @@
             pointer-events: none;
             transform-origin: top center;
             transform: scaleY(0.8) translateY(-10px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
         .dropdown-global.show {
@@ -160,7 +159,7 @@
             content: '';
             position: absolute;
             top: -10px;
-            left: 33px;
+            left: 32px;
             border-width: 0 8px 8px 8px;
             border-style: solid;
             border-color: transparent transparent rgba(255, 255, 255, 0.95) transparent;
@@ -485,7 +484,7 @@
     @include('frontend.partial.navbar')
 
     <!-- Main content -->
-    <main style="padding-top: calc(1.5rem + 4rem);">
+    <main style="padding-top: 6rem;">
         @yield('content')
     </main>
 
@@ -555,7 +554,7 @@
 
         window.addEventListener('scroll', () => {
             const navbar = document.querySelector('.navbar');
-            navbar.classList.toggle('scrolled', window.scrollY > 60);
+            navbar.classList.toggle('scrolled', window.scrollY > 100);
         });
         document.addEventListener("DOMContentLoaded", function() {
             const items = [{
@@ -567,7 +566,10 @@
                     dropdownId: 'dropdownGaleri'
                 }
             ];
+
             let timeout;
+            let activeDropdown = null;
+            let activeTrigger = null;
 
             function closeAllDropdowns() {
                 items.forEach(({
@@ -577,7 +579,17 @@
                     document.getElementById(triggerId)?.classList.remove('active-dropdown');
                     document.getElementById(dropdownId)?.classList.remove('show');
                 });
+                activeDropdown = null;
+                activeTrigger = null;
             }
+
+            function positionDropdown(trigger, dropdown) {
+                if (!trigger || !dropdown) return;
+                const scrollY = window.scrollY || document.documentElement.scrollTop;
+                dropdown.style.top = scrollY > 100 ? '135%' : '183%';
+                dropdown.style.left = '0';
+            }
+
             items.forEach(({
                 triggerId,
                 dropdownId
@@ -587,9 +599,14 @@
 
                 function showDropdown() {
                     if (!trigger || !dropdown) return;
+
                     closeAllDropdowns();
-                    dropdown.style.top = '160%';
-                    dropdown.style.left = `0`;
+
+                    activeDropdown = dropdown;
+                    activeTrigger = trigger;
+
+                    positionDropdown(trigger, dropdown);
+
                     dropdown.style.minWidth = `${trigger.offsetWidth}px`;
                     dropdown.style.position = 'absolute';
                     dropdown.classList.add('show');
@@ -599,7 +616,10 @@
                 function hideDropdown() {
                     dropdown.classList.remove('show');
                     trigger.classList.remove('active-dropdown');
+                    activeDropdown = null;
+                    activeTrigger = null;
                 }
+
                 if (window.innerWidth >= 992) {
                     trigger.addEventListener('mouseenter', () => {
                         clearTimeout(timeout);
@@ -613,21 +633,28 @@
                         timeout = setTimeout(hideDropdown, 200);
                     });
                 }
+
+                // Mobile click toggle
                 trigger.addEventListener('click', function(e) {
                     if (window.innerWidth < 992) {
                         e.preventDefault();
                         const isOpen = dropdown.classList.contains('show');
-                        closeAllDropdowns(); // Tutup semua
-
+                        closeAllDropdowns();
                         if (!isOpen) {
                             dropdown.classList.add('show');
                             trigger.classList.add('active-dropdown');
-                        } else {
-                            dropdown.classList.remove('show');
-                            trigger.classList.remove('active-dropdown');
+                            activeDropdown = dropdown;
+                            activeTrigger = trigger;
                         }
                     }
                 });
+            });
+
+            // Update posisi dropdown aktif saat scroll
+            window.addEventListener('scroll', () => {
+                if (activeDropdown && activeTrigger && activeDropdown.classList.contains('show')) {
+                    positionDropdown(activeTrigger, activeDropdown);
+                }
             });
         });
     </script>
