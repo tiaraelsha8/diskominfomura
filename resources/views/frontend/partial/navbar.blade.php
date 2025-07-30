@@ -36,12 +36,17 @@
                  <li class="nav-item"><a class="nav-link" href="{{ route('frontend.dokumen') }}">Dokumen</a></li>
                  <li class="nav-item"><a class="nav-link" href="{{ route('peta.index') }}">Peta Jaringan</a></li>
                  <li class="nav-item"><a class="nav-link" href="{{ route('frontend.kontak') }}">Kontak</a></li>
+                 @auth
+                     <li class="nav-item"><a class="nav-link" href="{{ route('backend.dashboard') }}">Dashboard</a></li>
+                 @endauth
+                  
                  <div class="theme-toggle" id="darkModeToggle">
                      <div class="toggle-switch">
                          <i id="darkIcon" class="bi bi-moon-stars-fill"></i>
                          <span id="darkLabel">Dark</span>
                      </div>
                  </div>
+                 
              </ul>
          </div>
      </div>
