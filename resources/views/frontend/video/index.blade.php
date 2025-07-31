@@ -35,7 +35,7 @@
             @forelse ($videos as $key => $value)
                 <div class="col-md-6" style="max-width: 32%">
                     <div class="ratio ratio-16x9">
-                        <iframe src="{{ $value->video }}" title="Video 1" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/{{ $value->video }}" title="Video 1" allowfullscreen></iframe>
                     </div>
                     <h5 class="mt-2">{{ $value->judul }}</h5>
                     <p>{{ $value->deskripsi }}</p>

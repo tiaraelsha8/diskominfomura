@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #0071b4">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link">
+    <a href="{{ route('beranda') }}" class="brand-link">
       <img src="{{asset('image/logo-komdigi.png')}}" alt="Kominfo Logo" class="brand-image img-circle elevation-3" style="opacity: .8; background:#ffffff">
       <span class="brand-text font-weight-light">DiskominfoSP</span>
     </a>

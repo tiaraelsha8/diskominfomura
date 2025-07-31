@@ -50,7 +50,7 @@
                                         <td>{{ $value->deskripsi }}</td>
                                         <td>
                                             <div class="ratio ratio-16x9">
-                                                <iframe src="{{ $value->video }}"
+                                                <iframe src="https://www.youtube.com/embed/{{ $value->video }}"
                                                     title="Video 2" allowfullscreen></iframe>
                                             </div>
                                         </td>
