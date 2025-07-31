@@ -5,7 +5,7 @@
 <nav class="navbar navbar-expand-lg" id="mainNavbar">
     <div class="container">
         @if ($logo && $logo->foto)
-            <img src="{{ asset('storage/logo/' . $logo->foto) }}" alt="" style="width: 45px; height: 45px;">
+            <img src="{{ asset('storage/logo/' . $logo->foto) }}" alt="" style="width: 45px; height: 45px; margin-right: 20px">
             <a class="navbar-brand" href="{{ route('beranda') }}">{{ $logo->judul }}</a>
         @else
             <a class="navbar-brand" href="{{ route('beranda') }}">Logo belum ada</a>

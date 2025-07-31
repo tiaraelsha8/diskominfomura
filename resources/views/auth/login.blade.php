@@ -77,10 +77,10 @@
                         @enderror
                     </div>
 
-                    <div class="col-6 d-flex gap-3">
-                        <button type="submit" class="btn btn-primary btn-block w-60 text-nowrap">Masuk</button> <br>
+                    <div class="col-6 d-flex gap-3" style="padding-left: 0px">
+                        <button type="submit" class="btn btn-primary btn-block w-60 text-nowrap">Masuk</button>
                         <a href="{{ route('password.request') }}"
-                            class="btn btn-secondary w-60 text-nowrap">Lupa Password?</a>
+                            class="btn btn-secondary w-60 text-nowrap" style="margin-left: 20px">Lupa Password?</a>
                     </div>
                 </form>
             </div>

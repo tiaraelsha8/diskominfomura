@@ -566,7 +566,7 @@
         <h2 data-aos="fade-up">Galeri</h2>
         <div class="galeri-home-grid">
 
-            <a href="" class="galeri-card" data-aos="fade-up" data-aos-delay="0">
+            <a href="{{ route('frontend.galerifoto') }}" class="galeri-card" data-aos="fade-up" data-aos-delay="0">
                 <div class="galeri-card-img">
                     <img src="{{ asset('image/galeri_foto.jpg') }}" alt="Galeri Foto">
                 </div>
@@ -576,7 +576,7 @@
                 </div>
             </a>
 
-            <a href="" class="galeri-card" data-aos="fade-up" data-aos-delay="100">
+            <a href="{{ route('frontend.galerivideo') }}" class="galeri-card" data-aos="fade-up" data-aos-delay="100">
                 <div class="galeri-card-img">
                     <img src="{{ asset('image/galeri_video.jpg') }}" alt="Galeri Video">
                 </div>

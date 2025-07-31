@@ -29,7 +29,7 @@
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('templateadmin/plugins/summernote/summernote-bs4.min.css') }}">
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('templateadmin/dist/img/AdminLTELogo.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('image/logo-komdigi.png') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('templateadmin/dist/css/adminlte.min.css') }}">
 
@@ -127,10 +127,10 @@
     <script src="{{ asset('templateadmin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('templateadmin/dist/js/adminlte.js') }}"></script>
-    <!-- AdminLTE for demo purposes -->
+    {{-- <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('templateadmin/dist/js/demo.js') }}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="{{ asset('templateadmin/dist/js/pages/dashboard.js') }}"></script>
+    <script src="{{ asset('templateadmin/dist/js/pages/dashboard.js') }}"></script> --}}
 
     <!-- table -->
 
@@ -153,8 +153,8 @@
     <script src="{{ asset('templateadmin/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('templateadmin/dist/js/adminlte.min.js') }}"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="{{ asset('templateadmin/dist/js/demo.js') }}"></script>
+    {{-- <!-- AdminLTE for demo purposes -->
+    <script src="{{ asset('templateadmin/dist/js/demo.js') }}"></script> --}}
     <!-- Page specific script -->
     <script>
         $(function() {
