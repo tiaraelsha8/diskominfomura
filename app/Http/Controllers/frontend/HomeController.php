@@ -17,7 +17,7 @@ class HomeController extends Controller
         $carousel = Carousel::all();
         $logos = Logo::first();
         $profilbidangs = Profilbidang::all();
-        $data = $logos->foto;
-        return view('frontend.home', compact('layanans','carousel','data', 'profilbidangs'));
+        $data = $logos ? $logos->foto : null;
+        return view('frontend.home', compact('layanans', 'carousel', 'data', 'profilbidangs'));
     }
 }
