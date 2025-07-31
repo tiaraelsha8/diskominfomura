@@ -8,6 +8,7 @@ use App\Models\Layanan;
 use App\Models\Logo;
 use App\Models\Profilbidang;
 use Illuminate\Http\Request;
+use App\Helpers\VisitorCounter;
 
 class HomeController extends Controller
 {
@@ -18,6 +19,8 @@ class HomeController extends Controller
         $logos = Logo::first();
         $profilbidangs = Profilbidang::all();
         $data = $logos ? $logos->foto : null;
-        return view('frontend.home', compact('layanans', 'carousel', 'data', 'profilbidangs'));
+        $statistik = VisitorCounter::count();
+
+        return view('frontend.home', compact('layanans', 'carousel', 'data', 'profilbidangs', 'statistik'));
     }
 }
