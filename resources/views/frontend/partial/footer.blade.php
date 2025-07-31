@@ -1,6 +1,8 @@
  @php
      use App\Models\Kontak;
      $kontak = Kontak::first();
+     use App\Helpers\VisitorCounter;
+     $statistik = VisitorCounter::count();
  @endphp
  <footer class="custom-footer">
      <div class="container py-4">
@@ -22,6 +24,12 @@
                  <p class="mb-0">
                      Telepon: {{ optional($kontak)->telepon ?? 'Telepon Belum tersedia' }}
                  </p>
+             </div>
+             <div class="stats">
+                 <p class="bi bi-bar-chart-fill"> DATA STATISTIK</p>
+                 <p>Total Pengunjung: {{ $statistik['total'] }}</p>
+                 <p>Pengunjung Hari Ini: {{ $statistik['today'] }}</p>
+                 <p>Pengunjung Online: {{ $statistik['online'] }}</p>
              </div>
              <!-- Kanan: Ikon Sosial Media -->
              <div class="footer-right">
