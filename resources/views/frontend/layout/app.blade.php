@@ -14,6 +14,15 @@
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
+     <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="">
+
+    <!-- Meta deskripsi untuk SEO. Ini yang ditampilkan Google di hasil pencarian -->
+    <meta name="description"
+        content="Situs Resmi DISKOMINFO SP Kabupaten Murung Raya. Temukan informasi layanan, berita, pengumuman dan profil DISKOMNFO SP.">
+    <meta name="robots" content="index, follow"> <!-- biarkan Google mengindeks -->
+    <link rel="canonical" href="https://diskominfo.murungrayakab.go.id"> <!-- ganti dengan domain --> 
+
     <style>
         body {
             font-family: 'Inter', sans-serif;
