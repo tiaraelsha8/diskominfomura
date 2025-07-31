@@ -28,7 +28,7 @@
                  <div class="social-icons">
                      {{-- Instagram --}}
                      @if (!empty($kontak?->link_ig))
-                         <a href="{{ $kontak->link_ig }}" class="icon-circle" target="_blank">
+                         <a href="{{ $kontak->link_ig }}" class="icon-circle instagram-icon" target="_blank">
                              <i class="bi bi-instagram"></i>
                          </a>
                      @endif
@@ -42,21 +42,21 @@
 
                      {{-- Twitter --}}
                      @if (!empty($kontak?->link_twitter))
-                         <a href="{{ $kontak->link_twitter }}" class="icon-circle" target="_blank">
+                         <a href="{{ $kontak->link_twitter }}" class="icon-circle twitter-icon" target="_blank">
                              <i class="bi bi-twitter"></i>
                          </a>
                      @endif
 
                      {{-- TikTok --}}
                      @if (!empty($kontak?->link_tiktok))
-                         <a href="{{ $kontak->link_tiktok }}" class="icon-circle" target="_blank">
+                         <a href="{{ $kontak->link_tiktok }}" class="icon-circle tiktok-icon" target="_blank">
                              <i class="bi bi-tiktok"></i>
                          </a>
                      @endif
 
                      {{-- YouTube --}}
                      @if (!empty($kontak?->link_youtube))
-                         <a href="{{ $kontak->link_youtube }}" class="icon-circle" target="_blank">
+                         <a href="{{ $kontak->link_youtube }}" class="icon-circle youtube-icon" target="_blank">
                              <i class="bi bi-youtube"></i>
                          </a>
                      @endif

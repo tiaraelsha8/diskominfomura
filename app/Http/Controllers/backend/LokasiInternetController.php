@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Imports\LokasiImport;
 use Illuminate\Http\Request;
 
-use App\Models\lokasi;
+use App\Models\Lokasi;
 use Maatwebsite\Excel\Facades\Excel;
 
 class LokasiInternetController extends Controller

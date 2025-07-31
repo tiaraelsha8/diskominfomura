@@ -11,7 +11,7 @@
         <a href="{{ route('user.edit', Auth::user()->id) }}" class="dropdown-item">
             <i class="fas fa-user mr-2"></i> Profile
         </a>
-        <form method="POST" action="{{ route('logout') }}">
+        <form id="auto-logout-form" method="POST" action="{{ route('logout') }}">
             @csrf
             <button type="submit" class="dropdown-item">
                 <i class="fas fa-sign-out-alt mr-2"></i> Logout

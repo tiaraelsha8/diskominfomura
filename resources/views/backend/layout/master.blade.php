@@ -175,8 +175,33 @@
         });
     </script>
 
+    <!-- Idle timeout script -->
+    <script>
+        let idleTime = 0;
+
+        function resetIdleTimer() {
+            idleTime = 0;
+        }
+
+        setInterval(() => {
+            idleTime++;
+            if (idleTime >= 10) {
+                const logoutForm = document.getElementById('auto-logout-form');
+                if (logoutForm) {
+                    logoutForm.submit(); // Logout otomatis
+                }
+            }
+        }, 60000); // setiap 60 detik = 1 menit
+
+        window.onload = resetIdleTimer;
+        document.onmousemove = resetIdleTimer;
+        document.onkeypress = resetIdleTimer;
+        document.onclick = resetIdleTimer;
+        document.onscroll = resetIdleTimer;
+    </script>
+
     @stack('scripts')
-    
+
 </body>
 
 </html>
