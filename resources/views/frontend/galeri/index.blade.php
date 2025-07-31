@@ -3,8 +3,8 @@
 @section('content')
     <style>
         .title-bg {
-            margin-top: -88px;
-            padding-top: 180px;
+            margin-top: -90px;
+            padding-top: 195px;
             padding-bottom: 120px;
             background: url('{{ asset('image/bg_galeri.jpg') }}') center/cover no-repeat;
             color: #ffffff;
@@ -17,7 +17,6 @@
 
         .galeri-container {
             padding: 60px 0;
-            background: #f4f6f9;
         }
 
         .album-grid {
@@ -328,11 +327,11 @@
                         <div class="album-date">{{ $album->created_at->format('d M Y') }}</div>
                     </div>
                 </div>
-           @empty
-            <div class="text-center w-100 py-5">
-                <h5>Tidak ada data galeri foto untuk ditampilkan</h5>
-            </div>
-        @endforelse
+            @empty
+                <div class="text-center w-100 py-5">
+                    <h5>Tidak ada data galeri foto untuk ditampilkan</h5>
+                </div>
+            @endforelse
         </div>
         <div class="mt-4">
             {{ $galeri->links() }}

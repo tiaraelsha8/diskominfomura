@@ -162,7 +162,7 @@
             left: 32px;
             border-width: 0 8px 8px 8px;
             border-style: solid;
-            border-color: transparent transparent rgba(255, 255, 255, 0.95) transparent;
+            border-color: transparent transparent rgba(255, 102, 0, 1) transparent;
             filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.1));
             transition: opacity 0.2s ease;
             transform: translateX(-50%);

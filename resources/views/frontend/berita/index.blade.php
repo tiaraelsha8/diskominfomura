@@ -3,8 +3,8 @@
 @section('content')
     <style>
         .tentang-title-bg {
-            margin-top: -88px;
-            padding-top: 180px;
+            margin-top: -90px;
+            padding-top: 195px;
             padding-bottom: 120px;
             background: url('{{ asset('image/bg_galeri.jpg') }}') center/cover no-repeat;
             color: #ffffff;
@@ -28,7 +28,7 @@
         }
     </style>
 
-    
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -38,8 +38,10 @@
 
         h1 {
             text-align: center;
-            color: #2c3e50;
+            font-size: 2.4rem;
+            font-weight: 700;
             margin-bottom: 40px;
+            color: #003366;
         }
 
         .grid-container {
@@ -105,7 +107,6 @@
 
         .galeri-container {
             padding: 60px 0;
-            background: #f4f6f9;
         }
 
         .album-grid {
@@ -158,10 +159,9 @@
     </style>
 
     <div class="tentang-title-bg">Berita Murung Raya</div>
-    <h1>Berita Terbaru Murung Raya</h1>
-
     <!-- SECTION 1: 4 berita pertama -->
     <div class="galeri-container container">
+        <h1>Berita Terbaru Murung Raya</h1>
         <div class="album-grid">
             @forelse ($berita as $item)
                 <div class="card">
@@ -184,32 +184,30 @@
 
     <!-- SECTION 2: sisanya -->
     <section class="galeri-container container">
-        {{ $beritas -> links() }}
-            <div class="album-grid">
-                @forelse ($beritas as $item)
-                    <div class="album-card">
-                        <img src="{{ $item->foto ? asset('storage/berita/' . $item->foto) : 'https://via.placeholder.com/600x300?text=No+Image' }}"
-                            alt="Foto {{ $item->judul }}">
+        {{ $beritas->links() }}
+        <div class="album-grid">
+            @forelse ($beritas as $item)
+                <div class="album-card">
+                    <img src="{{ $item->foto ? asset('storage/berita/' . $item->foto) : 'https://via.placeholder.com/600x300?text=No+Image' }}"
+                        alt="Foto {{ $item->judul }}">
 
-                        <div class="album-body">
-                            <div class="album-title">{{ $item->judul }}</div>
-                            <div class="album-desc">
-                                {{ \Illuminate\Support\Str::limit(strip_tags($item->deskripsi), 100, '...') }}
-                            </div>
-                            <div class="album-date">
-                                Oleh: {{ $item->penulis }} | {{ $item->created_at->format('d M Y') }}
-                            </div>
-                            <div style="margin-top: 10px;">
-                                <a href="{{ route('berita.read', $item->id) }}"
-                                    class="btn btn-sm btn-primary">Selengkapnya</a>
-                            </div>
+                    <div class="album-body">
+                        <div class="album-title">{{ $item->judul }}</div>
+                        <div class="album-desc">
+                            {{ \Illuminate\Support\Str::limit(strip_tags($item->deskripsi), 100, '...') }}
+                        </div>
+                        <div class="album-date">
+                            Oleh: {{ $item->penulis }} | {{ $item->created_at->format('d M Y') }}
+                        </div>
+                        <div style="margin-top: 10px;">
+                            <a href="{{ route('berita.read', $item->id) }}" class="btn btn-sm btn-primary">Selengkapnya</a>
                         </div>
                     </div>
-                @empty
-                    <p class="text-center text-danger">Tidak ada berita tersedia</p>
-                @endforelse
-                
-            </div>
-        </section>
-@endsection
+                </div>
+            @empty
+                <p class="text-center text-danger">Tidak ada berita tersedia</p>
+            @endforelse
 
+        </div>
+    </section>
+@endsection
