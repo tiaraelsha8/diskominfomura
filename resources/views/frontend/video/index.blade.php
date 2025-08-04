@@ -40,7 +40,7 @@
                     <p>{{ $value->deskripsi }}</p>
                 </div>
             @empty
-                <p>Tidak ada Data Video untuk ditampilkan</p>
+                <p style="text-align:center; color:red;">Tidak ada Data Video untuk ditampilkan</p>
             @endforelse
         </div>
         <div class="mt-4">

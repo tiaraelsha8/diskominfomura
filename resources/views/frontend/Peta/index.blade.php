@@ -3,8 +3,8 @@
 @section('content')
     <style>
         .tentang-title-bg {
-            margin-top: -88px;
-            padding-top: 180px;
+            margin-top: -90px;
+            padding-top: 195px;
             padding-bottom: 120px;
             background: url('{{ asset('image/bg_galeri.jpg') }}') center/cover no-repeat;
             color: #ffffff;

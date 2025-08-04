@@ -36,7 +36,7 @@
             margin: 0;
         }
 
-        h1 {
+        .galeri-container h1 {
             text-align: center;
             font-size: 2.4rem;
             font-weight: 700;
