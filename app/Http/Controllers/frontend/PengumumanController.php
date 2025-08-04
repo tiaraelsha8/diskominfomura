@@ -33,7 +33,7 @@ class PengumumanController extends Controller
         }
 
         // Ambil dari database lokal
-        $pengumumanDB = Pengumuman::latest()->paginate(1);
+        $pengumumanDB = Pengumuman::latest()->paginate(12);
 
         return view('frontend.pengumuman.index', compact('pengumumanAPI', 'pengumumanDB'));
     }

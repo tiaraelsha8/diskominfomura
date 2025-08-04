@@ -10,7 +10,7 @@ class GalerivideoController extends Controller
 {
     public function index()
     {
-        $videos = Video::latest()->paginate(2);
+        $videos = Video::latest()->paginate(12);
         return view('frontend.video.index', compact('videos'));
     }
 }

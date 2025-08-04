@@ -28,7 +28,7 @@ class DokumenfrontController extends Controller
             });
         }
 
-        $dokumen = $query->paginate(3)->withQueryString(); // penting agar paging bawa query
+        $dokumen = $query->paginate(10)->withQueryString(); // penting agar paging bawa query
 
         return view('frontend.dokumen.index', compact('dokumen', 'allKeterangan'));
     }
