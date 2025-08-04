@@ -188,7 +188,7 @@
         <div class="album-grid">
             @forelse ($beritas as $item)
                 <div class="album-card">
-                    <img src="{{ $item->foto ? asset('storage/berita/' . $item->foto) : 'https://via.placeholder.com/600x300?text=No+Image' }}"
+                    <img src="{{ $item->foto ? asset($item->foto) : 'https://via.placeholder.com/600x300?text=No+Image' }}"
                         alt="Foto {{ $item->judul }}">
 
                     <div class="album-body">

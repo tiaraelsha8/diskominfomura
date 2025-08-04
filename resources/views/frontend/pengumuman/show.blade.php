@@ -41,7 +41,7 @@
 
                 @if ($pengumumanDB->foto)
                     <div class="text-center">
-                        <img src="{{ asset('storage/pengumuman/' . $pengumumanDB->foto) }}" alt="{{ $pengumumanDB->judul }}"
+                        <img src="{{ asset($pengumumanDB->foto) }}" alt="{{ $pengumumanDB->judul }}"
                             class="img-fluid mb-4" style="max-height: 400px; object-fit: cover;">
                     </div>
                 @endif

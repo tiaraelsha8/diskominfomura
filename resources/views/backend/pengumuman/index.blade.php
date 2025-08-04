@@ -52,12 +52,12 @@
                                         <td>{{ $value->deskripsi }}</td>
                                         <td>{{ $value->penulis }}</td>
                                         <td>
-                                            <img src="{{ asset('storage/pengumuman/' . $value->foto) }}"
+                                            <img src="{{ asset($value->foto) }}"
                                                 style="width:300px; height:200px; object-fit:contain;">
                                         </td>
                                         <td>
                                             @if ($value->file)
-                                                <a href="{{ route('pengumuman.download', $value->id) }}"
+                                                <a href="{{ asset($value->file) }}"
                                                     target="_blank">Download</a>
                                             @else
                                                 <em>Belum ada file</em>

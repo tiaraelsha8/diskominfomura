@@ -52,7 +52,7 @@
                           <td>{{$value->deskripsi}}</td>
                           <td>{{$value->penulis}}</td>
                           <td>
-                            <img src="{{ asset('storage/berita/'.$value->foto) }}" style="width:300px; height:200px; object-fit:contain;">
+                            <img src="{{ asset($value->foto) }}" style="width:300px; height:200px; object-fit:contain;">
                           </td>
                           <td>
                             <form action="{{ route('berita.destroy', $value->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">

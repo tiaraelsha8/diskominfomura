@@ -41,7 +41,7 @@
 
                 @if ($beritas->foto)
                     <div class="text-center">
-                        <img src="{{ asset('storage/berita/' . $beritas->foto) }}" alt="{{ $beritas->judul }}"
+                        <img src="{{ asset($beritas->foto) }}" alt="{{ $beritas->judul }}"
                             class="img-fluid mb-4" style="max-height: 400px; object-fit: cover;">
                     </div>
                 @endif

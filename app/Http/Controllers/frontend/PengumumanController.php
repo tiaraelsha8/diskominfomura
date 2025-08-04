@@ -47,17 +47,17 @@ class PengumumanController extends Controller
 
     public function download($id)
     {
-        $pengumumanDB = Pengumuman::findOrFail($id); // pastikan modelnya sesuai
+        $pengumumanDB = Pengumuman::findOrFail($id);
 
-        $filename = $pengumumanDB->file;
+        $filename = $pengumumanDB->getRawOriginal('file');
         $path = storage_path('app/public/pengumuman/dokumen/' . $filename);
 
         if (!file_exists($path)) {
-            abort(404);
+            abort(404, 'File not found.');
         }
 
         return response()->file($path, [
-            'Content-Disposition' => 'inline; filename="' . $pengumumanDB->file . '"',
+            'Content-Disposition' => 'inline; filename="' . $filename . '"',
         ]);
     }
 }
