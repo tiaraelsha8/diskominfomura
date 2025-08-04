@@ -1,4 +1,4 @@
- @php
+@php
      use App\Models\Kontak;
      $kontak = Kontak::first();
      use App\Helpers\VisitorCounter;

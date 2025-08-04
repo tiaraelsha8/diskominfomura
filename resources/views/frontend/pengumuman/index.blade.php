@@ -3,8 +3,8 @@
 @section('content')
     <style>
         .title-bg {
-            margin-top: -88px;
-            padding-top: 180px;
+            margin-top: -90px;
+            padding-top: 195px;
             padding-bottom: 120px;
             background: url('{{ asset('image/bg_galeri.jpg') }}') center/cover no-repeat;
             color: #ffffff;
@@ -15,10 +15,12 @@
             letter-spacing: 1.5px;
         }
 
-        h1 {
+        section.galeri-container h1 {
             text-align: center;
-            color: #2c3e50;
+            font-size: 2.4rem;
+            font-weight: 700;
             margin-bottom: 40px;
+            color: #003366;
         }
 
         .grid-container {
@@ -77,13 +79,6 @@
             text-decoration: none;
         }
 
-        h2 {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-
-
         .galeri-container {
             padding: 60px 0;
         }
@@ -136,71 +131,61 @@
             margin-top: 6px;
         }
     </style>
-    </head>
 
-    <body>
-
-        <div class="title-bg">Galeri Pengumuman</div>
-        <br>
-         <h1>Pengumuman Terbaru Murung Raya</h1>
-        {{-- section pengumuman wordpress --}}
-        <section class="galeri-container container">
-            
-            <div class="album-grid">
-                @forelse ($pengumumanAPI as $item)
-                    <div class="card">
+    <div class="title-bg">Galeri Pengumuman</div>
+    {{-- section pengumuman wordpress --}}
+    <section class="galeri-container container">
+        <h1>Pengumuman Terbaru Murung Raya</h1>
+        <div class="album-grid">
+            @forelse ($pengumumanAPI as $item)
+                <div class="card">
+                    <a href="{{ $item['link'] }}" target="_blank">
+                        <img src="{{ $item['image'] }}" alt="Gambar">
+                    </a>
+                    <div class="card-content">
                         <a href="{{ $item['link'] }}" target="_blank">
-                            <img src="{{ $item['image'] }}" alt="Gambar">
+                            <h3>{{ $item['title'] }}</h3>
                         </a>
-                        <div class="card-content">
-                            <a href="{{ $item['link'] }}" target="_blank">
-                                <h3>{{ $item['title'] }}</h3>
-                            </a>
-                            <p>
-                                {{ \Illuminate\Support\Str::limit(strip_tags($item['excerpt']), 100, '...') }}
-                                <a href="{{ $item['link'] }}" target="_blank">Selengkapnya</a>
-                            </p>
-                            <small>{{ $item['date'] }}</small>
-                        </div>
+                        <p>
+                            {{ \Illuminate\Support\Str::limit(strip_tags($item['excerpt']), 100, '...') }}
+                            <a href="{{ $item['link'] }}" target="_blank">Selengkapnya</a>
+                        </p>
+                        <small>{{ $item['date'] }}</small>
                     </div>
-                @empty
-                    <p style="text-align:center; color:red;">Tidak ada pengumuman tersedia.</p>
-                @endforelse
-            </div>
-        </section>
+                </div>
+            @empty
+                <p style="text-align:center; color:red;">Tidak ada pengumuman tersedia.</p>
+            @endforelse
+        </div>
+    </section>
 
+    {{-- section pengumuman database --}}
+    <section class="galeri-container container">
         <h1>Pengumuman Lainnya</h1>
-        {{-- section pengumuman database --}}
-        <section class="galeri-container container">
-            {{ $pengumumanDB -> links() }}
-            <div class="album-grid">
-                @forelse ($pengumumanDB as $item)
-                    <div class="album-card">
-                        <img src="{{ $item->foto ? asset('storage/pengumuman/' . $item->foto) : 'https://via.placeholder.com/600x300?text=No+Image' }}"
-                            alt="Foto {{ $item->judul }}">
+        {{ $pengumumanDB->links() }}
+        <div class="album-grid">
+            @forelse ($pengumumanDB as $item)
+                <div class="album-card">
+                    <img src="{{ $item->foto ? asset('storage/pengumuman/' . $item->foto) : 'https://via.placeholder.com/600x300?text=No+Image' }}"
+                        alt="Foto {{ $item->judul }}">
 
-                        <div class="album-body">
-                            <div class="album-title">{{ $item->judul }}</div>
-                            <div class="album-desc">
-                                {{ \Illuminate\Support\Str::limit(strip_tags($item->deskripsi), 100, '...') }}
-                            </div>
-                            <div class="album-date">
-                                Oleh: {{ $item->penulis }} | {{ $item->created_at->format('d M Y') }}
-                            </div>
-                            <div style="margin-top: 10px;">
-                                <a href="{{ route('pengumuman.detail', $item->id) }}"
-                                    class="btn btn-sm btn-primary">Selengkapnya</a>
-                            </div>
+                    <div class="album-body">
+                        <div class="album-title">{{ $item->judul }}</div>
+                        <div class="album-desc">
+                            {{ \Illuminate\Support\Str::limit(strip_tags($item->deskripsi), 100, '...') }}
+                        </div>
+                        <div class="album-date">
+                            Oleh: {{ $item->penulis }} | {{ $item->created_at->format('d M Y') }}
+                        </div>
+                        <div style="margin-top: 10px;">
+                            <a href="{{ route('pengumuman.detail', $item->id) }}"
+                                class="btn btn-sm btn-primary">Selengkapnya</a>
                         </div>
                     </div>
-                @empty
-                    <p class="text-center text-danger">Tidak ada pengumuman tersedia</p>
-                @endforelse
-            </div>
-        </section>
-
-
-
-    </body>
-
-    </html>
+                </div>
+            @empty
+                <p class="text-center text-danger">Tidak ada pengumuman tersedia</p>
+            @endforelse
+        </div>
+    </section>
+@endsection

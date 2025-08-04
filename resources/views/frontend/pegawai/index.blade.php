@@ -5,7 +5,6 @@
         <div class="col-12 d-flex flex-column align-items-center">
             <button id="resetChart" class="btn btn-secondary mb-3">Reset</button>
             <div class="card w-100">
-                <div class="card-body px-4 text-center">
                     <div id="chart-org" style="height: 650px;"></div>
 
                     <!-- Modal Detail Pegawai -->
@@ -61,7 +60,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>

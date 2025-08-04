@@ -17,7 +17,10 @@
 
         .galeri-container {
             padding: 60px 0;
+<<<<<<< HEAD
             /* background: #f4f6f9; */
+=======
+>>>>>>> frontend
         }
 
         .album-grid {
@@ -328,11 +331,11 @@
                         <div class="album-date">{{ $album->created_at->format('d M Y') }}</div>
                     </div>
                 </div>
-           @empty
-            <div class="text-center w-100 py-5">
-                <h5>Tidak ada data galeri foto untuk ditampilkan</h5>
-            </div>
-        @endforelse
+            @empty
+                <div class="text-center w-100 py-5">
+                    <h5 style="text-align:center; color:red;">Tidak ada data galeri foto untuk ditampilkan</h5>
+                </div>
+            @endforelse
         </div>
         <div class="mt-4">
             {{ $galeri->links() }}

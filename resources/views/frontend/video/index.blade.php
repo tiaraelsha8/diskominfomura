@@ -3,8 +3,8 @@
 @section('content')
     <style>
         .video-title-bg {
-            margin-top: -88px;
-            padding-top: 180px;
+            margin-top: -90px;
+            padding-top: 195px;
             padding-bottom: 120px;
             background: url('{{ asset('image/bg_galeri.jpg') }}') center/cover no-repeat;
             color: #ffffff;
@@ -17,7 +17,10 @@
 
         .video-container {
             padding: 60px 0;
+<<<<<<< HEAD
             /* background: #f4f6f9; */
+=======
+>>>>>>> frontend
         }
 
         .ratio {
@@ -41,7 +44,7 @@
                     <p>{{ $value->deskripsi }}</p>
                 </div>
             @empty
-                <p>Tidak ada Data Video untuk ditampilkan</p>
+                <p style="text-align:center; color:red;">Tidak ada Data Video untuk ditampilkan</p>
             @endforelse
         </div>
         <div class="mt-4">

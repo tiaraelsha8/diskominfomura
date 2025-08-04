@@ -20,7 +20,7 @@ class HomeController extends Controller
         $profilbidangs = Profilbidang::all();
         $data = $logos ? $logos->foto : null;
         $statistik = VisitorCounter::count();
-        
+
         return view('frontend.home', compact('layanans', 'carousel', 'data', 'profilbidangs', 'statistik'));
     }
 }

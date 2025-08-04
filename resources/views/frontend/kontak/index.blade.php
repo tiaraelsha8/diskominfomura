@@ -14,8 +14,8 @@
         }
 
         .hero-section {
-            margin-top: -88px;
-            padding-top: 180px;
+            margin-top: -90px;
+            padding-top: 195px;
             padding-bottom: 120px;
             display: flex;
             flex-wrap: wrap;

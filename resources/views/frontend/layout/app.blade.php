@@ -16,14 +16,19 @@
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
 
+<<<<<<< HEAD
      <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('image/logo-komdigi.png') }}">
+=======
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="">
+>>>>>>> frontend
 
     <!-- Meta deskripsi untuk SEO. Ini yang ditampilkan Google di hasil pencarian -->
     <meta name="description"
         content="Situs Resmi DISKOMINFO SP Kabupaten Murung Raya. Temukan informasi layanan, berita, pengumuman dan profil DISKOMNFO SP.">
     <meta name="robots" content="index, follow"> <!-- biarkan Google mengindeks -->
-    <link rel="canonical" href="https://diskominfo.murungrayakab.go.id"> <!-- ganti dengan domain --> 
+    <link rel="canonical" href="https://diskominfo.murungrayakab.go.id"> <!-- ganti dengan domain -->
 
     <style>
         body {
@@ -38,7 +43,7 @@
             top: 0;
             padding: 1.5rem 0;
             font-size: 1.1rem;
-            background-color: rgba(8, 7, 90, 0.9);
+            background-color: rgba(8, 7, 90, 0.8);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(10px);
@@ -148,6 +153,7 @@
             pointer-events: none;
             transform-origin: top center;
             transform: scaleY(0.8) translateY(-10px);
+            z-index: 100;
         }
 
         .dropdown-global.show {
@@ -173,7 +179,7 @@
             left: 32px;
             border-width: 0 8px 8px 8px;
             border-style: solid;
-            border-color: transparent transparent rgba(255, 255, 255, 0.95) transparent;
+            border-color: transparent transparent rgba(255, 102, 0, 1) transparent;
             filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.1));
             transition: opacity 0.2s ease;
             transform: translateX(-50%);
@@ -268,7 +274,10 @@
         }
 
         body.dark-mode .navbar {
-            background: rgba(18, 18, 18, 0.95);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(10px);
+            background: rgba(26, 26, 26, 0.85);
         }
 
         body.dark-mode .nav-link {
@@ -302,6 +311,22 @@
 
         body.dark-mode .footer-link:hover {
             color: #ffdd57;
+        }
+
+        body.dark-mode .layanan-fullscreen h2 {
+            color: #00bfff
+        }
+
+        body.dark-mode .bidang-fullwidth h2 {
+            color: #00bfff
+        }
+
+        body.dark-mode .galeri-home-section h2 {
+            color: #00bfff
+        }
+
+        body.dark-mode .galeri-container h1 {
+            color: #00bfff
         }
 
         #backToTopBtn {
