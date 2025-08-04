@@ -483,7 +483,7 @@
             </div>
         @else
             <div class="text-center text-muted mt-4" data-aos="fade-up" data-aos-delay="200">
-                <p style="text-align:center; color:red;">Tidak ada data layanan yang tersedia</p>
+                <p class="no-news-text">Data Layanan belum tersedia</p>
             </div>
         @endif
     </section>
@@ -514,7 +514,7 @@
             @endforeach
         @else
             <div class="text-center text-muted mt-4" data-aos="fade-up" data-aos-delay="200">
-                <p style="text-align:center; color:red;">Belum ada data bidang yang tersedia.</p>
+                <p class="no-news-text">Data Bidang belum tersedia.</p>
             </div>
         @endif
     </section>

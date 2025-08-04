@@ -307,19 +307,28 @@
         }
 
         body.dark-mode .layanan-fullscreen h2 {
-            color: #00bfff
+            color: white;
         }
 
         body.dark-mode .bidang-fullwidth h2 {
-            color: #00bfff
+            color: white;
         }
 
         body.dark-mode .galeri-home-section h2 {
-            color: #00bfff
+            color: white;
         }
 
         body.dark-mode .galeri-container h1 {
-            color: #00bfff
+            color: white;
+        }
+
+        .no-news-text {
+            text-align: center;
+            color: black;
+        }
+
+        body.dark-mode .no-news-text {
+            color: white;
         }
 
         #backToTopBtn {
@@ -531,20 +540,27 @@
         // Tampilkan tombol saat scroll ke bawah
         window.onscroll = function() {
             const btn = document.getElementById("backToTopBtn");
+            const circle = document.getElementById("progressRing");
+
+            // Scroll progress
             const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
             const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-
             const progress = scrollTop / scrollHeight;
-            const circle = document.getElementById("progressRing");
-            const circumference = 2 * Math.PI * 30;
-            const offset = circumference * (1 - progress);
 
+            // Lingkaran progres
+            const radius = 35; // pastikan r="35" di <circle>
+            const circumference = 2 * Math.PI * radius;
+            const offset = circumference * (1 - progress); // Semakin ke bawah, offset berkurang
+
+            // Tampilkan tombol jika scroll lebih dari 300px
             if (btn) {
                 btn.classList.toggle('show', scrollTop > 300);
             }
 
+            // Update stroke dash offset
             if (circle) {
-                circle.style.strokeDashoffset = offset;
+                circle.style.strokeDasharray = `${circumference}`;
+                circle.style.strokeDashoffset = `${offset}`;
             }
         };
 
@@ -555,6 +571,17 @@
                 behavior: 'smooth'
             });
         }
+
+        // Atur default offset saat halaman load
+        window.onload = function() {
+            const circle = document.getElementById("progressRing");
+            const radius = 35;
+            const circumference = 2 * Math.PI * radius;
+            if (circle) {
+                circle.style.strokeDasharray = `${circumference}`;
+                circle.style.strokeDashoffset = `${circumference}`;
+            }
+        };
 
         // Fungsi Dark Mode
         document.addEventListener("DOMContentLoaded", function() {

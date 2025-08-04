@@ -328,9 +328,7 @@
                     </div>
                 </div>
             @empty
-                <div class="text-center w-100 py-5">
-                    <h5 style="text-align:center; color:red;">Tidak ada data galeri foto untuk ditampilkan</h5>
-                </div>
+                    <p class="no-news-text">Tidak ada data galeri foto untuk ditampilkan</p>
             @endforelse
         </div>
         <div class="mt-4">

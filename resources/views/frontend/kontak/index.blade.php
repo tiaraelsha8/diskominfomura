@@ -212,7 +212,7 @@
     </div>
 
     {{-- Kontak Card Section --}}
-     <section class="contact-grid-section">
+    <section class="contact-grid-section">
         <div class="contact-card-grid">
             <div class="contact-card">
                 <div class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="65" height="65"

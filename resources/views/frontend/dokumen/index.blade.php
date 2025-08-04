@@ -48,14 +48,12 @@
                                             <a href="{{ route('download.dokumen', $value->id) }}" target="_blank"
                                                 class="btn btn-sm btn-outline-primary">Download</a>
                                         @else
-                                            <em style="text-align:center; color:red;">Belum ada file</em>
+                                            <em style="text-align:center; color:black;">Belum ada file</em>
                                         @endif
                                     </td>
                                 </tr>
                             @empty
-                                <tr>
-                                    <td colspan="4" class="text-center">Belum ada data dokumen</td>
-                                </tr>
+                                    <p class="no-news-text">Belum ada data dokumen</p>
                             @endforelse
 
                         </tbody>

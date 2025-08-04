@@ -34,7 +34,7 @@
             @isset($tentang)
                 {!! $tentang->tentang !!}
             @else
-                <em style="text-align:center; color:red;">Profil Tentang belum tersedia</em>
+                <em class="no-news-text">Profil Tentang belum tersedia</em>
             @endisset
         </p>
     </section>
