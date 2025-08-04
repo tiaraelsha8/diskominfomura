@@ -16,7 +16,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('templateadmin/dist/css/adminlte.min.css') }}">
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('templateadmin/dist/img/AdminLTELogo.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('image/logo/logo-komdigi.png') }}">
     <!-- Google reCAPTCHA Script -->
     {!! NoCaptcha::renderJs() !!}
 </head>
@@ -29,7 +29,7 @@
                 <div class="login-logo">
                     <a href=""><b>Diskominfo SP</b></a>
                     <div class="text-center mt-2">
-                        <img src="{{ asset('image/logo/logodiskominfo.png') }}" alt="Logo Diskominfo"
+                        <img src="{{ asset('image/logo/logo-komdigi.png') }}" alt="Logo Diskominfo"
                             style="height: 80px;">
                     </div>
                 </div>
