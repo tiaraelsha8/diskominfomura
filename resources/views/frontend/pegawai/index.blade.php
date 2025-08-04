@@ -5,61 +5,61 @@
         <div class="col-12 d-flex flex-column align-items-center">
             <button id="resetChart" class="btn btn-secondary mb-3">Reset</button>
             <div class="card w-100">
-                    <div id="chart-org" style="height: 650px;"></div>
+                <div id="chart-org" style="height: 650px;"></div>
 
-                    <!-- Modal Detail Pegawai -->
-                    <div class="modal fade" id="modalTupoksi" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true"
-                        data-bs-backdrop="static" data-bs-keyboard="false">
-                        <div class="modal-dialog modal-lg modal-dialog-centered" style="max-width: 1000px;">
-                            <div class="modal-content rounded-4 overflow-hidden position-relative">
-                                <div class="modal-body p-0">
-                                    <div class="position-relative" style="min-height: 500px;">
-                                        <!-- Background bagian atas garis -->
-                                        <div
-                                            style="position: absolute; top: 0; left: 0; width: 100%; height: 35%; background-color: #06385e; z-index: 0;">
-                                        </div>
-
-                                        <!-- Garis Pembagi Horizontal -->
-                                        <div
-                                            style="position: absolute; top: 35%; left: 0; width: 100%; height: 1px; background-color: #ccc; z-index: 0;">
-                                        </div>
-
-                                        <!-- Foto (setengah atas - setengah bawah) -->
-                                        <div
-                                            style="position: absolute; top:47%; left: 47px; transform: translateY(-50%); z-index: 1; text-align: center;">
-                                            <img id="modalImg" src="" width="280" height="280"
-                                                class="border rounded" alt="Foto">
-
-                                            <!-- Tombol LHKPN di bawah foto -->
-                                            <div class="mt-4">
-                                                <a class="btn btn-primary" href="#" id="modalLhkpnLink"
-                                                    target="_blank">LHKPN</a>
-                                            </div>
-                                        </div>
-                                        <!-- Teks Nama, Jabatan, Bidang (kanan atas) -->
-                                        <div class="position-absolute d-flex flex-column align-items-start"
-                                            style="top: 15%; left: 350px; z-index: 1;">
-                                            <h4 class="mb-2 fw-semibold text-white" id="modalName">-</h4>
-                                            <p class="mb-0 fw-medium text-white" id="modalTitle">-</p>
-                                            <p class="mb-0 fw-medium text-white" id="modalBidang">-</p>
-                                        </div>
-
-                                        <!-- Tupoksi scrollable -->
-                                        <div class="position-absolute text-start"
-                                            style="top: 39%; left: 350px; z-index: 1; width: calc(100% - 370px); max-height: 270px; overflow-y: auto; padding-right: 10px;">
-                                            <p id="modalDesc" style="text-align: justify;">-</p>
-                                        </div>
-
-                                        <!-- Tombol Close -->
-                                        <button type="button" class="btn-close position-absolute top-0 end-0 m-3 z-3"
-                                            aria-label="Close" id="forceCloseBtn">
-                                        </button>
-
+                <!-- Modal Detail Pegawai -->
+                <div class="modal fade" id="modalTupoksi" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true"
+                    data-bs-backdrop="static" data-bs-keyboard="false">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" style="max-width: 1000px;">
+                        <div class="modal-content rounded-4 overflow-hidden position-relative">
+                            <div class="modal-body p-0">
+                                <div class="position-relative" style="min-height: 500px;">
+                                    <!-- Background bagian atas garis -->
+                                    <div
+                                        style="position: absolute; top: 0; left: 0; width: 100%; height: 35%; background-color: #06385e; z-index: 0;">
                                     </div>
+
+                                    <!-- Garis Pembagi Horizontal -->
+                                    <div
+                                        style="position: absolute; top: 35%; left: 0; width: 100%; height: 1px; background-color: #ccc; z-index: 0;">
+                                    </div>
+
+                                    <!-- Foto (setengah atas - setengah bawah) -->
+                                    <div
+                                        style="position: absolute; top:47%; left: 47px; transform: translateY(-50%); z-index: 1; text-align: center;">
+                                        <img id="modalImg" src="" width="280" height="280"
+                                            class="border rounded" alt="Foto">
+
+                                        <!-- Tombol LHKPN di bawah foto -->
+                                        <div class="mt-4">
+                                            <a class="btn btn-primary" href="#" id="modalLhkpnLink"
+                                                target="_blank">LHKPN</a>
+                                        </div>
+                                    </div>
+                                    <!-- Teks Nama, Jabatan, Bidang (kanan atas) -->
+                                    <div class="position-absolute d-flex flex-column align-items-start"
+                                        style="top: 15%; left: 350px; z-index: 1;">
+                                        <h4 class="mb-2 fw-semibold text-white" id="modalName">-</h4>
+                                        <p class="mb-0 fw-medium text-white" id="modalTitle">-</p>
+                                        <p class="mb-0 fw-medium text-white" id="modalBidang">-</p>
+                                    </div>
+
+                                    <!-- Tupoksi scrollable -->
+                                    <div class="position-absolute text-start"
+                                        style="top: 39%; left: 350px; z-index: 1; width: calc(100% - 370px); max-height: 270px; overflow-y: auto; padding-right: 10px;">
+                                        <p id="modalDesc" style="text-align: justify;">-</p>
+                                    </div>
+
+                                    <!-- Tombol Close -->
+                                    <button type="button" class="btn-close position-absolute top-0 end-0 m-3 z-3"
+                                        aria-label="Close" id="forceCloseBtn">
+                                    </button>
+
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
         </div>
     </div>
