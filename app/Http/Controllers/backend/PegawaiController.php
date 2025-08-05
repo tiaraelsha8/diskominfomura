@@ -72,26 +72,34 @@ class PegawaiController extends Controller
             ],
             'bidang_id' => 'required|exists:bidangs,id',
             'tupoksi' => 'required',
-            'foto' => 'required|image|mimes:jpg,jpeg,png|max:2048',
-            'file' => 'required|mimes:pdf|max:5120', //5 mb
+            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'file' => 'nullable|mimes:pdf|max:5120', //5 mb
         ]);
 
-        //upload image
         $image = $request->file('foto');
-        $image->storeAs('pegawai', $image->hashName());
-
-        //upload file
         $file = $request->file('file');
-        $file->storeAs('pegawai/dokumen', $file->hashName());
 
-        //create
+        // simpan nama file jika ada
+        $fotoName = null;
+        $fileName = null;
+
+        if ($image) {
+            $image->storeAs('pegawai', $image->hashName());
+            $fotoName = $image->hashName();
+        }
+
+        if ($file) {
+            $file->storeAs('pegawai/dokumen', $file->hashName());
+            $fileName = $file->hashName();
+        }
+
         Pegawai::create([
             'nama' => $request->nama,
             'jabatan_id' => $request->jabatan_id,
             'bidang_id' => $request->bidang_id,
             'tupoksi' => $request->tupoksi,
-            'foto' => $image->hashName(),
-            'file' => $file->hashName(),
+            'foto' => $fotoName,
+            'file' => $fileName,
         ]);
 
         return redirect()->route('pegawai.index')->with('success', 'Pegawai berhasil ditambahkan.');
@@ -175,7 +183,6 @@ class PegawaiController extends Controller
             //delete old image
             Storage::delete('pegawai/' . $pegawais->foto);
 
-
             //upload new image
             $image = $request->file('foto');
             $image->storeAs('pegawai', $image->hashName());
@@ -188,11 +195,9 @@ class PegawaiController extends Controller
                 'bidang_id' => $request->bidang_id,
                 'foto' => $image->hashName(),
             ]);
-        } 
-        elseif ($request->hasFile('file')) {
+        } elseif ($request->hasFile('file')) {
             //delete old image
             Storage::delete('pegawai/dokumen/' . $pegawais->file);
-
 
             //upload file
             $file = $request->file('file');
@@ -206,8 +211,7 @@ class PegawaiController extends Controller
                 'bidang_id' => $request->bidang_id,
                 'file' => $file->hashName(),
             ]);
-        }
-        else {
+        } else {
             //update without image
             $pegawais->update([
                 'nama' => $request->nama,

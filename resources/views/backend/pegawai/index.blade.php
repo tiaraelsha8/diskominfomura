@@ -56,8 +56,13 @@
                                         <td>{{ $value->bidang->nama_bidang }}</td>
                                         <td>{{ $value->tupoksi }}</td>
                                         <td>
-                                            <img src="{{ asset('storage/pegawai/' . $value->foto) }}"
+                                            @if ($value->foto)
+                                                 <img src="{{ asset('storage/pegawai/' . $value->foto) }}"
                                                 style="width:300px; height:200px; object-fit:contain;">
+                                            @else
+                                                <em>Belum ada foto</em>
+                                            @endif
+                                           
                                         </td>
                                         <td>
                                             @if ($value->file)
