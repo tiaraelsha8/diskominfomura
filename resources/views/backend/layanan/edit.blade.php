@@ -21,14 +21,6 @@
             @enderror
 
             <div class="form-group">
-                <label for="deskripsi">Deskripsi</label>
-                <textarea name="deskripsi" class="form-control" rows="4">{{$layanans->deskripsi}}</textarea>
-            @error('deskripsi')
-                <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-            </div>
-
-            <div class="form-group">
                 <label>Link Layanan</label>
                 <input type="text" class="form-control" name="link" value="{{$layanans->link}}">
             </div>

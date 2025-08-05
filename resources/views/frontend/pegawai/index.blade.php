@@ -153,9 +153,23 @@
                 $('#modalBidang').text(clickedNode.bidang || '-');
                 $('#modalDesc').text(clickedNode.desc || '-');
                 $('#modalImg').attr('src', clickedNode.img || '');
-                $('#modalLhkpnLink')
-                    .attr('href', clickedNode.file_link || '#')
-                    .prop('disabled', !clickedNode.file_link);
+                  if (clickedNode.file_link) {
+                    $('#modalLhkpnLink')
+                        .attr('href', clickedNode.file_link)
+                        .text('LHKPN')
+                        .show()
+                        .removeClass('btn-secondary')
+                        .addClass('btn-primary')
+                        .css('pointer-events', 'auto');
+                } else {
+                    $('#modalLhkpnLink')
+                        .attr('href', '#')
+                        .text('Belum ada LHKPN')
+                        .show()
+                        .removeClass('btn-primary')
+                        .addClass('btn-secondary')
+                        .css('pointer-events', 'none');
+                };
 
                 $('#modalTupoksi').modal('show');
             });
