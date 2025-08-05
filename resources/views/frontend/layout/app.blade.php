@@ -190,6 +190,9 @@
             padding: 0.5rem 1rem;
             border-radius: 6px;
             transition: border-color 0.3s ease, color 0.3s ease, background-color 0.3s ease;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .dropdown-global a:hover {
