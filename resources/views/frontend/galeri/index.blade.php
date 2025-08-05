@@ -3,7 +3,7 @@
 @section('content')
     <style>
         .title-bg {
-            margin-top: -90px;
+            margin-top: -95px;
             padding-top: 195px;
             padding-bottom: 120px;
             background: url('{{ asset('image/bg_galeri.jpg') }}') center/cover no-repeat;
@@ -332,9 +332,7 @@
                     </div>
                 </div>
             @empty
-                <div class="text-center w-100 py-5">
-                    <h5 style="text-align:center; color:red;">Tidak ada data galeri foto untuk ditampilkan</h5>
-                </div>
+                    <p class="no-news-text">Tidak ada data galeri foto untuk ditampilkan</p>
             @endforelse
         </div>
         <div class="mt-4">

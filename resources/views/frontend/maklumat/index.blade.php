@@ -3,7 +3,7 @@
 @section('content')
     <style>
         .tentang-title-bg {
-            margin-top: -90px;
+            margin-top: -95px;
             padding-top: 195px;
             padding-bottom: 120px;
             background: url('{{ asset('image/bg_galeri.jpg') }}') center/cover no-repeat;
@@ -34,7 +34,7 @@
             @isset($maklumat)
                 {!! $maklumat->maklumat !!}
             @else
-                <em style="text-align:center; color:red;">Maklumat layanan belum tersedia</em>
+                <em class="no-news-text">Maklumat Layanan belum tersedia</em>
             @endisset
         </p>
     </section>

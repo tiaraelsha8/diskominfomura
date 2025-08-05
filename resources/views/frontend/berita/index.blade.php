@@ -3,7 +3,7 @@
 @section('content')
     <style>
         .tentang-title-bg {
-            margin-top: -90px;
+            margin-top: -95px;
             padding-top: 195px;
             padding-bottom: 120px;
             background: url('{{ asset('image/bg_galeri.jpg') }}') center/cover no-repeat;
@@ -177,7 +177,7 @@
                     </div>
                 </div>
             @empty
-                <p style="text-align:center; color:red;">Tidak ada berita tersedia.</p>
+                <p class="no-news-text">Berita belum tersedia.</p>
             @endforelse
         </div>
     </div>
@@ -205,7 +205,7 @@
                     </div>
                 </div>
             @empty
-                <p class="text-center text-danger">Tidak ada berita tersedia</p>
+                <p class="text-center text-danger">Berita belum tersedia</p>
             @endforelse
 
         </div>
