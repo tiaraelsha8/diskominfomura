@@ -60,7 +60,7 @@
 
         .layanan-fullscreen {
             min-height: 80vh;
-            padding: 60px 5vw 100px;
+            margin-top: 100px;
             width: 100%;
             text-align: center;
         }
@@ -181,7 +181,7 @@
 
         .bidang-fullwidth {
             min-height: 80vh;
-            padding: 60px 5vw 100px;
+            margin-top: 70px;
             width: 100%;
             text-align: center;
         }
@@ -210,16 +210,20 @@
         }
 
         .bidang-image {
-            flex: 1.5;
-            min-width: 420px;
+            flex: 1.6;
+            height: 480px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .bidang-image img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+            display: block;
             border-radius: 12px;
-            transform: scale(1.1);
+            transform: scale(1.10);
             transition: transform 0.5s ease;
         }
 
@@ -249,75 +253,64 @@
             line-height: 1.8;
             color: #333;
             margin-bottom: 0.3em;
-        }
-
-        .bidang-content ol li {
-            font-size: 1.03rem;
-            line-height: 1.8;
-            color: #333;
-            margin-bottom: 0.3em;
-        }
-
-        .bidang-content ol {
-            margin-top: 0;
-            padding-left: 20px;
+            text-align: justify;
         }
 
         /*.official-portal-section-alt {
-                                                                            width: 100%;
-                                                                            background: linear-gradient(100deg, #1064ca, #fdfcfb);
-                                                                            padding: 20px 5vw;
-                                                                            position: relative;
-                                                                        }
+                                                                                                    width: 100%;
+                                                                                                    background: linear-gradient(100deg, #1064ca, #fdfcfb);
+                                                                                                    padding: 20px 5vw;
+                                                                                                    position: relative;
+                                                                                                }
 
-                                                                        .logo-img {
-                                                                            height: 160px;
-                                                                            object-fit: contain;
-                                                                            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
-                                                                        }
+                                                                                                .logo-img {
+                                                                                                    height: 160px;
+                                                                                                    object-fit: contain;
+                                                                                                    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+                                                                                                }
 
-                                                                        .official-heading h2 {
-                                                                            font-size: 2.6rem;
-                                                                            color: #003366;
-                                                                            font-weight: 700;
-                                                                            margin: 0;
-                                                                            line-height: 1.4;
-                                                                            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-                                                                        }
+                                                                                                .official-heading h2 {
+                                                                                                    font-size: 2.6rem;
+                                                                                                    color: #003366;
+                                                                                                    font-weight: 700;
+                                                                                                    margin: 0;
+                                                                                                    line-height: 1.4;
+                                                                                                    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+                                                                                                }
 
-                                                                        .official-btn-alt {
-                                                                            display: inline-flex;
-                                                                            align-items: center;
-                                                                            gap: 10px;
-                                                                            padding: 12px 28px;
-                                                                            font-size: 1rem;
-                                                                            color: #fff;
-                                                                            background: linear-gradient(135deg, #003366, #0056a3);
-                                                                            border-radius: 10px;
-                                                                            text-decoration: none;
-                                                                            font-weight: 600;
-                                                                            box-shadow: 0 6px 14px rgba(0, 51, 102, 0.3);
-                                                                            transition: all 0.3s ease;
-                                                                        }
+                                                                                                .official-btn-alt {
+                                                                                                    display: inline-flex;
+                                                                                                    align-items: center;
+                                                                                                    gap: 10px;
+                                                                                                    padding: 12px 28px;
+                                                                                                    font-size: 1rem;
+                                                                                                    color: #fff;
+                                                                                                    background: linear-gradient(135deg, #003366, #0056a3);
+                                                                                                    border-radius: 10px;
+                                                                                                    text-decoration: none;
+                                                                                                    font-weight: 600;
+                                                                                                    box-shadow: 0 6px 14px rgba(0, 51, 102, 0.3);
+                                                                                                    transition: all 0.3s ease;
+                                                                                                }
 
-                                                                        .official-btn-alt:hover {
-                                                                            background: linear-gradient(135deg, #002244, #004080);
-                                                                            box-shadow: 0 8px 18px rgba(0, 51, 102, 0.4);
-                                                                        }*/
+                                                                                                .official-btn-alt:hover {
+                                                                                                    background: linear-gradient(135deg, #002244, #004080);
+                                                                                                    box-shadow: 0 8px 18px rgba(0, 51, 102, 0.4);
+                                                                                                }*/
 
         .galeri-home-section {
             min-height: 80vh;
-            padding: 60px 5vw 100px;
+            margin-top: 100px;
             width: 100%;
             text-align: center;
         }
 
         .galeri-home-section h2 {
-            font-size: 2.8rem;
-            font-weight: 800;
+            font-size: 2.4rem;
+            font-weight: 700;
             margin-bottom: 60px;
             color: #003366;
-            letter-spacing: 1px;
+            text-align: center;
         }
 
         .galeri-home-grid {
@@ -442,7 +435,6 @@
             height: 100%;
             object-fit: cover;
             z-index: -1;
-            /* jika jadi background */
         }
     </style>
 
@@ -507,8 +499,7 @@
                         <p>{!! $bidang->deskripsi !!}</p>
                     </div>
                     <div class="bidang-image">
-                        <img src="{{ asset('storage/profilbidang/' . $bidang->foto) }}" alt="{{ $bidang->nama_bidang }}"
-                            style="height:300px; width:auto; object-fit:contain; display:block; margin:0 auto;">
+                        <img src="{{ asset('storage/profilbidang/' . $bidang->foto) }}" alt="{{ $bidang->nama_bidang }}">
                     </div>
                 </div>
             @endforeach
@@ -519,26 +510,26 @@
         @endif
     </section>
     <!-- <section class="official-portal-section-alt">
-                                                                        <div class="row align-items-center justify-content-center" style="padding: 0 5vw;">
-                                                                            <div class="col-lg-3 col-md-3 text-center">
-                                                                                <img src="{{ asset('images/logo-murung-raya.png') }}" alt="Logo Murung Raya" class="logo-img">
-                                                                            </div>
-                                                                            <div class="col-lg-6 col-md-6 text-center">
-                                                                                <div class="official-heading">
-                                                                                    <h2><strong>Pemerintah Kabupaten Murung Raya</strong></h2>
-                                                                                </div>
-                                                                            </div>
-                                                                            <div class="col-lg-3 col-md-3 text-center">
-                                                                                <a href="https://murungrayakab.go.id" target="_blank" class="official-btn-alt">
-                                                                                    Kunjungi
-                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="34" height="16" viewBox="0 0 34.53 16">
-                                                                                        <rect class="line" y="7.6" width="34" height="0.4" fill="currentColor" />
-                                                                                        <path class="arrow" d="M25.83.7l.7-.7,8,8-.7.71Zm0,14.6,8-8,.71.71-8,8Z" fill="currentColor" />
-                                                                                    </svg>
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
-                                                                    </section> -->
+                                                                                                <div class="row align-items-center justify-content-center" style="padding: 0 5vw;">
+                                                                                                    <div class="col-lg-3 col-md-3 text-center">
+                                                                                                        <img src="{{ asset('images/logo-murung-raya.png') }}" alt="Logo Murung Raya" class="logo-img">
+                                                                                                    </div>
+                                                                                                    <div class="col-lg-6 col-md-6 text-center">
+                                                                                                        <div class="official-heading">
+                                                                                                            <h2><strong>Pemerintah Kabupaten Murung Raya</strong></h2>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                    <div class="col-lg-3 col-md-3 text-center">
+                                                                                                        <a href="https://murungrayakab.go.id" target="_blank" class="official-btn-alt">
+                                                                                                            Kunjungi
+                                                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="16" viewBox="0 0 34.53 16">
+                                                                                                                <rect class="line" y="7.6" width="34" height="0.4" fill="currentColor" />
+                                                                                                                <path class="arrow" d="M25.83.7l.7-.7,8,8-.7.71Zm0,14.6,8-8,.71.71-8,8Z" fill="currentColor" />
+                                                                                                            </svg>
+                                                                                                        </a>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </section> -->
     <section class="galeri-home-section">
         <h2 data-aos="fade-up">Galeri</h2>
         <div class="galeri-home-grid">

@@ -335,6 +335,14 @@
             color: white;
         }
 
+        body.dark-mode .bidang-content h3 {
+            color: white;
+        }
+
+        body.dark-mode .bidang-content p {
+            color: white;
+        }
+
         #backToTopBtn {
             position: fixed;
             bottom: 24px;
