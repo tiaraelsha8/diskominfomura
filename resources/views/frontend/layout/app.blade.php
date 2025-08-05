@@ -16,13 +16,8 @@
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
 
-<<<<<<< HEAD
      <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('image/logo-komdigi.png') }}">
-=======
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="">
->>>>>>> frontend
 
     <!-- Meta deskripsi untuk SEO. Ini yang ditampilkan Google di hasil pencarian -->
     <meta name="description"
