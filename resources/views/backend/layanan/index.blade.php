@@ -38,7 +38,6 @@
                   <tr>
                     <th>No</th>
                     <th>Nama Layanan</th>
-                    <th>Deskripsi</th>
                     <th>Link</th>
                     <th>Logo</th>
                     <th>Background</th>
@@ -50,7 +49,6 @@
                         <tr>
                           <td>{{$key + 1}}</td>
                           <td>{{$value->nama_layanan}}</td>
-                          <td>{{$value->deskripsi}}</td>
                           <td><a href="{{ $value->link }}" target="_blank">{{ $value->link }}</a></td>
                           <td>
                             <img src="{{ asset('storage/layanan/logo/'.$value->logo) }}" style="width:300px; height:200px; object-fit:contain;">
