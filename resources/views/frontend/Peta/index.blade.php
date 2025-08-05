@@ -2,8 +2,30 @@
 
 @section('content')
     <style>
+        #map {
+            height: 500px;
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .leaflet-container {
+            z-index: 1;
+        }
+
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 15px;
+            }
+
+            #map {
+                height: 400px;
+            }
+        }
+
         .tentang-title-bg {
-            margin-top: -90px;
+            margin-top: -95px;
             padding-top: 195px;
             padding-bottom: 120px;
             background: url('{{ asset('image/bg_galeri.jpg') }}') center/cover no-repeat;
@@ -30,58 +52,10 @@
 
     <div class="tentang-title-bg">Peta Lokasi Internet Publik - Kabupaten Murung Raya</div>
 
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
-
-    <!-- CSS Custom -->
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f9f9f9;
-        }
-
-        .header {
-            background-color: #2c3e50;
-            color: white;
-            padding: 15px 30px;
-            text-align: center;
-        }
-
-        .container {
-            padding: 20px 30px;
-        }
-
-        #map {
-            height: 500px;
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .footer {
-            text-align: center;
-            font-size: 13px;
-            color: #888;
-            margin-top: 40px;
-            padding-bottom: 20px;
-        }
-
-        @media (max-width: 600px) {
-            .container {
-                padding: 15px;
-            }
-
-            #map {
-                height: 400px;
-            }
-        }
-    </style>
 
 
 
-    <div class="container">
+    <div class="container mt-5 mb-5">
         <div id="map"></div>
     </div>
 

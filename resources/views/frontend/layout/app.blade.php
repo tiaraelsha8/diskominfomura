@@ -13,6 +13,8 @@
     <!-- AOS CSS -->
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"  />
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="">
@@ -331,6 +333,14 @@
         }
 
         body.dark-mode .no-news-text {
+            color: white;
+        }
+
+        body.dark-mode .bidang-content h3 {
+            color: white;
+        }
+
+        body.dark-mode .bidang-content p {
             color: white;
         }
 
