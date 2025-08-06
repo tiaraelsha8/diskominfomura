@@ -51,7 +51,7 @@
                                     </div>
 
                                     <!-- Tombol Close -->
-                                    <button type="button" class="btn-close position-absolute top-0 end-0 m-3 z-3"
+                                    <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3 z-3"
                                         aria-label="Close" id="forceCloseBtn">
                                     </button>
 

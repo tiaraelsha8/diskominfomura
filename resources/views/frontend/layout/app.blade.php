@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
-     <!-- Favicon -->
+    <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('image/logo-komdigi.png') }}">
 
     <!-- Meta deskripsi untuk SEO. Ini yang ditampilkan Google di hasil pencarian -->
@@ -514,6 +514,11 @@
 
         .youtube-icon:hover i {
             color: #ff0000;
+        }
+
+        .btn-close-white {
+            filter: brightness(0) invert(1);
+            opacity: 1 !important;
         }
     </style>
     @stack('styles')
