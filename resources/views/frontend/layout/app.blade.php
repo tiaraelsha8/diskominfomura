@@ -344,6 +344,10 @@
             color: white;
         }
 
+        body.dark-mode .contact-grid-section {
+            --gray-bg: #121212;
+        }
+
         #backToTopBtn {
             position: fixed;
             bottom: 24px;
@@ -601,23 +605,27 @@
             const toggle = document.getElementById("darkModeToggle");
             const icon = document.getElementById("darkIcon");
 
-            // Cek preferensi sebelumnya
-            if (localStorage.getItem("theme") === "dark") {
+            // --- Detect reload/tab open & reset sessionStorage ---
+            if (performance.navigation.type === 1 || performance.getEntriesByType("navigation")[0].type ===
+                "reload") {
+                sessionStorage.removeItem("theme");
+            }
+
+            // --- Apply dark mode if still in sessionStorage ---
+            if (sessionStorage.getItem("theme") === "dark") {
                 document.body.classList.add("dark-mode");
                 toggle.classList.add("active");
                 icon.classList.replace("bi-moon-stars-fill", "bi-sun-fill");
             }
 
+            // --- Toggle button logic ---
             toggle.addEventListener("click", () => {
                 const isDark = document.body.classList.toggle("dark-mode");
                 toggle.classList.toggle("active", isDark);
-
-                // Ganti ikon
                 icon.classList.toggle("bi-moon-stars-fill", !isDark);
                 icon.classList.toggle("bi-sun-fill", isDark);
 
-                // Simpan preferensi
-                localStorage.setItem("theme", isDark ? "dark" : "light");
+                sessionStorage.setItem("theme", isDark ? "dark" : "light");
             });
         });
 
