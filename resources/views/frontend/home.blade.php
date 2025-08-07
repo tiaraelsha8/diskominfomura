@@ -147,20 +147,15 @@
             transform: translateX(-50%) scale(1.03);
         }
 
-        .layanan-overlay svg {
-            width: 45px;
-            height: 45px;
-            fill: #ffffff;
-            background-color: #00509e;
-            padding: 10px;
-            border-radius: 50%;
-            box-shadow: 0 4px 10px rgba(0, 80, 158, 0.3);
-            margin-bottom: 15px;
-            transition: transform 0.4s ease;
+        .layanan-overlay img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            transition: transform 1s ease;
         }
 
-        .layanan-box:hover .layanan-overlay svg {
-            transform: rotate(-10deg) scale(1.05);
+        .layanan-box:hover .layanan-overlay img {
+            transform: rotate(-15deg) scale(1.05);
         }
 
         .layanan-overlay h5 {
@@ -257,46 +252,46 @@
         }
 
         /*.official-portal-section-alt {
-                                                                                                    width: 100%;
-                                                                                                    background: linear-gradient(100deg, #1064ca, #fdfcfb);
-                                                                                                    padding: 20px 5vw;
-                                                                                                    position: relative;
-                                                                                                }
+                                                                                                            width: 100%;
+                                                                                                            background: linear-gradient(100deg, #1064ca, #fdfcfb);
+                                                                                                            padding: 20px 5vw;
+                                                                                                            position: relative;
+                                                                                                        }
 
-                                                                                                .logo-img {
-                                                                                                    height: 160px;
-                                                                                                    object-fit: contain;
-                                                                                                    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
-                                                                                                }
+                                                                                                        .logo-img {
+                                                                                                            height: 160px;
+                                                                                                            object-fit: contain;
+                                                                                                            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+                                                                                                        }
 
-                                                                                                .official-heading h2 {
-                                                                                                    font-size: 2.6rem;
-                                                                                                    color: #003366;
-                                                                                                    font-weight: 700;
-                                                                                                    margin: 0;
-                                                                                                    line-height: 1.4;
-                                                                                                    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-                                                                                                }
+                                                                                                        .official-heading h2 {
+                                                                                                            font-size: 2.6rem;
+                                                                                                            color: #003366;
+                                                                                                            font-weight: 700;
+                                                                                                            margin: 0;
+                                                                                                            line-height: 1.4;
+                                                                                                            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+                                                                                                        }
 
-                                                                                                .official-btn-alt {
-                                                                                                    display: inline-flex;
-                                                                                                    align-items: center;
-                                                                                                    gap: 10px;
-                                                                                                    padding: 12px 28px;
-                                                                                                    font-size: 1rem;
-                                                                                                    color: #fff;
-                                                                                                    background: linear-gradient(135deg, #003366, #0056a3);
-                                                                                                    border-radius: 10px;
-                                                                                                    text-decoration: none;
-                                                                                                    font-weight: 600;
-                                                                                                    box-shadow: 0 6px 14px rgba(0, 51, 102, 0.3);
-                                                                                                    transition: all 0.3s ease;
-                                                                                                }
+                                                                                                        .official-btn-alt {
+                                                                                                            display: inline-flex;
+                                                                                                            align-items: center;
+                                                                                                            gap: 10px;
+                                                                                                            padding: 12px 28px;
+                                                                                                            font-size: 1rem;
+                                                                                                            color: #fff;
+                                                                                                            background: linear-gradient(135deg, #003366, #0056a3);
+                                                                                                            border-radius: 10px;
+                                                                                                            text-decoration: none;
+                                                                                                            font-weight: 600;
+                                                                                                            box-shadow: 0 6px 14px rgba(0, 51, 102, 0.3);
+                                                                                                            transition: all 0.3s ease;
+                                                                                                        }
 
-                                                                                                .official-btn-alt:hover {
-                                                                                                    background: linear-gradient(135deg, #002244, #004080);
-                                                                                                    box-shadow: 0 8px 18px rgba(0, 51, 102, 0.4);
-                                                                                                }*/
+                                                                                                        .official-btn-alt:hover {
+                                                                                                            background: linear-gradient(135deg, #002244, #004080);
+                                                                                                            box-shadow: 0 8px 18px rgba(0, 51, 102, 0.4);
+                                                                                                        }*/
 
         .galeri-home-section {
             min-height: 80vh;
@@ -467,7 +462,7 @@
                         </div>
                         <div class="layanan-overlay">
                             <img src="{{ asset('storage/layanan/logo/' . $item->logo) }}" alt="{{ $item->nama_layanan }}"
-                                class="img-fluid rounded-circle mb-2" style="width: 60px; height: 60px; object-fit: cover;">
+                                class="img-fluid rounded-circle mb-2">
                             <h5>{{ $item->nama_layanan }}</h5>
                         </div>
                     </a>
@@ -510,26 +505,26 @@
         @endif
     </section>
     <!-- <section class="official-portal-section-alt">
-                                                                                                <div class="row align-items-center justify-content-center" style="padding: 0 5vw;">
-                                                                                                    <div class="col-lg-3 col-md-3 text-center">
-                                                                                                        <img src="{{ asset('images/logo-murung-raya.png') }}" alt="Logo Murung Raya" class="logo-img">
-                                                                                                    </div>
-                                                                                                    <div class="col-lg-6 col-md-6 text-center">
-                                                                                                        <div class="official-heading">
-                                                                                                            <h2><strong>Pemerintah Kabupaten Murung Raya</strong></h2>
+                                                                                                        <div class="row align-items-center justify-content-center" style="padding: 0 5vw;">
+                                                                                                            <div class="col-lg-3 col-md-3 text-center">
+                                                                                                                <img src="{{ asset('images/logo-murung-raya.png') }}" alt="Logo Murung Raya" class="logo-img">
+                                                                                                            </div>
+                                                                                                            <div class="col-lg-6 col-md-6 text-center">
+                                                                                                                <div class="official-heading">
+                                                                                                                    <h2><strong>Pemerintah Kabupaten Murung Raya</strong></h2>
+                                                                                                                </div>
+                                                                                                            </div>
+                                                                                                            <div class="col-lg-3 col-md-3 text-center">
+                                                                                                                <a href="https://murungrayakab.go.id" target="_blank" class="official-btn-alt">
+                                                                                                                    Kunjungi
+                                                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="34" height="16" viewBox="0 0 34.53 16">
+                                                                                                                        <rect class="line" y="7.6" width="34" height="0.4" fill="currentColor" />
+                                                                                                                        <path class="arrow" d="M25.83.7l.7-.7,8,8-.7.71Zm0,14.6,8-8,.71.71-8,8Z" fill="currentColor" />
+                                                                                                                    </svg>
+                                                                                                                </a>
+                                                                                                            </div>
                                                                                                         </div>
-                                                                                                    </div>
-                                                                                                    <div class="col-lg-3 col-md-3 text-center">
-                                                                                                        <a href="https://murungrayakab.go.id" target="_blank" class="official-btn-alt">
-                                                                                                            Kunjungi
-                                                                                                            <svg xmlns="http://www.w3.org/2000/svg" width="34" height="16" viewBox="0 0 34.53 16">
-                                                                                                                <rect class="line" y="7.6" width="34" height="0.4" fill="currentColor" />
-                                                                                                                <path class="arrow" d="M25.83.7l.7-.7,8,8-.7.71Zm0,14.6,8-8,.71.71-8,8Z" fill="currentColor" />
-                                                                                                            </svg>
-                                                                                                        </a>
-                                                                                                    </div>
-                                                                                                </div>
-                                                                                            </section> -->
+                                                                                                    </section> -->
     <section class="galeri-home-section">
         <h2 data-aos="fade-up">Galeri</h2>
         <div class="galeri-home-grid">
