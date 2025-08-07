@@ -15,7 +15,7 @@
                         <label>Lokasi</label>
                         <input type="text" class="form-control" name="lokasi" placeholder="Isikan Lokasi">
                     </div>
-                    @error('judul')
+                    @error('lokasi')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
@@ -31,7 +31,7 @@
                         <label>Telepon</label>
                         <input type="text" class="form-control" name="telepon" placeholder="Isikan Telepon">
                     </div>
-                    @error('judul')
+                    @error('telepon')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
@@ -39,7 +39,7 @@
                         <label>Email</label>
                         <input type="text" class="form-control" name="email" placeholder="Isikan Email">
                     </div>
-                    @error('judul')
+                    @error('email')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
