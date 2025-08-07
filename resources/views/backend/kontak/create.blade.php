@@ -15,15 +15,16 @@
                         <label>Lokasi</label>
                         <input type="text" class="form-control" name="lokasi" placeholder="Isikan Lokasi">
                     </div>
-                    @error('judul')
+                    @error('lokasi')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
                     <div class="form-group">
                         <label>Link Google Maps</label>
-                        <input type="url" name="linkmaps" class="form-control" placeholder="https://maps.app.goo.gl/...">
+                        <input type="url" name="linkmaps" class="form-control"
+                            placeholder="https://maps.app.goo.gl/...">
                     </div>
-                     @error('linkmaps')
+                    @error('linkmaps')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
@@ -31,7 +32,7 @@
                         <label>Telepon</label>
                         <input type="text" class="form-control" name="telepon" placeholder="Isikan Telepon">
                     </div>
-                    @error('judul')
+                    @error('telepon')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
@@ -39,7 +40,7 @@
                         <label>Email</label>
                         <input type="text" class="form-control" name="email" placeholder="Isikan Email">
                     </div>
-                    @error('judul')
+                    @error('email')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
@@ -61,7 +62,8 @@
 
                     <div class="form-group">
                         <label>Link Twitter</label>
-                        <input type="url" class="form-control" name="link_twitter" placeholder="https://twitter.com/...">
+                        <input type="url" class="form-control" name="link_twitter"
+                            placeholder="https://twitter.com/...">
                     </div>
                     @error('link_twitter')
                         <div class="alert alert-danger">{{ $message }}</div>
@@ -77,7 +79,8 @@
 
                     <div class="form-group">
                         <label>Link YouTube</label>
-                        <input type="url" class="form-control" name="link_youtube" placeholder="https://youtube.com/@...">
+                        <input type="url" class="form-control" name="link_youtube"
+                            placeholder="https://youtube.com/@...">
                     </div>
                     @error('link_youtube')
                         <div class="alert alert-danger">{{ $message }}</div>

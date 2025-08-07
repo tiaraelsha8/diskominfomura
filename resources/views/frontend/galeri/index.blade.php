@@ -328,7 +328,7 @@
                     </div>
                 </div>
             @empty
-                    <p class="no-news-text">Tidak ada data galeri foto untuk ditampilkan</p>
+                <p class="no-news-text">Tidak ada Data Galeri Foto untuk ditampilkan</p>
             @endforelse
         </div>
         <div class="mt-4">

@@ -16,7 +16,7 @@
                         <label>Lokasi</label>
                         <input type="text" class="form-control" name="lokasi" value="{{ $kontak->lokasi }}">
                     </div>
-                    @error('judul')
+                    @error('lokasi')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
@@ -32,7 +32,7 @@
                         <label>Telepon</label>
                         <input type="text" class="form-control" name="telepon" value="{{ $kontak->telepon }}">
                     </div>
-                    @error('judul')
+                    @error('telepon')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
@@ -40,7 +40,7 @@
                         <label>Email</label>
                         <input type="text" class="form-control" name="email" value="{{ $kontak->email }}">
                     </div>
-                    @error('judul')
+                    @error('email')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 

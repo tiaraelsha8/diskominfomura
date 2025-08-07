@@ -35,7 +35,6 @@ class LayananController extends Controller
         //validate form
         $request->validate([
             'nama_layanan' => 'required',
-            'deskripsi' => 'required',
             'link' => 'required',
             'logo' => 'required|image|mimes:png|max:2048',
             'background' => 'required|image|mimes:jpeg,jpg,png|max:4096',
@@ -52,7 +51,6 @@ class LayananController extends Controller
         //create product
         Layanan::create([
             'nama_layanan' => $request->nama_layanan,
-            'deskripsi' => $request->deskripsi,
             'link' => $request->link,
             'logo' => $logo->hashName(),
             'background' => $background->hashName(),
@@ -90,7 +88,6 @@ class LayananController extends Controller
         //validate form
         $request->validate([
             'nama_layanan' => 'required',
-            'deskripsi' => 'required',
             'link' => 'required',
             'logo' => 'nullable|image|mimes:png|max:2048',
             'background' => 'nullable|image|mimes:jpeg,jpg,png|max:4096',
@@ -102,7 +99,6 @@ class LayananController extends Controller
         // Siapkan data dasar
         $data = [
             'nama_layanan' => $request->nama_layanan,
-            'deskripsi' => $request->deskripsi,
             'link' => $request->link,
         ];
 
