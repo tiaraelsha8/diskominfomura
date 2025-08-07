@@ -21,9 +21,10 @@
 
                     <div class="form-group">
                         <label>Link Google Maps</label>
-                        <input type="url" name="linkmaps" class="form-control" placeholder="https://maps.app.goo.gl/...">
+                        <input type="url" name="linkmaps" class="form-control"
+                            placeholder="https://maps.app.goo.gl/...">
                     </div>
-                     @error('linkmaps')
+                    @error('linkmaps')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
@@ -61,7 +62,8 @@
 
                     <div class="form-group">
                         <label>Link Twitter</label>
-                        <input type="url" class="form-control" name="link_twitter" placeholder="https://twitter.com/...">
+                        <input type="url" class="form-control" name="link_twitter"
+                            placeholder="https://twitter.com/...">
                     </div>
                     @error('link_twitter')
                         <div class="alert alert-danger">{{ $message }}</div>
@@ -77,7 +79,8 @@
 
                     <div class="form-group">
                         <label>Link YouTube</label>
-                        <input type="url" class="form-control" name="link_youtube" placeholder="https://youtube.com/@...">
+                        <input type="url" class="form-control" name="link_youtube"
+                            placeholder="https://youtube.com/@...">
                     </div>
                     @error('link_youtube')
                         <div class="alert alert-danger">{{ $message }}</div>

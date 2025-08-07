@@ -205,7 +205,7 @@
                     </div>
                 </div>
             @empty
-                <p class="text-center text-danger">Berita belum tersedia</p>
+                <p class="no-news-text">Berita belum tersedia</p>
             @endforelse
 
         </div>
