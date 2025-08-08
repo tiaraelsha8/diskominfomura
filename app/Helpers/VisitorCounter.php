@@ -8,8 +8,8 @@ class VisitorCounter
 {
     public static function count()
     {
-        $host = request()->getHost(); // ✅ harus ada dulu
-        if (!str_ends_with($host, 'diskominfo.murungraya.go.id')) {
+        $host = request()->getHost();
+        if (!str_ends_with($host, 'diskominfo.murungrayakab.go.id')) {
             return [
                 'total' => 0,
                 'today' => 0,
