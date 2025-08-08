@@ -8,7 +8,7 @@ class VisitorCounter
 {
     public static function count()
     {
-        if (!str_ends_with($host, 'diskominfo.murungraya.go.id')) {
+        if (!str_ends_with($host, 'https://diskominfo.murungrayakab.go.id/')) {
             return [
                 'total' => 0,
                 'today' => 0,
