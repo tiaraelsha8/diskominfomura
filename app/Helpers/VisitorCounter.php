@@ -18,34 +18,47 @@ class VisitorCounter
         }
 
         $ip = request()->ip();
+        $userAgent = request()->header('User-Agent');
+        $hash = md5($ip . $userAgent); // identifikasi unik per device + browser
+
         $now = time();
-        $timeout = 300; // 5 menit
+        $timeout = 300; // 5 menit = online timeout
 
         $date = date('Y-m-d');
         $totalFile = 'counter/total.txt';
         $todayFile = "counter/today-$date.txt";
         $onlineFile = 'counter/online.json';
 
-        // === Sesi Laravel
-        if (!session()->has('has_visited')) {
-            session(['has_visited' => true]);
+        // Buat identitas pengunjung unik (IP + User-Agent)
+        $userKey = md5($ip . '_' . request()->header('User-Agent')); // ← Gabungkan IP + User-Agent
+        $logFile = 'counter/log.json';
+        $log = json_decode(Storage::get($logFile) ?? '{}', true);
 
-            // Total
+        // Cek apakah user ini sudah tercatat dalam 10 menit terakhir
+        $visitWindow = 1800; // 10 menit
+        $lastVisit = $log[$userKey] ?? 0;
+
+        if ($now - $lastVisit > $visitWindow) {
+            // Catat waktu kunjungan user
+            $log[$userKey] = $now;
+            Storage::put($logFile, json_encode($log));
+
+            // Hitung total visitor
             $total = (int) Storage::get($totalFile) ?? 0;
             Storage::put($totalFile, $total + 1);
 
-            // Hari ini
+            // Hitung visitor hari ini
             $today = (int) Storage::get($todayFile) ?? 0;
             Storage::put($todayFile, $today + 1);
         }
 
         // Online
         $online = json_decode(Storage::get($onlineFile) ?? '{}', true);
-        $online[$ip] = $now;
+        $online[$hash] = $now;
 
-        foreach ($online as $ipAddr => $lastSeen) {
+        foreach ($online as $key => $lastSeen) {
             if ($now - $lastSeen > $timeout) {
-                unset($online[$ipAddr]);
+                unset($online[$key]);
             }
         }
 
