@@ -21,7 +21,7 @@
 
             <div class="form-group">
                 <label>Keterangan</label>
-                <input type="text" class="form-control" name="keterangan" placeholder="Isikan Perencanaan atau Pelaporan">
+                <input type="text" class="form-control" name="keterangan" placeholder="Contoh Isikan Perencanaan, Pelaporan">
             </div>
             @error('keterangan')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -30,6 +30,7 @@
             <div class="form-group">
                 <label for="file">Dokumen</label>
                 <input type="file" class="form-control-file" name="file" accept=".pdf">
+                <p>pdf. max 5 MB</p>
             </div>
             @error('file')
                 <div class="alert alert-danger">{{ $message }}</div>
