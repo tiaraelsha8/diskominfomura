@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Jabatan;
 use App\Models\Bidang;
 use App\Models\Berita;
-use App\Models\pengumuman;
+use App\Models\Pengumuman;
 use App\Models\Galeri;
 use App\Models\Video;
 use App\Models\Layanan;
