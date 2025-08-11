@@ -347,6 +347,10 @@
             --gray-bg: #121212;
         }
 
+        body.dark-mode #chart-org {
+            background-color: #121212 !important;
+        }
+
         #backToTopBtn {
             position: fixed;
             bottom: 24px;

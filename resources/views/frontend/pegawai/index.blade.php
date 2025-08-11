@@ -4,7 +4,7 @@
     <div class="row mt-5">
         <div class="col-12 d-flex flex-column align-items-center">
             <button id="resetChart" class="btn btn-secondary mb-3">Reset</button>
-            <div class="card w-100">
+            <div class="w-100">
                 <div id="chart-org" style="height: 650px;"></div>
 
                 <!-- Modal Detail Pegawai -->
@@ -51,7 +51,8 @@
                                     </div>
 
                                     <!-- Tombol Close -->
-                                    <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3 z-3"
+                                    <button type="button"
+                                        class="btn-close btn-close-white position-absolute top-0 end-0 m-3 z-3"
                                         aria-label="Close" id="forceCloseBtn">
                                     </button>
 
@@ -153,7 +154,7 @@
                 $('#modalBidang').text(clickedNode.bidang || '-');
                 $('#modalDesc').text(clickedNode.desc || '-');
                 $('#modalImg').attr('src', clickedNode.img || '');
-                  if (clickedNode.file_link) {
+                if (clickedNode.file_link) {
                     $('#modalLhkpnLink')
                         .attr('href', clickedNode.file_link)
                         .text('LHKPN')
