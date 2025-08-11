@@ -74,11 +74,11 @@ class VisitorCounter
     }
 
     // Helper dipindah ke luar function count
-    private static function getDeviceSignature($userAgent)
-    {
-        if (preg_match('/\((.*?)\)/', $userAgent, $matches)) {
-            return $matches[1];
-        }
-        return $userAgent;
-    }
+    // private static function getDeviceSignature($userAgent)
+    // {
+    //     if (preg_match('/\((.*?)\)/', $userAgent, $matches)) {
+    //         return $matches[1];
+    //     }
+    //     return $userAgent;
+    // }
 }
