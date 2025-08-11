@@ -13,7 +13,7 @@
 
             <div class="form-group">
                 <label>Nama Bidang</label>
-                <input type="text" class="form-control" name="nama_bidang" placeholder="Isikan Nama Bidang dengan huruf kecil">
+                <input type="text" class="form-control" name="nama_bidang" placeholder="Isikan Nama Bidang">
             </div>
             @error('nama_bidang')
                 <div class="alert alert-danger">{{ $message }}</div>
