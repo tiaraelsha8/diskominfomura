@@ -17,6 +17,10 @@ class VisitorCounter
             ];
         }
 
+        if (!Storage::exists('counter')) {
+            Storage::makeDirectory('counter');
+        }
+
         $ip = request()->ip();
         //$userAgent = request()->header('User-Agent');
 
@@ -31,6 +35,20 @@ class VisitorCounter
         $todayFile = "counter/today-$date.txt";
         $onlineFile = 'counter/online.json';
         $logFile = 'counter/log.json';
+
+        // Pastikan semua file ada dengan nilai awal
+        if (!Storage::exists($totalFile)) {
+            Storage::put($totalFile, 0);
+        }
+        if (!Storage::exists($todayFile)) {
+            Storage::put($todayFile, 0);
+        }
+        if (!Storage::exists($onlineFile)) {
+            Storage::put($onlineFile, json_encode([]));
+        }
+        if (!Storage::exists($logFile)) {
+            Storage::put($logFile, json_encode([]));
+        }
 
         // Ambil log
         $log = json_decode(Storage::get($logFile) ?? '{}', true);
