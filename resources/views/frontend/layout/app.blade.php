@@ -306,6 +306,10 @@
             color: #bbbbbb;
         }
 
+        body.dark-mode #chart-org {
+            background-color: #121212 !important;
+        }
+
         body.dark-mode .footer-link:hover {
             color: #ffdd57;
         }

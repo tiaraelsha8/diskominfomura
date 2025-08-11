@@ -1,10 +1,27 @@
 @extends('frontend.layout.app')
 
 @section('content')
-    <div class="row mt-5">
+    <div class="row">
         <div class="col-12 d-flex flex-column align-items-center">
-            <button id="resetChart" class="btn btn-secondary mb-3">Reset</button>
-            <div class="card w-100">
+            <button id="resetChart"
+                style="
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    z-index: 10;
+                    background-color: #039BE5;
+                    color: white;
+                    border: none;
+                    padding: 6px 12px;
+                    border-radius: 6px;
+                    cursor: pointer;
+                    font-size: 14px;
+                    margin-top: 150px;
+                    margin-right: 20px;
+                ">
+                Reset
+            </button>
+            <div class="w-100">
                 <div id="chart-org" style="height: 650px;"></div>
 
                 <!-- Modal Detail Pegawai -->
@@ -41,7 +58,7 @@
                                         style="top: 15%; left: 350px; z-index: 1;">
                                         <h4 class="mb-2 fw-semibold text-white" id="modalName">-</h4>
                                         <p class="mb-0 fw-medium text-white" id="modalTitle">-</p>
-                                        <p class="mb-0 fw-medium text-white" id="modalBidang">-</p>
+                                        {{-- <p class="mb-0 fw-medium text-white" id="modalBidang">-</p> --}}
                                     </div>
 
                                     <!-- Tupoksi scrollable -->
@@ -51,7 +68,8 @@
                                     </div>
 
                                     <!-- Tombol Close -->
-                                    <button type="button" class="btn-close btn-close-white position-absolute top-0 end-0 m-3 z-3"
+                                    <button type="button"
+                                        class="btn-close btn-close-white position-absolute top-0 end-0 m-3 z-3"
                                         aria-label="Close" id="forceCloseBtn">
                                     </button>
 
@@ -76,6 +94,10 @@
 
     <script>
         OrgChart.templates.myTemplate = Object.assign({}, OrgChart.templates.diva);
+        OrgChart.icon.reset = function(w, h, color) {
+            return '<svg fill="' + color + '" xmlns="http://www.w3.org/2000/svg" width="' + w + '" height="' + h +
+                '" viewBox="0 0 24 24"><path d="M12 5V1L8 5l4 4V6c3.309 0 6 2.691 6 6 0 1.032-.259 2.004-.715 2.851l1.514 1.314C19.541 15.152 20 13.628 20 12c0-4.411-3.589-8-8-8zm-6.799.929L3.687 8.657C2.459 10.848 2 12.372 2 14c0 4.411 3.589 8 8 8v4l4-4-4-4v3c-3.309 0-6-2.691-6-6 0-1.032.259-2.004.715-2.851l1.486-1.29z"/></svg>';
+        };
 
         $(document).ready(function() {
             const data = @json($nodes);
@@ -93,7 +115,7 @@
                 align: OrgChart.ORIENTATION,
                 mouseScrool: OrgChart.action.ctrlZoom,
                 showXScroll: true,
-                layout: OrgChart.mixed,
+                layout: OrgChart.normal,
                 editForm: {
                     addMore: null,
                     generateElementsFromFields: false,
@@ -153,7 +175,7 @@
                 $('#modalBidang').text(clickedNode.bidang || '-');
                 $('#modalDesc').text(clickedNode.desc || '-');
                 $('#modalImg').attr('src', clickedNode.img || '');
-                  if (clickedNode.file_link) {
+                if (clickedNode.file_link) {
                     $('#modalLhkpnLink')
                         .attr('href', clickedNode.file_link)
                         .text('LHKPN')
@@ -193,11 +215,18 @@
                 }
             });
 
-            $('#resetChart').on('click', function() {
-                chart.load(data);
-            });
+            // $('#resetChart').on('click', function() {
+            //     chart.load(data);
+            // });
 
             chart.load(data);
+
+
+            // Event klik tombol reset
+            document.getElementById("resetChart").addEventListener("click", function() {
+                chart.load(data);
+                chart.fit();
+            });
 
             // Tombol close khusus modal
             $('#forceCloseBtn').on('click', function() {
