@@ -21,7 +21,7 @@
 
             <div class="form-group">
                 <label>Link Layanan</label>
-                <input type="text" class="form-control" name="link" placeholder="Isikan Nama Layanan">
+                <input type="text" class="form-control" name="link" placeholder="Isikan Link Layanan : htpps://...">
             </div>
             @error('link')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -30,6 +30,7 @@
             <div class="form-group">
                 <label for="image">Logo</label>
                 <input type="file" class="form-control-file" name="logo" accept="image/*">
+                <p>png. max 2 MB</p>
             </div>
             @error('logo')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -38,6 +39,7 @@
             <div class="form-group">
                 <label for="image">Background</label>
                 <input type="file" class="form-control-file" name="background" accept="image/*">
+                <p>jpg,jpeg,png. max 4 MB</p>
             </div>
             @error('background')
                 <div class="alert alert-danger">{{ $message }}</div>
