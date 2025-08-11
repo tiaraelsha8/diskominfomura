@@ -22,10 +22,13 @@ class VisitorCounter
         }
 
         $ip = request()->ip();
-        //$userAgent = request()->header('User-Agent');
+        $userAgent = request()->header('User-Agent');
 
-        // Gunakan hash device unik berdasarkan IP + bagian unik dari User-Agent (tanpa browser info)
-        $deviceId = md5($ip);
+        // Ambil signature device dari User-Agent
+        $deviceSignature = self::getDeviceSignature($userAgent);
+
+        // $deviceId = md5($ip);
+        $deviceId = md5($ip . '-' . $userAgent);
 
         $now = time();
         $timeout = 300; // 5 menit = online timeout
@@ -92,11 +95,11 @@ class VisitorCounter
     }
 
     // Helper dipindah ke luar function count
-    // private static function getDeviceSignature($userAgent)
-    // {
-    //     if (preg_match('/\((.*?)\)/', $userAgent, $matches)) {
-    //         return $matches[1];
-    //     }
-    //     return $userAgent;
-    // }
+    private static function getDeviceSignature($userAgent)
+    {
+        if (preg_match('/\((.*?)\)/', $userAgent, $matches)) {
+            return $matches[1];
+        }
+        return $userAgent;
+    }
 }
