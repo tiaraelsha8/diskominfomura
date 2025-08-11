@@ -45,8 +45,8 @@
                                     </div>
 
                                     <!-- Tupoksi scrollable -->
-                                    <div class="position-absolute text-start"
-                                        style="top: 39%; left: 350px; z-index: 1; width: calc(100% - 370px); max-height: 270px; overflow-y: auto; padding-right: 10px;">
+                                    <div class="position-absolute text-start no-darkmode"
+                                        style="top: 39%; left: 350px; z-index: 1; width: calc(100% - 370px); max-height: 270px; overflow-y: auto; padding-right: 10px; background-color: #fff; color: #000;">
                                         <p id="modalDesc" style="text-align: justify;">-</p>
                                     </div>
 
