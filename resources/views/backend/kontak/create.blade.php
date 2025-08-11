@@ -38,7 +38,7 @@
 
                     <div class="form-group">
                         <label>Email</label>
-                        <input type="text" class="form-control" name="email" placeholder="Isikan Email">
+                        <input type="text" class="form-control" name="email" placeholder="Isikan Email @">
                     </div>
                     @error('email')
                         <div class="alert alert-danger">{{ $message }}</div>

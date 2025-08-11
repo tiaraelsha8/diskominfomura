@@ -39,6 +39,7 @@
                     <div class="form-group">
                         <label for="image">Foto</label>
                         <input type="file" class="form-control-file" name="foto" accept="image/*">
+                        <p>jpg,jpeg,png. max 2 MB</p>
                     </div>
                     @error('foto')
                         <div class="alert alert-danger">{{ $message }}</div>

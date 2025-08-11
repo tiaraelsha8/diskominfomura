@@ -15,6 +15,7 @@ use App\Models\Layanan;
 use App\Models\Dokumen;
 use App\Models\Kontak;
 use App\Models\Lokasi;
+use App\Helpers\VisitorCounter;
 
 class DashboardController extends Controller
 {
@@ -31,6 +32,7 @@ class DashboardController extends Controller
         $jumlahLayanan = Layanan::count();
         $jumlahDokumen = Dokumen::count();
         $jumlahPeta = Lokasi::count();
+        $statistik = VisitorCounter::count();
 
         return view('backend.dashboard', [
         'jumlahJabatan' => $jumlahJabatan,
@@ -43,6 +45,7 @@ class DashboardController extends Controller
         'jumlahLayanan' => $jumlahLayanan,
         'jumlahDokumen' => $jumlahDokumen,
         'jumlahPeta' => $jumlahPeta,
+        'statistik' => $statistik,
         ]);
     }
 }
