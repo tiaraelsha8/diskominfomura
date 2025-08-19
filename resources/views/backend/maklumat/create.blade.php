@@ -7,7 +7,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-    <form action="{{ route('tentang.store') }}" method="POST">
+    <form action="{{ route('maklumat.store') }}" method="POST">
         @csrf
         <div class="box-body">
 

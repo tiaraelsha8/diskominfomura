@@ -7,7 +7,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-    <form action="{{ route('maklumat.update', $tentangs->id) }}" method="POST">
+    <form action="{{ route('maklumat.update', $maklumats->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="box-body">
