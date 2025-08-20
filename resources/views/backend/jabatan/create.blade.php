@@ -1,7 +1,7 @@
 @extends('backend.layout.master')
 
 @section('judul')
-    Halaman Tambah Bidang
+    Halaman Tambah Jabatan
 @endsection
 
 @section('content')
