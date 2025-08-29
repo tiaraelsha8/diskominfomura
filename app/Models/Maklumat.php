@@ -11,5 +11,9 @@ class Maklumat extends Model
 
     protected $table = 'maklumats';
 
-    protected $fillable = ['maklumat'];
+    protected $fillable = [
+        'maklumat',
+        'foto',
+        'video',
+    ];
 }

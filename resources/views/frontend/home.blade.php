@@ -627,9 +627,16 @@
     </section>
 
     <section class="galeri-home-section" style="min-height: 80vh">
-        <h2 data-aos="fade-up">Berita Dan Pengumuman Terbaru</h2>
-        <div class="row" style="margin-left: 30px; margin-right: 30px;">
-            
+        <div class="row">
+            <div class="col">
+                <h2 data-aos="fade-up">Berita Terbaru</h2>
+            </div>
+            <div class="col">
+                <h2 data-aos="fade-up">Pengumuman Terbaru</h2>
+            </div>
+
+        </div>
+        <div class="row" style="margin-left: 30px; margin-right: 30px;">   
             <div class="album-grid col" style="margin-right:15px">
                 @forelse ($beritas as $item)
                     <div class="album-card">
