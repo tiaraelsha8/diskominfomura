@@ -21,6 +21,7 @@
                 ">
                 Reset
             </button>
+            <h4 style="position: absolute; margin-top: 190px; z-index: 10; color:#000; top: 10px; right: 10px;">"Silahkan Klik Tombol Reset Untuk <br> kembali Ke tampilan Awal."</h4>
             <div class="w-100">
                 <div id="chart-org" style="height: 650px;"></div>
 

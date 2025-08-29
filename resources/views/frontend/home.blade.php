@@ -295,7 +295,7 @@
                                                                                                             }*/
 
         .galeri-home-section {
-            min-height: 80vh;
+            /* min-height: 80vh; */
             margin-top: 100px;
             width: 100%;
             text-align: center;
@@ -431,6 +431,59 @@
             height: 100%;
             object-fit: cover;
             z-index: -1;
+        }
+
+
+        .album-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .album-card {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .album-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .album-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .album-body {
+            padding: 16px;
+        }
+
+        .album-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #222;
+        }
+
+        .album-desc {
+            font-size: 0.9rem;
+            color: #444;
+        }
+
+        .album-date {
+            font-size: 0.85rem;
+            color: #888;
+            margin-top: 6px;
+        }
+        
+        .galeri-container {
+            padding: 60px 0;
         }
     </style>
 
@@ -570,6 +623,61 @@
                 </div>
             </a>
 
+        </div>
+    </section>
+
+    <section class="galeri-home-section" style="min-height: 80vh">
+        <h2 data-aos="fade-up">Berita Dan Pengumuman Terbaru</h2>
+        <div class="row" style="margin-left: 30px; margin-right: 30px;">
+            
+            <div class="album-grid col" style="margin-right:15px">
+                @forelse ($beritas as $item)
+                    <div class="album-card">
+                        <img src="{{ $item->foto ? asset($item->foto) : 'https://via.placeholder.com/600x300?text=No+Image' }}"
+                            alt="Foto {{ $item->judul }}">
+
+                        <div class="album-body">
+                            <div class="album-title">{{ $item->judul }}</div>
+                            <div class="album-desc">
+                                {{ \Illuminate\Support\Str::limit(strip_tags($item->deskripsi), 100, '...') }}
+                            </div>
+                            <div class="album-date">
+                                Oleh: {{ $item->penulis }} | {{ $item->created_at->format('d M Y') }}
+                            </div>
+                            <div style="margin-top: 10px;">
+                                <a href="{{ route('berita.read', $item->id) }}" class="btn btn-sm btn-primary">Selengkapnya</a>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <p class="no-news-text">Berita belum tersedia</p>
+                @endforelse
+
+            </div>
+            <div class="album-grid col" style="margin-left:15px">
+                @forelse ($pengumumanDB as $item)
+                    <div class="album-card">
+                        <img src="{{ $item->foto ? asset($item->foto) : 'https://via.placeholder.com/600x300?text=No+Image' }}"
+                            alt="Foto {{ $item->judul }}">
+
+                        <div class="album-body">
+                            <div class="album-title">{{ $item->judul }}</div>
+                            <div class="album-desc">
+                                {{ \Illuminate\Support\Str::limit(strip_tags($item->deskripsi), 100, '...') }}
+                            </div>
+                            <div class="album-date">
+                                Oleh: {{ $item->penulis }} | {{ $item->created_at->format('d M Y') }}
+                            </div>
+                            <div style="margin-top: 10px;">
+                                <a href="{{ route('pengumuman.detail', $item->id) }}"
+                                    class="btn btn-sm btn-primary">Selengkapnya</a>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <p class="no-news-text">Pengumuman belum tersedia</p>
+                @endforelse
+            </div>
         </div>
     </section>
 
