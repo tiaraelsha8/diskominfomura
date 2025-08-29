@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Jabatan;
 use App\Models\Bidang;
 use App\Models\Berita;
-use App\Models\pengumuman;
+use App\Models\Pengumuman;
 use App\Models\Galeri;
 use App\Models\Video;
 use App\Models\Layanan;
@@ -21,7 +21,6 @@ class DashboardController extends Controller
 {
     public function index()
     {
-
         $jumlahJabatan = Jabatan::count();
         $jumlahBidang = Bidang::count();
         $jumlahPegawai = Pegawai::count();
@@ -35,17 +34,17 @@ class DashboardController extends Controller
         $statistik = VisitorCounter::count();
 
         return view('backend.dashboard', [
-        'jumlahJabatan' => $jumlahJabatan,
-        'jumlahBidang' => $jumlahBidang,
-        'jumlahPegawai' => $jumlahPegawai,
-        'jumlahBerita' => $jumlahBerita,
-        'jumlahPengumuman' => $jumlahPengumuman,
-        'jumlahGaleri' => $jumlahGaleri,
-        'jumlahVideo' => $jumlahVideo,
-        'jumlahLayanan' => $jumlahLayanan,
-        'jumlahDokumen' => $jumlahDokumen,
-        'jumlahPeta' => $jumlahPeta,
-        'statistik' => $statistik,
+            'jumlahJabatan' => $jumlahJabatan,
+            'jumlahBidang' => $jumlahBidang,
+            'jumlahPegawai' => $jumlahPegawai,
+            'jumlahBerita' => $jumlahBerita,
+            'jumlahPengumuman' => $jumlahPengumuman,
+            'jumlahGaleri' => $jumlahGaleri,
+            'jumlahVideo' => $jumlahVideo,
+            'jumlahLayanan' => $jumlahLayanan,
+            'jumlahDokumen' => $jumlahDokumen,
+            'jumlahPeta' => $jumlahPeta,
+            'statistik' => $statistik,
         ]);
     }
 }
