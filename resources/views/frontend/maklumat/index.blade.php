@@ -36,9 +36,11 @@
                 {!! $maklumat->maklumat !!}
             </p>
             <img style="width: 900px" src="{{ asset('storage/maklumats/foto/' . $maklumat->foto) }}">
+            @isset($maklumat->video)
             <video width="900" height="600" controls>
                 <source src="{{ asset('storage/maklumats/video/' . $maklumat->video) }}" type="video/mp4">
             </video>
+            @endisset
         </div>
         @else
             <em class="no-news-text">Maklumat Layanan belum tersedia</em>
