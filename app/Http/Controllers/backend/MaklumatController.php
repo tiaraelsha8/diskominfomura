@@ -150,13 +150,14 @@ class MaklumatController extends Controller
         $maklumats = Maklumat::findOrFail($id);
 
         //hapus foto kalau ada
-        if ($maklumats->foto && \Storage::disk('public')->exists($maklumats->foto)) {
-            \Storage::disk('public')->delete($maklumats->foto);
+        if ($maklumats->foto) {
+            Storage::delete('maklumats/foto/' . $maklumats->foto);
+            
         }
 
         //hapus video kalau ada
-        if ($maklumats->video && \Storage::disk('public')->exists($maklumats->video)) {
-            \Storage::disk('public')->delete($maklumats->video);
+        if ($maklumats->video) {
+            Storage::delete('maklumats/video/' . $maklumats->video);
         }
 
         //delete

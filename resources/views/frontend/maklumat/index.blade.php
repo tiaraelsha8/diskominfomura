@@ -30,12 +30,18 @@
     <div class="tentang-title-bg">Maklumat Layanan Diskominfo SP</div>
 
     <section class="tentang-container container">
-        <p class="text-muted">
-            @isset($maklumat)
+        @isset($maklumat)
+        <div class="d-flex flex-column align-items-center">
+            <p class="text-muted">
                 {!! $maklumat->maklumat !!}
-            @else
-                <em class="no-news-text">Maklumat Layanan belum tersedia</em>
-            @endisset
-        </p>
+            </p>
+            <img style="width: 900px" src="{{ asset('storage/maklumats/foto/' . $maklumat->foto) }}">
+            <video width="900" height="600" controls>
+                <source src="{{ asset('storage/maklumats/video/' . $maklumat->video) }}" type="video/mp4">
+            </video>
+        </div>
+        @else
+            <em class="no-news-text">Maklumat Layanan belum tersedia</em>
+        @endisset
     </section>
 @endsection
