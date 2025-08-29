@@ -65,6 +65,7 @@
                                             @endif
                                         </td>
 
+                                        <td>
                                         <form action="{{ route('maklumat.destroy', $value->id) }}" method="POST"
                                             onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
                                             @csrf
@@ -77,7 +78,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="3" class="text-center">Belum ada data tentang</td>
+                                        <td colspan="5" class="text-center">Belum ada data tentang</td>
                                     </tr>
                                 @endforelse
                             </tbody>
