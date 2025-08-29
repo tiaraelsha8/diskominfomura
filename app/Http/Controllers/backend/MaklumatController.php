@@ -40,7 +40,7 @@ class MaklumatController extends Controller
         //validate form
         $request->validate([
             'maklumat' => 'required',
-            'video' => 'nullable|mimes:mp4,avi,mov,mkv,wmv,webm|max:20480', // max 20MB
+            'video' => 'nullable|mimes:mp4|max:20480', // max 20MB
             'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
