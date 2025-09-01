@@ -180,10 +180,15 @@
         </div>
       </div>
 
-      <!-- ./col -->
+      
+
+    </div>
+
+    <div class="row">
+<!-- ./col -->
       <div class="col-lg-3 col-6">
         <!-- small box -->
-        <div class="small-box bg-warning">
+        <div class="small-box" style="background-color: #34e45d">
           <div class="inner">
              <h3>{{ $statistik['total'] }}</h3>
 
@@ -199,7 +204,7 @@
       <!-- ./col -->
       <div class="col-lg-3 col-6">
         <!-- small box -->
-        <div class="small-box bg-danger">
+        <div class="small-box" style="background-color: #34e45d">
           <div class="inner">
              <h3>{{ $statistik['today'] }}</h3>
 
@@ -212,13 +217,9 @@
         </div>
       </div>
 
-    </div>
-
-    <div class="row">
-
       <div class="col-lg-3 col-6">
         <!-- small box -->
-        <div class="small-box bg-info">
+        <div class="small-box" style="background-color: #34e45d">
           <div class="inner">
             <h3>{{ $statistik['online'] }}</h3>
 
