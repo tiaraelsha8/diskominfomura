@@ -21,7 +21,16 @@
                 ">
                 Reset
             </button>
-            <h4 style="position: absolute; margin-top: 190px; z-index: 10; color:#000; top: 10px; right: 10px;">"Silahkan Klik Tombol Reset Untuk <br> kembali Ke tampilan Awal."</h4>
+            <div
+                style="position: absolute; margin-top: 190px; z-index: 10; color:#000; top: 10px; right: 10px; max-width: 300px;">
+                <ul style="list-style-type: '- '; margin: 0; padding-left: 1.2em; font-size: 14px; text-align: justify;">
+                    <li>Klik Tombol Reset Untuk kembali ke tampilan Awal</li>
+                    <li>Untuk menggeser tampilan halaman atau struktur organisasi, gunakan fitur seret dan lepas (drag and
+                        drop) dengan mouse.
+                        Untuk memperbesar atau memperkecil tampilan, gunakan roda gulir (mouse wheel).
+                    </li>
+                </ul>
+            </div>
             <div class="w-100">
                 <div id="chart-org" style="height: 650px;"></div>
 
