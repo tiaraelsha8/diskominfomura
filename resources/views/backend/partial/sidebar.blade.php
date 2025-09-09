@@ -2,7 +2,7 @@
     <!-- Brand Logo -->
     <a href="{{ route('beranda') }}" class="brand-link">
       <img src="{{asset('image/logo-komdigi.png')}}" alt="Kominfo Logo" class="brand-image img-circle elevation-3" style="opacity: .8; background:#ffffff">
-      <span class="brand-text font-weight-light">DiskominfoSP</span>
+      <span class="brand-text font-weight-light">Diskominfo Statstika Dan Persandian</span>
     </a>
 
     <!-- Sidebar -->
