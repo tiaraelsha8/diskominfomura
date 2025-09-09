@@ -3,23 +3,31 @@
 @section('content')
     <style>
         .title-bg {
-            margin-top: -95px;
-            padding-top: 195px;
-            padding-bottom: 120px;
+            margin-top: 0;
+            min-height: 70vh;
             background: url('{{ asset('image/bg_galeri.jpg') }}') center/cover no-repeat;
             color: #ffffff;
-            font-weight: 800;
-            font-size: 3rem;
             text-align: center;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
             letter-spacing: 1.5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        section.galeri-container h1 {
+        .title-bg h1 {
+            font-weight: 800;
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            margin: 0;
+            transform: translateY(80%);
+        }
+
+        .galeri-container h1 {
             text-align: center;
             font-size: 2.4rem;
             font-weight: 700;
             margin-bottom: 40px;
+            margin-top: 50px;
             color: #003366;
         }
 
@@ -79,10 +87,6 @@
             text-decoration: none;
         }
 
-        .galeri-container {
-            padding: 60px 0;
-        }
-
         .album-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -130,9 +134,72 @@
             color: #888;
             margin-top: 6px;
         }
+
+        @media (max-width: 768px) {
+            .title-bg {
+                min-height: 50vh;
+                padding: 20px;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .title-bg h1 {
+                font-size: 1.6rem;
+                transform: translateY(70%);
+                line-height: 1.3;
+            }
+
+            .galeri-container h1 {
+                font-size: 1.4rem;
+                margin-bottom: 20px;
+                margin-top: 30px;
+            }
+
+            .grid-container {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                padding: 0 10px;
+            }
+
+            .card img {
+                height: 150px;
+            }
+
+            .card h3 {
+                font-size: 1rem;
+            }
+
+            .card p {
+                font-size: 0.85rem;
+            }
+
+            .album-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+                padding: 20 10px;
+            }
+
+            .album-card img {
+                height: 160px;
+            }
+
+            .album-title {
+                font-size: 1rem;
+            }
+
+            .album-desc {
+                font-size: 0.85rem;
+            }
+
+            .album-date {
+                font-size: 0.75rem;
+            }
+        }
     </style>
 
-    <div class="title-bg">Galeri Pengumuman</div>
+    <div class="title-bg">
+        <h1>Galeri Pengumuman</h1>
+    </div>
     {{-- section pengumuman wordpress --}}
     <section class="galeri-container container">
         <h1>Pengumuman Terbaru Murung Raya</h1>

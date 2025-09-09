@@ -2,38 +2,24 @@
 
 @section('content')
     <style>
-        .tentang-title-bg {
-            margin-top: -95px;
-            padding-top: 195px;
-            padding-bottom: 120px;
+        .title-bg {
+            margin-top: 0;
+            min-height: 70vh;
             background: url('{{ asset('image/bg_galeri.jpg') }}') center/cover no-repeat;
             color: #ffffff;
-            font-weight: 800;
-            font-size: 3rem;
             text-align: center;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
             letter-spacing: 1.5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .tentang-container {
-            padding: 60px 0;
-            background: #f4f6f9;
-        }
-
-        .tentang-container p {
-            font-size: 1.05rem;
-            color: #333;
-            line-height: 1.7;
-            text-align: justify;
-        }
-    </style>
-
-
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f7fa;
+        .title-bg h1 {
+            font-weight: 800;
+            font-size: clamp(1.8rem, 4vw, 3rem);
             margin: 0;
+            transform: translateY(80%);
         }
 
         .galeri-container h1 {
@@ -156,9 +142,65 @@
             color: #888;
             margin-top: 6px;
         }
+
+        @media (max-width: 768px) {
+            .title-bg {
+                min-height: 50vh;
+                padding: 20px;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .title-bg h1 {
+                font-size: 1.6rem;
+                transform: translateY(70%);
+                line-height: 1.3;
+            }
+
+            .galeri-container {
+                padding: 30px 15px;
+            }
+
+            .galeri-container h1 {
+                font-size: 1.4rem;
+                margin-bottom: 20px;
+            }
+
+            .card img {
+                height: 140px;
+            }
+
+            .card h3 {
+                font-size: 1rem;
+            }
+
+            .card p {
+                font-size: 0.85rem;
+            }
+
+            .card small {
+                font-size: 0.75rem;
+            }
+
+            .album-card img {
+                height: 150px;
+            }
+
+            .album-title {
+                font-size: 1rem;
+            }
+
+            .album-desc {
+                font-size: 0.85rem;
+            }
+
+            .album-date {
+                font-size: 0.75rem;
+            }
+        }
     </style>
 
-    <div class="tentang-title-bg">Berita Murung Raya</div>
+    <div class="title-bg"><h1>Berita Murung Raya</h1></div>
     <!-- SECTION 1: 4 berita pertama -->
     <div class="galeri-container container">
         <h1>Berita Terbaru Murung Raya</h1>
@@ -190,7 +232,6 @@
                 <div class="album-card">
                     <img src="{{ $item->foto ? asset($item->foto) : 'https://via.placeholder.com/600x300?text=No+Image' }}"
                         alt="Foto {{ $item->judul }}">
-
                     <div class="album-body">
                         <div class="album-title">{{ $item->judul }}</div>
                         <div class="album-desc">
@@ -207,7 +248,6 @@
             @empty
                 <p class="no-news-text">Berita belum tersedia</p>
             @endforelse
-
         </div>
     </section>
 @endsection

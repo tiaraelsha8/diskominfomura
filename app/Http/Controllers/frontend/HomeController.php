@@ -9,6 +9,8 @@ use App\Models\Logo;
 use App\Models\Profilbidang;
 use Illuminate\Http\Request;
 use App\Helpers\VisitorCounter;
+use App\Models\Berita;
+use App\Models\Pengumuman;
 
 class HomeController extends Controller
 {
@@ -20,7 +22,9 @@ class HomeController extends Controller
         $profilbidangs = Profilbidang::all();
         $data = $logos ? $logos->foto : null;
         $statistik = VisitorCounter::count();
+        $beritas = Berita::latest()->paginate(2);
+        $pengumumanDB = Pengumuman::latest()->paginate(2);
 
-        return view('frontend.home', compact('layanans', 'carousel', 'data', 'profilbidangs', 'statistik'));
+        return view('frontend.home', compact('layanans', 'carousel', 'data', 'profilbidangs', 'statistik', 'beritas', 'pengumumanDB'));
     }
 }

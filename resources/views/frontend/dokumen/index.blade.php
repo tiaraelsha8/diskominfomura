@@ -1,7 +1,120 @@
 @extends('frontend.layout.app')
 
 @section('content')
-    <!-- ======= Dokumen Start ======= -->
+    <style>
+        .case-details__article {
+            background: #fff;
+            padding: 5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            margin-top: 85px;
+        }
+
+        .case-details__article h2 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #003366;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: .5rem;
+        }
+
+        #filterForm .form-select,
+        #filterForm .form-control {
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            box-shadow: none;
+            transition: border-color 0.2s ease;
+        }
+
+        #filterForm .form-select:focus,
+        #filterForm .form-control:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 0.2rem rgba(37, 99, 235, .2);
+        }
+
+        .table {
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .table thead {
+            background-color: #f3f4f6;
+            font-weight: 600;
+        }
+
+        .table th,
+        .table td {
+            vertical-align: middle;
+            padding: 12px;
+        }
+
+        .table tbody tr:hover {
+            background-color: #f9fafb;
+        }
+
+        .btn-outline-primary {
+            border-radius: 6px;
+            font-size: 0.85rem;
+            padding: 6px 12px;
+            transition: all .2s ease;
+        }
+
+        .btn-outline-primary:hover {
+            background: #2563eb;
+            color: #fff;
+        }
+
+        .no-news-text {
+            text-align: center;
+            padding: 1rem;
+            color: #6b7280;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .case-details__article {
+                padding: 1.5rem;
+                margin-top: 55px;
+            }
+
+            .case-details__article h2 {
+                font-size: 1.6rem;
+                text-align: center;
+            }
+
+            #filterForm {
+                display: flex;
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .table {
+                display: block;
+                width: 100%;
+                overflow-x: auto;
+                border-radius: 6px;
+            }
+
+            .table th,
+            .table td {
+                padding: 8px;
+                font-size: 0.85rem;
+                white-space: nowrap;
+            }
+
+            .btn-outline-primary {
+                font-size: 0.8rem;
+                padding: 5px 10px;
+                width: 100%;
+            }
+
+            .no-news-text {
+                font-size: 0.9rem;
+                padding: 0.8rem;
+            }
+        }
+    </style>
     <section class="pt-5 pb-5">
         <div class="container">
             <div class="case-details__article">
@@ -53,9 +166,8 @@
                                     </td>
                                 </tr>
                             @empty
-                                    <p class="no-news-text">Belum ada data dokumen</p>
+                                <p class="no-news-text">Belum ada data dokumen</p>
                             @endforelse
-
                         </tbody>
                     </table>
                 </div>

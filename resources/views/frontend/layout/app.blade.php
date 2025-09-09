@@ -330,6 +330,38 @@
             color: white;
         }
 
+        body.dark-mode .album-home-section h2 {
+            color: white;
+        }
+
+        body.dark-mode .tentang-container p {
+            color: white;
+        }
+
+        body.dark-mode .maklumat-container p {
+            color: white;
+        }
+
+        body.dark-mode .chart-actions h4 {
+            color: white;
+        }
+
+        body.dark-mode .berita-container h1 {
+            color: white;
+        }
+
+        body.dark-mode .berita-container .meta-info {
+            color: #888888;
+        }
+
+                body.dark-mode .pengumuman-container h1 {
+            color: white;
+        }
+
+        body.dark-mode .pengumuman-container .meta-info {
+            color: #888888;
+        }
+
         .no-news-text {
             text-align: center;
             color: black;
@@ -507,7 +539,6 @@
             transition: color 0.3s ease;
         }
 
-        /* Hover warna icon per platform */
         .instagram-icon:hover i {
             color: #e1306c;
         }
@@ -532,6 +563,152 @@
             filter: brightness(0) invert(1);
             opacity: 1 !important;
         }
+
+        html,
+        body {
+            width: 100%;
+            max-width: 100%;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 0.4rem 1rem !important;
+                font-size: 0.95rem !important;
+                flex-wrap: wrap;
+                display: flex;
+                align-items: center;
+            }
+
+            .navbar.scrolled {
+                padding: 0.4rem 1rem !important;
+            }
+
+            .navbar.scrolled .nav-link {
+                font-size: 0.95rem !important;
+                padding: 0.4rem 0 !important;
+            }
+
+            .navbar.scrolled .navbar-brand {
+                font-size: 1.2rem !important;
+            }
+
+            .navbar-brand {
+                font-size: 1.2rem;
+                flex: 1;
+                text-align: center;
+            }
+
+            .navbar .nav-link {
+                display: block;
+                padding: 0.4rem 0;
+                font-size: 0.95rem;
+                text-align: left;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+                color: #fff !important;
+                transition: color 0.25s ease;
+            }
+
+            .navbar .nav-link:hover,
+            .navbar .nav-link:focus {
+                color: #fff !important;
+            }
+
+            .navbar .nav-link:active {
+                color: #ff6600 !important;
+            }
+
+            .navbar .nav-link.dropdown-toggle[aria-expanded="true"],
+            .navbar .nav-item.dropdown.show>.nav-link,
+            .navbar .nav-link.active-dropdown {
+                color: #ff6600 !important;
+            }
+
+            .navbar .nav-link.dropdown-toggle[aria-expanded="false"] {
+                color: #fff !important;
+            }
+
+            .nav-link::after {
+                display: none;
+            }
+
+            .navbar-toggler {
+                padding: 0.25rem 0.5rem;
+                border: none;
+                background: transparent;
+                color: #fff;
+                margin-left: auto;
+                border: none !important;
+                outline: none !important;
+                box-shadow: none !important;
+            }
+
+            .navbar-toggler-icon {
+                width: 18px;
+                height: 18px;
+                background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+            }
+
+            .dropdown-global {
+                position: static;
+                width: 100%;
+                box-shadow: none;
+                padding: 0;
+                background: #fff;
+                transform: scaleY(0);
+                opacity: 0;
+                max-height: 0;
+                visibility: hidden;
+                overflow: hidden;
+                transition: opacity 0.3s ease, transform 0.3s ease;
+                border-top: 1px solid rgba(0, 0, 0, 0.1);
+            }
+
+            .dropdown-global.show {
+                opacity: 1;
+                max-height: 500px;
+                visibility: visible;
+                padding: 0.5rem 0;
+            }
+
+            .dropdown-global a {
+                padding: 0.4rem 1rem;
+                font-size: 0.95rem;
+                display: block;
+                width: 100%;
+            }
+
+            .theme-toggle {
+                margin-top: 1rem;
+            }
+
+            body {
+                font-size: 16px;
+            }
+
+            .footer-main {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .footer-right {
+                justify-content: flex-start;
+            }
+
+            .icon-circle {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            #backToTopBtn {
+                width: 36px;
+                height: 36px;
+            }
+        }
     </style>
     @stack('styles')
 </head>
@@ -551,7 +728,7 @@
     @include('frontend.partial.navbar')
 
     <!-- Main content -->
-    <main style="padding-top: 6rem;">
+    <main>
         @yield('content')
     </main>
 

@@ -9,25 +9,22 @@
             --gray-bg: #f0f2f5;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
         .hero-section {
-            margin-top: -90px;
-            padding-top: 195px;
-            padding-bottom: 120px;
+            margin-top: 0;
+            min-height: 70vh;
             display: flex;
             flex-wrap: wrap;
-            align-items: flex-start;
+            align-items: center;
+            justify-content: space-between;
             background-color: var(--blue-dark);
             color: white;
-            padding: 10px 20px 0px;
+            padding: 20px 20px;
             position: relative;
+            gap: 20px;
         }
 
         .hero-text {
-            flex: 0.7;
+            flex: 0.9;
             padding: 50px;
             min-width: 300px;
             margin-top: auto;
@@ -35,23 +32,37 @@
             flex-direction: column;
             justify-content: flex-end;
             height: 100%;
-            padding-left: 250px;
+            padding-left: 200px;
         }
 
         .hero-text h1 {
             font-size: 3rem;
             font-weight: 800;
-            margin-bottom: 20px;
+            color: #ffffff;
+            letter-spacing: 1px;
+            line-height: 1.2;
+            text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .hero-text p {
-            font-size: 1rem;
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: #e0e6f0;
             line-height: 1.7;
+            margin-bottom: 20px;
         }
 
         .hero-text a {
-            color: var(--orange);
-            text-decoration: underline;
+            font-weight: 600;
+            color: #ff6600;
+            text-decoration: none;
+            border-bottom: 2px solid #ff6600;
+            transition: color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .hero-text a:hover {
+            color: #ff8533;
+            border-color: #ff8533;
         }
 
         .hero-img {
@@ -70,7 +81,7 @@
 
         .hero-img-wrapper {
             position: relative;
-            margin-top: 60px;
+            margin-top: 20px;
             transform: translateX(-60px);
         }
 
@@ -105,7 +116,7 @@
             background-color: var(--orange);
             border-bottom-left-radius: 100%;
             border-bottom-right-radius: 100%;
-            transform: translateY(150%);
+            transform: translateY(140%);
             z-index: 1;
         }
 
@@ -184,12 +195,70 @@
         }
 
         @media (max-width: 768px) {
+            .hero-section {
+                flex-direction: column;
+                text-align: center;
+                padding: 20px;
+            }
+
+            .hero-text {
+                padding: 20px 0;
+                margin-top: 50px;
+                padding-left: 0;
+            }
+
             .hero-text h1 {
-                font-size: 2.4rem;
+                font-size: 1.6rem;
+                line-height: 1.3;
             }
 
             .hero-text p {
-                font-size: 1rem;
+                font-size: 0.95rem;
+                line-height: 1.3;
+            }
+
+            .hero-img {
+                padding: 0;
+                min-width: unset;
+            }
+
+            .hero-img-wrapper {
+                transform: translateY(-40px);
+                margin-top: 0;
+            }
+
+            .hero-img-wrapper img {
+                max-width: 90%;
+                transform: none;
+            }
+
+            .contact-grid-section {
+                padding: 30px 15px;
+            }
+
+            .contact-card-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .contact-card {
+                padding: 24px 16px;
+            }
+
+            .contact-card h4 {
+                font-size: 1.1rem;
+            }
+
+            .contact-card p {
+                font-size: 0.95rem;
+            }
+
+            .card-icon {
+                font-size: 28px;
+            }
+
+            .orange-half-shape {
+                transform: translateY(180%);
             }
         }
     </style>

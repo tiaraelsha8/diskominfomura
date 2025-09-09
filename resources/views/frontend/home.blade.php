@@ -14,9 +14,10 @@
         }
 
         .full-bg {
-            margin-top: -150px;
-            padding-top: clamp(300px, 30vh, 500px);
-            padding-bottom: clamp(195px, 20vh, 400px);
+            margin-top: 0;
+            padding-top: 80px;
+            padding-bottom: 80px;
+            min-height: 100vh;
             position: relative;
             overflow: hidden;
             display: flex;
@@ -69,7 +70,7 @@
 
         .layanan-fullscreen {
             min-height: 80vh;
-            margin-top: 100px;
+            margin-top: 90px;
             width: 100%;
             text-align: center;
         }
@@ -77,7 +78,7 @@
         .layanan-fullscreen h2 {
             font-size: 2.4rem;
             font-weight: 700;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
             color: #003366;
         }
 
@@ -185,7 +186,7 @@
 
         .bidang-fullwidth {
             min-height: 80vh;
-            margin-top: 70px;
+            margin-top: 60px;
             width: 100%;
             text-align: center;
         }
@@ -193,7 +194,7 @@
         .bidang-fullwidth h2 {
             font-size: 2.4rem;
             font-weight: 700;
-            margin-bottom: 60px;
+            margin-bottom: 55px;
             color: #003366;
             text-align: center;
         }
@@ -260,51 +261,9 @@
             text-align: justify;
         }
 
-        /*.official-portal-section-alt {
-                                                                                                                            width: 100%;
-                                                                                                                            background: linear-gradient(100deg, #1064ca, #fdfcfb);
-                                                                                                                            padding: 20px 5vw;
-                                                                                                                            position: relative;
-                                                                                                                        }
-
-                                                                                                                        .logo-img {
-                                                                                                                            height: 160px;
-                                                                                                                            object-fit: contain;
-                                                                                                                            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
-                                                                                                                        }
-
-                                                                                                                        .official-heading h2 {
-                                                                                                                            font-size: 2.6rem;
-                                                                                                                            color: #003366;
-                                                                                                                            font-weight: 700;
-                                                                                                                            margin: 0;
-                                                                                                                            line-height: 1.4;
-                                                                                                                            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-                                                                                                                        }
-
-                                                                                                                        .official-btn-alt {
-                                                                                                                            display: inline-flex;
-                                                                                                                            align-items: center;
-                                                                                                                            gap: 10px;
-                                                                                                                            padding: 12px 28px;
-                                                                                                                            font-size: 1rem;
-                                                                                                                            color: #fff;
-                                                                                                                            background: linear-gradient(135deg, #003366, #0056a3);
-                                                                                                                            border-radius: 10px;
-                                                                                                                            text-decoration: none;
-                                                                                                                            font-weight: 600;
-                                                                                                                            box-shadow: 0 6px 14px rgba(0, 51, 102, 0.3);
-                                                                                                                            transition: all 0.3s ease;
-                                                                                                                        }
-
-                                                                                                                        .official-btn-alt:hover {
-                                                                                                                            background: linear-gradient(135deg, #002244, #004080);
-                                                                                                                            box-shadow: 0 8px 18px rgba(0, 51, 102, 0.4);
-                                                                                                                        }*/
-
         .galeri-home-section {
             min-height: 80vh;
-            margin-top: 100px;
+            margin-top: 80px;
             width: 100%;
             text-align: center;
         }
@@ -312,7 +271,7 @@
         .galeri-home-section h2 {
             font-size: 2.4rem;
             font-weight: 700;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
             color: #003366;
             text-align: center;
         }
@@ -430,6 +389,423 @@
                 0 0 12px rgba(0, 136, 255, 0.1);
             transition: transform 0.3s ease, text-shadow 0.4s ease;
         }
+
+        .galeri-container {
+            padding: 60px 0;
+        }
+
+        .fade-image {
+            transition: opacity 1s ease-in-out;
+            opacity: 1;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .album-home-section {
+            margin-bottom: 50px;
+            margin-top: 10px;
+            padding: 0 20px;
+            max-width: 1300px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .album-home-section .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .album-home-section .col {
+            flex: 1 1 48%;
+            min-width: 320px;
+        }
+
+        .album-home-section h2 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #003366;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 50px;
+        }
+
+        .album-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .album-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .album-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+        }
+
+        .album-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .album-body {
+            padding: 16px;
+        }
+
+        .album-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #222;
+        }
+
+        .album-desc {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        .album-date {
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 8px;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box;
+            }
+
+            html,
+            body {
+                overflow-x: hidden;
+            }
+
+            .full-bg {
+                margin-top: 0;
+                padding-top: 80px;
+                padding-bottom: 80px;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+            }
+
+            .fade-image {
+                object-position: center;
+            }
+
+            .hero-container {
+                max-width: calc(100% - 10vw);
+                width: 100%;
+                margin: 0 5vw;
+                padding: 18px 16px;
+                border-radius: 14px;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.32);
+            }
+
+            .hero-container h1 {
+                font-size: 1.6rem;
+                line-height: 1.15;
+                text-align: center;
+            }
+
+            .hero-container p {
+                font-size: 1rem;
+                margin-top: 10px;
+                text-align: center;
+            }
+
+            .layanan-fullscreen {
+                margin-top: 50px;
+                padding-bottom: 20px;
+            }
+
+            .layanan-fullscreen h2 {
+                font-size: 1.6rem;
+                margin-bottom: 20px;
+            }
+
+            .layanan-grid {
+                grid-template-columns: 1fr;
+                gap: 28px;
+                padding: 0 4vw;
+            }
+
+            .layanan-box {
+                height: 220px;
+                max-width: 100%;
+                margin: 10px auto;
+                border-radius: 14px;
+                overflow: visible;
+            }
+
+            .layanan-bg-wrapper img {
+                transition: none;
+                transform: none;
+            }
+
+            .layanan-box:hover .layanan-bg-wrapper img {
+                transform: none;
+            }
+
+            .layanan-overlay {
+                bottom: -25px;
+                width: 94%;
+                min-height: 100px;
+                height: auto;
+                padding: 12px;
+                border-radius: 12px;
+            }
+
+            .layanan-box:hover .layanan-overlay {
+                bottom: -18px;
+                transform: none;
+            }
+
+            .layanan-overlay img {
+                width: 48px;
+                height: 48px;
+            }
+
+            .layanan-overlay h5 {
+                font-size: 0.95rem;
+            }
+
+            .bidang-fullwidth {
+                margin-top: 50px;
+                padding-bottom: 20px;
+            }
+
+            .bidang-fullwidth h2 {
+                font-size: 1.6rem;
+                margin-bottom: 20px;
+            }
+
+            .bidang-row {
+                flex-direction: column;
+                gap: 18px;
+                padding: 0 4vw;
+                margin-bottom: 30px;
+            }
+
+            .bidang-image {
+                height: 240px;
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .bidang-image img {
+                max-height: 100%;
+                width: 100%;
+                object-fit: cover;
+                border-radius: 10px;
+                transform: none;
+            }
+
+            .bidang-content {
+                flex: auto;
+                min-width: auto;
+                width: 100%;
+                padding: 0;
+            }
+
+            .bidang-content h3 {
+                font-size: 1.5rem;
+                text-align: center;
+            }
+
+            .bidang-content p {
+                font-size: 1rem;
+                line-height: 1.6;
+                text-align: justify;
+            }
+
+            .galeri-home-section {
+                margin-top: 5px;
+                padding-bottom: 20px;
+            }
+
+            .galeri-home-section h2 {
+                font-size: 1.6rem;
+                margin-bottom: 20px;
+            }
+
+            .galeri-home-grid {
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                gap: 14px;
+                padding: 0 4vw;
+            }
+
+            .galeri-card {
+                border-radius: 12px;
+            }
+
+            .galeri-card::before {
+                display: none;
+            }
+
+            .galeri-card:hover {
+                transform: none;
+                box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+            }
+
+            .galeri-card-img {
+                height: 140px;
+            }
+
+            .galeri-card-img img {
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .galeri-card-body {
+                padding: 14px;
+                height: auto;
+                min-height: 100px;
+            }
+
+            .galeri-card-body h3 {
+                font-size: 1rem;
+            }
+
+            .galeri-card-body p {
+                font-size: 0.95rem;
+                line-height: 1.4;
+            }
+
+            .album-home-section {
+                margin-bottom: 30px;
+                margin-top: 10px;
+                padding: 0 15px;
+                max-width: 100%;
+                text-align: center;
+            }
+
+            .album-home-section .row {
+                display: block;
+                gap: 0;
+            }
+
+            .album-home-section .col {
+                flex: none;
+                width: 100%;
+                min-width: auto;
+                margin-bottom: 30px;
+            }
+
+            .album-home-section h2 {
+                font-size: 1.6rem;
+                font-weight: 700;
+                margin-top: 30px;
+                margin-bottom: 20px;
+                color: #003366;
+                text-align: center;
+            }
+
+            .album-grid {
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .album-card {
+                border-radius: 10px;
+                overflow: hidden;
+                background: #fff;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+                transition: transform 0.25s ease, box-shadow 0.25s ease;
+            }
+
+            .album-card:hover {
+                transform: translateY(-3px);
+                box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+            }
+
+            .album-card img {
+                width: 100%;
+                height: 160px;
+                object-fit: cover;
+                display: block;
+            }
+
+            .album-body {
+                padding: 12px;
+                text-align: left;
+            }
+
+            .album-title {
+                font-size: 1rem;
+                font-weight: 600;
+                margin-bottom: 4px;
+                color: #222;
+            }
+
+            .album-desc {
+                font-size: 0.85rem;
+                color: #555;
+                line-height: 1.4;
+            }
+
+            .album-date {
+                font-size: 0.75rem;
+                color: #777;
+                margin-top: 6px;
+                display: block;
+            }
+
+            .galeri-container {
+                padding: 40px 0;
+            }
+
+            .layanan-grid,
+            .galeri-home-grid,
+            .album-grid {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .navbar .nav-link,
+            .layanan-overlay h5,
+            .galeri-card {
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: rgba(0, 0, 0, 0.05);
+            }
+
+            .layanan-box,
+            .galeri-card,
+            .album-card {
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            }
+
+            img,
+            video {
+                max-width: 100%;
+                height: auto;
+                display: block;
+            }
+        }
     </style>
 
     <div class="full-bg">
@@ -503,27 +879,7 @@
             </div>
         @endif
     </section>
-    <!-- <section class="official-portal-section-alt">
-                                                                                                                        <div class="row align-items-center justify-content-center" style="padding: 0 5vw;">
-                                                                                                                            <div class="col-lg-3 col-md-3 text-center">
-                                                                                                                                <img src="{{ asset('images/logo-murung-raya.png') }}" alt="Logo Murung Raya" class="logo-img">
-                                                                                                                            </div>
-                                                                                                                            <div class="col-lg-6 col-md-6 text-center">
-                                                                                                                                <div class="official-heading">
-                                                                                                                                    <h2><strong>Pemerintah Kabupaten Murung Raya</strong></h2>
-                                                                                                                                </div>
-                                                                                                                            </div>
-                                                                                                                            <div class="col-lg-3 col-md-3 text-center">
-                                                                                                                                <a href="https://murungrayakab.go.id" target="_blank" class="official-btn-alt">
-                                                                                                                                    Kunjungi
-                                                                                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="34" height="16" viewBox="0 0 34.53 16">
-                                                                                                                                        <rect class="line" y="7.6" width="34" height="0.4" fill="currentColor" />
-                                                                                                                                        <path class="arrow" d="M25.83.7l.7-.7,8,8-.7.71Zm0,14.6,8-8,.71.71-8,8Z" fill="currentColor" />
-                                                                                                                                    </svg>
-                                                                                                                                </a>
-                                                                                                                            </div>
-                                                                                                                        </div>
-                                                                                                                    </section> -->
+
     <section class="galeri-home-section">
         <h2 data-aos="fade-up">Galeri</h2>
         <div class="galeri-home-grid">
@@ -567,6 +923,67 @@
                     <p>Pengumuman resmi dan pemberitahuan dari Diskominfo.</p>
                 </div>
             </a>
+
+        </div>
+    </section>
+
+    <section class="album-home-section">
+        <div class="row">
+            <div class="col">
+                <h2 data-aos="fade-up">Berita Terbaru</h2>
+                <div class="album-grid">
+                    @forelse ($beritas as $item)
+                        <div class="album-card">
+                            <img src="{{ $item->foto ? asset($item->foto) : 'https://via.placeholder.com/600x300?text=No+Image' }}"
+                                alt="Foto {{ $item->judul }}">
+
+                            <div class="album-body">
+                                <div class="album-title">{{ $item->judul }}</div>
+                                <div class="album-desc">
+                                    {{ \Illuminate\Support\Str::limit(strip_tags($item->deskripsi), 100, '...') }}
+                                </div>
+                                <div class="album-date">
+                                    Oleh: {{ $item->penulis }} | {{ $item->created_at->format('d M Y') }}
+                                </div>
+                                <div style="margin-top: 10px;">
+                                    <a href="{{ route('berita.read', $item->id) }}"
+                                        class="btn btn-sm btn-primary">Selengkapnya</a>
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <p class="no-news-text">Berita belum tersedia</p>
+                    @endforelse
+
+                </div>
+            </div>
+            <div class="col">
+                <h2 data-aos="fade-up">Pengumuman Terbaru</h2>
+                <div class="album-grid">
+                    @forelse ($pengumumanDB as $item)
+                        <div class="album-card">
+                            <img src="{{ $item->foto ? asset($item->foto) : 'https://via.placeholder.com/600x300?text=No+Image' }}"
+                                alt="Foto {{ $item->judul }}">
+
+                            <div class="album-body">
+                                <div class="album-title">{{ $item->judul }}</div>
+                                <div class="album-desc">
+                                    {{ \Illuminate\Support\Str::limit(strip_tags($item->deskripsi), 100, '...') }}
+                                </div>
+                                <div class="album-date">
+                                    Oleh: {{ $item->penulis }} | {{ $item->created_at->format('d M Y') }}
+                                </div>
+                                <div style="margin-top: 10px;">
+                                    <a href="{{ route('pengumuman.detail', $item->id) }}"
+                                        class="btn btn-sm btn-primary">Selengkapnya</a>
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <p class="no-news-text">Pengumuman belum tersedia</p>
+                    @endforelse
+                </div>
+            </div>
 
         </div>
     </section>

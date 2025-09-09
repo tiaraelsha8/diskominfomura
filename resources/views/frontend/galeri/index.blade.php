@@ -3,24 +3,27 @@
 @section('content')
     <style>
         .title-bg {
-            margin-top: -95px;
-            padding-top: 195px;
-            padding-bottom: 120px;
+            margin-top: 0;
+            min-height: 70vh;
             background: url('{{ asset('image/bg_galeri.jpg') }}') center/cover no-repeat;
             color: #ffffff;
-            font-weight: 800;
-            font-size: 3rem;
             text-align: center;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
             letter-spacing: 1.5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .title-bg h1 {
+            font-weight: 800;
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            margin: 0;
+            transform: translateY(80%);
         }
 
         .galeri-container {
             padding: 60px 0;
-<<<<<<< HEAD
-            /* background: #f4f6f9; */
-=======
->>>>>>> frontend
         }
 
         .album-grid {
@@ -236,26 +239,6 @@
             right: 140px;
         }
 
-        @media (max-width: 768px) {
-            .thumb-container {
-                top: unset;
-                bottom: 0;
-                right: 0;
-                width: 100%;
-                height: 120px;
-                flex-direction: row;
-                overflow-x: auto;
-                white-space: nowrap;
-            }
-
-            .thumb-container img {
-                width: 100px;
-                height: 100px;
-                object-fit: cover;
-                margin-right: 10px;
-            }
-        }
-
         .modal-nav {
             position: absolute;
             top: 50%;
@@ -290,36 +273,103 @@
             opacity: 1;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
         @media (max-width: 768px) {
+            .title-bg {
+                min-height: 50vh;
+                padding: 20px;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .title-bg h1 {
+                font-size: 1.6rem;
+                transform: translateY(70%);
+                line-height: 1.3;
+            }
+
+            .galeri-container {
+                padding: 30px 15px;
+            }
+
+            .album-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .album-card img {
+                height: 160px;
+            }
+
             .modal-content {
-                max-height: 90vh;
-                overflow-y: auto;
+                width: 95%;
+                max-width: none;
+                border-radius: 8px;
             }
 
             .modal-img {
-                max-height: 300px;
+                max-height: 250px;
             }
 
-            .modal-close {
-                top: 10px;
-                right: 20px;
+            .modal-body {
+                padding: 16px;
+            }
+
+            .modal-title {
+                font-size: 1rem;
+            }
+
+            .modal-desc {
+                font-size: 0.85rem;
+                line-height: 1.4;
+            }
+
+            .modal-date {
+                font-size: 0.75rem;
+            }
+
+            .thumb-container {
+                width: 90px;
+                height: 60vh;
+                top: 100px;
+                right: -120px;
+                padding: 10px;
+                z-index: 10001 !important;
+            }
+
+            .thumb-container.show~.modal-next {
+                right: 110px;
+            }
+
+            .thumb-container img {
+                margin-bottom: 6px;
+            }
+
+            .modal-prev {
+                left: -5px;
+            }
+
+            .modal-next {
+                right: -5px !important;
+                transition: none !important;
+                z-index: 9999 !important;
+            }
+
+            .thumb-container.show~.modal-next {
+                right: -5px !important;
+            }
+
+            .modal-nav {
+                width: 40px;
+                height: 40px;
+                line-height: 40px;
+                font-size: 0.9rem;
             }
         }
     </style>
 
-    <div class="title-bg">Galeri Foto</div>
+    <div class="title-bg">
+        <h1>Galeri Foto</h1>
+    </div>
     <section class="galeri-container container">
         <div class="album-grid">
             @forelse ($galeri as $album)

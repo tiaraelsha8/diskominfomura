@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Maklumat;
 
 class MaklumatController extends Controller
@@ -36,17 +37,39 @@ class MaklumatController extends Controller
                 ->with(['error' => 'Data sudah ada. Tidak boleh lebih dari satu.']);
         }
 
-         //validate form
-         $request->validate([
-            'maklumat' => 'required'
+        //validate form
+        $request->validate([
+            'maklumat' => 'required',
+            'video' => 'nullable|mimes:mp4|max:20480', // max 20MB
+            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
-        //create
-        Maklumat::create($request->all());
+        // Siapkan data untuk insert
+        $data = [
+            'maklumat' => $request->maklumat,
+        ];
 
+        // Upload Foto
+        if ($request->hasFile('foto')) {
+            $foto = $request->file('foto');
+            $foto->storeAs('maklumats/foto', $foto->hashName(), 'public');
+            $data['foto'] = $foto->hashName(); // cukup simpan nama file saja
+        }
+
+        // Upload Video
+        if ($request->hasFile('video')) {
+            $video = $request->file('video');
+            $video->storeAs('maklumats/video', $video->hashName(), 'public');
+            $data['video'] = $video->hashName();
+        }
+
+        // Simpan ke database
+        Maklumat::create($data);
 
         //redirect to index
-        return redirect()->route('maklumat.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect()
+            ->route('maklumat.index')
+            ->with(['success' => 'Data Berhasil Disimpan!']);
     }
 
     /**
@@ -73,17 +96,49 @@ class MaklumatController extends Controller
     {
         //validate form
         $request->validate([
-            'maklumat' => 'required'
+            'maklumat' => 'required',
+            'video' => 'nullable|mimes:mp4|max:20480', // max 20MB
+            'foto' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         //get product by ID
         $maklumats = Maklumat::findOrFail($id);
-        
-        //update 
-        $maklumats->update($request->all());
+
+        $data = [
+            'maklumat' => $request->maklumat,
+        ];
+
+        if ($request->hasFile('foto')) {
+            // hapus foto lama
+            if ($maklumats->foto && Storage::disk('public')->exists('maklumats/foto/' . $maklumats->foto)) {
+                Storage::disk('public')->delete('maklumats/foto/' . $maklumats->foto);
+            }
+
+            // upload baru
+            $foto = $request->file('foto');
+            $foto->storeAs('maklumats/foto', $foto->hashName(), 'public');
+
+            // simpan hanya nama file ke DB
+            $data['foto'] = $foto->hashName();
+        }
+
+        if ($request->hasFile('video')) {
+            if ($maklumats->video && Storage::disk('public')->exists('maklumats/video/' . $maklumats->video)) {
+                Storage::disk('public')->delete('maklumats/video/' . $maklumats->video);
+            }
+
+            $video = $request->file('video');
+            $video->storeAs('maklumats/video', $video->hashName(), 'public');
+
+            $data['video'] = $video->hashName();
+        }
+        //update
+        $maklumats->update($data);
 
         //redirect to index
-        return redirect()->route('maklumat.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()
+            ->route('maklumat.index')
+            ->with(['success' => 'Data Berhasil Diubah!']);
     }
 
     /**
@@ -94,10 +149,23 @@ class MaklumatController extends Controller
         //get by ID
         $maklumats = Maklumat::findOrFail($id);
 
-        //delete 
+        //hapus foto kalau ada
+        if ($maklumats->foto) {
+            Storage::delete('maklumats/foto/' . $maklumats->foto);
+            
+        }
+
+        //hapus video kalau ada
+        if ($maklumats->video) {
+            Storage::delete('maklumats/video/' . $maklumats->video);
+        }
+
+        //delete
         $maklumats->delete();
 
         //redirect to index
-        return redirect()->route('maklumat.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()
+            ->route('maklumat.index')
+            ->with(['success' => 'Data Berhasil Dihapus!']);
     }
 }
