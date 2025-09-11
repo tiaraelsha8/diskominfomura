@@ -4,36 +4,46 @@
     <style>
         .chart-actions {
             display: flex;
-            justify-content: flex-end;
+            justify-content: space-between;
             align-items: center;
-            gap: 12px;
+            gap: 16px;
             margin-bottom: 20px;
             margin-top: 120px;
-            padding-right: 20px;
+            padding: 10px 20px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .chart-info h4 {
+            margin: 0 0 8px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #000;
+        }
+
+        .chart-info ul {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 13px;
+            color: #333;
+            line-height: 1.5;
         }
 
         .chart-actions button {
             background-color: #039BE5;
             color: white;
             border: none;
-            padding: 6px 14px;
+            padding: 8px 18px;
             border-radius: 6px;
             cursor: pointer;
             font-size: 14px;
             transition: background 0.2s ease;
+            flex-shrink: 0;
         }
 
         .chart-actions button:hover {
             background-color: #0277bd;
-        }
-
-        .chart-actions h4 {
-            margin: 0;
-            font-size: 15px;
-            font-weight: 500;
-            color: #000;
-            line-height: 1.4;
-            text-align: right;
         }
 
         #chart-org {
@@ -261,7 +271,15 @@
 
     <div class="w-100">
         <div class="chart-actions">
-            <h4>"Silahkan Klik Tombol Reset Untuk <br> kembali Ke tampilan Awal."</h4>
+            <div class="chart-info">
+                <h4>Klik tombol <b>Reset</b> untuk kembali ke tampilan awal.</h4>
+                <ul>
+                    <li>Untuk menggeser tampilan halaman atau struktur organisasi, gunakan fitur seret dan lepas (drag and
+                        drop) dengan mouse</li>
+                    <li>Untuk memperbesar atau memperkecil tampilan, gunakan roda gulir (mouse wheel).
+                    </li>
+                </ul>
+            </div>
             <button id="resetChart">Reset</button>
         </div>
         <div id="chart-org"></div>
