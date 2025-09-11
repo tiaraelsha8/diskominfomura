@@ -345,6 +345,7 @@
                     level: 2,
                     allChildren: true,
                 },
+                scaleInitial: 0.9,
                 align: OrgChart.ORIENTATION,
                 mouseScrool: OrgChart.action.ctrlZoom,
                 showXScroll: true,

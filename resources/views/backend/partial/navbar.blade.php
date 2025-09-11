@@ -19,3 +19,10 @@
         </form>
     </ul>
 </nav>
+
+     <!-- jQuery -->
+    <script src="{{ asset('templateadmin/plugins/jquery/jquery.min.js') }}"></script>
+    <!-- Bootstrap 4 -->
+    <script src="{{ asset('templateadmin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+     <!-- AdminLTE App -->
+    <script src="{{ asset('templateadmin/dist/js/adminlte.min.js') }}"></script>
