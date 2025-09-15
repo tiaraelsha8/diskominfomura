@@ -86,10 +86,13 @@
     <script>
         // Inisialisasi peta
         var map = L.map('map').setView([-0.6391521, 114.5679174], 15); // Pusatkan di Murung Raya
-        // Tile layer OpenStreetMap
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '© OpenStreetMap contributors'
-        }).addTo(map);
+        // Tile layer Satelit Esri (gratis)
+        L.tileLayer(
+            "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+                attribution: "© Esri, Maxar, Earthstar Geographics"
+            }
+        ).addTo(map);
+
         // Data dari controller Laravel
         var lokasi = @json($lokasi);
         // Tambahkan marker dan lingkaran jangkauan
