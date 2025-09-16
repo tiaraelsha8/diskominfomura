@@ -577,11 +577,6 @@
                 border-radius: 12px;
             }
 
-            .layanan-box:hover .layanan-overlay {
-                bottom: -18px;
-                transform: none;
-            }
-
             .layanan-overlay img {
                 width: 48px;
                 height: 48px;
