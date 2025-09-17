@@ -10,7 +10,6 @@
             margin-bottom: 20px;
             margin-top: 120px;
             padding: 10px 20px;
-            background: #f9f9f9;
             border: 1px solid #ddd;
             border-radius: 8px;
         }
@@ -179,6 +178,7 @@
             .chart-actions button {
                 font-size: 14px;
                 padding: 8px 16px;
+                margin: 10px 0 12px 0;
             }
 
             .chart-actions h4 {
@@ -186,6 +186,19 @@
                 line-height: 1.4;
                 text-align: center;
                 margin: 0;
+            }
+
+            .chart-info {
+                padding: 0 16px;
+            }
+
+            .chart-info ul {
+                margin: 10px 0;
+                padding-left: 18px;
+                font-size: 12px;
+                line-height: 1.6;
+                color: #444;
+                text-align: justify;
             }
 
             #chart-org {

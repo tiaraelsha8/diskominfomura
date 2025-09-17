@@ -346,6 +346,10 @@
             color: white;
         }
 
+        body.dark-mode .chart-info ul {
+            color: #e0e0e0;
+        }
+
         body.dark-mode .berita-container h1 {
             color: white;
         }
@@ -354,7 +358,7 @@
             color: #888888;
         }
 
-                body.dark-mode .pengumuman-container h1 {
+        body.dark-mode .pengumuman-container h1 {
             color: white;
         }
 
