@@ -48,6 +48,7 @@
             width: 100%;
             border: 1px solid rgba(255, 255, 255, 0.15);
             margin-left: 5vw;
+            margin-top: 20vw;
         }
 
         .hero-container h1 {
@@ -406,7 +407,7 @@
 
         .album-home-section {
             margin-bottom: 50px;
-            margin-top: 10px;
+            margin-top: 80px;
             padding: 0 20px;
             max-width: 1300px;
             margin-left: auto;
@@ -818,7 +819,7 @@
             <p data-aos="fade-up" data-aos-delay="200">Murung Raya Hebat</p>
         </div>
     </div>
-
+    
     <section class="layanan-fullscreen" data-aos="fade-up">
         <h2 data-aos="fade-down" data-aos-delay="100">Layanan</h2>
         @if ($layanans->count())
@@ -853,6 +854,67 @@
             });
         });
     </script>
+
+    <section class="album-home-section">
+        <div class="row">
+            <div class="col">
+                <h2 data-aos="fade-up">Berita Terbaru</h2>
+                <div class="album-grid">
+                    @forelse ($beritas as $item)
+                        <div class="album-card">
+                            <img src="{{ $item->foto ? asset($item->foto) : 'https://via.placeholder.com/600x300?text=No+Image' }}"
+                                alt="Foto {{ $item->judul }}">
+
+                            <div class="album-body">
+                                <div class="album-title">{{ $item->judul }}</div>
+                                <div class="album-desc">
+                                    {{ \Illuminate\Support\Str::limit(strip_tags($item->deskripsi), 100, '...') }}
+                                </div>
+                                <div class="album-date">
+                                    Oleh: {{ $item->penulis }} | {{ $item->created_at->format('d M Y') }}
+                                </div>
+                                <div style="margin-top: 10px;">
+                                    <a href="{{ route('berita.read', $item->id) }}"
+                                        class="btn btn-sm btn-primary">Selengkapnya</a>
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <p class="no-news-text">Berita belum tersedia</p>
+                    @endforelse
+
+                </div>
+            </div>
+            <div class="col">
+                <h2 data-aos="fade-up">Pengumuman Terbaru</h2>
+                <div class="album-grid">
+                    @forelse ($pengumumanDB as $item)
+                        <div class="album-card">
+                            <img src="{{ $item->foto ? asset($item->foto) : 'https://via.placeholder.com/600x300?text=No+Image' }}"
+                                alt="Foto {{ $item->judul }}">
+
+                            <div class="album-body">
+                                <div class="album-title">{{ $item->judul }}</div>
+                                <div class="album-desc">
+                                    {{ \Illuminate\Support\Str::limit(strip_tags($item->deskripsi), 100, '...') }}
+                                </div>
+                                <div class="album-date">
+                                    Oleh: {{ $item->penulis }} | {{ $item->created_at->format('d M Y') }}
+                                </div>
+                                <div style="margin-top: 10px;">
+                                    <a href="{{ route('pengumuman.detail', $item->id) }}"
+                                        class="btn btn-sm btn-primary">Selengkapnya</a>
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <p class="no-news-text">Pengumuman belum tersedia</p>
+                    @endforelse
+                </div>
+            </div>
+
+        </div>
+    </section>
 
     <section class="bidang-fullwidth">
         <h2 data-aos="fade-up">Bidang</h2>
@@ -922,66 +984,7 @@
         </div>
     </section>
 
-    <section class="album-home-section">
-        <div class="row">
-            <div class="col">
-                <h2 data-aos="fade-up">Berita Terbaru</h2>
-                <div class="album-grid">
-                    @forelse ($beritas as $item)
-                        <div class="album-card">
-                            <img src="{{ $item->foto ? asset($item->foto) : 'https://via.placeholder.com/600x300?text=No+Image' }}"
-                                alt="Foto {{ $item->judul }}">
-
-                            <div class="album-body">
-                                <div class="album-title">{{ $item->judul }}</div>
-                                <div class="album-desc">
-                                    {{ \Illuminate\Support\Str::limit(strip_tags($item->deskripsi), 100, '...') }}
-                                </div>
-                                <div class="album-date">
-                                    Oleh: {{ $item->penulis }} | {{ $item->created_at->format('d M Y') }}
-                                </div>
-                                <div style="margin-top: 10px;">
-                                    <a href="{{ route('berita.read', $item->id) }}"
-                                        class="btn btn-sm btn-primary">Selengkapnya</a>
-                                </div>
-                            </div>
-                        </div>
-                    @empty
-                        <p class="no-news-text">Berita belum tersedia</p>
-                    @endforelse
-
-                </div>
-            </div>
-            <div class="col">
-                <h2 data-aos="fade-up">Pengumuman Terbaru</h2>
-                <div class="album-grid">
-                    @forelse ($pengumumanDB as $item)
-                        <div class="album-card">
-                            <img src="{{ $item->foto ? asset($item->foto) : 'https://via.placeholder.com/600x300?text=No+Image' }}"
-                                alt="Foto {{ $item->judul }}">
-
-                            <div class="album-body">
-                                <div class="album-title">{{ $item->judul }}</div>
-                                <div class="album-desc">
-                                    {{ \Illuminate\Support\Str::limit(strip_tags($item->deskripsi), 100, '...') }}
-                                </div>
-                                <div class="album-date">
-                                    Oleh: {{ $item->penulis }} | {{ $item->created_at->format('d M Y') }}
-                                </div>
-                                <div style="margin-top: 10px;">
-                                    <a href="{{ route('pengumuman.detail', $item->id) }}"
-                                        class="btn btn-sm btn-primary">Selengkapnya</a>
-                                </div>
-                            </div>
-                        </div>
-                    @empty
-                        <p class="no-news-text">Pengumuman belum tersedia</p>
-                    @endforelse
-                </div>
-            </div>
-
-        </div>
-    </section>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
