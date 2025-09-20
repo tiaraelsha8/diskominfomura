@@ -134,10 +134,6 @@
 
     <!-- table -->
 
-    <!-- jQuery -->
-    <script src="{{ asset('templateadmin/plugins/jquery/jquery.min.js') }}"></script>
-    <!-- Bootstrap 4 -->
-    <script src="{{ asset('templateadmin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- DataTables  & Plugins -->
     <script src="{{ asset('templateadmin/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('templateadmin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
@@ -151,8 +147,7 @@
     <script src="{{ asset('templateadmin/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('templateadmin/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('templateadmin/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
-    <!-- AdminLTE App -->
-    <script src="{{ asset('templateadmin/dist/js/adminlte.min.js') }}"></script>
+
     {{-- <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('templateadmin/dist/js/demo.js') }}"></script> --}}
     <!-- Page specific script -->
