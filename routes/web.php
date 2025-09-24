@@ -48,7 +48,7 @@ use App\Http\Controllers\frontend\PegawaiController as PegawaiFront;
 Route::middleware('guest')->group(function () {
     //Login
     Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
-    Route::post('login', [AuthController::class, 'login'])->name('login.submit');
+    Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
 
     // Forgot password
     Route::get('/password/forgot', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
