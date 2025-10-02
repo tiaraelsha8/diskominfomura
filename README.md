@@ -5,7 +5,7 @@
 5. sesuiakan nama database
 6. php artisan key:generate
 7. php artisan migrate
-8. php artisan migrate --seed
+8. php artisan db:seed
 9. silahkan edit email dan password sesuia kebutuhan di edit profile
 10. ubah .env nya dimana, email smtp, tambahkan key email untuk capcha, dan ubah file system menjadi publik
 11. setelah ubah .env jalankan php artisan config:clear, php artisan cache:clear, php artisan config:cache
