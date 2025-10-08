@@ -1,8 +1,8 @@
 1. git clone
-2. cd projek
+2. cd 'nama projek'
 3. composer install
 4. copy paste .env
-5. sesuiakan nama database
+5. sesuaikan nama database di env
 6. php artisan key:generate
 7. php artisan migrate
 8. php artisan db:seed
