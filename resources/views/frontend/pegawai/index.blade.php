@@ -316,7 +316,7 @@
                 <button id="zoom-out" title="Zoom Out">−</button>
                 <button id="zoom-reset" title="Reset Zoom">⟲</button>
             </div>
-            <div id="chart-container"></div>
+            <div id="chart-container" style="margin-left: -100px"></div>
         </div>
     </div>
 
@@ -423,7 +423,7 @@
                 }
 
                 const fileBtn = data.file_link ?
-                    `<a href="${data.file_link}" target="_blank" class="btn btn-sm btn-outline-primary mt-1">Dokumen</a>` :
+                    `<a href="${data.file_link}" target="_blank" class="btn btn-sm btn-light mt-1">Dokumen</a>` :
                     '';
                 return `
         <div class="custom-node ${data.is_assistant ? 'assistant-node' : ''}" data-id="${data.id}">
@@ -491,7 +491,7 @@
             });
 
             // === Zoom Controls ===
-            let currentZoom = 0.6; // Set zoom awal ke 50%
+            let currentZoom = 0.6; // Set zoom awal ke 60%
             const zoomStep = 0.1;
             const minZoom = 0.5;
             const maxZoom = 2;
@@ -595,6 +595,12 @@
                     $(this).text('Tampilkan Struktur Detail');
                 }
             });
+        });
+
+        // Tombol close khusus modal
+        $('#forceCloseBtn').on('click', function() {
+            const modal = bootstrap.Modal.getInstance(document.getElementById('modalTupoksi'));
+            modal.hide();
         });
     </script>
 
@@ -719,7 +725,7 @@
         }
 
         .custom-node {
-            background-color: #e6f0ff;
+            background-color: #0071b4;
             border: 2px solid #b5d0ff;
             border-radius: 10px;
             padding: 10px;
@@ -753,7 +759,7 @@
 
         .node-name {
             font-weight: bold;
-            color: #004080;
+            color: white;
             font-size: 14px;
             margin-bottom: 4px;
             word-wrap: break-word;
@@ -767,7 +773,7 @@
 
         .node-title {
             font-size: 12px;
-            color: #333;
+            color: white;
             margin-bottom: 8px;
             word-wrap: break-word;
             overflow: hidden;
