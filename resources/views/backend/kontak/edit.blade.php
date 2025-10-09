@@ -86,7 +86,7 @@
 
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary">Simpan</button>
-                        <a href="{{ route('galeri.index') }}" class="btn btn-default">Kembali</a>
+                        <a href="{{ route('kontak.index') }}" class="btn btn-default">Kembali</a>
                     </div>
                 </div>
             </form>
