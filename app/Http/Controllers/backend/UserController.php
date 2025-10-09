@@ -45,7 +45,7 @@ class UserController extends Controller
                 RateLimiter::hit($key, 300); // Tambah 1 hit, lock selama 300 detik (5 menit)
                 $seconds = RateLimiter::availableIn($key);
                 return back()->withErrors([
-                'current_password' => 'Terlalu banyak percobaan gagal. Tunggu sampai waktu habis.',
+                'current_password' => 'Password lama salah.',
                 ])->with('secondsRemaining', $seconds);
             }
 
