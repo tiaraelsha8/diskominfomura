@@ -80,7 +80,7 @@ class PegawaiController extends Controller
         foreach ($pegawai as $p) {
             $customId = $mapPegawaiIdToCustomId[$p->id];
             $pid = null;
-            $isAssistant = '';
+            $isAssistant = false;
 
             $namaJabatan = optional($p->jabatan)->nama_jabatan ?? '';
             $levelJabatan = $getLevelJabatan($namaJabatan);
@@ -96,7 +96,7 @@ class PegawaiController extends Controller
                         $parent = $pegawai->first(function ($x) use ($getLevelJabatan) {
                             return $getLevelJabatan(optional($x->jabatan)->nama_jabatan) == 1;
                         });
-                        $isAssistant = 'assistant';
+                        $isAssistant = true;
                     } else {
                         // Kepala Bidang langsung ke Kepala Dinas
                         $parent = $pegawai->first(function ($x) use ($getLevelJabatan) {
@@ -186,8 +186,8 @@ class PegawaiController extends Controller
             // Tambahkan node
             $nodes[] = [
                 'id' => $customId,
-                'pid' => $pid,
-                'tags' => $isAssistant ? [$isAssistant] : [],
+                'parent_id' => $pid,
+                'is_assistant' => $isAssistant, // langsung true/false
                 'name' => $p->nama,
                 'title' => (function () use ($namaJabatan, $p, $getBidangName) {
                     $lower = strtolower($namaJabatan);

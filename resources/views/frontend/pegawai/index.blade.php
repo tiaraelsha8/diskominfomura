@@ -280,6 +280,19 @@
                 right: 10px;
             }
         }
+
+        .normal-node {
+            padding: 6px;
+        }
+
+        .assistant-node {
+            background: #f0f8ff;
+            border: 2px dashed #007bff;
+            border-radius: 8px;
+            font-size: 11px;
+            color: #007bff;
+            padding: 4px;
+        }
     </style>
 
     <div class="w-100">
@@ -293,14 +306,22 @@
                     </li>
                 </ul>
             </div>
-            <button id="resetChart">Reset</button>
+            {{-- <button id="resetChart">Reset</button> --}}
+            <button id="toggleAll" class="btn btn-primary">Tampilkan Semua</button>
         </div>
-        <div id="chart-org"></div>
+        <div style="position: relative;">
+            <div class="zoom-controls">
+                <button id="zoom-in" title="Zoom In">+</button>
+                <div class="zoom-level" id="zoom-level">100%</div>
+                <button id="zoom-out" title="Zoom Out">−</button>
+                <button id="zoom-reset" title="Reset Zoom">⟲</button>
+            </div>
+            <div id="chart-container"></div>
+        </div>
     </div>
 
     <!-- Modal Detail Pegawai -->
-    <div class="modal fade" id="modalTupoksi" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true"
-        data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal fade" id="modalTupoksi" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered custom-modal">
             <div class="modal-content rounded-4">
                 <div class="modal-body custom-body">
@@ -336,170 +357,458 @@
 @endsection
 
 @push('scripts')
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://balkan.app/js/OrgChart.js"></script>
-    <!-- Bootstrap JS (v5) -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/orgchart/2.1.3/css/jquery.orgchart.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/orgchart/2.1.3/js/jquery.orgchart.min.js"></script>
+
     <script>
-        OrgChart.templates.myTemplate = Object.assign({}, OrgChart.templates.diva);
-        OrgChart.icon.reset = function(w, h, color) {
-            return '<svg fill="' + color + '" xmlns="http://www.w3.org/2000/svg" width="' + w + '" height="' + h +
-                '" viewBox="0 0 24 24"><path d="M12 5V1L8 5l4 4V6c3.309 0 6 2.691 6 6 0 1.032-.259 2.004-.715 2.851l1.514 1.314C19.541 15.152 20 13.628 20 12c0-4.411-3.589-8-8-8zm-6.799.929L3.687 8.657C2.459 10.848 2 12.372 2 14c0 4.411 3.589 8 8 8v4l4-4-4-4v3c-3.309 0-6-2.691-6-6 0-1.032.259-2.004.715-2.851l1.486-1.29z"/></svg>';
-        };
-        $(document).ready(function() {
-            const data = @json($nodes);
-            // Inisialisasi chart
-            let chart = new OrgChart(document.getElementById("chart-org"), {
-                template: "myTemplate",
-                mode: 'light',
-                enableSearch: false,
-                nodeMouseClick: OrgChart.action.none,
-                collapse: {
-                    level: 2,
-                    allChildren: true,
-                },
-                scaleInitial: 0.9,
-                align: OrgChart.ORIENTATION,
-                mouseScrool: OrgChart.action.ctrlZoom,
-                showXScroll: true,
-                layout: OrgChart.normal,
-                editForm: {
-                    addMore: null,
-                    generateElementsFromFields: false,
-                    readOnly: true,
-                    elements: [{
-                            type: 'textbox',
-                            label: 'Nama Lengkap',
-                            binding: 'name'
-                        },
-                        {
-                            type: 'textbox',
-                            label: 'Jabatan',
-                            binding: 'title'
-                        },
-                        {
-                            type: 'textbox',
-                            label: 'Bidang',
-                            binding: 'bidang'
-                        },
-                        {
-                            type: 'textbox',
-                            label: 'Tupoksi',
-                            binding: 'desc'
-                        }
-                    ]
-                },
-                nodeMenu: {
-                    download: {
-                        text: "Download File LHKPN",
-                        icon: OrgChart.icon.pdf(24, 24, "#039BE5"),
-                        onClick: function(args) {
-                            const fileUrl = data[args - 1].file_link;
-                            if (fileUrl) {
-                                window.open(fileUrl, '_blank');
-                            } else {
-                                alert("File LHKPN tidak tersedia.");
-                            }
-                        }
+        $(function() {
+            const nodes = @json($nodes);
+
+            // === Helper: Bangun tree dari flat data ===
+            function buildTree(parentId) {
+                const children = nodes.filter(n => n.parent_id === parentId);
+                return children.map(child => ({
+                    id: child.id,
+                    name: child.name,
+                    title: child.title,
+                    desc: child.desc,
+                    bidang: child.bidang,
+                    img: child.img,
+                    file_link: child.file_link,
+                    is_assistant: child.is_assistant,
+                    children: buildTree(child.id)
+                }));
+            }
+
+            const root = nodes.find(n => n.parent_id === null);
+
+            // Pisahkan Sekretaris dan Kepala Bidang
+            const allChildren = buildTree(root.id);
+            const sekretaris = allChildren.filter(n => n.is_assistant);
+            const kepala_bidang = allChildren.filter(n => !n.is_assistant);
+
+            // Buat node dummy transparan untuk menurunkan posisi Kepala Bidang
+            const dummyNodeForKabid = {
+                id: 'dummy-spacer',
+                name: '',
+                title: '',
+                desc: '',
+                bidang: '',
+                img: '',
+                file_link: '',
+                is_assistant: false,
+                is_dummy: true,
+                children: kepala_bidang
+            };
+
+            // Struktur: Root -> [Dummy -> Kepala Bidang, Sekretaris]
+            const treeData = {
+                id: root.id,
+                name: root.name,
+                title: root.title,
+                desc: root.desc,
+                bidang: root.bidang,
+                img: root.img,
+                file_link: root.file_link,
+                is_assistant: root.is_assistant,
+                children: [dummyNodeForKabid, ...sekretaris]
+            };
+
+            // === Node Template ===
+            function nodeTemplate(data) {
+                // Node dummy dengan garis vertikal
+                if (data.is_dummy) {
+                    return '<div class="dummy-node"><div class="dummy-line"></div></div>';
+                }
+
+                const fileBtn = data.file_link ?
+                    `<a href="${data.file_link}" target="_blank" class="btn btn-sm btn-outline-primary mt-1">Dokumen</a>` :
+                    '';
+                return `
+        <div class="custom-node ${data.is_assistant ? 'assistant-node' : ''}" data-id="${data.id}">
+            <img src="${data.img}" alt="${data.name}" class="node-img">
+            <div class="node-name">${data.name}</div>
+            <div class="node-title">${data.title}</div>
+            ${fileBtn}
+        </div>`;
+            }
+
+            // === Inisialisasi Chart ===
+            const chart = $('#chart-container').orgchart({
+                'data': treeData,
+                'nodeContent': 'title',
+                'verticalDepth': 2,
+                'pan': true,
+                'zoom': true,
+                'createNode': function($node, data) {
+                    $node.html(nodeTemplate(data));
+
+                    // Styling khusus untuk node dummy
+                    if (data.is_dummy) {
+                        $node.addClass('dummy-spacer');
+                        $node.css({
+                            'background': 'transparent',
+                            'border': 'none',
+                            'box-shadow': 'none',
+                            'pointer-events': 'none'
+                        });
                     }
-                },
-                nodeBinding: {
-                    field_0: "name",
-                    field_1: "title",
-                    field_2: "desc",
-                    field_3: "bidang",
-                    field_4: "file_link",
-                    img_0: "img"
+
+                    // Styling khusus untuk Sekretaris
+                    if (data.is_assistant) {
+                        $node.css({
+                            'position': 'relative',
+                            'z-index': '10'
+                        });
+                        $node.parent().addClass('sekretaris-cell');
+                    }
+
+                    // Klik node buka modal (kecuali dummy)
+                    if (!data.is_dummy) {
+                        $node.on('click', function(e) {
+                            e.stopPropagation();
+
+                            $('#modalImg').attr('src', data.img ||
+                                '{{ asset('volt/assets/img/user.png') }}');
+                            $('#modalName').text(data.name || '-');
+                            $('#modalTitle').text(data.title || '-');
+                            $('#modalDesc').text(data.desc || '-');
+
+                            if (data.file_link) {
+                                $('#modalLhkpnLink').removeClass('d-none').attr('href', data
+                                    .file_link);
+                            } else {
+                                $('#modalLhkpnLink').addClass('d-none');
+                            }
+
+                            const modal = new bootstrap.Modal(document.getElementById(
+                                'modalTupoksi'));
+                            modal.show();
+                        });
+                    }
                 }
             });
-            chart.on('click', function(sender, args) {
-                const clickedNode = data.find(item => item.id === args.node.id);
-                if (!clickedNode) return;
-                $('#modalName').text(clickedNode.name || '-');
-                $('#modalTitle').text(clickedNode.title || '-');
-                $('#modalBidang').text(clickedNode.bidang || '-');
-                $('#modalDesc').text(clickedNode.desc || '-');
-                $('#modalImg').attr('src', clickedNode.img || '');
-                if (clickedNode.file_link) {
-                    $('#modalLhkpnLink')
-                        .attr('href', clickedNode.file_link)
-                        .text('LHKPN')
-                        .show()
-                        .removeClass('btn-secondary')
-                        .addClass('btn-primary')
-                        .css('pointer-events', 'auto');
-                } else {
-                    $('#modalLhkpnLink')
-                        .attr('href', '#')
-                        .text('Belum ada LHKPN')
-                        .show()
-                        .removeClass('btn-primary')
-                        .addClass('btn-secondary')
-                        .css('pointer-events', 'none');
-                };
-                $('#modalTupoksi').modal('show');
+
+            // === Zoom Controls ===
+            let currentZoom = 0.6; // Set zoom awal ke 50%
+            const zoomStep = 0.1;
+            const minZoom = 0.5;
+            const maxZoom = 2;
+
+            // Terapkan zoom awal
+            applyZoom();
+
+            $('#zoom-in').on('click', function() {
+                if (currentZoom < maxZoom) {
+                    currentZoom += zoomStep;
+                    applyZoom();
+                }
             });
-            chart.searchUI.on('searchclick', function(sender, args) {
-                sender.instance.center(args.nodeId, {
-                    parentState: OrgChart.COLLAPSE_PARENT_NEIGHBORS,
-                    childrenState: OrgChart.COLLAPSE_SUB_CHILDRENS
+
+            $('#zoom-out').on('click', function() {
+                if (currentZoom > minZoom) {
+                    currentZoom -= zoomStep;
+                    applyZoom();
+                }
+            });
+
+            $('#zoom-reset').on('click', function() {
+                currentZoom = 0.6;
+                applyZoom();
+            });
+
+            function applyZoom() {
+                $('.orgchart').css({
+                    'transform': `scale(${currentZoom})`,
+                    'transform-origin': 'top center'
                 });
-                return false;
-            });
-            chart.on('expcollclick', function(sender, collapse, id) {
-                if (!collapse) {
-                    sender.center(id, {
-                        parentState: OrgChart.COLLAPSE_PARENT_NEIGHBORS,
-                        childrenState: OrgChart.COLLAPSE_SUB_CHILDRENS,
-                        rippleId: id
-                    });
-                    return false;
+                $('#zoom-level').text(Math.round(currentZoom * 100) + '%');
+            }
+
+            // === Pan/Drag functionality ===
+            let isPanning = false;
+            let startX, startY, scrollLeft, scrollTop;
+
+            $('#chart-container').on('mousedown', function(e) {
+                // Jangan aktifkan pan jika klik pada node
+                if ($(e.target).closest('.custom-node').length > 0) {
+                    return;
                 }
+
+                isPanning = true;
+                $(this).css('cursor', 'grabbing');
+                startX = e.pageX - $(this).offset().left;
+                startY = e.pageY - $(this).offset().top;
+                scrollLeft = $(this).scrollLeft();
+                scrollTop = $(this).scrollTop();
             });
-            // $('#resetChart').on('click', function() {
-            //     chart.load(data);
-            // });
-            chart.load(data);
-            // Event klik tombol reset
-            document.getElementById("resetChart").addEventListener("click", function() {
-                chart.load(data);
-                chart.fit();
+
+            $('#chart-container').on('mouseleave mouseup', function() {
+                isPanning = false;
+                $(this).css('cursor', 'grab');
             });
-            // Tombol close khusus modal
-            $('#forceCloseBtn').on('click', function() {
-                const modal = bootstrap.Modal.getInstance(document.getElementById('modalTupoksi'));
-                modal.hide();
+
+            $('#chart-container').on('mousemove', function(e) {
+                if (!isPanning) return;
+                e.preventDefault();
+                const x = e.pageX - $(this).offset().left;
+                const y = e.pageY - $(this).offset().top;
+                const walkX = (x - startX) * 1.5;
+                const walkY = (y - startY) * 1.5;
+                $(this).scrollLeft(scrollLeft - walkX);
+                $(this).scrollTop(scrollTop - walkY);
+            });
+
+            // === Hide semua node di bawah Kepala Bidang saat awal ===
+            function hideSubtreeBeyondLevel(level) {
+                $('#chart-container .orgchart tr').each(function() {
+                    const depth = $(this).parents('table').length;
+                    if (depth > level) {
+                        $(this).hide('table');
+
+                    }
+                });
+            }
+
+            setTimeout(() => {
+                hideSubtreeBeyondLevel(3); // tampilkan Kadis + Sekretaris + Kabid
+
+                // Styling tambahan untuk posisi Sekretaris
+                $('.sekretaris-cell').each(function() {
+                    $(this).css({
+                        'position': 'relative',
+                        'vertical-align': 'top'
+                    });
+                });
+            }, 0);
+
+            // === Tombol toggle untuk tampilkan semua node ===
+            $(document).on('click', '#toggleAll', function() {
+                const hidden = $('#chart-container .orgchart tr:hidden').length > 0;
+                if (hidden) {
+                    $('#chart-container .orgchart tr').fadeIn(400);
+                    $(this).text('Sembunyikan Struktur Detail');
+                } else {
+                    hideSubtreeBeyondLevel(3);
+                    $('#chart-container .orgchart table table table tr.lines').hide();
+                    $(this).text('Tampilkan Struktur Detail');
+                }
             });
         });
+    </script>
 
-        function mobileLhkpn() {
-            const modalPhoto = document.querySelector('.modal-photo');
-            const modalInfo = document.querySelector('.modal-info');
-            const lhkpn = modalPhoto.querySelector('.modal-lhkpn');
-
-            // hapus clone lama jika ada
-            const existingClone = modalInfo.querySelector('.modal-lhkpn-clone');
-            if (existingClone) existingClone.remove();
-
-            if (window.innerWidth < 768) {
-                // sembunyikan tombol asli
-                lhkpn.style.display = 'none';
-
-                // buat clone tombol di bawah modal-info
-                const clone = lhkpn.cloneNode(true);
-                clone.classList.add('modal-lhkpn-clone');
-                clone.style.display = 'flex';
-                clone.style.justifyContent = 'center';
-                clone.style.marginTop = '10px';
-                modalInfo.appendChild(clone);
-            } else {
-                // tampilkan tombol asli di desktop
-                lhkpn.style.display = 'flex';
-            }
+    <style>
+        #chart-container {
+            width: 100%;
+            height: 600px;
+            display: flex;
+            justify-content: center;
+            overflow: auto;
+            background: #f5f7fa;
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+            cursor: grab;
         }
 
-        // Jalankan saat load dan resize
-        window.addEventListener('load', mobileLhkpn);
-        window.addEventListener('resize', mobileLhkpn);
-    </script>
+        #chart-container:active {
+            cursor: grabbing;
+        }
+
+        .orgchart {
+            background: none !important;
+            transition: transform 0.2s ease;
+        }
+
+        /* Zoom Controls */
+        .zoom-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .zoom-controls button {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: #0071b4;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.2s;
+        }
+
+        .zoom-controls button:hover {
+            background: #005b94;
+        }
+
+        .zoom-controls button:active {
+            transform: scale(0.95);
+        }
+
+        .zoom-level {
+            text-align: center;
+            font-size: 12px;
+            color: #333;
+            padding: 5px 0;
+            font-weight: bold;
+        }
+
+        /* Tambah jarak horizontal antar node */
+        .orgchart td {
+            padding-left: 25px !important;
+            padding-right: 25px !important;
+        }
+
+        /* Style untuk node dummy - transparan dengan garis vertikal */
+        .dummy-node {
+            width: 2px;
+            height: 193px;
+            background: transparent;
+            border: none;
+            padding: 0;
+            margin: 0 auto;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .dummy-line {
+            width: 2px;
+            height: 100%;
+            background: #D9534F;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .dummy-spacer {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+        }
+
+        /* Style untuk cell Sekretaris */
+        .sekretaris-cell {
+            position: relative;
+        }
+
+        /* Garis penghubung khusus untuk Sekretaris */
+        .sekretaris-cell::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 20px;
+            background: #0071b4;
+            transform: translateX(-50%);
+        }
+
+        .custom-node {
+            background-color: #e6f0ff;
+            border: 2px solid #b5d0ff;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            width: 150px;
+            min-height: 180px;
+            max-height: 180px;
+            height: 180px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            transition: transform 0.2s;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .custom-node:hover {
+            transform: scale(1.05);
+        }
+
+        .node-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 8px;
+            flex-shrink: 0;
+        }
+
+        .node-name {
+            font-weight: bold;
+            color: #004080;
+            font-size: 14px;
+            margin-bottom: 4px;
+            word-wrap: break-word;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            line-height: 1.2;
+        }
+
+        .node-title {
+            font-size: 12px;
+            color: #333;
+            margin-bottom: 8px;
+            word-wrap: break-word;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            line-height: 1.2;
+        }
+
+        /* Sekretaris style khusus */
+        .assistant-node {
+            background-color: #0071b4;
+            color: white;
+            border: 2px solid #005b94;
+        }
+
+        .assistant-node .node-name,
+        .assistant-node .node-title {
+            color: white;
+        }
+
+        /* Atur posisi level kedua (Sekretaris + Kabid) */
+        .orgchart>table>tbody>tr>td>table>tbody>tr:first-child {
+            vertical-align: top;
+        }
+
+        /* Beri jarak lebih untuk Sekretaris */
+        .orgchart .assistant-node {
+            margin-bottom: 10px;
+        }
+
+        /* Styling untuk tombol dokumen agar tidak melebihi ukuran node */
+        .custom-node .btn {
+            font-size: 11px;
+            padding: 4px 8px;
+            margin-top: auto;
+        }
+
+        .orgchart table table table tr.lines {
+            display: none;
+        }
+    </style>
 @endpush
