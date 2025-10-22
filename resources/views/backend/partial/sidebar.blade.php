@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #fd0000">
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-image: linear-gradient(360deg, #fd0000 ,#ff751f )">
     <!-- Brand Logo -->
     <a href="{{ route('beranda') }}" class="brand-link">
       <img src="{{asset('image/comp bpbd.png')}}" alt="Kominfo Logo" class="brand-image" style="opacity: .8;">
