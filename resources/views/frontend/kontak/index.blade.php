@@ -262,7 +262,7 @@
             }
         }
     </style>
-    <div class="orange-half-shape"></div>
+    
     {{-- Hero Section --}}
     <div class="hero-section">
         <div class="hero-text">

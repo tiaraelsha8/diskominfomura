@@ -16,13 +16,13 @@
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('image/logo-komdigi.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('image/capBPBD.png') }}">
 
     <!-- Meta deskripsi untuk SEO. Ini yang ditampilkan Google di hasil pencarian -->
     <meta name="description"
-        content="Situs Resmi DISKOMINFO SP Kabupaten Murung Raya. Temukan informasi layanan, berita, pengumuman dan profil DISKOMNFO SP.">
+        content="Situs Resmi BPBD Kabupaten Murung Raya. Temukan informasi layanan, berita, pengumuman dan profil BPBD.">
     <meta name="robots" content="index, follow"> <!-- biarkan Google mengindeks -->
-    <link rel="canonical" href="https://diskominfo.murungrayakab.go.id"> <!-- ganti dengan domain -->
+    <link rel="canonical" href="https://bpbd.murungrayakab.go.id"> <!-- ganti dengan domain -->
 
     <style>
         body {

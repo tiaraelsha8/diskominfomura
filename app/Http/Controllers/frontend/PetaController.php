@@ -11,6 +11,6 @@ class PetaController extends Controller
     public function index()
     {
         $lokasi = Lokasi::all();
-        return view('frontend.peta.index', compact('lokasi'));
+        return view('frontend.Peta.index', compact('lokasi'));
     }
 }
