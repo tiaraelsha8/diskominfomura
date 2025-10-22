@@ -50,7 +50,7 @@ class PegawaiController extends Controller
         $getLevelJabatan = function ($namaJabatan) {
             $namaJabatan = strtolower($namaJabatan ?? '');
 
-            if (str_contains($namaJabatan, 'kepala dinas') || str_contains($namaJabatan, 'kadis')) {
+            if (str_contains($namaJabatan, 'kepala dinas') || str_contains($namaJabatan, 'kadis' ) || str_contains($namaJabatan, 'kepala pelaksana' ) || str_contains($namaJabatan, 'kepala badan' )) {
                 return 1; // Level tertinggi
 
             } elseif (
