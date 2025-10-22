@@ -1,8 +1,8 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #0071b4">
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #fd0000">
     <!-- Brand Logo -->
     <a href="{{ route('beranda') }}" class="brand-link">
-      <img src="{{asset('image/logo-komdigi.png')}}" alt="Kominfo Logo" class="brand-image img-circle elevation-3" style="opacity: .8; background:#ffffff">
-      <span class="brand-text font-weight-light">Diskominfo Statstika Dan Persandian</span>
+      <img src="{{asset('image/comp bpbd.png')}}" alt="Kominfo Logo" class="brand-image" style="opacity: .8;">
+      <span class="brand-text font-weight-light">BPBD</span>
     </a>
 
     <!-- Sidebar -->
@@ -174,7 +174,7 @@
             <a href="{{ route('lokasi.index') }}" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                Peta Jaringan
+                Peta Bencana
               </p>
             </a>
           </li>

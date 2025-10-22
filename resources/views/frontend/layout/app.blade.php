@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>DISKOMINFO SP - PEMERINTAH KABUPATEN MURUNG RAYA</title>
+    <title>BPBD - PEMERINTAH KABUPATEN MURUNG RAYA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Google Font -->
@@ -37,7 +37,7 @@
             top: 0;
             padding: 1.5rem 0;
             font-size: 1.1rem;
-            background-color: rgba(8, 7, 90, 0.8);
+            background-image: linear-gradient(90deg, #fd0000 ,#ff751f );
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(10px);
@@ -80,7 +80,7 @@
 
         .nav-link:hover,
         .dropdown-item:hover {
-            color: #ff6600 !important;
+            color: #00b7ff !important;
         }
 
         .nav-link::after {
@@ -92,7 +92,7 @@
             transform-origin: center;
             width: 60%;
             height: 3px;
-            background: linear-gradient(90deg, #ff6600, #ffdd57);
+            background: linear-gradient(90deg, #00b7ff, #00b7ff);
             border-radius: 2px;
             box-shadow: 0 0 6px rgba(255, 193, 7, 0.6);
             transition: transform 0.35s ease, opacity 0.35s ease;
@@ -444,7 +444,7 @@
         }
 
         .custom-footer {
-            background-color: #08075a;
+            background-image: linear-gradient(180deg, #fd0000 ,#ff751f );
             color: white;
             font-family: 'Inter', sans-serif;
             position: relative;

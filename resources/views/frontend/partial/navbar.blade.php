@@ -5,7 +5,7 @@
 <nav class="navbar navbar-expand-lg" id="mainNavbar">
     <div class="container">
         @if ($logo && $logo->foto)
-            <img src="{{ asset('storage/logo/' . $logo->foto) }}" alt="" style="width: 45px; height: 45px; margin-right: 20px">
+            <img src="{{ asset('storage/logo/' . $logo->foto) }}" alt="" style="width: 160px; height: 80px; margin-right: 20px">
             <a class="navbar-brand" href="{{ route('beranda') }}">{{ $logo->judul }}</a>
         @else
             <a class="navbar-brand" href="{{ route('beranda') }}">Logo belum ada</a>
@@ -38,7 +38,7 @@
                     </div>
                 </li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('frontend.dokumen') }}">Dokumen</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('peta.index') }}">Peta Jaringan</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('peta.index') }}">Peta Kawasan Bencana</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('frontend.kontak') }}">Kontak</a></li>
                 @auth
                     <li class="nav-item"><a class="nav-link" href="{{ route('backend.dashboard') }}">Dashboard</a></li>

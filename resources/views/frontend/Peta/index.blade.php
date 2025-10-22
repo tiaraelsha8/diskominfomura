@@ -76,7 +76,7 @@
     </style>
 
     <div class="peta-title-bg">
-        <h1>Peta Lokasi Internet Publik - Kabupaten Murung Raya</h1>
+        <h1>Peta Kawasan Kebencanaan - Kabupaten Murung Raya</h1>
     </div>
     <div class="container mt-5 mb-5">
         <div id="map"></div>
