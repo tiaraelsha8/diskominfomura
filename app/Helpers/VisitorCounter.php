@@ -9,7 +9,7 @@ class VisitorCounter
     public static function count()
     {
         $host = request()->getHost();
-        if ($host !== 'bpbd.murungrayakab.go.id') {
+        if ($host !== 'disdukcapil.murungrayakab.go.id') {
             return [
                 'total' => 0,
                 'today' => 0,

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>BPBD - PEMERINTAH KABUPATEN MURUNG RAYA</title>
+    <title>Disdukcapil - PEMERINTAH KABUPATEN MURUNG RAYA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Google Font -->
@@ -16,13 +16,13 @@
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
     <!-- Favicon -->
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('image/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('image/logo-kemendagri.png') }}">
 
     <!-- Meta deskripsi untuk SEO. Ini yang ditampilkan Google di hasil pencarian -->
     <meta name="description"
-        content="Situs Resmi BPBD Kabupaten Murung Raya. Temukan informasi layanan, berita, pengumuman dan profil BPBD.">
+        content="Situs Resmi BPBD Kabupaten Murung Raya. Temukan informasi layanan, berita, pengumuman dan profil Disdukcapil.">
     <meta name="robots" content="index, follow"> <!-- biarkan Google mengindeks -->
-    <link rel="canonical" href="https://bpbd.murungrayakab.go.id"> <!-- ganti dengan domain -->
+    <link rel="canonical" href="https://disdukcapil.murungrayakab.go.id"> <!-- ganti dengan domain -->
 
     <style>
         body {
@@ -37,7 +37,7 @@
             top: 0;
             padding: 1.5rem 0;
             font-size: 1.1rem;
-            background-image: linear-gradient(90deg, #fd0000 ,#ff751f );
+            background-color: rgb(47 168 211 / 30%);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(10px);
@@ -66,14 +66,14 @@
         .navbar-brand {
             font-size: 1.6rem;
             font-weight: 700;
-            color: #ffffff !important;
+            color: #3a3b3b !important;
         }
 
         .nav-link {
             position: relative;
             font-size: 1.1rem;
             font-weight: 500;
-            color: #ffffff !important;
+            color: #3a3b3b !important;
             padding: 0.3rem 0.75rem;
             transition: color 0.3s ease;
         }
@@ -239,7 +239,7 @@
             font-weight: 600;
             font-size: 0.9rem;
             white-space: nowrap;
-            color: #fff;
+            color:#3a3b3b;
             transition: transform 0.4s ease, opacity 0.4s ease;
         }
 
@@ -444,7 +444,7 @@
         }
 
         .custom-footer {
-            background-image: linear-gradient(180deg, #fd0000 ,#ff751f );
+            background-image: linear-gradient(180deg, #2FA8D3 ,#79d1f1);
             color: white;
             font-family: 'Inter', sans-serif;
             position: relative;
