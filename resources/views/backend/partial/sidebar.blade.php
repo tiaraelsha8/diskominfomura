@@ -174,7 +174,7 @@
             <a href="{{ route('lokasi.index') }}" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                Peta Bencana
+                Peta
               </p>
             </a>
           </li>
