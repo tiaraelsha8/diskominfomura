@@ -59,7 +59,7 @@
     </style>
 
     <div class="tentang-title-bg">
-        <h1>Tentang Diskominfo SP</h1>
+        <h1>Tentang</h1>
     </div>
 
     <section class="tentang-container container">
