@@ -1,7 +1,7 @@
 @extends('backend.layout.master')
 
 @section('judul')
-    Halaman Tambah Lokasi Internet
+    Halaman Tambah Lokasi Kawasan Bencana
 @endsection
 
 @section('content')

@@ -1,7 +1,7 @@
 @extends('backend.layout.master')
 
 @section('judul')
-    Halaman Kelola Lokasi Internet
+    Halaman Kelola Lokasi Kawasan Bencana
 @endsection
 
 @section('content')
