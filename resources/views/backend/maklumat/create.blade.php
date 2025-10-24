@@ -1,3 +1,5 @@
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet">
 @extends('backend.layout.master')
 
 @section('judul')
@@ -63,7 +65,7 @@
                     'link',
                     'undo',
                     'redo',
-                    
+
                 ],
                 alignment: {
                     options: ['left', 'center', 'right', 'justify']
