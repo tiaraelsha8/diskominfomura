@@ -59,7 +59,7 @@
     </style>
 
     <div class="maklumat-title-bg">
-        <h1>Maklumat Layanan Diskominfo SP</h1>
+        <h1>Maklumat Layanan</h1>
     </div>
 
     <section class="maklumat-container container">

@@ -15,7 +15,8 @@
 
                     <div class="form-group">
                         <label for="tentang">Maklumat</label>
-                        <textarea name="maklumat" id="editor" class="form-control"></textarea>
+                        {{-- <textarea name="maklumat" id="editor" class="form-control"></textarea> --}}
+                        <div id="editor1"></div>
                         @error('maklumat')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
@@ -72,5 +73,45 @@
                 }
             })
             .catch(error => console.error(error));
+    </script>
+    <script>
+        const initialData = {
+            // `about` is a Delta object
+            // Learn more at: https://quilljs.com/docs/delta
+            maklumat: [{
+                insert: 'Maklumat Layanan',
+            }, ],
+        };
+
+        const quill = new Quill('#editor1', {
+            modules: {
+                toolbar: [
+                    ['bold', 'italic'],
+                    ['link', 'blockquote', 'code-block', 'image'],
+                    [{
+                        list: 'ordered'
+                    }, {
+                        list: 'bullet'
+                    }],
+                ],
+            },
+            theme: 'snow',
+        });
+
+        const resetForm = () => {
+            quill.setContents(initialData.maklumat);
+        };
+
+        resetForm();
+
+        const form = document.querySelector('form');
+        form.addEventListener('formdata', (event) => {
+            // Append Quill content before submitting
+            event.formData.append('maklumat', JSON.stringify(quill.getContents().ops));
+        });
+
+        document.querySelector('#resetForm').addEventListener('click', () => {
+            resetForm();
+        });
     </script>
 @endpush
