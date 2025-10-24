@@ -171,7 +171,7 @@
           <div class="inner">
              <h3>{{$jumlahPeta}}</h3>
 
-            <p>Data Peta Bencana</p>
+            <p>Data Peta</p>
           </div>
           <div class="icon">
             <i class="ion ion-stats-bars"></i>
