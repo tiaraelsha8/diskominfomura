@@ -36,7 +36,7 @@ class DokumenController extends Controller
         $request->validate([
             'nama_dok' => 'required',
             'keterangan' => 'required',
-            'file' => 'required|mimes:pdf|max:5120', //5 mb
+            'file' => 'required|mimes:pdf,doc,docx,xls,xlsx|max:5120', //5 mb
         ]);
 
         //upload
@@ -83,7 +83,7 @@ class DokumenController extends Controller
         $request->validate([
             'nama_dok' => 'required',
             'keterangan' => 'required',
-            'file' => 'mimes:pdf|max:5120', //5 mb
+            'file' => 'required|mimes:pdf,doc,docx,xls,xlsx|max:5120', //5 mb
         ]);
 
         $dokumens = Dokumen::findOrFail($id);
