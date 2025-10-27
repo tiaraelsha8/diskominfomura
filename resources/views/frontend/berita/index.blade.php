@@ -199,18 +199,18 @@
             }
         }
     </style>
+    <div class="title-bg">
+        <h1>Berita Murung Raya</h1>
+    </div>
 
-    <div class="title-bg"><h1>Berita Murung Raya</h1></div>
-
-
-    <!-- SECTION 2: sisanya -->
+        <!-- SECTION 2: sisanya -->
     <section class="galeri-container container">
-        <h1>Berita Terbaru Murung Raya</h1>
+        <h1>Berita Terbaru Inspektorat</h1>
         {{ $beritas->links() }}
         <div class="album-grid">
             @forelse ($beritas as $item)
                 <div class="album-card">
-                    <img src="{{ $item->foto ? asset($item->foto) : 'lambang_mura.png' }}"
+                    <img src="{{ $item->foto ? asset($item->foto) : 'https://via.placeholder.com/600x300?text=No+Image' }}"
                         alt="Foto {{ $item->judul }}">
                     <div class="album-body">
                         <div class="album-title">{{ $item->judul }}</div>
@@ -230,4 +230,29 @@
             @endforelse
         </div>
     </section>
+
+    <!-- SECTION 1: 4 berita pertama -->
+    <div class="galeri-container container">
+        <h1>Berita Terbaru Murung Raya</h1>
+        <div class="album-grid">
+            @forelse ($berita as $item)
+                <div class="card">
+                    <a href="{{ $item['link'] }}" target="_blank">
+                        <img src="{{ $item['image'] }}" alt="Gambar">
+                    </a>
+                    <div class="card-content">
+                        <a href="{{ $item['link'] }}" target="_blank">
+                            <h3>{{ $item['title'] }}</h3>
+                        </a>
+                        <p>{{ $item['excerpt'] }}</p>
+                        <small>{{ $item['date'] }}</small>
+                    </div>
+                </div>
+            @empty
+                <p class="no-news-text">Berita belum tersedia.</p>
+            @endforelse
+        </div>
+    </div>
+
+
 @endsection
