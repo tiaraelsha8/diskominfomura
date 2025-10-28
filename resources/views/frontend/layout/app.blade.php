@@ -20,7 +20,7 @@
 
     <!-- Meta deskripsi untuk SEO. Ini yang ditampilkan Google di hasil pencarian -->
     <meta name="description"
-        content="Situs Resmi BPBD Kabupaten Murung Raya. Temukan informasi layanan, berita, pengumuman dan profil Inspektorat.">
+        content="Situs Resmi Inspektorat Kabupaten Murung Raya. Temukan informasi layanan, berita, pengumuman dan profil Inspektorat.">
     <meta name="robots" content="index, follow"> <!-- biarkan Google mengindeks -->
     <link rel="canonical" href="https://inspektorat.murungrayakab.go.id"> <!-- ganti dengan domain -->
 
