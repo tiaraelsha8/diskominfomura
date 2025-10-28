@@ -50,7 +50,7 @@ class PegawaiController extends Controller
         $getLevelJabatan = function ($namaJabatan) {
             $namaJabatan = strtolower($namaJabatan ?? '');
 
-            if (str_contains($namaJabatan, 'kepala dinas') || str_contains($namaJabatan, 'kadis' ) || str_contains($namaJabatan, 'kepala pelaksana' ) || str_contains($namaJabatan, 'kepala badan' )) {
+            if (str_contains($namaJabatan, 'kepala dinas') || str_contains($namaJabatan, 'kadis' ) || str_contains($namaJabatan, 'kepala pelaksana' ) || str_contains($namaJabatan, 'kepala badan' ) || str_contains($namaJabatan, 'camat' )) {
                 return 1; // Level tertinggi
 
             } elseif (
@@ -58,14 +58,16 @@ class PegawaiController extends Controller
                 str_contains($namaJabatan, 'sekretaris dinas') ||
                 str_contains($namaJabatan, 'sekretaris daerah') ||
                 str_contains($namaJabatan, 'sekdis') ||
+                str_contains($namaJabatan, 'sekretaris kecamatan') ||
                 str_contains($namaJabatan, 'sekda')
             ) {
                 return 2; // Level 2
-            } elseif (str_contains($namaJabatan, 'kepala bidang') || str_contains($namaJabatan, 'kabid')) {
+            } elseif (str_contains($namaJabatan, 'kepala bidang') || str_contains($namaJabatan, 'kabid') || str_contains($namaJabatan, 'kepala seksi')) {
                 return 2; // Level 2 (setara sekretaris)
 
             } elseif (
                 str_contains($namaJabatan, 'kepala sub bagian') ||
+                str_contains($namaJabatan, 'kepala subbagian') ||
                 str_contains($namaJabatan, 'kasubag') ||
                 str_contains($namaJabatan, 'kasubbag') ||
                 str_contains($namaJabatan, 'kepala subbag')

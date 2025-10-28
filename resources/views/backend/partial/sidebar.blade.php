@@ -1,8 +1,8 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-image: linear-gradient(180deg, #00b7ff, #00b7ff)">
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-image: linear-gradient(180deg, #ada23b, #ada23b)">
     <!-- Brand Logo -->
     <a href="{{ route('beranda') }}" class="brand-link">
-      <img src="{{asset('image/logo-kemendagri.png')}}" alt="inspektorat Logo" class="brand-image" style="opacity: .8;">
-      <span class="brand-text font-weight-light">Inspektorat</span>
+      <img src="{{asset('image/logo-murung-raya.png')}}" alt="inspektorat Logo" class="brand-image" style="opacity: .8;">
+      <span class="brand-text font-weight-light">Kec. Murung</span>
     </a>
 
     <!-- Sidebar -->
@@ -170,14 +170,14 @@
             </a>
           </li>
 
-          <li class="nav-item">
+          {{-- <li class="nav-item">
             <a href="{{ route('lokasi.index') }}" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 Peta
               </p>
             </a>
-          </li>
+          </li> --}}
 
         </ul>
       </nav>
