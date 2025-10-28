@@ -815,7 +815,7 @@
         @endif
 
         <div class="hero-container" data-aos="fade-down">
-            <h1>Selamat Datang <br> Di Profil Inspektorat <br> Kabupaten Murung Raya</h1>
+            <h1>Selamat Datang <br> Di Kelurahan Beriwit Kec. Murung <br> Kabupaten Murung Raya</h1>
             <p data-aos="fade-up" data-aos-delay="200">Murung Raya Hebat</p>
         </div>
     </div>

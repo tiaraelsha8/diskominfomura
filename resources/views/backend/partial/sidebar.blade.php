@@ -1,8 +1,8 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-image: linear-gradient(180deg, #00b7ff, #00b7ff)">
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-image: linear-gradient(180deg, #808080, #808080)">
     <!-- Brand Logo -->
     <a href="{{ route('beranda') }}" class="brand-link">
-      <img src="{{asset('image/logo-kemendagri.png')}}" alt="inspektorat Logo" class="brand-image" style="opacity: .8;">
-      <span class="brand-text font-weight-light">Inspektorat</span>
+      <img src="{{asset('image/logo-murung-raya.png')}}" alt="kelberiwit Logo" class="brand-image" style="opacity: .8;">
+      <span class="brand-text font-weight-light">Kel. Beriwit</span>
     </a>
 
     <!-- Sidebar -->
