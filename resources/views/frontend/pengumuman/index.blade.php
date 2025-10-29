@@ -203,7 +203,7 @@
 
     {{-- section pengumuman database --}}
     <section class="galeri-container container">
-        <h1>Pengumuman Inspektorat</h1>
+        <h1>Pengumuman Terbaru</h1>
         {{ $pengumumanDB->links() }}
         <div class="album-grid">
             @forelse ($pengumumanDB as $item)

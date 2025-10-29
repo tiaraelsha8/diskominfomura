@@ -205,7 +205,7 @@
 
         <!-- SECTION 2: sisanya -->
     <section class="galeri-container container">
-        <h1>Berita Terbaru Inspektorat</h1>
+        <h1>Berita Terbaru</h1>
         {{ $beritas->links() }}
         <div class="album-grid">
             @forelse ($beritas as $item)

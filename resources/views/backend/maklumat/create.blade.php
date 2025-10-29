@@ -15,8 +15,8 @@
 
                     <div class="form-group">
                         <label for="tentang">Maklumat</label>
-                        {{-- <textarea name="maklumat" id="editor" class="form-control"></textarea> --}}
-                        <div id="editor1"></div>
+                        <textarea name="maklumat" id="editor" class="form-control"></textarea>
+                        {{-- <div id="editor1"></div> --}}
                         @error('maklumat')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
