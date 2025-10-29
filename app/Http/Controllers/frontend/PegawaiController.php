@@ -61,7 +61,7 @@ class PegawaiController extends Controller
                 str_contains($namaJabatan, 'sekda')
             ) {
                 return 2; // Level 2
-            } elseif (str_contains($namaJabatan, 'kepala bidang') || str_contains($namaJabatan, 'kabid') || str_contains($namaJabatan, 'inspektur pembantu') || str_contains($namaJabatan, 'inspektur pembantu khusus')) {
+            } elseif (str_contains($namaJabatan, 'kepala bidang') || str_contains($namaJabatan, 'kabid') || str_contains($namaJabatan, 'inspektur pembantu i') || str_contains($namaJabatan, 'inspektur pembantu ii') || str_contains($namaJabatan, 'inspektur pembantu iii') || str_contains($namaJabatan, 'inspektur pembantu khusus')) {
                 return 2; // Level 2 (setara sekretaris)
 
             } elseif (
