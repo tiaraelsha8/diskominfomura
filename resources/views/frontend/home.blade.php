@@ -593,9 +593,10 @@
             }
 
             .hero-container {
+                align-items: center;
                 max-width: calc(100% - 10vw);
                 width: 100%;
-                margin: 0 5vw;
+                margin: 200px 5vw 0 5vw;
                 padding: 18px 16px;
                 border-radius: 14px;
                 box-shadow: 0 8px 20px rgba(0, 0, 0, 0.32);
