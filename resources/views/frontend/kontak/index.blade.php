@@ -268,7 +268,7 @@
         <div class="hero-text">
             <h1>Hubungi Kami</h1>
             <p>
-                Punya pertanyaan? Anda mungkin dapat menemukan jawabannya di <a href="#">Kontak Person Disdukcapil</a>.
+                Punya pertanyaan? Anda mungkin dapat menemukan jawabannya di <a href="#">Kontak Person</a>.
                 Berikut adalah berbagai cara untuk menghubungi tim kami.
             </p>
         </div>
