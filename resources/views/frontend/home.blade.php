@@ -435,6 +435,35 @@
             margin-bottom: 50px;
         }
 
+        .album-home-section-mura {
+            margin-bottom: 50px;
+            padding: 0 20px;
+            max-width: 1300px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+
+        .album-home-section-mura .row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .album-home-section-mura .col {
+            flex: 1 1 48%;
+            min-width: 320px;
+        }
+
+        .album-home-section-mura h2 {
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #003366;
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 50px;
+        }
+
         .album-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -485,6 +514,54 @@
             color: #777;
             margin-top: 8px;
             display: block;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 15px;
+            flex: 1;
+        }
+
+        .card h3 {
+            font-size: 18px;
+            margin: 0 0 10px;
+            color: #0052cc;
+        }
+
+        .card p {
+            font-size: 14px;
+            color: #444;
+            line-height: 1.4;
+        }
+
+        .card small {
+            display: block;
+            color: #888;
+            margin-top: 10px;
+            font-size: 12px;
+        }
+
+        .card a {
+            text-decoration: none;
         }
 
         @media (max-width: 768px) {
@@ -815,12 +892,12 @@
         @endif
 
         <div class="hero-container" data-aos="fade-down">
-            <h1>Selamat Datang <br> Di Profil Kecamatan Murung <br> Kabupaten Murung Raya</h1>
+            <h1>Selamat Datang <br> Di Kecamatan Murung<br> Kabupaten Murung Raya</h1>
             <p data-aos="fade-up" data-aos-delay="200">Murung Raya Hebat</p>
         </div>
     </div>
 
-       <section class="album-home-section">
+    <section class="album-home-section">
         <div class="row">
             <div class="col">
                 <h2 data-aos="fade-up">Berita Terbaru</h2>
@@ -847,7 +924,6 @@
                     @empty
                         <p class="no-news-text">Berita belum tersedia</p>
                     @endforelse
-
                 </div>
             </div>
             <div class="col">
@@ -880,7 +956,7 @@
 
         </div>
     </section>
-    
+
     <section class="layanan-fullscreen" data-aos="fade-up">
         <h2 data-aos="fade-down" data-aos-delay="100">Layanan</h2>
         @if ($layanans->count())
@@ -984,7 +1060,58 @@
         </div>
     </section>
 
-    
+    <section class="album-home-section-mura">
+        <div class="row">
+            <div class="col">
+                <h2 data-aos="fade-up">Berita Murung Raya Terbaru</h2>
+                <div class="album-grid">
+                    @forelse ($beritaAPI as $item)
+                        <div class="card">
+                            <a href="{{ $item['link'] }}" target="_blank">
+                                <img src="{{ $item['image'] }}" alt="Gambar">
+                            </a>
+                            <div class="card-content">
+                                <a href="{{ $item['link'] }}" target="_blank">
+                                    <h3>{{ $item['title'] }}</h3>
+                                </a>
+                                <p>{{ $item['excerpt'] }}</p>
+                                <small>{{ $item['date'] }}</small>
+                            </div>
+                        </div>
+                    @empty
+                        <p class="no-news-text">Berita belum tersedia.</p>
+                    @endforelse
+                </div>
+            </div>
+            <div class="col">
+                <h2 data-aos="fade-up">Pengumuman Terbaru</h2>
+                <div class="album-grid">
+                    @forelse ($pengumumanAPI as $item)
+                        <div class="card">
+                            <a href="{{ $item['link'] }}" target="_blank">
+                                <img src="{{ $item['image'] }}" alt="Gambar">
+                            </a>
+                            <div class="card-content">
+                                <a href="{{ $item['link'] }}" target="_blank">
+                                    <h3>{{ $item['title'] }}</h3>
+                                </a>
+                                <p>
+                                    {{ \Illuminate\Support\Str::limit(strip_tags($item['excerpt']), 100, '...') }}
+                                    <a href="{{ $item['link'] }}" target="_blank">Selengkapnya</a>
+                                </p>
+                                <small>{{ $item['date'] }}</small>
+                            </div>
+                        </div>
+                    @empty
+                        <p class="no-news-text">Pengumuman belum tersedia.</p>
+                    @endforelse
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
