@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Kelurahan Beriwit - PEMERINTAH KABUPATEN MURUNG RAYA</title>
+    <title>Kelurahan Puruk Cahu Sebrang - PEMERINTAH KABUPATEN MURUNG RAYA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Google Font -->
@@ -20,7 +20,7 @@
 
     <!-- Meta deskripsi untuk SEO. Ini yang ditampilkan Google di hasil pencarian -->
     <meta name="description"
-        content="Situs Resmi Kelurahan Beriwit Kec. Murung Kabupaten Murung Raya. Temukan informasi layanan, berita, pengumuman dan Kelurahan Beriwit.">
+        content="Situs Resmi Kelurahan Puruk Cahu Sebrang Kec. Murung Kabupaten Murung Raya. Temukan informasi layanan, berita, pengumuman dan Kelurahan Puruk Cahu Sebrang.">
     <meta name="robots" content="index, follow"> <!-- biarkan Google mengindeks -->
     <link rel="canonical" href="https://kel-beriwit.murungrayakab.go.id"> <!-- ganti dengan domain -->
 
@@ -37,7 +37,7 @@
             top: 0;
             padding: 1.5rem 0;
             font-size: 1.1rem;
-            background-color: #808080;
+            background-color: rgba(7, 90, 8, 0.8);;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(10px);
@@ -444,7 +444,7 @@
         }
 
         .custom-footer {
-            background-color: #808080;
+            background-color: #075a08;
             color: white;
             font-family: 'Inter', sans-serif;
             position: relative;
