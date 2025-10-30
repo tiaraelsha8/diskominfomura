@@ -61,7 +61,7 @@ class PegawaiController extends Controller
                 str_contains($namaJabatan, 'sekda')
             ) {
                 return 2; // Level 2
-            } elseif (str_contains($namaJabatan, 'kepala bidang') || str_contains($namaJabatan, 'kabid') || str_contains($namaJabatan, 'inspektur pembantu')) {
+            } elseif (str_contains($namaJabatan, 'kepala bidang') || str_contains($namaJabatan, 'kabid') || str_contains($namaJabatan, 'irban')) {
                 return 2; // Level 2 (setara sekretaris)
 
             } elseif (
@@ -160,7 +160,7 @@ class PegawaiController extends Controller
                     if (!$parent && $p->bidang_id) {
                         $parent = $pegawai->first(function ($x) use ($p) {
                             $jabatan = strtolower(optional($x->jabatan)->nama_jabatan ?? '');
-                            return (str_contains($jabatan, 'kepala bidang') || str_contains($jabatan, 'kabid') || str_contains($jabatan, 'inspektur pembantu')) && $x->bidang_id == $p->bidang_id;
+                            return (str_contains($jabatan, 'kepala bidang') || str_contains($jabatan, 'kabid') || str_contains($jabatan, 'irban')) && $x->bidang_id == $p->bidang_id;
                         });
                     }
 
