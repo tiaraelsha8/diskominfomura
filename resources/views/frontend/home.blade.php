@@ -259,7 +259,7 @@
             line-height: 1.8;
             color: #333;
             margin-bottom: 0.3em;
-            text-align: justify;
+            /* text-align: justify; */
         }
 
         .galeri-home-section {
