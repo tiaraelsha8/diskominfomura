@@ -160,7 +160,7 @@ class PegawaiController extends Controller
                     if (!$parent && $p->bidang_id) {
                         $parent = $pegawai->first(function ($x) use ($p) {
                             $jabatan = strtolower(optional($x->jabatan)->nama_jabatan ?? '');
-                            return (str_contains($jabatan, 'kepala bidang') || str_contains($jabatan, 'kabid')) && $x->bidang_id == $p->bidang_id;
+                            return (str_contains($jabatan, 'kepala bidang') || str_contains($jabatan, 'kabid') || str_contains($jabatan, 'kepala seksi')) && $x->bidang_id == $p->bidang_id;
                         });
                     }
 
