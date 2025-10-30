@@ -189,7 +189,7 @@
             min-height: 80vh;
             margin-top: 60px;
             width: 100%;
-            text-align: center;
+            /* text-align: center; */
         }
 
         .bidang-fullwidth h2 {
@@ -259,7 +259,7 @@
             line-height: 1.8;
             color: #333;
             margin-bottom: 0.3em;
-            /* text-align: justify; */
+            text-align: justify;
         }
 
         .galeri-home-section {
