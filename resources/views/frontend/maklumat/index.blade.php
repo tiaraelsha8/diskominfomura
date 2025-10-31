@@ -73,13 +73,17 @@
                 <img class="img-fluid mb-3 rounded shadow-sm" src="{{ asset('storage/maklumats/foto/' . $maklumat->foto) }}"
                     alt="Maklumat Foto">
 
-                <!-- video responsif -->
-                <div class="ratio ratio-16x9 mb-3">
-                    <video controls>
-                        <source src="{{ asset('storage/maklumats/video/' . $maklumat->video) }}" type="video/mp4">
-                        Browser Anda tidak mendukung pemutaran video.
-                    </video>
-                </div>
+                @isset($maklumat->video)
+                    <!-- video responsif -->
+                    <div class="ratio ratio-16x9 mb-3">
+                        <video controls>
+                            <source src="{{ asset('storage/maklumats/video/' . $maklumat->video) }}" type="video/mp4">
+                            Browser Anda tidak mendukung pemutaran video.
+                        </video>
+                    </div>
+                @else
+                    <em class="no-news-text">Video Maklumat Layanan belum tersedia</em>
+                @endisset
             </div>
         @else
             <em class="no-news-text">Maklumat Layanan belum tersedia</em>
