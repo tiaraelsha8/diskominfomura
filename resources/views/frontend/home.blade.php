@@ -189,7 +189,7 @@
             min-height: 80vh;
             margin-top: 60px;
             width: 100%;
-            text-align: center;
+            /* text-align: center; */
         }
 
         .bidang-fullwidth h2 {
