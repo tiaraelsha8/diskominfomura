@@ -33,11 +33,17 @@
                     <div class="dropdown-global" id="dropdownGaleri">
                         <a href="{{ route('frontend.galerifoto') }}">Galeri Foto</a>
                         <a href="{{ route('frontend.galerivideo') }}">Galeri Video</a>
-                        <a href="{{ route('lihat-berita') }}">Galeri Berita</a>
-                        <a href="{{ route('lihat-pengumuman') }}">Galeri Pengumuman</a>
                     </div>
                 </li>
-                <li class="nav-item"><a class="nav-link" href="{{ route('frontend.dokumen') }}">Dokumen</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="informasiMenu" role="button">Informasi<i
+                            class="bi bi-chevron-down ms-1 small-indicator"></i></a>
+                    <div class="dropdown-global" id="dropdownInformasi">
+                        <a href="{{ route('lihat-pengumuman') }}">Pengumuman</a>
+                        <a href="{{ route('frontend.dokumen') }}">dokumen</a>
+                    </div>
+                </li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('lihat-berita') }}"> Berita</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('peta.index') }}">Peta Kawasan Bencana</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('frontend.kontak') }}">Kontak</a></li>
                 @auth
