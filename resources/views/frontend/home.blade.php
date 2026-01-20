@@ -897,6 +897,32 @@
         </div>
     </div>
 
+    <section class="layanan-fullscreen" data-aos="fade-up">
+        <h2 data-aos="fade-down" data-aos-delay="100">Layanan</h2>
+        @if ($layanans->count())
+            <div class="layanan-grid" data-aos="fade-up" data-aos-delay="200">
+                @foreach ($layanans as $index => $item)
+                    <a href="{{ $item->link }}" class="layanan-box" data-aos="zoom-in" target="_blank"
+                        data-aos-delay="{{ 300 + 100 * $index }}">
+                        <div class="layanan-bg-wrapper">
+
+                            <img src="{{ asset('storage/layanan/background/' . $item->background) }}" alt="bg-layanan">
+                        </div>
+                        <div class="layanan-overlay">
+                            <img src="{{ asset('storage/layanan/logo/' . $item->logo) }}" alt="{{ $item->nama_layanan }}"
+                                class="img-fluid rounded-circle mb-2">
+                            <h5>{{ $item->nama_layanan }}</h5>
+                        </div>
+                    </a>
+                @endforeach
+            </div>
+        @else
+            <div class="text-center text-muted mt-4" data-aos="fade-up" data-aos-delay="200">
+                <p class="no-news-text">Data Layanan belum tersedia</p>
+            </div>
+        @endif
+    </section>
+
     <section class="album-home-section">
         <div class="row">
             <div class="col">
@@ -957,34 +983,10 @@
         </div>
     </section>
 
-    <section class="layanan-fullscreen" data-aos="fade-up">
-        <h2 data-aos="fade-down" data-aos-delay="100">Layanan</h2>
-        @if ($layanans->count())
-            <div class="layanan-grid" data-aos="fade-up" data-aos-delay="200">
-                @foreach ($layanans as $index => $item)
-                    <a href="{{ $item->link }}" class="layanan-box" data-aos="zoom-in" target="_blank"
-                        data-aos-delay="{{ 300 + 100 * $index }}">
-                        <div class="layanan-bg-wrapper">
 
-                            <img src="{{ asset('storage/layanan/background/' . $item->background) }}" alt="bg-layanan">
-                        </div>
-                        <div class="layanan-overlay">
-                            <img src="{{ asset('storage/layanan/logo/' . $item->logo) }}" alt="{{ $item->nama_layanan }}"
-                                class="img-fluid rounded-circle mb-2">
-                            <h5>{{ $item->nama_layanan }}</h5>
-                        </div>
-                    </a>
-                @endforeach
-            </div>
-        @else
-            <div class="text-center text-muted mt-4" data-aos="fade-up" data-aos-delay="200">
-                <p class="no-news-text">Data Layanan belum tersedia</p>
-            </div>
-        @endif
-    </section>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             AOS.init({
                 duration: 1000,
                 once: true,
@@ -1123,12 +1125,12 @@
 
     <!-- JS: Ganti gambar otomatis dengan efek -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const images = [
                 @foreach ($carousel as $item)
                     "{{ asset('storage/carousel/' . $item->foto) }}",
                 @endforeach
-            ];
+                        ];
 
             let index = 0;
             const imgElement = document.getElementById('carouselImage');
