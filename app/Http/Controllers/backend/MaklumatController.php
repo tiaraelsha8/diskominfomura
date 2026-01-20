@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Maklumat;
+use Illuminate\Support\Facades\File;
 
 class MaklumatController extends Controller
 {
@@ -152,7 +153,7 @@ class MaklumatController extends Controller
         //hapus foto kalau ada
         if ($maklumats->foto) {
             Storage::delete('maklumats/foto/' . $maklumats->foto);
-            
+
         }
 
         //hapus video kalau ada
@@ -168,4 +169,5 @@ class MaklumatController extends Controller
             ->route('maklumat.index')
             ->with(['success' => 'Data Berhasil Dihapus!']);
     }
+
 }

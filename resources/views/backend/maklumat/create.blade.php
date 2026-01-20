@@ -64,8 +64,7 @@
                     'alignment',
                     'link',
                     'undo',
-                    'redo',
-
+                    'redo'
                 ],
                 alignment: {
                     options: ['left', 'center', 'right', 'justify']
