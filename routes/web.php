@@ -129,7 +129,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     Route::resource('/lokasi', LokasiInternetController::class);
     Route::post('lokasi-import', [LokasiInternetController::class, 'import'])->name('lokasi.import');
-
+     
     Route::resource('/layanan', LayananController::class);
 
     Route::resource('/profilbidang', ProfilbidangController::class);

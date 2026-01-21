@@ -27,7 +27,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Data Lokasi Internet</h3>
+                        <h3 class="card-title">Data Lokasi Kawasan Bencana</h3>
 
                     </div>
                     <!-- /.card-header -->

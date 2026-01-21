@@ -38,7 +38,7 @@
 
             <div class="form-group">
                 <label for="deskripsi">Keterangan</label>
-                <textarea name="keterangan" class="form-control" rows="4">{{$lokasi->keterangan}}</textarea>
+                <textarea name="keterangan" id="editor" class="form-control" rows="4">{{$lokasi->keterangan}}</textarea>
             @error('keterangan')
                 <div class="alert alert-danger">{{ $message }}</div>
             @enderror
@@ -53,3 +53,24 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'), {
+                toolbar: [
+                    'heading', '|',
+                    'bold', 'italic', 'underline', '|',
+                    'bulletedList', 'numberedList', 'alignment', '|',
+                    'link', 'undo', 'redo'
+                ],
+                alignment: {
+                    options: ['left', 'center', 'right', 'justify']
+                },
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+@endpush

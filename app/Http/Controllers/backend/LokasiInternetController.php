@@ -77,7 +77,7 @@ class LokasiInternetController extends Controller
         //get by ID
         $lokasi = Lokasi::findOrFail($id);
 
-        //update 
+        //update
         $lokasi->update($request->all());
 
         return redirect()->route('lokasi.index')->with('success', 'Data berhasil diperbarui.');
@@ -91,24 +91,27 @@ class LokasiInternetController extends Controller
         //get by ID
         $lokasi = Lokasi::findOrFail($id);
 
-        //delete 
+        //delete
         $lokasi->delete();
 
         //redirect to index
-        return redirect()->route('lokasi.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()
+            ->route('lokasi.index')
+            ->with(['success' => 'Data Berhasil Dihapus!']);
     }
 
     public function import(Request $request)
     {
-
         //validate form
         $request->validate([
-            'file' => 'required|max:2048'
+            'file' => 'required|max:2048',
         ]);
 
-        Excel::import(new LokasiImport, $request->file('file'));
-        
+        Excel::import(new LokasiImport(), $request->file('file'));
+
         //redirect to index
-        return redirect()->route('lokasi.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect()
+            ->route('lokasi.index')
+            ->with(['success' => 'Data Berhasil Disimpan!']);
     }
 }
