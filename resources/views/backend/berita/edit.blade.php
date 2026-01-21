@@ -74,7 +74,7 @@
                 },
                 // Konfigurasi Upload Gambar
                 ckfinder: {
-                    uploadUrl: "{{ route('image.upload') . '?_token=' . csrf_token() }}"
+                    uploadUrl: "{{ route('berita.upload') . '?_token=' . csrf_token() }}"
                 }
             })
             .catch(error => {

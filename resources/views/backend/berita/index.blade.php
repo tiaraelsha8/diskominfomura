@@ -1,3 +1,18 @@
+<style>
+  .td-content {
+    max-height: 200px;
+    /* tinggi tetap */
+    overflow: hidden;
+    /* potong konten */
+    text-overflow: ellipsis;
+  }
+
+  /* gambar dari CKEditor */
+  .td-content img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
 @extends('backend.layout.master')
 
 @section('judul')
@@ -49,7 +64,11 @@
                   <tr>
                     <td>{{$key + 1}}</td>
                     <td>{{$value->judul}}</td>
-                    <td>{!! $value->deskripsi !!}</td>
+                    <td>
+                      <div class="td-content">
+                        {!! $value->deskripsi !!}
+                      </div>
+                    </td>
                     <td>{{$value->penulis}}</td>
                     <td>
                       <img src="{{ asset($value->foto) }}" style="width:300px; height:200px; object-fit:contain;">
