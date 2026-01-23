@@ -87,6 +87,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 25px;
+            row-gap: 55px;
             max-width: 100%;
             padding: 0 5vw;
             margin: 0 auto;
@@ -820,7 +821,7 @@
         </div>
     </div>
 
-       <section class="album-home-section">
+    <section class="album-home-section">
         <div class="row">
             <div class="col">
                 <h2 data-aos="fade-up">Berita Terbaru</h2>
@@ -880,7 +881,7 @@
 
         </div>
     </section>
-    
+
     <section class="layanan-fullscreen" data-aos="fade-up">
         <h2 data-aos="fade-down" data-aos-delay="100">Layanan</h2>
         @if ($layanans->count())
@@ -908,7 +909,7 @@
     </section>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             AOS.init({
                 duration: 1000,
                 once: true,
@@ -984,7 +985,7 @@
         </div>
     </section>
 
-    
+
 
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
@@ -996,12 +997,12 @@
 
     <!-- JS: Ganti gambar otomatis dengan efek -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const images = [
                 @foreach ($carousel as $item)
                     "{{ asset('storage/carousel/' . $item->foto) }}",
                 @endforeach
-            ];
+                        ];
 
             let index = 0;
             const imgElement = document.getElementById('carouselImage');
