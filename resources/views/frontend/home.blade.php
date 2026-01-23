@@ -87,6 +87,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 25px;
+            row-gap: 55px;
             max-width: 100%;
             padding: 0 5vw;
             margin: 0 auto;
@@ -984,7 +985,7 @@
     </section>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             AOS.init({
                 duration: 1000,
                 once: true,
@@ -1123,12 +1124,12 @@
 
     <!-- JS: Ganti gambar otomatis dengan efek -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const images = [
                 @foreach ($carousel as $item)
                     "{{ asset('storage/carousel/' . $item->foto) }}",
                 @endforeach
-            ];
+                    ];
 
             let index = 0;
             const imgElement = document.getElementById('carouselImage');
