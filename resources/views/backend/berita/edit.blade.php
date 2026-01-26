@@ -7,7 +7,10 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-
+            @php
+                preg_match('/storage\/berita\/foto\/([^\/]+)\//', $berita->deskripsi, $m);
+                $existingFolderId = $m[1] ?? uniqid();
+            @endphp
             <form action="{{ route('berita.update', $berita->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
@@ -74,7 +77,7 @@
                 },
                 // Konfigurasi Upload Gambar
                 ckfinder: {
-                    uploadUrl: "{{ route('berita.upload') . '?_token=' . csrf_token() }}"
+                    uploadUrl: "{{ route('berita.upload') }}?_token={{ csrf_token() }}&folder_id={{ $existingFolderId }}"
                 }
             })
             .catch(error => {
