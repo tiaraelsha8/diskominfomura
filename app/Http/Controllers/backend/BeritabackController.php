@@ -40,27 +40,40 @@ class BeritabackController extends Controller
             'foto' => 'required|image|mimes:jpeg,jpg,png|max:2048',
         ]);
 
-        // Ambil konten dari request
+        // Ambil konten dan folder_id dari request
         $deskripsi = $request->deskripsi;
+        preg_match('/storage\/berita\/foto\/([^\/]+)\//', $deskripsi, $matches);
+        $folderId = $matches[1]; // Diambil dari input hidden di form
 
-        // 1. Ambil semua nama file yang ADA di dalam konten (yang akan disimpan)
-        preg_match_all('/<img [^>]*src="([^"]+)"/', $deskripsi, $matches);
+        // Path menuju folder spesifik berita ini
+        $storagePath = public_path('storage/berita/foto/' . $folderId);
 
-        // Kita bersihkan URL-nya sehingga hanya menyisakan nama filenya saja (contoh: gambar1.jpg)
-        $imagesInContent = array_map(function ($url) {
-            return basename(parse_url($url, PHP_URL_PATH));
-        }, $matches[1]);
+        // Lakukan pembersihan hanya jika foldernya ada
+        if ($folderId && File::exists($storagePath)) {
 
-        // 2. Ambil semua file FISIK yang saat ini ada di folder
-        $storagePath = public_path('storage/berita/foto');
-        $allFiles = File::files($storagePath);
+            // 1. Ambil semua nama file yang MASIH ADA di dalam deskripsi (yang akan disimpan)
+            preg_match_all('/<img [^>]*src="([^"]+)"/', $deskripsi, $matches);
 
-        // 3. Bandingkan: Jika file di folder tidak ada di dalam konten, maka HAPUS
-        foreach ($allFiles as $file) {
-            $fileName = $file->getFilename();
+            // Ambil nama filenya saja (contoh: 17123456_foto.jpg)
+            $imagesInContent = array_map(function ($url) {
+                return basename(parse_url($url, PHP_URL_PATH));
+            }, $matches[1]);
 
-            if (!in_array($fileName, $imagesInContent)) {
-                File::delete($file->getPathname());
+            // 2. Ambil semua file FISIK yang ada di dalam sub-folder berita ini
+            $allFiles = File::files($storagePath);
+
+            // 3. Bandingkan: Jika file di folder tidak ada di teks deskripsi, maka HAPUS
+            foreach ($allFiles as $file) {
+                $fileName = $file->getFilename();
+
+                if (!in_array($fileName, $imagesInContent)) {
+                    File::delete($file->getPathname());
+                }
+            }
+
+            // 4. Opsional: Hapus folder jika kosong (misal user menghapus semua gambar di editor)
+            if (count(File::files($storagePath)) === 0) {
+                File::deleteDirectory($storagePath);
             }
         }
 
@@ -113,27 +126,40 @@ class BeritabackController extends Controller
             'foto' => 'image|mimes:jpeg,jpg,png|max:2048',
         ]);
 
-        // Ambil konten dari request
+        // Ambil konten dan folder_id dari request
         $deskripsi = $request->deskripsi;
+        preg_match('/storage\/berita\/foto\/([^\/]+)\//', $deskripsi, $matches);
+        $folderId = $matches[1]; // Diambil dari input hidden di form
 
-        // 1. Ambil semua nama file yang ADA di dalam konten (yang akan disimpan)
-        preg_match_all('/<img [^>]*src="([^"]+)"/', $deskripsi, $matches);
+        // Path menuju folder spesifik berita ini
+        $storagePath = public_path('storage/berita/foto/' . $folderId);
 
-        // Kita bersihkan URL-nya sehingga hanya menyisakan nama filenya saja (contoh: gambar1.jpg)
-        $imagesInContent = array_map(function ($url) {
-            return basename(parse_url($url, PHP_URL_PATH));
-        }, $matches[1]);
+        // Lakukan pembersihan hanya jika foldernya ada
+        if ($folderId && File::exists($storagePath)) {
 
-        // 2. Ambil semua file FISIK yang saat ini ada di folder
-        $storagePath = public_path('storage/berita/foto');
-        $allFiles = File::files($storagePath);
+            // 1. Ambil semua nama file yang MASIH ADA di dalam deskripsi (yang akan disimpan)
+            preg_match_all('/<img [^>]*src="([^"]+)"/', $deskripsi, $matches);
 
-        // 3. Bandingkan: Jika file di folder tidak ada di dalam konten, maka HAPUS
-        foreach ($allFiles as $file) {
-            $fileName = $file->getFilename();
+            // Ambil nama filenya saja (contoh: 17123456_foto.jpg)
+            $imagesInContent = array_map(function ($url) {
+                return basename(parse_url($url, PHP_URL_PATH));
+            }, $matches[1]);
 
-            if (!in_array($fileName, $imagesInContent)) {
-                File::delete($file->getPathname());
+            // 2. Ambil semua file FISIK yang ada di dalam sub-folder berita ini
+            $allFiles = File::files($storagePath);
+
+            // 3. Bandingkan: Jika file di folder tidak ada di teks deskripsi, maka HAPUS
+            foreach ($allFiles as $file) {
+                $fileName = $file->getFilename();
+
+                if (!in_array($fileName, $imagesInContent)) {
+                    File::delete($file->getPathname());
+                }
+            }
+
+            // 4. Opsional: Hapus folder jika kosong (misal user menghapus semua gambar di editor)
+            if (count(File::files($storagePath)) === 0) {
+                File::deleteDirectory($storagePath);
             }
         }
 
@@ -173,44 +199,51 @@ class BeritabackController extends Controller
      */
     public function destroy(string $id)
     {
-        //get by ID
         $berita = Berita::findOrFail($id);
+        $deskripsi = $berita->deskripsi;
 
-        //delete image
-        Storage::delete('storage/berita/' . $berita->foto);
+        // 1. Cari pola folder_id di dalam deskripsi (menggunakan Regex)
+        // Mencari teks yang berada di antara 'foto/' dan '/' selanjutnya
+        preg_match('/storage\/berita\/foto\/([^\/]+)\//', $deskripsi, $matches);
 
-        //delete image
+        if (isset($matches[1])) {
+            $folderId = $matches[1];
+            $folderPath = public_path('storage/berita/foto/' . $folderId);
+
+            // 2. Hapus folder jika ditemukan
+            if (\File::exists($folderPath)) {
+                \File::deleteDirectory($folderPath);
+            }
+        }
+
+        // 3. Hapus foto utama/thumbnail (jika ada)
+        if ($berita->foto) {
+            $thumbnailPath = public_path('storage/berita/' . $berita->foto);
+            if (\File::exists($thumbnailPath)) {
+                \File::delete($thumbnailPath);
+            }
+        }
+
         $berita->delete();
 
-        //redirect to index
-        return redirect()->route('berita.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('berita.index')->with(['success' => 'Berita dan folder foto berhasil dihapus!']);
     }
 
     public function storeImage(Request $request)
     {
         if ($request->hasFile('upload')) {
+            $folderId = $request->query('folder_id'); // Ambil dari URL
             $file = $request->file('upload');
+            $fileName = time() . '_' . $file->getClientOriginalName();
 
-            // Ambil nama file asli
-            $originName = $file->getClientOriginalName();
-
-            // Buat nama file unik agar tidak bentrok (misal: 1737250000_berita.jpg)
-            $fileName = time() . '_' . $originName;
-
-            // Pindahkan ke folder public/maklumats/foto
-            // Laravel akan otomatis mencari folder ini di dalam direktori 'public'
-            $file->move(public_path('storage/berita/foto'), $fileName);
-
-            // Buat URL untuk dikembalikan ke CKEditor
-            $url = asset('storage/berita/foto/' . $fileName);
+            // Simpan ke: public/storage/berita/foto/{folder_id}/nama_file.jpg
+            $path = "storage/berita/foto/" . $folderId;
+            $file->move(public_path($path), $fileName);
 
             return response()->json([
                 'uploaded' => 1,
-                'fileName' => $fileName,
-                'url' => $url
+                'url' => asset($path . '/' . $fileName)
             ]);
         }
-
-        return response()->json(['uploaded' => 0, 'error' => ['message' => 'File tidak ditemukan.']]);
     }
 }
