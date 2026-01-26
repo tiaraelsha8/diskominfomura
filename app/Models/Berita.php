@@ -14,10 +14,10 @@ class Berita extends Model
 
     protected $fillable = ['judul', 'deskripsi', 'penulis', 'foto'];
 
-    protected function foto(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($foto) => url('/storage/berita/' . $foto),
-        );
-    }
+    // protected function foto(): Attribute
+    // {
+    //     return Attribute::make(
+    //         get: fn($foto) => url('/storage/berita/' . $foto),
+    //     );
+    // }
 }

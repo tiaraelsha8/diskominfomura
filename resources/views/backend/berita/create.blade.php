@@ -7,13 +7,14 @@
 @section('content')
     <div class="card">
         <div class="card-header">
-
+            @php $folder_id = uniqid(); @endphp
             <form action="{{ route('berita.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="box-body">
 
                     <div class="form-group">
                         <label>Judul Berita</label>
+                        <input type="hidden" name="folder_id" value="{{ $folder_id }}">
                         <input type="text" class="form-control" name="judul" placeholder="Isikan Judul Berita">
                     </div>
                     @error('judul')
@@ -73,7 +74,7 @@
                 },
                 // Konfigurasi Upload Gambar
                 ckfinder: {
-                    uploadUrl: "{{ route('berita.upload') . '?_token=' . csrf_token() }}"
+                    uploadUrl: "{{ route('berita.upload') }}?_token={{ csrf_token() }}&folder_id={{ $folder_id }}"
                 }
             })
             .catch(error => {

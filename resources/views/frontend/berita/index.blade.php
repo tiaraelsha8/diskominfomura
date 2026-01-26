@@ -200,7 +200,9 @@
         }
     </style>
 
-    <div class="title-bg"><h1>Berita Murung Raya</h1></div>
+    <div class="title-bg">
+        <h1>Berita Murung Raya</h1>
+    </div>
 
 
     <!-- SECTION 2: sisanya -->
@@ -210,7 +212,7 @@
         <div class="album-grid">
             @forelse ($beritas as $item)
                 <div class="album-card">
-                    <img src="{{ $item->foto ? asset($item->foto) : 'lambang_mura.png' }}"
+                    <img src="{{ $item->foto ? asset('storage/berita/' . $item->foto) : 'lambang_mura.png' }}"
                         alt="Foto {{ $item->judul }}">
                     <div class="album-body">
                         <div class="album-title">{{ $item->judul }}</div>
