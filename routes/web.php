@@ -98,6 +98,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('/carousel', CarouselController::class);
 
     Route::resource('/berita', BeritabackController::class);
+    Route::post('berita-upload', [BeritabackController::class, 'storeImage'])->name('berita.upload');
 
     Route::resource('/pengumuman', PengumumanbackController::class);
     Route::get('/pengumuman/download/{id}', [PengumumanbackController::class, 'download'])->name('pengumuman.download');
