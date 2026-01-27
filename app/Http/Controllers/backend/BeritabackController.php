@@ -232,11 +232,32 @@ class BeritabackController extends Controller
     public function storeImage(Request $request)
     {
         if ($request->hasFile('upload')) {
-            $folderId = $request->query('folder_id'); // Ambil dari URL
             $file = $request->file('upload');
+
+            // 1. VALIDASI FORMAT FILE
+            $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
+            $extension = strtolower($file->getClientOriginalExtension());
+
+            if (!in_array($extension, $allowedExtensions)) {
+                return response()->json([
+                    'uploaded' => 0,
+                    'error' => ['message' => 'Format file tidak didukung! Gunakan JPG, PNG, atau WEBP.']
+                ]);
+            }
+
+            // 2. VALIDASI UKURAN (Maksimal 2MB)
+            $maxSize = 2 * 1024 * 1024;
+            if ($file->getSize() > $maxSize) {
+                return response()->json([
+                    'uploaded' => 0,
+                    'error' => ['message' => 'Ukuran foto terlalu besar! Maksimal adalah 2MB.']
+                ]);
+            }
+
+            // 3. JIKA LOLOS SEMUA VALIDASI, PROSES SIMPAN
+            $folderId = $request->query('folder_id');
             $fileName = time() . '_' . $file->getClientOriginalName();
 
-            // Simpan ke: public/storage/berita/foto/{folder_id}/nama_file.jpg
             $path = "storage/berita/foto/" . $folderId;
             $file->move(public_path($path), $fileName);
 
