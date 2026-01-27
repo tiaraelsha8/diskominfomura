@@ -43,7 +43,7 @@ class BeritabackController extends Controller
         // Ambil konten dan folder_id dari request
         $deskripsi = $request->deskripsi;
         preg_match('/storage\/berita\/foto\/([^\/]+)\//', $deskripsi, $matches);
-        $folderId = $matches[1]; // Diambil dari input hidden di form
+        $folderId = $matches[1] ?? ""; // Diambil dari input hidden di form
 
         // Path menuju folder spesifik berita ini
         $storagePath = public_path('storage/berita/foto/' . $folderId);
@@ -129,7 +129,7 @@ class BeritabackController extends Controller
         // Ambil konten dan folder_id dari request
         $deskripsi = $request->deskripsi;
         preg_match('/storage\/berita\/foto\/([^\/]+)\//', $deskripsi, $matches);
-        $folderId = $matches[1]; // Diambil dari input hidden di form
+        $folderId = $matches[1] ?? ""; // Diambil dari input hidden di form
 
         // Path menuju folder spesifik berita ini
         $storagePath = public_path('storage/berita/foto/' . $folderId);
