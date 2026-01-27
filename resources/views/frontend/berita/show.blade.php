@@ -119,7 +119,7 @@
 
                 @if ($beritas->foto)
                     <div class="text-center mb-4">
-                        <img src="{{ asset($beritas->foto) }}" alt="{{ $beritas->judul }}">
+                        <img src="{{ asset('storage/berita/' . $beritas->foto) }}" alt="{{ $beritas->judul }}">
                     </div>
                 @endif
 

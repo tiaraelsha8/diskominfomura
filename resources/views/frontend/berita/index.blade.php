@@ -203,14 +203,14 @@
         <h1>Berita Murung Raya</h1>
     </div>
 
-        <!-- SECTION 2: sisanya -->
+    <!-- SECTION 2: sisanya -->
     <section class="galeri-container container">
         <h1>Berita Terbaru Inspektorat</h1>
         {{ $beritas->links() }}
         <div class="album-grid">
             @forelse ($beritas as $item)
                 <div class="album-card">
-                    <img src="{{ $item->foto ? asset($item->foto) : 'https://via.placeholder.com/600x300?text=No+Image' }}"
+                    <img src="{{ $item->foto ? asset('storage/berita/' . $item->foto) : 'https://via.placeholder.com/600x300?text=No+Image' }}"
                         alt="Foto {{ $item->judul }}">
                     <div class="album-body">
                         <div class="album-title">{{ $item->judul }}</div>
