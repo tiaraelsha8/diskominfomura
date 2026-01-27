@@ -820,14 +820,14 @@
         </div>
     </div>
 
-       <section class="album-home-section">
+    <section class="album-home-section">
         <div class="row">
             <div class="col">
                 <h2 data-aos="fade-up">Berita Terbaru</h2>
                 <div class="album-grid">
                     @forelse ($beritas as $item)
                         <div class="album-card">
-                            <img src="{{ $item->foto ? asset($item->foto) : 'https://via.placeholder.com/600x300?text=No+Image' }}"
+                            <img src="{{ $item->foto ? asset('storage/berita/' . $item->foto) : 'https://via.placeholder.com/600x300?text=No+Image' }}"
                                 alt="Foto {{ $item->judul }}">
 
                             <div class="album-body">
@@ -880,7 +880,7 @@
 
         </div>
     </section>
-    
+
     <section class="layanan-fullscreen" data-aos="fade-up">
         <h2 data-aos="fade-down" data-aos-delay="100">Layanan</h2>
         @if ($layanans->count())
@@ -908,7 +908,7 @@
     </section>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             AOS.init({
                 duration: 1000,
                 once: true,
@@ -984,7 +984,7 @@
         </div>
     </section>
 
-    
+
 
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
@@ -996,12 +996,12 @@
 
     <!-- JS: Ganti gambar otomatis dengan efek -->
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const images = [
                 @foreach ($carousel as $item)
                     "{{ asset('storage/carousel/' . $item->foto) }}",
                 @endforeach
-            ];
+                                ];
 
             let index = 0;
             const imgElement = document.getElementById('carouselImage');
