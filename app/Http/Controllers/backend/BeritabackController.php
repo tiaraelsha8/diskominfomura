@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Berita;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class BeritabackController extends Controller
 {
@@ -38,6 +39,43 @@ class BeritabackController extends Controller
             'penulis' => 'required',
             'foto' => 'required|image|mimes:jpeg,jpg,png|max:2048',
         ]);
+
+        // Ambil konten dan folder_id dari request
+        $deskripsi = $request->deskripsi;
+        preg_match('/storage\/berita\/foto\/([^\/]+)\//', $deskripsi, $matches);
+        $folderId = $matches[1]; // Diambil dari input hidden di form
+
+        // Path menuju folder spesifik berita ini
+        $storagePath = public_path('storage/berita/foto/' . $folderId);
+
+        // Lakukan pembersihan hanya jika foldernya ada
+        if ($folderId && File::exists($storagePath)) {
+
+            // 1. Ambil semua nama file yang MASIH ADA di dalam deskripsi (yang akan disimpan)
+            preg_match_all('/<img [^>]*src="([^"]+)"/', $deskripsi, $matches);
+
+            // Ambil nama filenya saja (contoh: 17123456_foto.jpg)
+            $imagesInContent = array_map(function ($url) {
+                return basename(parse_url($url, PHP_URL_PATH));
+            }, $matches[1]);
+
+            // 2. Ambil semua file FISIK yang ada di dalam sub-folder berita ini
+            $allFiles = File::files($storagePath);
+
+            // 3. Bandingkan: Jika file di folder tidak ada di teks deskripsi, maka HAPUS
+            foreach ($allFiles as $file) {
+                $fileName = $file->getFilename();
+
+                if (!in_array($fileName, $imagesInContent)) {
+                    File::delete($file->getPathname());
+                }
+            }
+
+            // 4. Opsional: Hapus folder jika kosong (misal user menghapus semua gambar di editor)
+            if (count(File::files($storagePath)) === 0) {
+                File::deleteDirectory($storagePath);
+            }
+        }
 
         //upload image
         $image = $request->file('foto');
@@ -88,6 +126,43 @@ class BeritabackController extends Controller
             'foto' => 'image|mimes:jpeg,jpg,png|max:2048',
         ]);
 
+        // Ambil konten dan folder_id dari request
+        $deskripsi = $request->deskripsi;
+        preg_match('/storage\/berita\/foto\/([^\/]+)\//', $deskripsi, $matches);
+        $folderId = $matches[1]; // Diambil dari input hidden di form
+
+        // Path menuju folder spesifik berita ini
+        $storagePath = public_path('storage/berita/foto/' . $folderId);
+
+        // Lakukan pembersihan hanya jika foldernya ada
+        if ($folderId && File::exists($storagePath)) {
+
+            // 1. Ambil semua nama file yang MASIH ADA di dalam deskripsi (yang akan disimpan)
+            preg_match_all('/<img [^>]*src="([^"]+)"/', $deskripsi, $matches);
+
+            // Ambil nama filenya saja (contoh: 17123456_foto.jpg)
+            $imagesInContent = array_map(function ($url) {
+                return basename(parse_url($url, PHP_URL_PATH));
+            }, $matches[1]);
+
+            // 2. Ambil semua file FISIK yang ada di dalam sub-folder berita ini
+            $allFiles = File::files($storagePath);
+
+            // 3. Bandingkan: Jika file di folder tidak ada di teks deskripsi, maka HAPUS
+            foreach ($allFiles as $file) {
+                $fileName = $file->getFilename();
+
+                if (!in_array($fileName, $imagesInContent)) {
+                    File::delete($file->getPathname());
+                }
+            }
+
+            // 4. Opsional: Hapus folder jika kosong (misal user menghapus semua gambar di editor)
+            if (count(File::files($storagePath)) === 0) {
+                File::deleteDirectory($storagePath);
+            }
+        }
+
         //get product by ID
         $berita = berita::findOrFail($id);
 
@@ -124,16 +199,72 @@ class BeritabackController extends Controller
      */
     public function destroy(string $id)
     {
-        //get by ID
         $berita = Berita::findOrFail($id);
+        $deskripsi = $berita->deskripsi;
 
-        //delete image
-        Storage::delete('berita/' . $berita->foto);
+        // 1. Cari pola folder_id di dalam deskripsi (menggunakan Regex)
+        // Mencari teks yang berada di antara 'foto/' dan '/' selanjutnya
+        preg_match('/storage\/berita\/foto\/([^\/]+)\//', $deskripsi, $matches);
 
-        //delete image
+        if (isset($matches[1])) {
+            $folderId = $matches[1];
+            $folderPath = public_path('storage/berita/foto/' . $folderId);
+
+            // 2. Hapus folder jika ditemukan
+            if (\File::exists($folderPath)) {
+                \File::deleteDirectory($folderPath);
+            }
+        }
+
+        // 3. Hapus foto utama/thumbnail (jika ada)
+        if ($berita->foto) {
+            $thumbnailPath = public_path('storage/berita/' . $berita->foto);
+            if (\File::exists($thumbnailPath)) {
+                \File::delete($thumbnailPath);
+            }
+        }
+
         $berita->delete();
 
-        //redirect to index
-        return redirect()->route('berita.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('berita.index')->with(['success' => 'Berita dan folder foto berhasil dihapus!']);
+    }
+
+    public function storeImage(Request $request)
+    {
+        if ($request->hasFile('upload')) {
+            $file = $request->file('upload');
+
+            // 1. VALIDASI FORMAT FILE
+            $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
+            $extension = strtolower($file->getClientOriginalExtension());
+
+            if (!in_array($extension, $allowedExtensions)) {
+                return response()->json([
+                    'uploaded' => 0,
+                    'error' => ['message' => 'Format file tidak didukung! Gunakan JPG, PNG, atau WEBP.']
+                ]);
+            }
+
+            // 2. VALIDASI UKURAN (Maksimal 2MB)
+            $maxSize = 2 * 1024 * 1024;
+            if ($file->getSize() > $maxSize) {
+                return response()->json([
+                    'uploaded' => 0,
+                    'error' => ['message' => 'Ukuran foto terlalu besar! Maksimal adalah 2MB.']
+                ]);
+            }
+
+            // 3. JIKA LOLOS SEMUA VALIDASI, PROSES SIMPAN
+            $folderId = $request->query('folder_id');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+
+            $path = "storage/berita/foto/" . $folderId;
+            $file->move(public_path($path), $fileName);
+
+            return response()->json([
+                'uploaded' => 1,
+                'url' => asset($path . '/' . $fileName)
+            ]);
+        }
     }
 }

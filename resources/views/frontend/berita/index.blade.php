@@ -200,7 +200,9 @@
         }
     </style>
 
-    <div class="title-bg"><h1>Berita Murung Raya</h1></div>
+    <div class="title-bg">
+        <h1>Berita Murung Raya</h1>
+    </div>
     <!-- SECTION 1: 4 berita pertama -->
     <div class="galeri-container container">
         <h1>Berita Terbaru Murung Raya</h1>
@@ -230,7 +232,7 @@
         <div class="album-grid">
             @forelse ($beritas as $item)
                 <div class="album-card">
-                    <img src="{{ $item->foto ? asset($item->foto) : 'https://via.placeholder.com/600x300?text=No+Image' }}"
+                    <img src="{{ $item->foto ? asset('storage/berita/' . $item->foto) : 'https://via.placeholder.com/600x300?text=No+Image' }}"
                         alt="Foto {{ $item->judul }}">
                     <div class="album-body">
                         <div class="album-title">{{ $item->judul }}</div>
