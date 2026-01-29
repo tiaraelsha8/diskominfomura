@@ -61,11 +61,12 @@
                     </div>
 
                     <div class="input-group mb-3">
-                        <input type="password" name="password" class="form-control" placeholder="Password" required>
+                        <input type="password" name="password" id="password" class="form-control"
+                            placeholder="Password" required>
                         <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
+                            <span class="input-group-text" id="togglePassword" style="cursor: pointer;">
+                                <i class="fas fa-eye"></i>
+                            </span>
                         </div>
                     </div>
 
@@ -79,8 +80,8 @@
 
                     <div class="col-6 d-flex gap-3" style="padding-left: 0px">
                         <button type="submit" class="btn btn-primary btn-block w-60 text-nowrap">Masuk</button>
-                        <a href="{{ route('password.request') }}"
-                            class="btn btn-secondary w-60 text-nowrap" style="margin-left: 20px">Lupa Password?</a>
+                        <a href="{{ route('password.request') }}" class="btn btn-secondary w-60 text-nowrap"
+                            style="margin-left: 20px">Lupa Password?</a>
                     </div>
                 </form>
             </div>
@@ -94,6 +95,24 @@
     <script src="{{ asset('templateadmin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('templateadmin/dist/js/adminlte.min.js') }}"></script>
+    <!-- Fish Eye -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const togglePassword = document.querySelector('#togglePassword');
+            const password = document.querySelector('#password');
+            const icon = togglePassword.querySelector('i');
+
+            togglePassword.addEventListener('click', function() {
+                // ubah type
+                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                password.setAttribute('type', type);
+
+                // ubah ikon
+                icon.classList.toggle('fa-eye');
+                icon.classList.toggle('fa-eye-slash');
+            });
+        });
+    </script>
 
 </body>
 
