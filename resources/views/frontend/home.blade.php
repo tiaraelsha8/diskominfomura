@@ -893,10 +893,10 @@
                 alt="Default Carousel Image">
         @endif
 
-        <div class="hero-container" data-aos="fade-down">
-            <h1>Selamat Datang <br> Di Kecamatan Murung<br> Kabupaten Murung Raya</h1>
-            <p data-aos="fade-up" data-aos-delay="200">Murung Raya Hebat</p>
-        </div>
+        <!-- <div class="hero-container" data-aos="fade-down">
+                <h1>Selamat Datang <br> Di Kecamatan Murung<br> Kabupaten Murung Raya</h1>
+                <p data-aos="fade-up" data-aos-delay="200">Murung Raya Hebat</p>
+            </div> -->
     </div>
 
     <section class="album-home-section">
@@ -1130,7 +1130,7 @@
                 @foreach ($carousel as $item)
                     "{{ asset('storage/carousel/' . $item->foto) }}",
                 @endforeach
-                                        ];
+                                                        ];
 
             let index = 0;
             const imgElement = document.getElementById('carouselImage');
