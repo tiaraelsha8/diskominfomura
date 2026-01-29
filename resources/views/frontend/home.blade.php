@@ -26,6 +26,17 @@
             text-align: left;
         }
 
+        .full-bg img {
+            position: absolute;
+            margin-top: 180px;
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+            object-position: center;
+            z-index: 2;
+        }
+
+
         .fade-image {
             transition: opacity 1s ease-in-out;
             opacity: 1;
@@ -1130,7 +1141,7 @@
                 @foreach ($carousel as $item)
                     "{{ asset('storage/carousel/' . $item->foto) }}",
                 @endforeach
-                                                        ];
+                                                                                                                                                                                                                                                                                                    ];
 
             let index = 0;
             const imgElement = document.getElementById('carouselImage');
