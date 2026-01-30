@@ -15,8 +15,7 @@
 
         .full-bg {
             margin-top: 0;
-            padding-top: 80px;
-            padding-bottom: 80px;
+
             min-height: 100vh;
             position: relative;
             overflow: hidden;
@@ -28,7 +27,8 @@
 
         .full-bg img {
             position: absolute;
-            margin-top: 180px;
+            padding-top: 80px;
+
             width: 100%;
             height: 100%;
             object-fit: fill;
@@ -905,9 +905,9 @@
         @endif
 
         <!-- <div class="hero-container" data-aos="fade-down">
-                <h1>Selamat Datang <br> Di Kecamatan Murung<br> Kabupaten Murung Raya</h1>
-                <p data-aos="fade-up" data-aos-delay="200">Murung Raya Hebat</p>
-            </div> -->
+                                                <h1>Selamat Datang <br> Di Kecamatan Murung<br> Kabupaten Murung Raya</h1>
+                                                <p data-aos="fade-up" data-aos-delay="200">Murung Raya Hebat</p>
+                                            </div> -->
     </div>
 
     <section class="album-home-section">
@@ -1141,7 +1141,7 @@
                 @foreach ($carousel as $item)
                     "{{ asset('storage/carousel/' . $item->foto) }}",
                 @endforeach
-                                                                                                                                                                                                                                                                                                    ];
+                                                                                                                                                                                                                                                                                                                                    ];
 
             let index = 0;
             const imgElement = document.getElementById('carouselImage');
