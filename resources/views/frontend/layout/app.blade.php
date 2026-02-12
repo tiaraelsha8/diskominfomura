@@ -35,7 +35,7 @@
             position: fixed;
             width: 100%;
             top: 0;
-            padding: 1.5rem 0;
+            padding: 1.3rem 0;
             font-size: 1.1rem;
             background-image: linear-gradient(90deg, #fd0000, #ff751f);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
@@ -46,12 +46,19 @@
         }
 
         .navbar img {
-            height: 80px;
-            margin-right: 20px;
+            height: 3.4rem;
+            width: auto;
+            margin-right: 12px;
+            object-fit: contain;
+            transition: all 0.2s ease-in-out;
         }
 
         .navbar.scrolled {
-            padding: 0.73rem 0;
+            padding: 0.7rem 0;
+        }
+
+        .navbar.scrolled img {
+            height: 2.4rem;
         }
 
         .navbar.scrolled .nav-link {
