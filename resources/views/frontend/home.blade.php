@@ -91,6 +91,7 @@
             max-width: 100%;
             padding: 0 5vw;
             margin: 0 auto;
+            margin-bottom: 140px;
             align-items: stretch;
         }
 
@@ -196,7 +197,7 @@
         .bidang-fullwidth h2 {
             font-size: 2.4rem;
             font-weight: 700;
-            margin-bottom: 55px;
+            margin-bottom: 50px;
             color: #003366;
             text-align: center;
         }
@@ -264,8 +265,8 @@
         }
 
         .galeri-home-section {
-            min-height: 80vh;
             margin-top: 80px;
+            padding-bottom: 60px;
             width: 100%;
             text-align: center;
         }
@@ -408,7 +409,7 @@
 
         .album-home-section {
             margin-bottom: 50px;
-            margin-top: 90px;
+            margin-top: 80px;
             padding: 0 20px;
             max-width: 1300px;
             margin-left: auto;
@@ -828,7 +829,7 @@
                 <div class="album-grid">
                     @forelse ($beritas as $item)
                         <div class="album-card">
-                            <img src="{{ $item->foto ? asset('storage/berita/'.$item->foto) : 'https://via.placeholder.com/600x300?text=No+Image' }}"
+                            <img src="{{ $item->foto ? asset('storage/berita/' . $item->foto) : 'https://via.placeholder.com/600x300?text=No+Image' }}"
                                 alt="Foto {{ $item->judul }}">
 
                             <div class="album-body">
@@ -909,7 +910,7 @@
     </section>
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             AOS.init({
                 duration: 1000,
                 once: true,
@@ -997,12 +998,12 @@
 
     <!-- JS: Ganti gambar otomatis dengan efek -->
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             const images = [
                 @foreach ($carousel as $item)
                     "{{ asset('storage/carousel/' . $item->foto) }}",
                 @endforeach
-                        ];
+            ];
 
             let index = 0;
             const imgElement = document.getElementById('carouselImage');
