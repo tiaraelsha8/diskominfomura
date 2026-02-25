@@ -123,7 +123,9 @@
                 <div class="meta-info">
                     Oleh: {{ $beritas->penulis }} | {{ $beritas->created_at->format('d M Y') }}
                 </div>
-
+                <div class="flex gap-3 text-sm text-gray-500">
+                    👁️ {{ number_format($beritas->views ?? 0) }} views
+                </div>
                 @if ($beritas->foto)
                     <div class="text-center mb-4">
                         <img src="{{ asset('storage/berita/' . $beritas->foto) }}" alt="{{ $beritas->judul }}">

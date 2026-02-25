@@ -242,6 +242,9 @@
                         <div class="album-date">
                             Oleh: {{ $item->penulis }} | {{ $item->created_at->format('d M Y') }}
                         </div>
+                        <div class="flex gap-3 text-sm text-gray-500">
+                            👁️ {{ number_format($item->views ?? 0) }} views
+                        </div>
                         <div style="margin-top: 10px;">
                             <a href="{{ route('berita.read', $item->id) }}" class="btn btn-sm btn-primary">Selengkapnya</a>
                         </div>
