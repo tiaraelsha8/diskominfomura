@@ -1,5 +1,11 @@
 @extends('frontend.layout.app')
 
+@section('meta_seo')
+    <meta name="description" content="{{ Str::limit(strip_tags($beritas->deskripsi), 150) }}">
+    <meta property="og:title" content="{{ $beritas->judul }}">
+    <meta property="og:image" content="{{ asset('storage/berita/' . $beritas->foto) }}">
+@endsection
+
 @section('content')
     <style>
         .title-bg {
@@ -105,6 +111,7 @@
             }
         }
     </style>
+
     <div class="title-bg">
         <h1>Galeri Berita</h1>
     </div>
