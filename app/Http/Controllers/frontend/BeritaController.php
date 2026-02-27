@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Models\Berita;
+use Illuminate\Support\Facades\Cache;
 
 class BeritaController extends Controller
 {
@@ -15,7 +16,7 @@ class BeritaController extends Controller
         $response = Http::get('https://berita.murungrayakab.go.id/wp-json/wp/v2/posts?_embed&per_page=4');
 
         if (!$response->successful()) {
-            return view('frontend/berita.index', ['berita' => [],'beritas' => $beritas]);
+            return view('frontend/berita.index', ['berita' => [], 'beritas' => $beritas]);
         }
 
         $posts = $response->json();
@@ -29,9 +30,8 @@ class BeritaController extends Controller
                 'image' => $post['_embedded']['wp:featuredmedia'][0]['source_url'] ?? 'https://via.placeholder.com/600x300?text=No+Image',
             ];
         });
-        
-        
-        return view('frontend/berita.index', compact('berita','beritas'));
+
+        return view('frontend/berita.index', compact('berita', 'beritas'));
     }
 
     public function read(string $id)
@@ -39,10 +39,16 @@ class BeritaController extends Controller
         //get product by ID
         $beritas = Berita::findOrFail($id);
 
+        // key unik (id + IP)
+        $key = 'berita_' . $beritas->id . '_' . request()->ip();
+
+        // cek biar tidak nambah terus saat refresh
+        if (!Cache::has($key)) {
+            $beritas->increment('views');
+            Cache::put($key, true, now()->addMinutes(30)); // 30 menit
+        }
+
         //render view with product
         return view('frontend.berita.show', compact('beritas'));
     }
-
-
-    
 }
