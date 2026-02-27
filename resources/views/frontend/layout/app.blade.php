@@ -38,7 +38,7 @@
             position: fixed;
             width: 100%;
             top: 0;
-            padding: 1.5rem 0;
+            padding: 1.3rem 0;
             font-size: 1.1rem;
             background-image: linear-gradient(90deg, #fd0000, #ff751f);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
@@ -48,8 +48,20 @@
             z-index: 100;
         }
 
+        .navbar img {
+            height: 3.4rem;
+            width: auto;
+            margin-right: 12px;
+            object-fit: contain;
+            transition: all 0.2s ease-in-out;
+        }
+
         .navbar.scrolled {
-            padding: 0.73rem 0;
+            padding: 0.7rem 0;
+        }
+
+        .navbar.scrolled img {
+            height: 2.4rem;
         }
 
         .navbar.scrolled .nav-link {
@@ -176,7 +188,7 @@
             left: 32px;
             border-width: 0 8px 8px 8px;
             border-style: solid;
-            border-color: transparent transparent rgba(255, 102, 0, 1) transparent;
+            border-color: transparent transparent rgba(0, 183, 255, 1) transparent;
             filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.1));
             transition: opacity 0.2s ease;
             transform: translateX(-50%);
@@ -302,7 +314,7 @@
         }
 
         body.dark-mode .custom-footer {
-            background-color: #1a1a1a;
+            background: #1a1a1a;
         }
 
         body.dark-mode .footer-link {
@@ -421,12 +433,12 @@
 
         #backToTopBtn:hover i {
             transform: translate(-50%, -50%) scale(1.15);
-            color: #ff6600;
+            color: #00b7ff;
         }
 
         #backToTopBtn i {
             font-size: 1.6rem;
-            color: #ff6600;
+            color: #00b7ff;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -725,7 +737,7 @@
     <button onclick="scrollToTop()" id="backToTopBtn" title="Kembali ke atas" aria-label="Kembali ke atas">
         <svg class="progress-circle" viewBox="0 0 100 100">
             <circle cx="50" cy="50" r="30" stroke="#ffffff33" stroke-width="6" fill="none" />
-            <circle id="progressRing" cx="50" cy="50" r="30" stroke="#ff6600" stroke-width="3" fill="none"
+            <circle id="progressRing" cx="50" cy="50" r="30" stroke="#00b7ff" stroke-width="3" fill="none"
                 stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="283" />
         </svg>
         <i class="bi bi-arrow-up-short"></i>

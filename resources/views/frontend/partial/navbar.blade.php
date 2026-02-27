@@ -3,9 +3,9 @@
 @endphp
 
 <nav class="navbar navbar-expand-lg" id="mainNavbar">
-    <div class="container">
+    <div class="container-fluid px-3 px-md-4 px-xl-5">
         @if ($logo && $logo->foto)
-            <img src="{{ asset('storage/logo/' . $logo->foto) }}" alt="" style="width: 160px; height: 80px; margin-right: 20px">
+            <img src="{{ asset('storage/logo/' . $logo->foto) }}" alt="">
             <a class="navbar-brand" href="{{ route('beranda') }}">{{ $logo->judul }}</a>
         @else
             <a class="navbar-brand" href="{{ route('beranda') }}">Logo belum ada</a>
