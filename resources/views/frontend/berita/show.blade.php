@@ -1,5 +1,13 @@
 @extends('frontend.layout.app')
 
+@section('meta_seo')
+    <meta name="og:description" content="{{ Str::limit(strip_tags($beritas->deskripsi), 15) }}">
+    <meta property="og:title" content="{{ $beritas->judul }}">
+    <meta property="og:image" content="{{ asset('storage/berita/' . $beritas->foto) }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+@endsection
+
+
 @section('content')
     <style>
         .title-bg {
