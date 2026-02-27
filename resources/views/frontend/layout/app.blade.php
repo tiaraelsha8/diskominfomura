@@ -24,6 +24,9 @@
     <meta name="robots" content="index, follow"> <!-- biarkan Google mengindeks -->
     <link rel="canonical" href="https://kel-purukcahuseberang.murungrayakab.go.id"> <!-- ganti dengan domain -->
 
+    <!-- Meta deskripsi untuk SEO Berita -->
+    @yield('meta_seo')
+
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -37,7 +40,8 @@
             top: 0;
             padding: 1.5rem 0;
             font-size: 1.1rem;
-            background-color: rgba(7, 90, 8, 0.8);;
+            background-color: rgba(7, 90, 8, 0.8);
+            ;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(10px);
@@ -239,7 +243,7 @@
             font-weight: 600;
             font-size: 0.9rem;
             white-space: nowrap;
-            color:#3a3b3b;
+            color: #3a3b3b;
             transition: transform 0.4s ease, opacity 0.4s ease;
         }
 
@@ -722,8 +726,8 @@
     <button onclick="scrollToTop()" id="backToTopBtn" title="Kembali ke atas" aria-label="Kembali ke atas">
         <svg class="progress-circle" viewBox="0 0 100 100">
             <circle cx="50" cy="50" r="30" stroke="#ffffff33" stroke-width="6" fill="none" />
-            <circle id="progressRing" cx="50" cy="50" r="30" stroke="#ff6600" stroke-width="3"
-                fill="none" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="283" />
+            <circle id="progressRing" cx="50" cy="50" r="30" stroke="#ff6600" stroke-width="3" fill="none"
+                stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="283" />
         </svg>
         <i class="bi bi-arrow-up-short"></i>
     </button>
@@ -748,7 +752,7 @@
             once: true
         });
         // Tampilkan tombol saat scroll ke bawah
-        window.onscroll = function() {
+        window.onscroll = function () {
             const btn = document.getElementById("backToTopBtn");
             const circle = document.getElementById("progressRing");
 
@@ -783,7 +787,7 @@
         }
 
         // Atur default offset saat halaman load
-        window.onload = function() {
+        window.onload = function () {
             const circle = document.getElementById("progressRing");
             const radius = 35;
             const circumference = 2 * Math.PI * radius;
@@ -794,7 +798,7 @@
         };
 
         // Fungsi Dark Mode
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             const toggle = document.getElementById("darkModeToggle");
             const icon = document.getElementById("darkIcon");
 
@@ -826,15 +830,15 @@
             const navbar = document.querySelector('.navbar');
             navbar.classList.toggle('scrolled', window.scrollY > 100);
         });
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             const items = [{
-                    triggerId: 'profilMenu',
-                    dropdownId: 'dropdownProfil'
-                },
-                {
-                    triggerId: 'galeriMenu',
-                    dropdownId: 'dropdownGaleri'
-                }
+                triggerId: 'profilMenu',
+                dropdownId: 'dropdownProfil'
+            },
+            {
+                triggerId: 'galeriMenu',
+                dropdownId: 'dropdownGaleri'
+            }
             ];
 
             let timeout;
@@ -905,7 +909,7 @@
                 }
 
                 // Mobile click toggle
-                trigger.addEventListener('click', function(e) {
+                trigger.addEventListener('click', function (e) {
                     if (window.innerWidth < 992) {
                         e.preventDefault();
                         const isOpen = dropdown.classList.contains('show');
