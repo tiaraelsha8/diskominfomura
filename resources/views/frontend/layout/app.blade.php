@@ -40,7 +40,7 @@
             top: 0;
             padding: 1.5rem 0;
             font-size: 1.1rem;
-            background-color: rgb(47 168 211 / 30%);
+            background-color: rgb(47 168 211 / 80%);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(5px);
             -webkit-backdrop-filter: blur(10px);
