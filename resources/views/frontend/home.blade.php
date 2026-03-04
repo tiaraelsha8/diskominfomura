@@ -87,6 +87,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 25px;
+            row-gap: 55px;
             max-width: 100%;
             padding: 0 5vw;
             margin: 0 auto;
@@ -1001,7 +1002,7 @@
                 @foreach ($carousel as $item)
                     "{{ asset('storage/carousel/' . $item->foto) }}",
                 @endforeach
-                                                    ];
+                                                                                ];
 
             let index = 0;
             const imgElement = document.getElementById('carouselImage');
