@@ -12,7 +12,7 @@ class Berita extends Model
 
     protected $table = 'berita';
 
-    protected $fillable = ['judul', 'deskripsi', 'penulis', 'foto'];
+    protected $fillable = ['judul', 'deskripsi', 'penulis', 'foto', 'views'];
 
     // protected function foto(): Attribute
     // {
