@@ -40,7 +40,7 @@ class BeritaController extends Controller
         $beritas = Berita::findOrFail($id);
 
         // key unik (id + IP)
-        $key = 'berita_' . $beritas->id . '_' . request()->ip();
+        $key = 'berita_' . $beritas->id . '_' . md5(request()->ip() . request()->userAgent());
 
         // cek biar tidak nambah terus saat refresh
         if (!Cache::has($key)) {
