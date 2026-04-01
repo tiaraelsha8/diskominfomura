@@ -11,5 +11,10 @@ class Galeri extends Model
 
     protected $table = 'galeri';
 
-    protected $fillable = ['judul', 'deskripsi', 'foto'];
+    protected $fillable = ['judul', 'deskripsi', 'arsipgaleri_id', 'foto'];
+
+    public function arsipgaleris()
+    {
+        return $this->belongsTo(Arsipgaleri::class, 'arsipgaleri_id');
+    }
 }

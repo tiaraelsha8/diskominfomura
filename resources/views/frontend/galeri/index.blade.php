@@ -372,15 +372,19 @@
     </div>
     <section class="galeri-container container">
         <div class="album-grid">
-            @forelse ($galeri as $album)
-                <div class="album-card" onclick="openModal({{ $album->id }})">
-                    <img src="{{ asset('storage/galeri/' . $album->foto) }}" alt="{{ e($album->judul) }}">
+            @forelse ($arsipgaleris as $album)
+
+                <div class="album-card">
+                    <a href="{{ route('galerifoto.read', $album->id) }}">
+                        <img src="{{ asset('storage/arsipgaleri/' . $album->foto) }}" alt="{{ e($album->nama_galeri) }}">
+                    </a>
                     <div class="album-body">
-                        <div class="album-title">{{ $album->judul }}</div>
-                        <div class="album-desc">{{ $album->deskripsi }}</div>
+                        <div class="album-title">{{ $album->nama_galeri }}</div>
+                        <!-- <div class="album-desc">{{ $album->deskripsi }}</div> -->
                         <div class="album-date">{{ $album->created_at->format('d M Y') }}</div>
                     </div>
                 </div>
+
             @empty
                 <p class="no-news-text">Tidak ada Data Galeri Foto untuk ditampilkan</p>
             @endforelse
@@ -393,7 +397,7 @@
     <!-- Modal -->
     <div class="modal" id="imageModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div id="thumbContainer" class="thumb-container">
-            @foreach ($galeri as $album)
+            @foreach ($arsipgaleris as $album)
                 <img src="{{ asset('storage/galeri/' . $album->foto) }}" alt="{{ $album->judul }}"
                     onclick="openModal({{ $album->id }})">
             @endforeach
@@ -497,7 +501,7 @@
             img.classList.toggle('zoomed');
         }
 
-        window.addEventListener('keydown', function(event) {
+        window.addEventListener('keydown', function (event) {
             if (event.key === 'ArrowLeft') navigateImage(-1);
             if (event.key === 'ArrowRight') navigateImage(1);
         });
@@ -589,9 +593,9 @@
             document.getElementById('autoplayProgress').style.width = '0%'; // <-- reset progress bar
         }
 
-        document.addEventListener("DOMContentLoaded", function() {
-            document.querySelectorAll("img").forEach(function(img) {
-                img.onerror = function() {
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll("img").forEach(function (img) {
+                img.onerror = function () {
                     this.onerror = null; // mencegah infinite loop
                     this.src = "{{ asset('image/default-carousel.jpg') }}" // path ke gambar default
                 };

@@ -1,37 +1,29 @@
 @extends('backend.layout.master')
 
 @section('judul')
-    Halaman Edit Foto
+    Halaman Edit Galeri
 @endsection
 
 @section('content')
     <div class="card">
         <div class="card-header">
-            <form action="{{ route('galeri.update', $galeri->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('arsipgaleri.update', $arsipgaleris->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 <div class="box-body">
 
                     <div class="form-group">
-                        <label>Judul Galeri</label>
-                        <input type="text" class="form-control" name="judul" value="{{$galeri->judul}}">
+                        <label>Nama Kategori</label>
+                        <input type="text" class="form-control" name="nama_galeri" value="{{ $arsipgaleris->nama_galeri }}">
                     </div>
-                    @error('judul')
+                    @error('nama_galeri')
                         <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
                     <div class="form-group">
-                        <label for="deskripsi">Deskripsi</label>
-                        <textarea name="deskripsi" class="form-control" rows="4">{{$galeri->deskripsi}}</textarea>
-                        @error('deskripsi')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
                         <label for="image">Foto</label>
                         <input type="file" class="form-control-file" name="foto" accept="image/*">
-                        <p>jpg,jpeg,png. max 2 MB</p>
+                        <p>png. max 2 MB</p>
                     </div>
                     @error('foto')
                         <div class="alert alert-danger">{{ $message }}</div>
@@ -39,7 +31,7 @@
 
                     <div class="box-footer">
                         <button type="submit" class="btn btn-primary">Simpan</button>
-                        <a href="{{ route('galeri.index') }}" class="btn btn-default">Kembali</a>
+                        <a href="{{ route('arsipgaleri.index') }}" class="btn btn-default">Kembali</a>
                     </div>
                 </div>
             </form>

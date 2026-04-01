@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Arsipgaleri;
 use Illuminate\Http\Request;
 use App\Models\Galeri;
 use Illuminate\Support\Facades\Storage;
@@ -24,7 +25,8 @@ class GaleriController extends Controller
      */
     public function create()
     {
-        return view('backend.galeri.create');
+        $arsipgaleris = Arsipgaleri::all();
+        return view('backend.galeri.create', compact('arsipgaleris'));
     }
 
     /**
@@ -36,6 +38,7 @@ class GaleriController extends Controller
         $request->validate([
             'judul' => 'required',
             'deskripsi' => 'required',
+            'arsipgaleri_id' => 'required|exists:arsipgaleris,id',
             'foto' => 'required|image|mimes:jpeg,jpg,png|max:2048',
         ]);
 
@@ -47,6 +50,7 @@ class GaleriController extends Controller
         Galeri::create([
             'judul' => $request->judul,
             'deskripsi' => $request->deskripsi,
+            'arsipgaleri_id' => $request->arsipgaleri_id,
             'foto' => $image->hashName(),
         ]);
 
@@ -83,6 +87,7 @@ class GaleriController extends Controller
         $request->validate([
             'judul' => 'required',
             'deskripsi' => 'required',
+            'arsipgaleri_id' => 'required|exists:arsipgaleris,id',
             'foto' => 'image|mimes:jpeg,jpg,png|max:2048',
         ]);
 
@@ -102,6 +107,7 @@ class GaleriController extends Controller
             $galeri->update([
                 'judul' => $request->judul,
                 'deskripsi' => $request->deskripsi,
+                'arsipgaleri_id' => $request->arsipgaleri_id,
                 'foto' => $image->hashName(),
             ]);
         } else {
@@ -109,6 +115,7 @@ class GaleriController extends Controller
             $galeri->update([
                 'judul' => $request->judul,
                 'deskripsi' => $request->deskripsi,
+                'arsipgaleri_id' => $request->arsipgaleri_id,
             ]);
         }
 

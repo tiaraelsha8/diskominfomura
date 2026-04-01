@@ -1,5 +1,6 @@
 @extends('frontend.layout.app')
 
+
 @section('content')
     <style>
         .title-bg {
@@ -30,6 +31,10 @@
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .row.g-4 h5 {
+            text-align: center;
         }
 
         @media (max-width: 768px) {
@@ -86,27 +91,24 @@
     </style>
 
     <div class="title-bg">
-        <h1>Galeri Video</h1>
+        <h1>Galeri Foto {{ $arsipgaleris->nama_galeri }}</h1>
     </div>
 
     <section class="video-container container">
         <div class="row g-4">
-
-            @forelse ($videos as $key => $value)
+            @forelse ($arsipgaleris->galeris as $item)
                 <div class="col-md-6" style="max-width: 32%">
-                    <div class="ratio ratio-16x9">
-                        <iframe src="https://www.youtube.com/embed/{{ $value->video }}" title="Video 1"
-                            allowfullscreen></iframe>
-                    </div>
-                    <h5 class="mt-2">{{ $value->judul }}</h5>
-                    <p>{{ $value->deskripsi }}</p>
+                    <img src="{{ $item->foto ? asset('storage/galeri/' . $item->foto) : asset('asset/lambang_mura.png') }}"
+                        class="ratio ratio-16x9" alt="Icon 1">
+                    <h5 class="mt-2">{{ $item->judul }}</h5>
+
                 </div>
             @empty
-                <p class="no-news-text">Tidak ada Data Galeri Video untuk ditampilkan</p>
+                <p class="no-news-text">Tidak ada Data Galeri Foto untuk ditampilkan</p>
             @endforelse
         </div>
         <div class="mt-4">
-            {{ $videos->links() }}
+
         </div>
     </section>
 @endsection

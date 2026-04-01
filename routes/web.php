@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\backend\ArsipgaleriController;
 use Illuminate\Support\Facades\Route;
 
 //login
@@ -85,6 +86,7 @@ Route::get('/maklumatlayanan', [MaklumatfrontController::class, 'index'])->name(
 Route::get('/kontak', [KontakfrontController::class, 'index'])->name('frontend.kontak');
 
 Route::get('/galerifoto', [GalerifotoController::class, 'index'])->name('frontend.galerifoto');
+Route::get('/galerifoto/show/{id}', [GalerifotoController::class, 'read'])->name('galerifoto.read');
 
 Route::get('/galerivideo', [GalerivideoController::class, 'index'])->name('frontend.galerivideo');
 
@@ -104,6 +106,8 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/pengumuman/download/{id}', [PengumumanbackController::class, 'download'])->name('pengumuman.download');
 
     Route::resource('/galeri', GaleriController::class);
+
+    Route::resource('/arsipgaleri', ArsipgaleriController::class);
 
     Route::resource('/video', VideoController::class);
 

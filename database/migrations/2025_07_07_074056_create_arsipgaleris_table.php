@@ -10,13 +10,10 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('galeri', function (Blueprint $table) {
+        Schema::create('arsipgaleris', function (Blueprint $table) {
             $table->id();
-            $table->string('judul');
-            $table->text('deskripsi')->nullable();
+            $table->string('nama_galeri');
             $table->string('foto')->nullable();
-            $table->unsignedBigInteger('arsipgaleri_id');
-            $table->foreign('arsipgaleri_id')->references('id')->on('arsipgaleris')->onDelete('restrict');
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('galeri');
+        Schema::dropIfExists('arsipgaleris');
     }
 };

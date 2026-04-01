@@ -1,7 +1,7 @@
 @extends('backend.layout.master')
 
 @section('judul')
-  Halaman Kelola Foto
+  Halaman Kelola Galeri
 @endsection
 
 @section('content')
@@ -32,35 +32,34 @@
           </div>
           <!-- /.card-header -->
           <div class="card-body">
-            <a href="{{ route('galeri.create') }}" class="btn btn-primary btn-sm mb-3">Tambah</a>
+
+            <a href="{{ route('arsipgaleri.create') }}" class="btn btn-primary btn-sm mb-3">Tambah</a>
+
             <table id="example1" class="table table-bordered table-striped">
               <thead>
                 <tr>
                   <th>No</th>
-                  <th>Judul Foto</th>
-                  <th>Deskripsi</th>
+                  <th>Nama Galeri</th>
                   <th>Foto</th>
-                  <th>Galeri</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                @forelse ($galeri as $key => $value)
+                @forelse ($arsipgaleris as $key => $value)
                   <tr>
                     <td>{{$key + 1}}</td>
-                    <td>{{$value->judul}}</td>
-                    <td>{{$value->deskripsi}}</td>
+                    <td>{{$value->nama_galeri}}</td>
                     <td>
-                      <img src="{{ asset('storage/galeri/' . $value->foto) }}"
+                      <img
+                        src="{{ $value->foto ? asset('storage/arsipgaleri/' . $value->foto) : asset('asset/lambang_mura.png') }}"
                         style="width:300px; height:200px; object-fit:contain;">
                     </td>
-                    <td>{{ $value->arsipgaleris->nama_galeri }}</td>
                     <td>
-                      <form action="{{ route('galeri.destroy', $value->id) }}" method="POST"
+                      <form action="{{ route('arsipgaleri.destroy', $value->id) }}" method="POST"
                         onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?')">
                         @csrf
                         @method('DELETE')
-                        <a href="{{ route('galeri.edit', $value->id) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="{{ route('arsipgaleri.edit', $value->id) }}" class="btn btn-warning btn-sm">Edit</a>
                         <input type="submit" value="Hapus" class="btn btn-danger btn-sm">
                       </form>
                     </td>
