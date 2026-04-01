@@ -394,6 +394,67 @@
         </div>
     </section>
 
+    <div class="container">
+        <h1>Galeri Foto</h1>
+
+        @if($grupgaleri->count() > 0)
+            <div class="row">
+                @foreach($grupgaleri as $grup)
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            @php
+                                // Ambil 1 foto terbaru dari bulan tersebut
+                                $fotoTerbaru = \App\Models\Galeri::find($grup->id_terbaru);
+                                // Format bulan '2024-01' menjadi 'Januari 2024'
+                                $bulanIndo = [
+                                    '01' => 'Januari',
+                                    '02' => 'Februari',
+                                    '03' => 'Maret',
+                                    '04' => 'April',
+                                    '05' => 'Mei',
+                                    '06' => 'Juni',
+                                    '07' => 'Juli',
+                                    '08' => 'Agustus',
+                                    '09' => 'September',
+                                    '10' => 'Oktober',
+                                    '11' => 'November',
+                                    '12' => 'Desember'
+                                ];
+                                $numBulan = \Carbon\Carbon::createFromFormat('Y-m', $grup->bulan)->format('m');
+                                $tahun = \Carbon\Carbon::createFromFormat('Y-m', $grup->bulan)->format('Y');
+                            @endphp
+
+                            @if($fotoTerbaru && $fotoTerbaru->foto)
+                                <img src="{{ asset('storage/' . $fotoTerbaru->foto) }}" class="card-img-top"
+                                    alt="{{ $fotoTerbaru->judul }}" style="height: 200px; object-fit: cover;">
+                            @else
+                                <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center"
+                                    style="height: 200px;">
+                                    <span class="text-white">No Image</span>
+                                </div>
+                            @endif
+
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $bulanIndo[$numBulan] }} {{ $tahun }}</h5>
+                                <p class="card-text">Total Foto: <strong>{{ $grup->total }}</strong></p>
+
+                                @if($fotoTerbaru)
+                                    <p class="text-muted small">Foto terbaru: {{ $fotoTerbaru->judul }}</p>
+                                @endif
+
+                                <a href="{{ route('galeri.detail', $grup->bulan) }}" class="btn btn-primary btn-sm">
+                                    Lihat Semua Foto
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @else
+            <div class="alert alert-info">Belum ada data galeri.</div>
+        @endif
+    </div>
+
     <!-- Modal -->
     <div class="modal" id="imageModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         <div id="thumbContainer" class="thumb-container">

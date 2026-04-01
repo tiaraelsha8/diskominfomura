@@ -87,6 +87,7 @@ Route::get('/kontak', [KontakfrontController::class, 'index'])->name('frontend.k
 
 Route::get('/galerifoto', [GalerifotoController::class, 'index'])->name('frontend.galerifoto');
 Route::get('/galerifoto/show/{id}', [GalerifotoController::class, 'read'])->name('galerifoto.read');
+Route::get('/galerifoto/detail/{bulan}', [GalerifotoController::class, 'detail'])->name('galeri.detail');
 
 Route::get('/galerivideo', [GalerivideoController::class, 'index'])->name('frontend.galerivideo');
 
