@@ -1054,7 +1054,7 @@
                 </div>
                 <div class="galeri-card-body">
                     <h3>Pengumuman</h3>
-                    <p>Pengumuman resmi dan pemberitahuan dari Diskominfo.</p>
+                    <p>Pengumuman resmi dan pemberitahuan.</p>
                 </div>
             </a>
 
@@ -1129,7 +1129,7 @@
                 @foreach ($carousel as $item)
                     "{{ asset('storage/carousel/' . $item->foto) }}",
                 @endforeach
-                                        ];
+                                                        ];
 
             let index = 0;
             const imgElement = document.getElementById('carouselImage');
