@@ -1002,7 +1002,7 @@
                 @foreach ($carousel as $item)
                     "{{ asset('storage/carousel/' . $item->foto) }}",
                 @endforeach
-                                                                                                                ];
+                            ];
 
             let index = 0;
             const imgElement = document.getElementById('carouselImage');
