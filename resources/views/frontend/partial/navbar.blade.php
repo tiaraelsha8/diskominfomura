@@ -40,6 +40,8 @@
                 <li class="nav-item"><a class="nav-link" href="{{ route('frontend.dokumen') }}">Dokumen</a></li>
                 {{-- <li class="nav-item"><a class="nav-link" href="{{ route('peta.index') }}">Peta</a></li> --}}
                 <li class="nav-item"><a class="nav-link" href="{{ route('frontend.kontak') }}">Kontak</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('frontend.pemilihanrt') }}">Pemimilihan Ketua
+                        RT</a></li>
                 @auth
                     <li class="nav-item"><a class="nav-link" href="{{ route('backend.dashboard') }}">Dashboard</a></li>
                 @endauth

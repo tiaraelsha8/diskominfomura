@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 
 //login
@@ -26,6 +27,7 @@ use App\Http\Controllers\backend\PengumumanbackController;
 use App\Http\Controllers\backend\VideoController;
 use App\Http\Controllers\backend\LayananController;
 use App\Http\Controllers\backend\ProfilbidangController;
+use App\Http\Controllers\backend\PemilihanrtController;
 
 //frontend
 use App\Http\Controllers\frontend\HomeController;
@@ -39,6 +41,7 @@ use App\Http\Controllers\frontend\KontakfrontController;
 use App\Http\Controllers\frontend\GalerifotoController;
 use App\Http\Controllers\frontend\GalerivideoController;
 use App\Http\Controllers\frontend\PegawaiController as PegawaiFront;
+use App\Http\Controllers\frontend\PemilihanrtController as PemilihanrtFront;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -76,6 +79,10 @@ Route::get('/pengumuman/{id}', [PengumumanController::class, 'show'])->name('pen
 Route::get('/peta', [PetaController::class, 'index'])->name('peta.index');
 
 Route::get('/tentang', [TentangfrontController::class, 'index'])->name('frontend.tentang');
+
+Route::get('/pemilihanrt', [PemilihanrtFront::class, 'index'])->name('frontend.pemilihanrt');
+Route::get('/pemilihanrt/pilihrt', [PemilihanrtFront::class, 'pilihrt'])->name('pilihrt');
+Route::get('/pemilihanrt/hasilrt', [PemilihanrtFront::class, 'hasilrt'])->name('hasilrt');
 
 Route::get('/dokumen', [DokumenfrontController::class, 'index'])->name('frontend.dokumen');
 Route::get('/dokumen/download/{id}', [DokumenfrontController::class, 'download'])->name('download.dokumen');
@@ -132,4 +139,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('/layanan', LayananController::class);
 
     Route::resource('/profilbidang', ProfilbidangController::class);
+
+    Route::resource('/pemilihanrt', PemilihanrtController::class);
+
 });
