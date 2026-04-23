@@ -137,7 +137,7 @@
         .layanan-overlay h5 {
             font-size: 1rem;
             font-weight: 700;
-            color: #12171c;
+            color: #ffffff;
             margin-bottom: 0;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -186,13 +186,13 @@
 
                 <a href="{{ route('pilihrt') }}" class="layanan-box" data-aos="zoom-in" target="_blank">
                     <div class="layanan-overlay">
-                        <h5>Pemilihan KETUA RT</h5>
+                        <h5>Daftar Pemilih</h5>
                     </div>
                 </a>
 
                 <a href="{{ route('hasilrt') }}" class="layanan-box" data-aos="zoom-in" target="_blank">
                     <div class="layanan-overlay">
-                        <h5>Hasil Pemilihan KETUA RT</h5>
+                        <h5>E-Voting Ketua RT</h5>
                     </div>
                 </a>
 
