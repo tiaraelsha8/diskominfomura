@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Kelurahan Puruk Cahu Seberang - PEMERINTAH KABUPATEN MURUNG RAYA</title>
+    <title>Dinas Pengendalian Penduduk dan Keluarga Berencana - PEMERINTAH KABUPATEN MURUNG RAYA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Google Font -->
@@ -20,7 +20,7 @@
 
     <!-- Meta deskripsi untuk SEO. Ini yang ditampilkan Google di hasil pencarian -->
     <meta name="description"
-        content="Situs Resmi Kelurahan Puruk Cahu Seberang Kec. Murung Kabupaten Murung Raya. Temukan informasi layanan, berita, pengumuman dan Kelurahan Puruk Cahu Seberang.">
+        content="Situs Resmi Dinas Pengendalian Penduduk dan Keluarga Berencana Kabupaten Murung Raya. Temukan informasi layanan, berita, dan pengumuman.">
     <meta name="robots" content="index, follow"> <!-- biarkan Google mengindeks -->
     <link rel="canonical" href="https://kel-purukcahuseberang.murungrayakab.go.id"> <!-- ganti dengan domain -->
 

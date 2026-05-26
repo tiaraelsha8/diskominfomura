@@ -893,7 +893,7 @@
         @endif
 
         <div class="hero-container" data-aos="fade-down">
-            <h1>Selamat Datang <br> Di Kelurahan Puruk Cahu Seberang<br> Kabupaten Murung Raya</h1>
+            <h1>Selamat Datang <br> Di Dinas Pengendalian Penduduk dan Keluarga Berencana<br> Kabupaten Murung Raya</h1>
             <p data-aos="fade-up" data-aos-delay="200">Murung Raya Hebat</p>
         </div>
     </div>
@@ -1129,7 +1129,7 @@
                 @foreach ($carousel as $item)
                     "{{ asset('storage/carousel/' . $item->foto) }}",
                 @endforeach
-                                                        ];
+                                                                ];
 
             let index = 0;
             const imgElement = document.getElementById('carouselImage');
