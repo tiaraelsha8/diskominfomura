@@ -7,24 +7,25 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-    <form action="{{ route('tentang.store') }}" method="POST">
-        @csrf
-        <div class="box-body">
+        @php $folder_id = uniqid(); @endphp
+        <form action="{{ route('tentang.store') }}" method="POST">
+            @csrf
+            <div class="box-body">
 
-            <div class="form-group">
-                <label for="tentang">Tentang</label>
-                <textarea name="tentang" id="editor" class="form-control"></textarea>
-                @error('tentang')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-            </div>
+                <div class="form-group">
+                    <label for="tentang">Tentang</label>
+                    <textarea name="tentang" id="editor" class="form-control"></textarea>
+                    @error('tentang')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+                </div>
 
-            <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Simpan</button>
-                <a href="{{ route('tentang.index') }}" class="btn btn-default">Kembali</a>
+                <div class="box-footer">
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                    <a href="{{ route('tentang.index') }}" class="btn btn-default">Kembali</a>
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
     </div>
 </div>
 @endsection
@@ -35,19 +36,17 @@
         ClassicEditor
           .create(document.querySelector('#editor'), {
             toolbar: [
-              'heading',
-              'bold',
-              'italic',
-              'underline',
-              'bulletedList',
-              'numberedList',
-              'alignment',
-              'link',
-              'undo',
-              'redo'
+              'heading', '|',
+              'bold', 'italic', 'underline', '|',
+              'imageUpload',
+              'bulletedList', 'numberedList', 'alignment', '|',
+              'link', 'undo', 'redo'
             ],
             alignment: {
               options: [ 'left', 'center', 'right', 'justify' ]
+            },
+            ckfinder: {
+                uploadUrl: "{{ route('tentang.upload') }}?_token={{ csrf_token() }}&folder_id={{ $folder_id }}"
             }
           })
           .catch(error => console.error(error));

@@ -150,7 +150,7 @@
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.15);
             min-height: 120px;
-            height: 125px;
+            height: auto;
             padding: 15px;
         }
 
@@ -171,19 +171,15 @@
         }
 
         .layanan-overlay h5 {
-            font-size: 1rem;
+            font-size: 0.85rem;
             font-weight: 700;
             color: #ffffff;
             margin-bottom: 0;
             text-transform: uppercase;
             letter-spacing: 0.5px;
-            line-height: 1.2;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            line-height: 1.3;
             text-align: center;
+            word-break: break-word;
         }
 
         .bidang-fullwidth {
@@ -585,7 +581,7 @@
             }
 
             .layanan-overlay h5 {
-                font-size: 0.95rem;
+                font-size: 0.8rem;
             }
 
             .bidang-fullwidth {

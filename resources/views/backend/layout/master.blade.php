@@ -33,6 +33,19 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('templateadmin/dist/css/adminlte.min.css') }}">
 
+    <style>
+        .table td img {
+            max-width: 100%;
+            max-height: 150px;
+            height: auto;
+            object-fit: contain;
+        }
+        .content-wrapper img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+
     <!-- table -->
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('templateadmin/plugins/fontawesome-free/css/all.min.css') }}">

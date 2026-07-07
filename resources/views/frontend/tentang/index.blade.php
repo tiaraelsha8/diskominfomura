@@ -33,6 +33,13 @@
             text-align: justify;
         }
 
+        .tentang-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 1rem auto;
+        }
+
         @media (max-width: 768px) {
             .tentang-title-bg {
                 min-height: 50vh;

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Tentang;
+use Illuminate\Support\Facades\File;
 
 class TentangController extends Controller
 {
@@ -41,6 +42,35 @@ class TentangController extends Controller
             'tentang' => 'required'
         ]);
 
+        // Ambil konten dan folder_id dari request
+        $deskripsi = $request->tentang;
+        preg_match('/storage\/tentang\/foto\/([^\/]+)\//', $deskripsi, $matches);
+        $folderId = $matches[1] ?? "";
+
+        $storagePath = public_path('storage/tentang/foto/' . $folderId);
+
+        if ($folderId && File::exists($storagePath)) {
+            preg_match_all('/<img [^>]*src="([^"]+)"/', $deskripsi, $matches);
+
+            $imagesInContent = array_map(function ($url) {
+                return basename(parse_url($url, PHP_URL_PATH));
+            }, $matches[1]);
+
+            $allFiles = File::files($storagePath);
+
+            foreach ($allFiles as $file) {
+                $fileName = $file->getFilename();
+
+                if (!in_array($fileName, $imagesInContent)) {
+                    File::delete($file->getPathname());
+                }
+            }
+
+            if (count(File::files($storagePath)) === 0) {
+                File::deleteDirectory($storagePath);
+            }
+        }
+
         //create
         Tentang::create($request->all());
 
@@ -76,6 +106,35 @@ class TentangController extends Controller
             'tentang' => 'required'
         ]);
 
+        // Ambil konten dan folder_id dari request
+        $deskripsi = $request->tentang;
+        preg_match('/storage\/tentang\/foto\/([^\/]+)\//', $deskripsi, $matches);
+        $folderId = $matches[1] ?? "";
+
+        $storagePath = public_path('storage/tentang/foto/' . $folderId);
+
+        if ($folderId && File::exists($storagePath)) {
+            preg_match_all('/<img [^>]*src="([^"]+)"/', $deskripsi, $matches);
+
+            $imagesInContent = array_map(function ($url) {
+                return basename(parse_url($url, PHP_URL_PATH));
+            }, $matches[1]);
+
+            $allFiles = File::files($storagePath);
+
+            foreach ($allFiles as $file) {
+                $fileName = $file->getFilename();
+
+                if (!in_array($fileName, $imagesInContent)) {
+                    File::delete($file->getPathname());
+                }
+            }
+
+            if (count(File::files($storagePath)) === 0) {
+                File::deleteDirectory($storagePath);
+            }
+        }
+
         //get product by ID
         $tentangs = Tentang::findOrFail($id);
         
@@ -93,11 +152,59 @@ class TentangController extends Controller
     {
         //get by ID
         $tentangs = Tentang::findOrFail($id);
+        $deskripsi = $tentangs->tentang;
+
+        preg_match('/storage\/tentang\/foto\/([^\/]+)\//', $deskripsi, $matches);
+
+        if (isset($matches[1])) {
+            $folderId = $matches[1];
+            $folderPath = public_path('storage/tentang/foto/' . $folderId);
+
+            if (File::exists($folderPath)) {
+                File::deleteDirectory($folderPath);
+            }
+        }
 
         //delete 
         $tentangs->delete();
 
         //redirect to index
         return redirect()->route('tentang.index')->with(['success' => 'Data Berhasil Dihapus!']);
+    }
+
+    public function storeImage(Request $request)
+    {
+        if ($request->hasFile('upload')) {
+            $file = $request->file('upload');
+
+            $allowedExtensions = ['jpg', 'jpeg', 'png', 'webp'];
+            $extension = strtolower($file->getClientOriginalExtension());
+
+            if (!in_array($extension, $allowedExtensions)) {
+                return response()->json([
+                    'uploaded' => 0,
+                    'error' => ['message' => 'Format file tidak didukung! Gunakan JPG, PNG, atau WEBP.']
+                ]);
+            }
+
+            $maxSize = 2 * 1024 * 1024;
+            if ($file->getSize() > $maxSize) {
+                return response()->json([
+                    'uploaded' => 0,
+                    'error' => ['message' => 'Ukuran foto terlalu besar! Maksimal adalah 2MB.']
+                ]);
+            }
+
+            $folderId = $request->query('folder_id');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+
+            $path = "storage/tentang/foto/" . $folderId;
+            $file->move(public_path($path), $fileName);
+
+            return response()->json([
+                'uploaded' => 1,
+                'url' => asset($path . '/' . $fileName)
+            ]);
+        }
     }
 }

@@ -118,6 +118,7 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::put('/user/update/{id}', [UserController::class, 'update'])->name('user.update');
 
     Route::resource('/tentang', TentangController::class);
+    Route::post('tentang-upload', [TentangController::class, 'storeImage'])->name('tentang.upload');
 
     Route::resource('/maklumat', MaklumatController::class);
 
