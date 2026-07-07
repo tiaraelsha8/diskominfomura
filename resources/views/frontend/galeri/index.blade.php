@@ -425,7 +425,7 @@
                             @endphp
 
                             @if($fotoTerbaru && $fotoTerbaru->foto)
-                                <img src="{{ asset('storage/' . $fotoTerbaru->foto) }}" class="card-img-top"
+                                <img src="{{ asset('storage/galeri/' . $fotoTerbaru->foto) }}" class="card-img-top"
                                     alt="{{ $fotoTerbaru->judul }}" style="height: 200px; object-fit: cover;">
                             @else
                                 <div class="card-img-top bg-secondary d-flex align-items-center justify-content-center"
