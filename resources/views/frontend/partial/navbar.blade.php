@@ -37,6 +37,15 @@
                         <a href="{{ route('lihat-pengumuman') }}">Galeri Pengumuman</a>
                     </div>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="satistikMenu" role="button">Statistik<i
+                            class="bi bi-chevron-down ms-1 small-indicator"></i></a>
+                    <div class="dropdown-global" id="dropdownStatistik">
+                        <a href="{{ route('statistik.index') }}">Data Statistik</a>
+                        <a href="{{ route('frontend.publikasi') }}">Publikasi</a>
+                        <a href="{{ route('frontend.infografis') }}">Infografis</a>
+                    </div>
+                </li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('frontend.dokumen') }}">Dokumen</a></li>
                 {{-- <li class="nav-item"><a class="nav-link" href="{{ route('peta.index') }}">Peta</a></li> --}}
                 <li class="nav-item"><a class="nav-link" href="{{ route('frontend.kontak') }}">Kontak</a></li>

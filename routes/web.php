@@ -26,6 +26,14 @@ use App\Http\Controllers\backend\PengumumanbackController;
 use App\Http\Controllers\backend\VideoController;
 use App\Http\Controllers\backend\LayananController;
 use App\Http\Controllers\backend\ProfilbidangController;
+use App\Http\Controllers\backend\PublikasiController as BackendPublikasiController;
+use App\Http\Controllers\backend\StatistikRentangUmurController;
+use App\Http\Controllers\backend\StatistikJenisKelaminController;
+use App\Http\Controllers\backend\StatistikAgamaController;
+use App\Http\Controllers\backend\StatistikIjazahController;
+use App\Http\Controllers\backend\StatistikPekerjaanController;
+use App\Http\Controllers\backend\PendudukController;
+use App\Http\Controllers\backend\InfografisController;
 
 //frontend
 use App\Http\Controllers\frontend\HomeController;
@@ -39,6 +47,12 @@ use App\Http\Controllers\frontend\KontakfrontController;
 use App\Http\Controllers\frontend\GalerifotoController;
 use App\Http\Controllers\frontend\GalerivideoController;
 use App\Http\Controllers\frontend\PegawaiController as PegawaiFront;
+use App\Http\Controllers\frontend\PublikasiController as FrontendPublikasiController;
+// use App\Http\Controllers\frontend\InfografisfrontController;
+use App\Http\Controllers\frontend\InfografisController as FrontendInfografisController;
+// use App\Models\Publikasi;
+
+use App\Http\Controllers\frontend\StatistikController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -88,6 +102,13 @@ Route::get('/galerifoto', [GalerifotoController::class, 'index'])->name('fronten
 
 Route::get('/galerivideo', [GalerivideoController::class, 'index'])->name('frontend.galerivideo');
 
+Route::get('/infografis', [FrontendInfografisController::class, 'index'])->name('frontend.infografis');
+
+Route::get('/publikasi', [FrontendPublikasiController::class, 'index'])->name('frontend.publikasi');
+Route::get('/publikasi/{slug}', [FrontendPublikasiController::class, 'show'])->name('publikasi.detail');
+Route::get('/publikasi/{slug}/download', [FrontendPublikasiController::class, 'download'])->name('publikasi.download');
+Route::get('/statistik', [StatistikController::class, 'index'])->name('statistik.index');
+
 //backend
 Route::prefix('admin')->middleware('auth')->group(function () {
 
@@ -132,4 +153,39 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::resource('/layanan', LayananController::class);
 
     Route::resource('/profilbidang', ProfilbidangController::class);
+
+
+    Route::resource('/publikasi', BackendPublikasiController::class)->except(['show']);
+
+    Route::resource('/infografis', InfografisController::class);
+
+    Route::resource('rentang-umur', StatistikRentangUmurController::class)->only(['index', 'edit', 'update']);
+    Route::resource('jenis-kelamin', StatistikJenisKelaminController::class)->only(['index', 'edit', 'update']);
+    Route::resource('agama', StatistikAgamaController::class)->only(['index', 'edit', 'update']);
+    Route::resource('ijazah-tertinggi', StatistikIjazahController::class)->only(['index', 'edit', 'update']);
+    Route::resource('pekerjaan', StatistikPekerjaanController::class)->only(['index', 'edit', 'update']);
+
+    Route::get('rentang-umur/template', [StatistikRentangUmurController::class, 'downloadTemplate'])->name('rentang-umur.template');
+    Route::post('rentang-umur/import', [StatistikRentangUmurController::class, 'import'])->name('rentang-umur.import');
+
+    Route::get('jenis-kelamin/template', [StatistikJenisKelaminController::class, 'downloadTemplate'])->name('jenis-kelamin.template');
+    Route::post('jenis-kelamin/import', [StatistikJenisKelaminController::class, 'import'])->name('jenis-kelamin.import');
+
+    Route::get('agama/template', [StatistikAgamaController::class, 'downloadTemplate'])->name('agama.template');
+    Route::post('agama/import', [StatistikAgamaController::class, 'import'])->name('agama.import');
+
+    Route::get('ijazah-tertinggi/template', [StatistikIjazahController::class, 'downloadTemplate'])->name('ijazah-tertinggi.template');
+    Route::post('ijazah-tertinggi/import', [StatistikIjazahController::class, 'import'])->name('ijazah-tertinggi.import');
+
+    Route::get('pekerjaan/template', [StatistikPekerjaanController::class, 'downloadTemplate'])->name('pekerjaan.template');
+    Route::post('pekerjaan/import', [StatistikPekerjaanController::class, 'import'])->name('pekerjaan.import');
+});
+
+Route::prefix('admin/penduduk')->name('admin.penduduk.')->middleware(['auth'])->group(function () {
+    Route::get('/', [PendudukController::class, 'index'])->name('index');
+    Route::get('create', [PendudukController::class, 'create'])->name('create');
+    Route::post('/', [PendudukController::class, 'store'])->name('store');
+    Route::get('{id}/edit', [PendudukController::class, 'edit'])->name('edit');
+    Route::put('{id}', [PendudukController::class, 'update'])->name('update');
+    Route::delete('{id}', [PendudukController::class, 'destroy'])->name('destroy');
 });

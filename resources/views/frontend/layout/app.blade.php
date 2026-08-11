@@ -838,6 +838,10 @@
             {
                 triggerId: 'galeriMenu',
                 dropdownId: 'dropdownGaleri'
+            },
+            {
+                triggerId: 'satistikMenu',
+                dropdownId: 'dropdownStatistik'
             }
             ];
 
