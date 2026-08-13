@@ -6,31 +6,32 @@ use App\Http\Controllers\Controller;
 use App\Models\StatistikAgama;
 use App\Models\StatistikIjazah;
 use App\Models\StatistikPekerjaan;
-// use App\Models\Penduduk;
 use App\Models\StatistikRentangUmur;
-use App\Models\StatistikJenisKelamin;
+use App\Models\StatistikJenisKelaminRt;
 
 class StatistikController extends Controller
 {
     public function index()
     {
         $rentangUmurs     = StatistikRentangUmur::orderBy('id')->get();
-        $jenisKelamins    = StatistikJenisKelamin::orderBy('id')->get();
         $agamas           = StatistikAgama::orderBy('id')->get();
         $ijazahTertinggis = StatistikIjazah::orderBy('id')->get();
         $pekerjaans       = StatistikPekerjaan::orderBy('id')->get();
 
-        // Sumber tunggal untuk kartu ringkasan & tabel Penduduk
-        $penduduk = StatistikJenisKelamin::first();
+        // Breakdown per RT — sumber tabel & grafik "Penduduk"
+        $jenisKelaminRts = StatistikJenisKelaminRt::orderByRaw(
+            'CAST(REGEXP_REPLACE(rt, "[^0-9]", "") AS UNSIGNED) ASC'
+        )->get();
 
-        $totalLakiLaki  = $penduduk->laki_laki ?? 0;
-        $totalPerempuan = $penduduk->perempuan ?? 0;
+        // Kartu ringkasan dihitung langsung dari kumulatif RT (bukan dari statistik_jk)
+        $totalLakiLaki  = $jenisKelaminRts->sum('laki_laki');
+        $totalPerempuan = $jenisKelaminRts->sum('perempuan');
         $totalPenduduk  = $totalLakiLaki + $totalPerempuan;
-        $jumlahKk       = $jenisKelamins->sum('jumlah_kk');
+        $jumlahKk       = $jenisKelaminRts->sum('jumlah_kk');
 
         return view('frontend.statistik.index', compact(
-              'rentangUmurs',
-            'jenisKelamins',
+            'rentangUmurs',
+            'jenisKelaminRts',
             'agamas',
             'ijazahTertinggis',
             'pekerjaans',

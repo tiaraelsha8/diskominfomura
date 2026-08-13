@@ -456,6 +456,9 @@
     </style>
     <section class="pt-5 pb-5 mt-5">
         <div class="stat-page container">
+            <div class="stat-breadcrumb">
+
+            </div>
 
             <div class="galeri-head">
                 <span class="gl-icon"><i class="bi bi-bar-chart-line"></i></span>

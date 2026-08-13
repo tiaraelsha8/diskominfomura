@@ -34,6 +34,7 @@ use App\Http\Controllers\backend\StatistikIjazahController;
 use App\Http\Controllers\backend\StatistikPekerjaanController;
 use App\Http\Controllers\backend\PendudukController;
 use App\Http\Controllers\backend\InfografisController;
+use App\Http\Controllers\backend\StatistikJenisKelaminRtController;
 
 //frontend
 use App\Http\Controllers\frontend\HomeController;
@@ -179,6 +180,20 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 
     Route::get('pekerjaan/template', [StatistikPekerjaanController::class, 'downloadTemplate'])->name('pekerjaan.template');
     Route::post('pekerjaan/import', [StatistikPekerjaanController::class, 'import'])->name('pekerjaan.import');
+
+    Route::controller(StatistikJenisKelaminRtController::class)
+        ->prefix('jenis-kelamin-rt')
+        ->name('jenis-kelamin-rt.')
+        ->group(function () {
+            Route::get('/', 'index')->name('index');
+            Route::get('/create', 'create')->name('create');
+            Route::post('/', 'store')->name('store');
+            Route::get('/{id}/edit', 'edit')->name('edit');
+            Route::put('/{id}', 'update')->name('update');
+            Route::delete('/{id}', 'destroy')->name('destroy');
+            Route::get('/template', 'downloadTemplate')->name('template');   // ← baru
+            Route::post('/import', 'import')->name('import');                 // ← baru
+        });
 });
 
 Route::prefix('admin/penduduk')->name('admin.penduduk.')->middleware(['auth'])->group(function () {

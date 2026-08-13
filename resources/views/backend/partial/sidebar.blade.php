@@ -150,6 +150,13 @@
                       </a>
                     </li>
                     <li class="nav-item">
+                      <a href="{{ route('jenis-kelamin-rt.index') }}"
+                        class="nav-link {{ request()->routeIs('jenis-kelamin-rt.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>Penduduk per RT</p>
+                      </a>
+                    </li>
+                    <li class="nav-item">
                       <a href="{{ route('agama.index') }}" class="nav-link">
                         <i class="far fa-dot-circle nav-icon"></i>
                         <p>Agama</p>

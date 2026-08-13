@@ -10,9 +10,9 @@
         ],
         'penduduk' => [
             'title' => 'Penduduk',
-            'rows' => $jenisKelamins,
-            'labelKey' => 'jenis_kelamin',
-            'labelHeader' => 'Kelompok',
+            'rows' => $jenisKelaminRts, // ganti dari $jenisKelamins
+            'labelKey' => 'rt', // ganti dari 'jenis_kelamin'
+            'labelHeader' => 'RT', // ganti dari 'Kelompok'
         ],
         'agama' => ['title' => 'Agama', 'rows' => $agamas, 'labelKey' => 'agama', 'labelHeader' => 'Agama'],
         'ijazah-tertinggi' => [
@@ -30,23 +30,16 @@
     ];
 
     // Data untuk pie chart tiap indikator: [{name: 'Islam', y: 600}, ...]
-  $statChartData = [];
+    $statChartData = [];
     foreach ($statTables as $key => $t) {
-        if ($key === 'penduduk') {
-            // Khusus tabel Penduduk (jenis kelamin): tampilkan pecahan
-            // Laki-laki vs Perempuan, bukan per baris kategori (karena cuma 1 baris).
-            $statChartData[$key] = collect([
-                ['name' => 'Laki-laki', 'y' => (int) $t['rows']->sum('laki_laki')],
-                ['name' => 'Perempuan', 'y' => (int) $t['rows']->sum('perempuan')],
-            ]);
-        } else {
-            $statChartData[$key] = $t['rows']->map(function ($row) use ($t) {
+        $statChartData[$key] = $t['rows']
+            ->map(function ($row) use ($t) {
                 return [
                     'name' => $row->{$t['labelKey']},
-                    'y'    => $row->laki_laki + $row->perempuan,
+                    'y' => $row->laki_laki + $row->perempuan,
                 ];
-            })->values();
-        }
+            })
+            ->values();
     }
 @endphp
 
@@ -89,25 +82,16 @@
 
 @foreach ($statTables as $key => $t)
     @php
-       $totalJumlah = $t['rows']->sum(fn($r) => $r->laki_laki + $r->perempuan);
-
-        // Untuk tabel "Penduduk" (jenis kelamin), persentase laki-laki & perempuan
-        // dihitung terhadap TOTAL PENDUDUK, bukan terhadap dirinya sendiri
-        // (karena tabel ini cuma 1 baris kategori, jadi rumus lama selalu 100%).
-        if ($key === 'penduduk') {
-            $totalLaki = $totalJumlah;
-            $totalPr = $totalJumlah;
-        } else {
-            $totalLaki = $t['rows']->sum('laki_laki');
-            $totalPr = $t['rows']->sum('perempuan');
-        }
+        $totalJumlah = $t['rows']->sum(fn($r) => $r->laki_laki + $r->perempuan);
+        $totalLaki = $t['rows']->sum('laki_laki');
+        $totalPr = $t['rows']->sum('perempuan');
     @endphp
 
     <div class="stat-table-block" data-panel="{{ $key }}" style="{{ $loop->first ? '' : 'display:none;' }}">
         <div class="stat-panel-header">
             <div>
-            <h2 class="stat-panel-title">{{ $t['title'] }}</h2>
-            <span class="stat-panel-caption">{{ $t['rows']->count() }} kategori data</span>
+                <h2 class="stat-panel-title">{{ $t['title'] }}</h2>
+                <span class="stat-panel-caption">{{ $t['rows']->count() }} kategori data</span>
             </div>
 
             <div class="stat-view-tabs">
