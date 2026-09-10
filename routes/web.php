@@ -91,6 +91,10 @@ Route::get('/galerifoto/detail/{bulan}', [GalerifotoController::class, 'detail']
 
 Route::get('/galerivideo', [GalerivideoController::class, 'index'])->name('frontend.galerivideo');
 
+Route::get('/faq', function () {
+    return view('frontend.faq.index');
+})->name('faq.index');
+
 //backend
 Route::prefix('admin')->middleware('auth')->group(function () {
 
