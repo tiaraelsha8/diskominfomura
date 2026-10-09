@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Dinas Pengendalian Penduduk dan Keluarga Berencana - PEMERINTAH KABUPATEN MURUNG RAYA</title>
+    <title>Badan Keuangan dan Aset Daerah - PEMERINTAH KABUPATEN MURUNG RAYA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Google Font -->
@@ -20,9 +20,9 @@
 
     <!-- Meta deskripsi untuk SEO. Ini yang ditampilkan Google di hasil pencarian -->
     <meta name="description"
-        content="Situs Resmi Dinas Pengendalian Penduduk dan Keluarga Berencana Kabupaten Murung Raya. Temukan informasi layanan, berita, dan pengumuman.">
+        content="Situs Resmi Badan Keuangan dan Aset Daerah Kabupaten Murung Raya. Temukan informasi layanan, berita, dan pengumuman.">
     <meta name="robots" content="index, follow"> <!-- biarkan Google mengindeks -->
-    <link rel="canonical" href="https://kel-purukcahuseberang.murungrayakab.go.id"> <!-- ganti dengan domain -->
+    <link rel="canonical" href="https://bkad.murungrayakab.go.id"> <!-- ganti dengan domain -->
 
     <!-- Meta deskripsi untuk SEO Berita -->
     @yield('meta_seo')

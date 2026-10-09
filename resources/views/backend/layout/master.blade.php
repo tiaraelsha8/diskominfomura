@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Dinas Pengendalian Penduduk dan Keluarga Berencana - Halaman Admin</title>
+    <title>Badan Keuangan dan Aset Daerah - Halaman Admin</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
