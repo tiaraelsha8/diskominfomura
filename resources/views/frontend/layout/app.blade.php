@@ -40,7 +40,7 @@
             top: 0;
             padding: 1.5rem 0;
             font-size: 1.1rem;
-            background-color: rgba(7, 90, 8, 0.8);
+            background-color: #932635;
             ;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(5px);
@@ -96,9 +96,9 @@
             transform-origin: center;
             width: 60%;
             height: 3px;
-            background: linear-gradient(90deg, #00b7ff, #00b7ff);
+            background: #932635;
             border-radius: 2px;
-            box-shadow: 0 0 6px rgba(255, 193, 7, 0.6);
+            box-shadow: 0 0 6px #932635;
             transition: transform 0.35s ease, opacity 0.35s ease;
             opacity: 0;
             pointer-events: none;
@@ -201,7 +201,7 @@
         }
 
         .dropdown-global a:hover {
-            border-left: 3px solid #0056b3;
+            border-left: 3px solid #932635;
             background-color: rgba(0, 86, 179, 0.05);
             color: #0056b3;
         }
@@ -448,7 +448,7 @@
         }
 
         .custom-footer {
-            background-color: #075a08;
+            background-color: #932635;
             color: white;
             font-family: 'Inter', sans-serif;
             position: relative;
