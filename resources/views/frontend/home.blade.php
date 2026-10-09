@@ -37,7 +37,7 @@
 
         .hero-container {
             position: relative;
-            background: linear-gradient(135deg, rgba(0, 50, 100, 0.6), rgba(0, 0, 0, 0.3));
+            background: linear-gradient(135deg, #932635, #932635);
             padding: 30px 20px;
             border-radius: 20px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
@@ -1129,7 +1129,7 @@
                 @foreach ($carousel as $item)
                     "{{ asset('storage/carousel/' . $item->foto) }}",
                 @endforeach
-                                                                        ];
+                                                                            ];
 
             let index = 0;
             const imgElement = document.getElementById('carouselImage');
