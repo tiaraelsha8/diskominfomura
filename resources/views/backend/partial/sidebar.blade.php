@@ -1,9 +1,9 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4"
-  style="background-image: linear-gradient(180deg, #075a08, #075a08)">
+  style="background-image: linear-gradient(180deg, #932635, #932635)">
   <!-- Brand Logo -->
   <a href="{{ route('beranda') }}" class="brand-link">
     <img src="{{asset('image/logo-murung-raya.png')}}" alt="kelberiwit Logo" class="brand-image" style="opacity: .8;">
-    <span class="brand-text font-weight-light">Dinas Pengendalian Penduduk dan Keluarga Berencana</span>
+    <span class="brand-text font-weight-light">BKAD</span>
   </a>
 
   <!-- Sidebar -->
