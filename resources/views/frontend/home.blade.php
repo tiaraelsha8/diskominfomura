@@ -37,7 +37,7 @@
 
         .hero-container {
             position: relative;
-            background: linear-gradient(135deg, #932635, #932635);
+            background: linear-gradient(135deg, #C6DBEF, #C6DBEF);
             padding: 30px 20px;
             border-radius: 20px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
@@ -893,7 +893,7 @@
         @endif
 
         <div class="hero-container" data-aos="fade-down">
-            <h1>Selamat Datang <br> Di Badan Keuangan dan Aset Daerah<br> Kabupaten Murung Raya</h1>
+            <h1>Selamat Datang <br> Di Kecamatan Seribu Riam<br> Kabupaten Murung Raya</h1>
             <p data-aos="fade-up" data-aos-delay="200">Murung Raya Hebat, Semakin Maju, Semakin Sejahtera</p>
         </div>
     </div>
@@ -1129,7 +1129,7 @@
                 @foreach ($carousel as $item)
                     "{{ asset('storage/carousel/' . $item->foto) }}",
                 @endforeach
-                                                                                    ];
+                                                                                            ];
 
             let index = 0;
             const imgElement = document.getElementById('carouselImage');

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Badan Keuangan dan Aset Daerah - PEMERINTAH KABUPATEN MURUNG RAYA</title>
+    <title>Kecamatan Seribu Riam - PEMERINTAH KABUPATEN MURUNG RAYA</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Google Font -->
@@ -20,9 +20,9 @@
 
     <!-- Meta deskripsi untuk SEO. Ini yang ditampilkan Google di hasil pencarian -->
     <meta name="description"
-        content="Situs Resmi Badan Keuangan dan Aset Daerah Kabupaten Murung Raya. Temukan informasi layanan, berita, dan pengumuman.">
+        content="Situs Resmi Kecamatan Seribu Riam Kabupaten Murung Raya. Temukan informasi layanan, berita, dan pengumuman.">
     <meta name="robots" content="index, follow"> <!-- biarkan Google mengindeks -->
-    <link rel="canonical" href="https://bkad.murungrayakab.go.id"> <!-- ganti dengan domain -->
+    <link rel="canonical" href="https://kecseriburiam.murungrayakab.go.id"> <!-- ganti dengan domain -->
 
     <!-- Meta deskripsi untuk SEO Berita -->
     @yield('meta_seo')
@@ -40,7 +40,7 @@
             top: 0;
             padding: 1.5rem 0;
             font-size: 1.1rem;
-            background-color: #932635;
+            background-color: #C6DBEF;
             ;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(5px);
@@ -201,7 +201,7 @@
         }
 
         .dropdown-global a:hover {
-            border-left: 3px solid #932635;
+            border-left: 3px solid #C6DBEF;
             background-color: rgba(0, 86, 179, 0.05);
             color: #0056b3;
         }
@@ -448,7 +448,7 @@
         }
 
         .custom-footer {
-            background-color: #932635;
+            background-color: #C6DBEF;
             color: white;
             font-family: 'Inter', sans-serif;
             position: relative;

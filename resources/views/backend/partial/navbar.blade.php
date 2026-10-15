@@ -1,4 +1,4 @@
-<nav class="main-header navbar navbar-expand navbar-white navbar-light" style="background-color: #932635 ">
+<nav class="main-header navbar navbar-expand navbar-white navbar-light" style="background-color: #C6DBEF ">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
         <li class="nav-item">
